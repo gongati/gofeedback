@@ -158,7 +158,6 @@ class SideMenuItemsViewController: UIViewController {
         }
         showContactPage()
         //TODO - Alerts need to be integrated
-//        popupAlert(title: "Alert", message: "Contact Us is not ready yet", actionTitles: ["OK"], actions: [nil])
         GFBaseViewController.currentMenuItem = Constants.SideMenuAction.ContactUs
     }
         func showContactPage() {
