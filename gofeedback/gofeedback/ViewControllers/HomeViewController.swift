@@ -14,9 +14,11 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var whereToGoText: UITextField!
-    @IBOutlet weak var locationPin: UIImageView!
     @IBOutlet weak var topNavBar: UIView!
     @IBOutlet weak var navBarLogo: UIImageView!
+    
+    @IBOutlet weak var zoomOutBtn: UIButton!
+    @IBOutlet weak var zoomInBtn: UIButton!
     
     var locationManager = CLLocationManager()
     var locationLat:String?
@@ -82,7 +84,22 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     @IBAction func gotoCurrentLocation(_ sender: UIButton) {
         requestCurrentLocation()
-        locationPin.alpha = 0
+    }
+    
+    @IBAction func zoomInMap(_ sender: UIButton) {
+
+        self.mapView.setZoomByDelta(delta: 0.5, animated: true)
+    }
+    
+    @IBAction func zoomOutMap(_ sender: UIButton) {
+
+        self.mapView.setZoomByDelta(delta: 2, animated: true)
+    }
+    
+    @IBAction func openHeader(_ sender: UIButton) {
+     
+        let viewController = SampleCategoryViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     //MARK:- UITextField Delegate
@@ -96,16 +113,22 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         //push controller
         return false
     }
+    
+    func centerViewOnUserLocation() {
+        
+        if let location = locationManager.location?.coordinate {
+            
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 100, longitudinalMeters: 100)
+            mapView.setRegion(region, animated: true)
+        }
+    }
 
     //MARK:- CLLocationManager Delegates
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
-//        print("Address - \(MapsUtility.getAddressForLatLng(latitude: "\(locations[0].coordinate.latitude)", longitude: "\(locations[0].coordinate.longitude)"))")
         locationLat = "\(locations[0].coordinate.latitude)"
         locationLong = "\(locations[0].coordinate.longitude)"
-        userCurrentLocation = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
-        self.mapView.setRegion(region, animated: true)
+        self.centerViewOnUserLocation()
         manager.stopUpdatingLocation()
     }
     
@@ -119,10 +142,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             print("User location is nil")
             return
         }
-        
-        locationPin.alpha = 1
-        animationScaleEffect(view: locationPin, animationTime: 0.1)
-        
+                
         let currentLoc = CLLocation(latitude: (userCurrentLocation?.latitude)!, longitude: (userCurrentLocation?.longitude)!)
         let selectedLoc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
                 
@@ -132,22 +152,11 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         let zoomFactor = Int(log2(zoomWidth)) - 9
         let pinDistance = (20 * zoomFactor)
 
-        if currentLoc.distance(from: selectedLoc) < CLLocationDistance(pinDistance)
-        {
-            locationPin.isHidden = true
-        }else{
-            locationPin.isHidden = false
-        }
 
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
     }
 
-    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        print("Region will change.....!!!")
-        locationPin.alpha = 0.5
-    }
-    
     func animationScaleEffect(view:UIView,animationTime:Float)
     {
         UIView.animate(withDuration: TimeInterval(animationTime), animations: {
@@ -163,4 +172,21 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         
     }
     
+}
+
+extension MKMapView {
+
+    // delta is the zoom factor
+    // 2 will zoom out x2
+    // .5 will zoom in by x2
+
+    func setZoomByDelta(delta: Double, animated: Bool) {
+        var _region = region;
+        var _span = region.span;
+        _span.latitudeDelta *= delta;
+        _span.longitudeDelta *= delta;
+        _region.span = _span;
+
+        setRegion(_region, animated: animated)
+    }
 }
