@@ -30,10 +30,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         // Do any additional setup after loading the view, typically from a nib.
         whereToGoText.delegate = self
         mapView.delegate = self
-        navigationController?.navigationBar.barTintColor = UIColor.topNavBarColor
-        
-        self.navBarLogo.backgroundColor = UIColor.clear
-        topNavBar.backgroundColor = UIColor.topNavBarColor
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,22 +92,16 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         self.mapView.setZoomByDelta(delta: 2, animated: true)
     }
     
-    @IBAction func openHeader(_ sender: UIButton) {
-     
-        let viewController = SampleCategoryViewController()
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
     //MARK:- UITextField Delegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         //Check for reachability
-//        if Reachability.isConnectedToNetwork() != true {
-//            popupAlert(title: "Alert", message: "Seems like there is no internet connection, please check back later", actionTitles: ["OK"], actions: [nil])
-//            return false
-//        }
+        if Reachability.isConnectedToNetwork() != true {
+            popupAlert(title: "Alert", message: "Seems like there is no internet connection, please check back later", actionTitles: ["OK"], actions: [nil])
+            return false
+        }
 
         //push controller
-        return false
+        return true
     }
     
     func centerViewOnUserLocation() {

@@ -12,7 +12,6 @@
 		271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF592418B80E00CB113D /* Assets.xcassets */; };
 		271CBF5D2418B93D00CB113D /* SideMenuItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */; };
 		271CBF5F2418BA7F00CB113D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF5E2418BA7F00CB113D /* HomeViewController.swift */; };
-		271CBF612418BAD900CB113D /* GFRecentTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF602418BAD900CB113D /* GFRecentTripsViewController.swift */; };
 		271CBF632418BBE700CB113D /* GFBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF622418BBE700CB113D /* GFBaseViewController.swift */; };
 		271CBF652418BBF500CB113D /* GFLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF642418BBF500CB113D /* GFLaunchViewController.swift */; };
 		271CBF672418D47900CB113D /* GFConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF662418D47900CB113D /* GFConstants.swift */; };
@@ -30,9 +29,7 @@
 		271CBF822418D55A00CB113D /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF782418D55A00CB113D /* SignUpViewModel.swift */; };
 		276BAEC0241A6EE200C66EAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 276BAEBF241A6EE200C66EAC /* GoogleService-Info.plist */; };
 		276BAEC2241BF43600C66EAC /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276BAEC1241BF43600C66EAC /* Feedback.storyboard */; };
-		276BAEC4241BFDCC00C66EAC /* StrechableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAEC3241BFDCC00C66EAC /* StrechableHeader.swift */; };
-		276BAEC6241BFE9300C66EAC /* SampleCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAEC5241BFE9300C66EAC /* SampleCategoryViewController.swift */; };
-		276BAEC8241BFFDC00C66EAC /* SampleCategoryHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAEC7241BFFDC00C66EAC /* SampleCategoryHeaderViewController.swift */; };
+		276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAECB241D58E100C66EAC /* GFReachability.swift */; };
 		27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A13240FF1AF004CEE14 /* AppDelegate.swift */; };
 		27839A16240FF1AF004CEE14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A15240FF1AF004CEE14 /* ViewController.swift */; };
 		27839A19240FF1AF004CEE14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27839A17240FF1AF004CEE14 /* Main.storyboard */; };
@@ -77,7 +74,6 @@
 		271CBF592418B80E00CB113D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuItemsViewController.swift; sourceTree = "<group>"; };
 		271CBF5E2418BA7F00CB113D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		271CBF602418BAD900CB113D /* GFRecentTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFRecentTripsViewController.swift; sourceTree = "<group>"; };
 		271CBF622418BBE700CB113D /* GFBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFBaseViewController.swift; sourceTree = "<group>"; };
 		271CBF642418BBF500CB113D /* GFLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFLaunchViewController.swift; sourceTree = "<group>"; };
 		271CBF662418D47900CB113D /* GFConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFConstants.swift; sourceTree = "<group>"; };
@@ -95,9 +91,7 @@
 		271CBF782418D55A00CB113D /* SignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		276BAEBF241A6EE200C66EAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		276BAEC1241BF43600C66EAC /* Feedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feedback.storyboard; sourceTree = "<group>"; };
-		276BAEC3241BFDCC00C66EAC /* StrechableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrechableHeader.swift; sourceTree = "<group>"; };
-		276BAEC5241BFE9300C66EAC /* SampleCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCategoryViewController.swift; sourceTree = "<group>"; };
-		276BAEC7241BFFDC00C66EAC /* SampleCategoryHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCategoryHeaderViewController.swift; sourceTree = "<group>"; };
+		276BAECB241D58E100C66EAC /* GFReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFReachability.swift; sourceTree = "<group>"; };
 		27839A10240FF1AF004CEE14 /* gofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gofeedback.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27839A13240FF1AF004CEE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27839A15240FF1AF004CEE14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +161,7 @@
 		271CBF582418B74000CB113D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				276BAECB241D58E100C66EAC /* GFReachability.swift */,
 				27E6A0BB2419087E00B4D336 /* GFUtilities.swift */,
 				271CBF662418D47900CB113D /* GFConstants.swift */,
 				271CBF682418D4E600CB113D /* GFColor.swift */,
@@ -181,11 +176,8 @@
 				271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */,
 				27E6A12624190C4700B4D336 /* GFContactViewController.swift */,
 				271CBF5E2418BA7F00CB113D /* HomeViewController.swift */,
-				271CBF602418BAD900CB113D /* GFRecentTripsViewController.swift */,
 				271CBF622418BBE700CB113D /* GFBaseViewController.swift */,
 				271CBF642418BBF500CB113D /* GFLaunchViewController.swift */,
-				276BAEC5241BFE9300C66EAC /* SampleCategoryViewController.swift */,
-				276BAEC7241BFFDC00C66EAC /* SampleCategoryHeaderViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -285,7 +277,6 @@
 				27E6A0C42419097700B4D336 /* GFCustomTableViewCellShadowView.swift */,
 				27E6A0C52419097700B4D336 /* GFHistoryTableViewCell.swift */,
 				27E6A0C62419097700B4D336 /* GFWhiteButtonTextField.swift */,
-				276BAEC3241BFDCC00C66EAC /* StrechableHeader.swift */,
 			);
 			path = "Custom Objects";
 			sourceTree = "<group>";
@@ -506,7 +497,6 @@
 			files = (
 				271CBF5F2418BA7F00CB113D /* HomeViewController.swift in Sources */,
 				27E6A0D9241909F000B4D336 /* GFAppVersion.swift in Sources */,
-				276BAEC6241BFE9300C66EAC /* SampleCategoryViewController.swift in Sources */,
 				27E6A0CA2419097700B4D336 /* GFMenuButton.swift in Sources */,
 				271CBF7C2418D55A00CB113D /* PasswordViewModel.swift in Sources */,
 				271CBF822418D55A00CB113D /* SignUpViewModel.swift in Sources */,
@@ -517,9 +507,7 @@
 				27E6A0C82419097700B4D336 /* GFStationListTableViewCell.swift in Sources */,
 				271CBF792418D55A00CB113D /* LoginViewModel.swift in Sources */,
 				27E6A0DD241909F000B4D336 /* GFTransitStop.swift in Sources */,
-				271CBF612418BAD900CB113D /* GFRecentTripsViewController.swift in Sources */,
 				27839A16240FF1AF004CEE14 /* ViewController.swift in Sources */,
-				276BAEC8241BFFDC00C66EAC /* SampleCategoryHeaderViewController.swift in Sources */,
 				271CBF7F2418D55A00CB113D /* GFForgotPasswordViewController.swift in Sources */,
 				271CBF5D2418B93D00CB113D /* SideMenuItemsViewController.swift in Sources */,
 				27E6A0CE2419097700B4D336 /* GFHistoryTableViewCell.swift in Sources */,
@@ -529,7 +517,6 @@
 				27E6A12724190C4700B4D336 /* GFContactViewController.swift in Sources */,
 				27E6A0DA241909F000B4D336 /* GFStation.swift in Sources */,
 				27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */,
-				276BAEC4241BFDCC00C66EAC /* StrechableHeader.swift in Sources */,
 				271CBF672418D47900CB113D /* GFConstants.swift in Sources */,
 				27E6A0CB2419097700B4D336 /* GFRouteOptionTableViewCell.swift in Sources */,
 				27E6A0CF2419097700B4D336 /* GFWhiteButtonTextField.swift in Sources */,
@@ -544,6 +531,7 @@
 				27E6A0C72419097700B4D336 /* GFRouteLegsScrollView.swift in Sources */,
 				271CBF692418D4E600CB113D /* GFColor.swift in Sources */,
 				27E6A0CC2419097700B4D336 /* GFIconBadge.swift in Sources */,
+				276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */,
 				27E6A12B241916CC00B4D336 /* Api.swift in Sources */,
 				27839A1C240FF1AF004CEE14 /* gofeedback.xcdatamodeld in Sources */,
 			);
