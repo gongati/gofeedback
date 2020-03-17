@@ -23,7 +23,7 @@
 		271CBF7C2418D55A00CB113D /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF712418D55A00CB113D /* PasswordViewModel.swift */; };
 		271CBF7D2418D55A00CB113D /* NameTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF722418D55A00CB113D /* NameTextViewModel.swift */; };
 		271CBF7E2418D55A00CB113D /* GFLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF732418D55A00CB113D /* GFLoginViewController.swift */; };
-		271CBF7F2418D55A00CB113D /* GFForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF742418D55A00CB113D /* GFForgotPasswordViewController.swift */; };
+		271CBF7F2418D55A00CB113D /* GFOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF742418D55A00CB113D /* GFOTPViewController.swift */; };
 		271CBF802418D55A00CB113D /* GFSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF752418D55A00CB113D /* GFSignupViewController.swift */; };
 		271CBF812418D55A00CB113D /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF772418D55A00CB113D /* SignUpModel.swift */; };
 		271CBF822418D55A00CB113D /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF782418D55A00CB113D /* SignUpViewModel.swift */; };
@@ -85,7 +85,7 @@
 		271CBF712418D55A00CB113D /* PasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
 		271CBF722418D55A00CB113D /* NameTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTextViewModel.swift; sourceTree = "<group>"; };
 		271CBF732418D55A00CB113D /* GFLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFLoginViewController.swift; sourceTree = "<group>"; };
-		271CBF742418D55A00CB113D /* GFForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		271CBF742418D55A00CB113D /* GFOTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFOTPViewController.swift; sourceTree = "<group>"; };
 		271CBF752418D55A00CB113D /* GFSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFSignupViewController.swift; sourceTree = "<group>"; };
 		271CBF772418D55A00CB113D /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		271CBF782418D55A00CB113D /* SignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 			children = (
 				271CBF6D2418D55A00CB113D /* ViewModel */,
 				271CBF732418D55A00CB113D /* GFLoginViewController.swift */,
-				271CBF742418D55A00CB113D /* GFForgotPasswordViewController.swift */,
+				271CBF742418D55A00CB113D /* GFOTPViewController.swift */,
 				271CBF752418D55A00CB113D /* GFSignupViewController.swift */,
 				271CBF762418D55A00CB113D /* SignUpViewModel */,
 			);
@@ -508,7 +508,7 @@
 				271CBF792418D55A00CB113D /* LoginViewModel.swift in Sources */,
 				27E6A0DD241909F000B4D336 /* GFTransitStop.swift in Sources */,
 				27839A16240FF1AF004CEE14 /* ViewController.swift in Sources */,
-				271CBF7F2418D55A00CB113D /* GFForgotPasswordViewController.swift in Sources */,
+				271CBF7F2418D55A00CB113D /* GFOTPViewController.swift in Sources */,
 				271CBF5D2418B93D00CB113D /* SideMenuItemsViewController.swift in Sources */,
 				27E6A0CE2419097700B4D336 /* GFHistoryTableViewCell.swift in Sources */,
 				27E6A0DB241909F000B4D336 /* GFRecentTrip.swift in Sources */,

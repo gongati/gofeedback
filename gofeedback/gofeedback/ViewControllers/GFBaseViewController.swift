@@ -74,7 +74,7 @@ class GFBaseViewController: UIViewController {
     }
     
     @objc func showUserLogin(notification:Notification) {
-        if let controller = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: Constants.StoryBoard.Login) as? GFLoginViewController {
+        if let controller = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() {
             let navController = UINavigationController(rootViewController: controller)
             present(navController, animated: true, completion: nil)
         }
@@ -178,5 +178,20 @@ extension UIViewController {
         DispatchQueue.main.async {
             spinner.removeFromSuperview()
         }
+    }
+}
+
+extension UIViewController {
+    
+    func dismissKey()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer( target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard()
+    {
+        view.endEditing(true)
     }
 }

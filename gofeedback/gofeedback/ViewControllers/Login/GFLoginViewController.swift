@@ -7,29 +7,19 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+import FirebaseAuth
 
 class GFLoginViewController: GFBaseViewController {
     
-    let viewModel = LoginViewModel()
-    let disposeBag = DisposeBag()
-    
-    @IBOutlet weak var emailTxt: UITextField!
-    @IBOutlet weak var passwordTxt: UITextField!
-    @IBOutlet weak var forgotPasswordBtn: UIButton!
+    @IBOutlet weak var codeTxt: UITextField!
+    @IBOutlet weak var phoneTxt: UITextField!
     @IBOutlet weak var signInBtn: UIButton!
-    @IBOutlet weak var signUpBtn: UIButton!
-    @IBOutlet var imgUser: UIImageView!
+    
+    var userID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        createViewModelBinding()
-        //createCallbacks()
-        self.imgUser.image =  UIImage(named: "\(Utilities.tenantId().lowercased())LogoBig")
-        self.signInBtn.backgroundColor = UIColor(hexString:Utilities.colorHexString(resourceId: "BigButtonBGColor" )!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,29 +27,57 @@ class GFLoginViewController: GFBaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func createViewModelBinding(){
-        emailTxt.rx.text.orEmpty
-            .bind(to: viewModel.emailIdViewModel.data)
-            .disposed(by: disposeBag)
+    @IBAction func loginUser(_ sender: UIButton) {
         
-        passwordTxt.rx.text.orEmpty
-            .bind(to: viewModel.passwordViewModel.data)
-            .disposed(by: disposeBag)
-        
-        signInBtn.rx.tap.do(onNext:  { [unowned self] in
-            self.emailTxt.resignFirstResponder()
-            self.passwordTxt.resignFirstResponder()
-        }).subscribe(onNext: { [unowned self] in
-            if self.viewModel.validateCredentials() {
-                self.viewModel.loginUser()
-            }else{
-                self.popupAlert(title: "Error", message: self.viewModel.formErrorString(), actionTitles: ["OK"], actions: [nil])
-            }
-        }).disposed(by: disposeBag)
+        self.verifyPhone()
     }
     
-    @objc override func attachControllerToMainWindow(controller:UIViewController) {
-        SideMenuItemsViewController.rightNavController?.viewControllers = [controller]
+    func verifyPhone() {
+        
+        if let codeValue = self.codeTxt.text, codeValue.count > 1 {
+            
+            if let phoneValue = self.phoneTxt.text, phoneValue.count >= 10 {
+                
+                PhoneAuthProvider.provider().verifyPhoneNumber("+"+codeValue+phoneValue, uiDelegate: nil) { [weak self] (ID, err) in
+                    
+                    if err != nil{
+                        
+                        self?.popupAlert(title: "Error", message: err?.localizedDescription, actionTitles: ["OK"], actions: [nil])
+                        return
+                    }
+                    
+                    self?.userID = ID!
+                    self?.showOTPScreen()
+                }
+
+                
+            } else {
+                
+                self.popupAlert(title: "Error", message: "Invalid Phone Number", actionTitles: ["OK"], actions: [nil])
+            }
+            
+        } else {
+            
+            self.popupAlert(title: "Error", message: "Code can not be empty", actionTitles: ["OK"], actions: [nil])
+        }
+    }
+    
+    func showOTPScreen() {
+        
+        self.performSegue(withIdentifier: "SHOWOTP", sender: self.userID)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if (segue.identifier == "SHOWOTP") {
+            
+            if let secondViewController = segue.destination as? GFOTPViewController {
+                
+                if let userId = sender as? String {
+                    
+                    secondViewController.userID = userId
+                }
+            }
+         }
+    }
 }

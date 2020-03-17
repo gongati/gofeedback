@@ -166,19 +166,15 @@ class SideMenuItemsViewController: UIViewController {
         }
     }
     func updateSideMenu() {
-//        let userAccount:Account? = GFAccountManager.currentAccount()
-//        
-//        showLoginButton(status: true)
-//        guard userAccount != nil else {
-//            print("User account is nil")
-//            return
-//        }
-//        
-//        guard userAccount?.emailaddress != nil else {
-//            return
-//        }
-//        
-//        showLoginButton(status: false)
+        
+        if self.shouldShowLogin() {
+            
+            showLoginButton(status: true)
+        }else{
+            
+            showLoginButton(status: false)
+        }
+        
 //        userNameLabel.text = userAccount?.firstName
 //        emailLabel.text = userAccount?.emailaddress
     }
@@ -192,18 +188,13 @@ class SideMenuItemsViewController: UIViewController {
     }
 
     func shouldShowLogin() -> Bool {
-//        let userAccount:Account? = GFAccountManager.currentAccount()
-//
-//        guard userAccount != nil else {
-//            print("User account is nil")
-//            return true
-//        }
-//
-//        guard userAccount?.emailaddress != nil else {
-//            return true
-//        }
-//
-        return false
+        
+        guard let loginStatus = UserDefaults.standard.value(forKey: "loginStatus") as? Bool else
+        {
+            return true
+        }
+        
+        return !loginStatus
     }
     
     func showLoginButton(status:Bool) {
@@ -227,17 +218,19 @@ class SideMenuItemsViewController: UIViewController {
     }
     
     @objc func confirmLogout() -> Void {
-//        GFAccountManager.logout()
-//        
-//        if GFBaseViewController.currentMenuItem == Constants.SideMenuAction.PlanTrip {
-//            SideMenuItemsViewController.rightNavController?.popToRootViewController(animated: false)
-//            return
-//        }
-//        
-//        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GFNAVIGATEMENUHOME") as? HomeViewController {
-//            attachControllerToMainWindow(controller: controller)
-//        }
-//        GFBaseViewController.currentMenuItem = Constants.SideMenuAction.PlanTrip
+        
+        UserDefaults.standard.set(false, forKey: "loginStatus")
+        UserDefaults.standard.synchronize()
+
+        if GFBaseViewController.currentMenuItem == Constants.SideMenuAction.PlanTrip {
+            SideMenuItemsViewController.rightNavController?.popToRootViewController(animated: false)
+            return
+        }
+        
+        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GFNAVIGATEMENUHOME") as? HomeViewController {
+            attachControllerToMainWindow(controller: controller)
+        }
+        GFBaseViewController.currentMenuItem = Constants.SideMenuAction.PlanTrip
     }
 
     func showLogoutAlert() -> Void {
@@ -261,12 +254,15 @@ class SideMenuItemsViewController: UIViewController {
     }
 
     @objc override func attachControllerToMainWindow(controller:UIViewController) {
+        
         SideMenuItemsViewController.rightNavController?.viewControllers = [controller]
     }
 }
 
 extension UIViewController {
+    
     @objc func attachControllerToMainWindow(controller:UIViewController) {
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let navController = UINavigationController(rootViewController: controller)
         appDelegate.window?.rootViewController = navController
