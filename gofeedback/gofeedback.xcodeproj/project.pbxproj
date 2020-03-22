@@ -17,16 +17,16 @@
 		271CBF672418D47900CB113D /* GFConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF662418D47900CB113D /* GFConstants.swift */; };
 		271CBF692418D4E600CB113D /* GFColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF682418D4E600CB113D /* GFColor.swift */; };
 		271CBF6B2418D51E00CB113D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF6A2418D51E00CB113D /* Login.storyboard */; };
-		271CBF792418D55A00CB113D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF6E2418D55A00CB113D /* LoginViewModel.swift */; };
-		271CBF7A2418D55A00CB113D /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF6F2418D55A00CB113D /* LoginModel.swift */; };
-		271CBF7B2418D55A00CB113D /* EmailIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF702418D55A00CB113D /* EmailIdViewModel.swift */; };
-		271CBF7C2418D55A00CB113D /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF712418D55A00CB113D /* PasswordViewModel.swift */; };
-		271CBF7D2418D55A00CB113D /* NameTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF722418D55A00CB113D /* NameTextViewModel.swift */; };
 		271CBF7E2418D55A00CB113D /* GFLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF732418D55A00CB113D /* GFLoginViewController.swift */; };
 		271CBF7F2418D55A00CB113D /* GFOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF742418D55A00CB113D /* GFOTPViewController.swift */; };
 		271CBF802418D55A00CB113D /* GFSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF752418D55A00CB113D /* GFSignupViewController.swift */; };
 		271CBF812418D55A00CB113D /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF772418D55A00CB113D /* SignUpModel.swift */; };
 		271CBF822418D55A00CB113D /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF782418D55A00CB113D /* SignUpViewModel.swift */; };
+		274D69D22427AEB200597AFF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CD2427AEB200597AFF /* LoginViewModel.swift */; };
+		274D69D32427AEB200597AFF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CE2427AEB200597AFF /* LoginModel.swift */; };
+		274D69D42427AEB200597AFF /* EmailIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CF2427AEB200597AFF /* EmailIdViewModel.swift */; };
+		274D69D52427AEB200597AFF /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69D02427AEB200597AFF /* PasswordViewModel.swift */; };
+		274D69D62427AEB200597AFF /* NameTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69D12427AEB200597AFF /* NameTextViewModel.swift */; };
 		276BAEC0241A6EE200C66EAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 276BAEBF241A6EE200C66EAC /* GoogleService-Info.plist */; };
 		276BAEC2241BF43600C66EAC /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276BAEC1241BF43600C66EAC /* Feedback.storyboard */; };
 		276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAECB241D58E100C66EAC /* GFReachability.swift */; };
@@ -79,16 +79,16 @@
 		271CBF662418D47900CB113D /* GFConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFConstants.swift; sourceTree = "<group>"; };
 		271CBF682418D4E600CB113D /* GFColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFColor.swift; sourceTree = "<group>"; };
 		271CBF6A2418D51E00CB113D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		271CBF6E2418D55A00CB113D /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		271CBF6F2418D55A00CB113D /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
-		271CBF702418D55A00CB113D /* EmailIdViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailIdViewModel.swift; sourceTree = "<group>"; };
-		271CBF712418D55A00CB113D /* PasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
-		271CBF722418D55A00CB113D /* NameTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTextViewModel.swift; sourceTree = "<group>"; };
 		271CBF732418D55A00CB113D /* GFLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFLoginViewController.swift; sourceTree = "<group>"; };
 		271CBF742418D55A00CB113D /* GFOTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFOTPViewController.swift; sourceTree = "<group>"; };
 		271CBF752418D55A00CB113D /* GFSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFSignupViewController.swift; sourceTree = "<group>"; };
 		271CBF772418D55A00CB113D /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		271CBF782418D55A00CB113D /* SignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		274D69CD2427AEB200597AFF /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		274D69CE2427AEB200597AFF /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		274D69CF2427AEB200597AFF /* EmailIdViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailIdViewModel.swift; sourceTree = "<group>"; };
+		274D69D02427AEB200597AFF /* PasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
+		274D69D12427AEB200597AFF /* NameTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTextViewModel.swift; sourceTree = "<group>"; };
 		276BAEBF241A6EE200C66EAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		276BAEC1241BF43600C66EAC /* Feedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feedback.storyboard; sourceTree = "<group>"; };
 		276BAECB241D58E100C66EAC /* GFReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFReachability.swift; sourceTree = "<group>"; };
@@ -185,25 +185,13 @@
 		271CBF6C2418D55A00CB113D /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				271CBF6D2418D55A00CB113D /* ViewModel */,
+				274D69CC2427AEB200597AFF /* ViewModel */,
 				271CBF732418D55A00CB113D /* GFLoginViewController.swift */,
 				271CBF742418D55A00CB113D /* GFOTPViewController.swift */,
 				271CBF752418D55A00CB113D /* GFSignupViewController.swift */,
 				271CBF762418D55A00CB113D /* SignUpViewModel */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		271CBF6D2418D55A00CB113D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				271CBF6E2418D55A00CB113D /* LoginViewModel.swift */,
-				271CBF6F2418D55A00CB113D /* LoginModel.swift */,
-				271CBF702418D55A00CB113D /* EmailIdViewModel.swift */,
-				271CBF712418D55A00CB113D /* PasswordViewModel.swift */,
-				271CBF722418D55A00CB113D /* NameTextViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		271CBF762418D55A00CB113D /* SignUpViewModel */ = {
@@ -213,6 +201,18 @@
 				271CBF782418D55A00CB113D /* SignUpViewModel.swift */,
 			);
 			path = SignUpViewModel;
+			sourceTree = "<group>";
+		};
+		274D69CC2427AEB200597AFF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				274D69CD2427AEB200597AFF /* LoginViewModel.swift */,
+				274D69CE2427AEB200597AFF /* LoginModel.swift */,
+				274D69CF2427AEB200597AFF /* EmailIdViewModel.swift */,
+				274D69D02427AEB200597AFF /* PasswordViewModel.swift */,
+				274D69D12427AEB200597AFF /* NameTextViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		27839A07240FF1AF004CEE14 = {
@@ -498,19 +498,19 @@
 				271CBF5F2418BA7F00CB113D /* HomeViewController.swift in Sources */,
 				27E6A0D9241909F000B4D336 /* GFAppVersion.swift in Sources */,
 				27E6A0CA2419097700B4D336 /* GFMenuButton.swift in Sources */,
-				271CBF7C2418D55A00CB113D /* PasswordViewModel.swift in Sources */,
 				271CBF822418D55A00CB113D /* SignUpViewModel.swift in Sources */,
-				271CBF7A2418D55A00CB113D /* LoginModel.swift in Sources */,
 				27E6A0DC241909F000B4D336 /* GFRouteLeg.swift in Sources */,
 				27E6A0DE241909F000B4D336 /* GFRoute.swift in Sources */,
 				271CBF632418BBE700CB113D /* GFBaseViewController.swift in Sources */,
 				27E6A0C82419097700B4D336 /* GFStationListTableViewCell.swift in Sources */,
-				271CBF792418D55A00CB113D /* LoginViewModel.swift in Sources */,
 				27E6A0DD241909F000B4D336 /* GFTransitStop.swift in Sources */,
 				27839A16240FF1AF004CEE14 /* ViewController.swift in Sources */,
 				271CBF7F2418D55A00CB113D /* GFOTPViewController.swift in Sources */,
 				271CBF5D2418B93D00CB113D /* SideMenuItemsViewController.swift in Sources */,
 				27E6A0CE2419097700B4D336 /* GFHistoryTableViewCell.swift in Sources */,
+				274D69D32427AEB200597AFF /* LoginModel.swift in Sources */,
+				274D69D22427AEB200597AFF /* LoginViewModel.swift in Sources */,
+				274D69D62427AEB200597AFF /* NameTextViewModel.swift in Sources */,
 				27E6A0DB241909F000B4D336 /* GFRecentTrip.swift in Sources */,
 				271CBF802418D55A00CB113D /* GFSignupViewController.swift in Sources */,
 				27E6A0C92419097700B4D336 /* GFTextFieldBackGround.swift in Sources */,
@@ -521,15 +521,15 @@
 				27E6A0CB2419097700B4D336 /* GFRouteOptionTableViewCell.swift in Sources */,
 				27E6A0CF2419097700B4D336 /* GFWhiteButtonTextField.swift in Sources */,
 				271CBF812418D55A00CB113D /* SignUpModel.swift in Sources */,
-				271CBF7B2418D55A00CB113D /* EmailIdViewModel.swift in Sources */,
 				271CBF7E2418D55A00CB113D /* GFLoginViewController.swift in Sources */,
 				27E6A0CD2419097700B4D336 /* GFCustomTableViewCellShadowView.swift in Sources */,
 				27E6A0D8241909F000B4D336 /* GFLocation.swift in Sources */,
 				271CBF652418BBF500CB113D /* GFLaunchViewController.swift in Sources */,
-				271CBF7D2418D55A00CB113D /* NameTextViewModel.swift in Sources */,
+				274D69D42427AEB200597AFF /* EmailIdViewModel.swift in Sources */,
 				27E6A0BC2419087E00B4D336 /* GFUtilities.swift in Sources */,
 				27E6A0C72419097700B4D336 /* GFRouteLegsScrollView.swift in Sources */,
 				271CBF692418D4E600CB113D /* GFColor.swift in Sources */,
+				274D69D52427AEB200597AFF /* PasswordViewModel.swift in Sources */,
 				27E6A0CC2419097700B4D336 /* GFIconBadge.swift in Sources */,
 				276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */,
 				27E6A12B241916CC00B4D336 /* Api.swift in Sources */,
