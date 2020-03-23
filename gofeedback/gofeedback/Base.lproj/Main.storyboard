@@ -52,28 +52,43 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GvB-tQ-RmC">
                                 <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
                             </mapView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="53" translatesAutoresizingMaskIntoConstraints="NO" id="OBE-eC-CAI">
-                                <rect key="frame" x="55" y="539" width="265" height="94"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OBE-eC-CAI">
+                                <rect key="frame" x="55" y="533" width="265" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceP-Rw-XGw">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="94"/>
-                                        <state key="normal" image="RecentTripsButton">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceP-Rw-XGw">
+                                        <rect key="frame" x="0.0" y="0.0" width="81.5" height="100"/>
+                                        <color key="backgroundColor" red="0.32531052830000001" green="0.39269918199999998" blue="0.64615559580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <connections>
+                                            <action selector="nearLocation1Pressed:" destination="Cu0-g3-Sf1" eventType="touchUpInside" id="8bI-Nz-mCL"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHE-FW-hxY">
-                                        <rect key="frame" x="53" y="0.0" width="54" height="94"/>
-                                        <state key="normal" image="RecentTripsButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHE-FW-hxY">
+                                        <rect key="frame" x="91.5" y="0.0" width="82" height="100"/>
+                                        <color key="backgroundColor" red="0.32531052830000001" green="0.39269918199999998" blue="0.64615559580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="nearLocation2Pressed:" destination="Cu0-g3-Sf1" eventType="touchUpInside" id="fRZ-B6-EB9"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Dn-kS-If5">
-                                        <rect key="frame" x="160" y="0.0" width="105" height="94"/>
-                                        <state key="normal" image="RecentTripsButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Dn-kS-If5">
+                                        <rect key="frame" x="183.5" y="0.0" width="81.5" height="100"/>
+                                        <color key="backgroundColor" red="0.32531052830000001" green="0.39269918199999998" blue="0.64615559580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="nearLocation3Pressed:" destination="Cu0-g3-Sf1" eventType="touchUpInside" id="hZt-JO-A9g"/>
+                                        </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="gdc-hg-GV3"/>
+                                </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pH-b5-SZo" customClass="GFTextFieldBackGround" customModule="gofeedback" customModuleProvider="target">
                                 <rect key="frame" x="12" y="76" width="351" height="36"/>
@@ -184,6 +199,9 @@
                     <connections>
                         <outlet property="mapView" destination="GvB-tQ-RmC" id="1So-Ne-Yez"/>
                         <outlet property="navBarLogo" destination="EJ0-qZ-yLH" id="klB-Y2-HNK"/>
+                        <outlet property="nearLocation1" destination="ceP-Rw-XGw" id="1gl-qs-JpE"/>
+                        <outlet property="nearLocation2" destination="JHE-FW-hxY" id="oI1-am-U9A"/>
+                        <outlet property="nearLocation3" destination="3Dn-kS-If5" id="yUK-hl-Xff"/>
                         <outlet property="topNavBar" destination="HNw-xE-kaW" id="wDu-RY-6e3"/>
                         <outlet property="whereToGoText" destination="Gxf-I8-mVY" id="mqB-oc-dRc"/>
                         <outlet property="zoomInBtn" destination="dq8-wy-jh8" id="Jo0-Jf-xAh"/>
@@ -216,7 +234,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oyM-tE-pbX" customClass="GFCustomTableViewCellShadowView" customModule="gofeedback" customModuleProvider="target">
-                                                    <rect key="frame" x="-1" y="-7" width="374" height="68"/>
+                                                    <rect key="frame" x="-1" y="-7" width="375" height="68"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jM-H0-G52">
@@ -297,7 +315,6 @@
     <resources>
         <image name="FinishCircle" width="13" height="13"/>
         <image name="Hamburger" width="20" height="13"/>
-        <image name="RecentTripsButton" width="52.5" height="47"/>
         <image name="current-location-icon" width="56.666667938232422" height="56.666667938232422"/>
         <image name="gofeedback-logo-180x180" width="180" height="180"/>
         <namedColor name="Alto Gray">
