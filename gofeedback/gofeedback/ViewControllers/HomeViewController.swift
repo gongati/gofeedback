@@ -20,6 +20,10 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     @IBOutlet weak var zoomOutBtn: UIButton!
     @IBOutlet weak var zoomInBtn: UIButton!
     
+    @IBOutlet weak var nearLocation1: UIButton!
+    @IBOutlet weak var nearLocation2: UIButton!
+    @IBOutlet weak var nearLocation3: UIButton!
+    
     var locationManager = CLLocationManager()
     var locationLat:String?
     var locationLong:String?
@@ -57,7 +61,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             locationManager.desiredAccuracy = 1.0
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
-            
+            self.userCurrentLocation = locationManager.location?.coordinate
         } else {
             print("Please turn on location services or GPS")
         }
@@ -92,6 +96,16 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         self.mapView.setZoomByDelta(delta: 2, animated: true)
     }
     
+    @IBAction func nearLocation1Pressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func nearLocation2Pressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func nearLocation3Pressed(_ sender: UIButton) {
+    }
+    
+    
     //MARK:- UITextField Delegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         //Check for reachability
@@ -108,7 +122,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         
         if let location = locationManager.location?.coordinate {
             
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 100, longitudinalMeters: 100)
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
             mapView.setRegion(region, animated: true)
         }
     }
@@ -119,6 +133,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         locationLat = "\(locations[0].coordinate.latitude)"
         locationLong = "\(locations[0].coordinate.longitude)"
         self.centerViewOnUserLocation()
+        self.mapQuery()
         manager.stopUpdatingLocation()
     }
     
@@ -161,7 +176,81 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         })
         
     }
+   
+    func mapQuery() {
+        
+        self.mapView.removeAnnotations(mapView.annotations)
+        
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = "Pizza"
+        request.region = mapView.region
+
+        let search = MKLocalSearch(request: request)
+
+            search.start(completionHandler: {(response, error) in
+
+                if error != nil {
+                    print(
+                    error!.localizedDescription)
+                } else if response!.mapItems.count == 0 {
+                    print("No matches found")
+                } else {
+                    
+                    print(response?.mapItems)
+                    for item in response!.mapItems {
+                        
+                        print(item.name)
+                        let annotation = MKPointAnnotation()
+                        annotation.coordinate = item.placemark.coordinate
+                        annotation.title = item.name
+                        self.mapView.addAnnotation(annotation)
+                }
+                    DispatchQueue.main.async {
+                        
+                        self.nearestLocationButtons()
+                    }
+            }
+        })
+    }
     
+    func nearestLocationButtons() {
+        
+        var distances = [CLLocationDistance]()
+        let currentLoc = CLLocation(latitude: (userCurrentLocation?.latitude)!, longitude: (userCurrentLocation?.longitude)!)
+        
+        for annotation in self.mapView.annotations {
+            
+        let value = annotation.coordinate
+        let selectedLoc = CLLocation(latitude: value.latitude, longitude: value.longitude)
+            distances.append(currentLoc.distance(from: selectedLoc))
+        }
+        
+        let sortedDistances = distances.sorted(by:<)
+        print(distances)
+        print(sortedDistances)
+        var values = [Int]()
+        
+        for i in 0..<sortedDistances.count {
+            
+            for j in 0..<distances.count {
+                
+                if distances[j] == (sortedDistances[i]) {
+                    
+                    values.append(j)
+                }
+            }
+        }
+        print(values)
+        self.nearLocation1.setTitle(self.mapView.annotations[values[1]].title ?? "1", for: .normal)
+        self.nearLocation1.titleLabel?.numberOfLines = 2
+        self.nearLocation1.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.nearLocation2.setTitle(self.mapView.annotations[values[2]].title ?? "2", for: .normal)
+        self.nearLocation2.titleLabel?.numberOfLines = 2
+        self.nearLocation2.titleLabel?.adjustsFontSizeToFitWidth = true
+         self.nearLocation3.setTitle(self.mapView.annotations[values[3]].title ?? "3", for: .normal)
+        self.nearLocation3.titleLabel?.numberOfLines = 2
+        self.nearLocation3.titleLabel?.adjustsFontSizeToFitWidth = true
+    }
 }
 
 extension MKMapView {
