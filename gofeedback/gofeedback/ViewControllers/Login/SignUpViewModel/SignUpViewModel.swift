@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import Firebase
 
 class SignUpViewModel {
     
@@ -53,7 +54,18 @@ class SignUpViewModel {
     
     func signupUser() {
 
-        
+        Auth.auth().createUser(withEmail: emailIdViewModel.data.value, password: passwordViewModel2.data.value) { authResult, error in
+            
+            if let error = error {
+                
+                self.errorMsg.value = error.localizedDescription
+                
+                print(error.localizedDescription)
+            } else {
+                
+                self.isSuccess.value = true
+            }
+        }
     }
     
     func loginUser() {

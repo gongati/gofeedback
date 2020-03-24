@@ -9,12 +9,15 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Firebase
 
 class GFSignupViewController: GFBaseViewController {
 
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
-
+    let db = Firestore.firestore()
+    var ref: DocumentReference? = nil
+    
     @IBOutlet weak var firstNameTxt: GFWhiteButtonTextField!
     @IBOutlet weak var lastNameTxt: GFWhiteButtonTextField!
     @IBOutlet weak var passwordTxt1: GFWhiteButtonTextField!
@@ -23,14 +26,15 @@ class GFSignupViewController: GFBaseViewController {
     @IBOutlet weak var signUpBtn: GFMenuButton!
     @IBOutlet var imgUser: UIImageView!
 
-
+    @IBOutlet weak var signInNtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         createViewModelBinding()
         createCallbacks()
-        self.imgUser.image =  UIImage(named: "\(Utilities.tenantId().lowercased())LogoBig")
+//        self.imgUser.image =  UIImage(named: "\(Utilities.tenantId().lowercased())LogoBig")
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +47,8 @@ class GFSignupViewController: GFBaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    
     func createViewModelBinding(){
 
         firstNameTxt.rx.text.orEmpty
@@ -70,6 +76,7 @@ class GFSignupViewController: GFBaseViewController {
         }).subscribe(onNext: { [unowned self] in
             if self.viewModel.validateCredentials() {
                 self.viewModel.signupUser()
+                self.creatingDataBase()
             }else{
                 self.showErrorMessage(message: self.viewModel.formErrorString())
             }
@@ -82,7 +89,8 @@ class GFSignupViewController: GFBaseViewController {
             .bind{ value in
                 //Present create wallet controller
                 if value {
-
+                    
+                    self.signUpBtn.isHidden = true
                 }
             }.disposed(by: disposeBag)
 
@@ -102,5 +110,20 @@ class GFSignupViewController: GFBaseViewController {
     }
     func applyStylesAndColors(){
         self.signUpBtn.backgroundColor = UIColor(hexString:Utilities.colorHexString(resourceId: "BigButtonBGColor" )!)
+    }
+    
+    func creatingDataBase() {
+        
+        ref = db.collection("users").addDocument(data: [
+            "First Name": self.firstNameTxt.text as Any,
+            "Last Name": self.lastNameTxt.text as Any,
+            "email": self.emailTxt.text as Any
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(self.ref!.documentID)")
+            }
+        }
     }
 }
