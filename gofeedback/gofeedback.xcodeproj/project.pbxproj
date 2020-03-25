@@ -26,7 +26,7 @@
 		274D69D32427AEB200597AFF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CE2427AEB200597AFF /* LoginModel.swift */; };
 		274D69D42427AEB200597AFF /* EmailIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CF2427AEB200597AFF /* EmailIdViewModel.swift */; };
 		274D69D52427AEB200597AFF /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69D02427AEB200597AFF /* PasswordViewModel.swift */; };
-		274D69D62427AEB200597AFF /* NameTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69D12427AEB200597AFF /* NameTextViewModel.swift */; };
+		274D69D62427AEB200597AFF /* NameTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69D12427AEB200597AFF /* NameTextViewModel.swift */; }
 		276BAEC2241BF43600C66EAC /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276BAEC1241BF43600C66EAC /* Feedback.storyboard */; };
 		276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAECB241D58E100C66EAC /* GFReachability.swift */; };
 		27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A13240FF1AF004CEE14 /* AppDelegate.swift */; };
