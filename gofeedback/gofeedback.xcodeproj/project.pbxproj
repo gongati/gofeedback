@@ -56,7 +56,7 @@
 		27E6A12B241916CC00B4D336 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A129241916CB00B4D336 /* Api.swift */; };
 		950D452A6F9F9F0D7E1F4902 /* Pods_gofeedbackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2611EF6C660B330B018A05FD /* Pods_gofeedbackTests.framework */; };
 		F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */; };
-		F76E28CB242A3B6100C70D44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F76E28CA242A3B6100C70D44 /* GoogleService-Info.plist */; };
+		F7041A8D242B990700ADB9FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7041A8C242B990700ADB9FA /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,7 +126,7 @@
 		D82E0E98D0271541D17988D4 /* Pods-gofeedbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.release.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.release.xcconfig"; sourceTree = "<group>"; };
 		E06929F06686B830FC20C9F0 /* Pods-gofeedback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.debug.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.debug.xcconfig"; sourceTree = "<group>"; };
 		F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFFeedbackModel.swift; sourceTree = "<group>"; };
-		F76E28CA242A3B6100C70D44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F7041A8C242B990700ADB9FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Documents/gofeedback/gofeedback/gofeedback/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE8F23F26945089DE5E2EC32 /* Pods-gofeedbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,7 +252,7 @@
 				27839A17240FF1AF004CEE14 /* Main.storyboard */,
 				27839A1F240FF1B4004CEE14 /* LaunchScreen.storyboard */,
 				27839A22240FF1B4004CEE14 /* Info.plist */,
-				F76E28CA242A3B6100C70D44 /* GoogleService-Info.plist */,
+				F7041A8C242B990700ADB9FA /* GoogleService-Info.plist */,
 				27839A1A240FF1AF004CEE14 /* gofeedback.xcdatamodeld */,
 			);
 			path = gofeedback;
@@ -416,7 +416,7 @@
 				27839A19240FF1AF004CEE14 /* Main.storyboard in Resources */,
 				271CBF6B2418D51E00CB113D /* Login.storyboard in Resources */,
 				271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */,
-				F76E28CB242A3B6100C70D44 /* GoogleService-Info.plist in Resources */,
+				F7041A8D242B990700ADB9FA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
