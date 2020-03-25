@@ -28,6 +28,8 @@ class GFSignupViewController: GFBaseViewController {
 
     @IBOutlet weak var signInNtn: UIButton!
     
+    @IBOutlet weak var countryCode: GFWhiteButtonTextField!
+    @IBOutlet weak var mobileNumberTxt: GFWhiteButtonTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,7 +37,9 @@ class GFSignupViewController: GFBaseViewController {
         createViewModelBinding()
         createCallbacks()
 //        self.imgUser.image =  UIImage(named: "\(Utilities.tenantId().lowercased())LogoBig")
-
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        self.addDoneButtonOnKeyboard()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -47,7 +51,19 @@ class GFSignupViewController: GFBaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
+   @objc func keyboardWillShow(notification: NSNotification) {
     
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= 100
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
     
     func createViewModelBinding(){
 
@@ -76,7 +92,7 @@ class GFSignupViewController: GFBaseViewController {
         }).subscribe(onNext: { [unowned self] in
             if self.viewModel.validateCredentials() {
                 self.viewModel.signupUser()
-                self.creatingDataBase()
+                
             }else{
                 self.showErrorMessage(message: self.viewModel.formErrorString())
             }
@@ -91,6 +107,7 @@ class GFSignupViewController: GFBaseViewController {
                 if value {
                     
                     self.signUpBtn.isHidden = true
+                    self.creatingDataBase()
                 }
             }.disposed(by: disposeBag)
 
@@ -114,10 +131,11 @@ class GFSignupViewController: GFBaseViewController {
     
     func creatingDataBase() {
         
-        ref = db.collection("users").addDocument(data: [
+        ref = db.collection((self.countryCode.text ?? "+1") + "" + (self.mobileNumberTxt.text ?? "1234567890")).addDocument(data: [
             "First Name": self.firstNameTxt.text as Any,
             "Last Name": self.lastNameTxt.text as Any,
-            "email": self.emailTxt.text as Any
+            "email": self.emailTxt.text as Any,
+            "Mobile Number": (self.countryCode.text ?? "+1") + "" + (self.mobileNumberTxt.text ?? "1234567890")
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -125,5 +143,26 @@ class GFSignupViewController: GFBaseViewController {
                 print("Document added with ID: \(self.ref!.documentID)")
             }
         }
+    }
+    
+    func addDoneButtonOnKeyboard(){
+        
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+
+        countryCode.inputAccessoryView = doneToolbar
+        mobileNumberTxt.inputAccessoryView = doneToolbar
+    }
+
+    @objc func doneButtonAction(){
+        countryCode.resignFirstResponder()
+        mobileNumberTxt.resignFirstResponder()
     }
 }

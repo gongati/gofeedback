@@ -15,7 +15,9 @@ target 'gofeedback' do
   pod 'FirebaseAuth'
   pod 'Cosmos', '~> 21.0'
   pod 'SnapKit'
-  
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+
   # add pods for desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
   
