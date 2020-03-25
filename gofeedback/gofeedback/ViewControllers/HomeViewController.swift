@@ -29,6 +29,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     var locationLong:String?
     var userCurrentLocation:CLLocationCoordinate2D?
     var searchResponse: [MKMapItem]?
+    var searchItem = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -38,6 +40,9 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         nearLocation1.isHidden = true
         nearLocation2.isHidden = true
         nearLocation3.isHidden = true
+        
+        whereToGoText.text = searchItem
+        self.mapQuery()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,6 +54,11 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc override func keyboardWillShow(notification: NSNotification) {
+            
+            self.view.frame.origin.y -= 0
     }
     
     func determineCurrentLocation()
@@ -341,6 +351,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                 
                 viewController.restaurantTitle =  searchResponse?[i].name ?? ""
                 viewController.address = searchResponse?[i].placemark.title ?? ""
+                viewController.searchItem = whereToGoText.text ?? ""
                 self.navigationController?.pushViewController(viewController, animated: true)
             }
         }

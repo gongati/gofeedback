@@ -150,6 +150,14 @@ struct Constants {
     struct Message {
         static let NoNetwork = "Notwork Not Available"
     }
+    
+    struct FeedbackCommands {
+        static let howWeAreDoing = "We want to know how we are doing?"
+        static let whatWeAreDoingGreat = "What are we doing great at?"
+        static let whatCanWeDoBetter = "What can we do better?"
+        static let comments = "Comments"
+        static let rating = "Rating"
+    }
 }
 
 //AIzaSyD20t9-cmgZ_zgDgJO3R4y-tehsscNnHkA

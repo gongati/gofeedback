@@ -55,6 +55,7 @@
 		27E6A12724190C4700B4D336 /* GFContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A12624190C4700B4D336 /* GFContactViewController.swift */; };
 		27E6A12B241916CC00B4D336 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A129241916CB00B4D336 /* Api.swift */; };
 		950D452A6F9F9F0D7E1F4902 /* Pods_gofeedbackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2611EF6C660B330B018A05FD /* Pods_gofeedbackTests.framework */; };
+		F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */; };
 		F76E28CB242A3B6100C70D44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F76E28CA242A3B6100C70D44 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,7 @@
 		826B6A7ACB7C66ACAF0D7230 /* Pods_gofeedback.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gofeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D82E0E98D0271541D17988D4 /* Pods-gofeedbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.release.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.release.xcconfig"; sourceTree = "<group>"; };
 		E06929F06686B830FC20C9F0 /* Pods-gofeedback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.debug.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.debug.xcconfig"; sourceTree = "<group>"; };
+		F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFFeedbackModel.swift; sourceTree = "<group>"; };
 		F76E28CA242A3B6100C70D44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE8F23F26945089DE5E2EC32 /* Pods-gofeedbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -284,6 +286,7 @@
 		27E6A0D0241909F000B4D336 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */,
 				27E6A0D1241909F000B4D336 /* GFLocation.swift */,
 				27E6A0D2241909F000B4D336 /* GFAppVersion.swift */,
 				27E6A0D3241909F000B4D336 /* GFStation.swift */,
@@ -514,6 +517,7 @@
 				27E6A0DB241909F000B4D336 /* GFRecentTrip.swift in Sources */,
 				271CBF802418D55A00CB113D /* GFSignupViewController.swift in Sources */,
 				27E6A0C92419097700B4D336 /* GFTextFieldBackGround.swift in Sources */,
+				F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */,
 				27E6A12724190C4700B4D336 /* GFContactViewController.swift in Sources */,
 				27E6A0DA241909F000B4D336 /* GFStation.swift in Sources */,
 				27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */,

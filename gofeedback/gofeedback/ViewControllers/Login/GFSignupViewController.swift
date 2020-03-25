@@ -16,7 +16,6 @@ class GFSignupViewController: GFBaseViewController {
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
     let db = Firestore.firestore()
-    var ref: DocumentReference? = nil
     
     @IBOutlet weak var firstNameTxt: GFWhiteButtonTextField!
     @IBOutlet weak var lastNameTxt: GFWhiteButtonTextField!
@@ -37,8 +36,6 @@ class GFSignupViewController: GFBaseViewController {
         createViewModelBinding()
         createCallbacks()
 //        self.imgUser.image =  UIImage(named: "\(Utilities.tenantId().lowercased())LogoBig")
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.addDoneButtonOnKeyboard()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -50,18 +47,12 @@ class GFSignupViewController: GFBaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-   @objc func keyboardWillShow(notification: NSNotification) {
     
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= 100
-        }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
+    @objc override func keyboardWillShow(notification: NSNotification) {
         
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+        if self.view.frame.origin.y == 0 {
+            
+            self.view.frame.origin.y -= 100
         }
     }
     
@@ -106,8 +97,11 @@ class GFSignupViewController: GFBaseViewController {
                 //Present create wallet controller
                 if value {
                     
-                    self.signUpBtn.isHidden = true
                     self.creatingDataBase()
+                    self.popupAlert(title: "Alert", message: "Successfully Registered", actionTitles: ["OK"], actions: [{ action in
+                        
+                        self.navigationController?.popViewController(animated: true)
+                    }])
                 }
             }.disposed(by: disposeBag)
 
@@ -130,8 +124,8 @@ class GFSignupViewController: GFBaseViewController {
     }
     
     func creatingDataBase() {
-        
-        ref = db.collection((self.countryCode.text ?? "+1") + "" + (self.mobileNumberTxt.text ?? "1234567890")).addDocument(data: [
+            
+            db.collection("Users").document((self.countryCode.text ?? "+1") + " " + (self.mobileNumberTxt.text ?? "1234567890")).setData([
             "First Name": self.firstNameTxt.text as Any,
             "Last Name": self.lastNameTxt.text as Any,
             "email": self.emailTxt.text as Any,
@@ -140,7 +134,7 @@ class GFSignupViewController: GFBaseViewController {
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
-                print("Document added with ID: \(self.ref!.documentID)")
+                print("Document added with ID: \(self.countryCode.text ?? "+1") \(self.mobileNumberTxt.text ?? "1234567890")")
             }
         }
     }

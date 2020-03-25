@@ -42,11 +42,11 @@
                                         </constraints>
                                         <state key="normal" image="Hamburger"/>
                                         <connections>
-                                            <action selector="presentSideMenu:" destination="BFx-d9-v7X" eventType="touchUpInside" id="tNS-9X-1VM"/>
+                                            <action selector="presentSideMenu:" destination="BFx-d9-v7X" eventType="touchUpInside" id="1aO-xd-h1l"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feedback-logo" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T1o-2t-Xyr">
-                                        <rect key="frame" x="149" y="10" width="78" height="36"/>
+                                        <rect key="frame" x="148.5" y="10" width="78" height="36"/>
                                         <color key="backgroundColor" red="0.1333333333" green="0.19215686269999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="VNK-MP-Vqf"/>
@@ -123,7 +123,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="We want to know" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82h-9h-bQX">
                                         <rect key="frame" x="0.0" y="29.5" width="138" height="35.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are we doing great at?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9R3-w4-0M5">
                                         <rect key="frame" x="0.0" y="74" width="214.5" height="20.5"/>
@@ -134,7 +134,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gFq-z8-IRG">
                                         <rect key="frame" x="0.0" y="103.5" width="32" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What can we do better?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwA-0Z-TWN">
                                         <rect key="frame" x="0.0" y="146.5" width="182.5" height="20.5"/>
@@ -145,7 +145,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rsi-eW-dFb">
                                         <rect key="frame" x="0.0" y="176" width="32" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -168,7 +168,7 @@
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZt-1K-MrB" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
                                 <rect key="frame" x="50" y="596" width="274" height="37"/>
@@ -186,6 +186,9 @@
                                         <real key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submitPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="C0S-BC-Nwq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -225,7 +228,12 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addressLabel" destination="e9x-dN-bMG" id="S97-Po-Ogp"/>
+                        <outlet property="commentsTxt" destination="SH6-rO-rKd" id="nPf-qG-N2L"/>
+                        <outlet property="cosmosView" destination="eqW-Ne-oU2" id="GlV-Lr-iZo"/>
+                        <outlet property="howWeAreDoing" destination="82h-9h-bQX" id="lie-e6-MFj"/>
                         <outlet property="restuarantName" destination="1ZL-2U-TL3" id="0sS-BY-E5B"/>
+                        <outlet property="whatAreWeDoingGreat" destination="gFq-z8-IRG" id="gCo-Wq-5Te"/>
+                        <outlet property="whatCanWeDoBetter" destination="Rsi-eW-dFb" id="DPN-Pj-USg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BFx-d9-v7X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
