@@ -145,9 +145,11 @@ class SideMenuItemsViewController: UIViewController {
             return
         }
 
-//        if let controller = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "GFAccountSettingsViewController") as? GFAccountSettingsViewController {
-//            attachControllerToMainWindow(controller: controller)
-//        }
+        if let controller = UIStoryboard(name: "Account", bundle: nil).instantiateInitialViewController(){
+            
+            attachControllerToMainWindow(controller: controller)
+        }
+        
         GFBaseViewController.currentMenuItem = Constants.SideMenuAction.Settings
     }
     
@@ -165,6 +167,7 @@ class SideMenuItemsViewController: UIViewController {
                 attachControllerToMainWindow(controller: controller)
         }
     }
+    
     func updateSideMenu() {
         
         if self.shouldShowLogin() {
@@ -181,7 +184,7 @@ class SideMenuItemsViewController: UIViewController {
 
     func showAccountHome() {
         //TODO - Passes need to be integrated
-        if let controller = UIStoryboard(name: "AccountHome", bundle: nil).instantiateInitialViewController() {
+        if let controller = UIStoryboard(name: "Wallet", bundle: nil).instantiateInitialViewController() {
             attachControllerToMainWindow(controller: controller)
             GFBaseViewController.currentMenuItem = Constants.SideMenuAction.PassPurchase
         }

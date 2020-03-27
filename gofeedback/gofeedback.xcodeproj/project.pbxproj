@@ -22,6 +22,10 @@
 		271CBF802418D55A00CB113D /* GFSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF752418D55A00CB113D /* GFSignupViewController.swift */; };
 		271CBF812418D55A00CB113D /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF772418D55A00CB113D /* SignUpModel.swift */; };
 		271CBF822418D55A00CB113D /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF782418D55A00CB113D /* SignUpViewModel.swift */; };
+		2741C186242D24D7007A9F9D /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C185242D24D7007A9F9D /* Wallet.storyboard */; };
+		2741C188242D2512007A9F9D /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C187242D2512007A9F9D /* Account.storyboard */; };
+		2741C18A242D27AB007A9F9D /* Contact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C189242D27AB007A9F9D /* Contact.storyboard */; };
+		2741C18C242D27BC007A9F9D /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C18B242D27BC007A9F9D /* Alerts.storyboard */; };
 		274D69D22427AEB200597AFF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CD2427AEB200597AFF /* LoginViewModel.swift */; };
 		274D69D32427AEB200597AFF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CE2427AEB200597AFF /* LoginModel.swift */; };
 		274D69D42427AEB200597AFF /* EmailIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CF2427AEB200597AFF /* EmailIdViewModel.swift */; };
@@ -85,6 +89,10 @@
 		271CBF752418D55A00CB113D /* GFSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFSignupViewController.swift; sourceTree = "<group>"; };
 		271CBF772418D55A00CB113D /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		271CBF782418D55A00CB113D /* SignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		2741C185242D24D7007A9F9D /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
+		2741C187242D2512007A9F9D /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
+		2741C189242D27AB007A9F9D /* Contact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contact.storyboard; sourceTree = "<group>"; };
+		2741C18B242D27BC007A9F9D /* Alerts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
 		274D69CD2427AEB200597AFF /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		274D69CE2427AEB200597AFF /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		274D69CF2427AEB200597AFF /* EmailIdViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailIdViewModel.swift; sourceTree = "<group>"; };
@@ -126,7 +134,7 @@
 		D82E0E98D0271541D17988D4 /* Pods-gofeedbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.release.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.release.xcconfig"; sourceTree = "<group>"; };
 		E06929F06686B830FC20C9F0 /* Pods-gofeedback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.debug.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.debug.xcconfig"; sourceTree = "<group>"; };
 		F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFFeedbackModel.swift; sourceTree = "<group>"; };
-		F7041A8E242B9F6D00ADB9FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F7041A8E242B9F6D00ADB9FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE8F23F26945089DE5E2EC32 /* Pods-gofeedbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +164,10 @@
 				271CBF6A2418D51E00CB113D /* Login.storyboard */,
 				271CBF562418B71000CB113D /* Sidemenu.storyboard */,
 				276BAEC1241BF43600C66EAC /* Feedback.storyboard */,
+				2741C185242D24D7007A9F9D /* Wallet.storyboard */,
+				2741C187242D2512007A9F9D /* Account.storyboard */,
+				2741C189242D27AB007A9F9D /* Contact.storyboard */,
+				2741C18B242D27BC007A9F9D /* Alerts.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -411,12 +423,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				271CBF572418B71000CB113D /* Sidemenu.storyboard in Resources */,
+				2741C186242D24D7007A9F9D /* Wallet.storyboard in Resources */,
 				276BAEC2241BF43600C66EAC /* Feedback.storyboard in Resources */,
 				27839A21240FF1B4004CEE14 /* LaunchScreen.storyboard in Resources */,
 				27839A19240FF1AF004CEE14 /* Main.storyboard in Resources */,
 				271CBF6B2418D51E00CB113D /* Login.storyboard in Resources */,
 				271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */,
+				2741C188242D2512007A9F9D /* Account.storyboard in Resources */,
 				F7041A8F242B9F6D00ADB9FA /* GoogleService-Info.plist in Resources */,
+				2741C18A242D27AB007A9F9D /* Contact.storyboard in Resources */,
+				2741C18C242D27BC007A9F9D /* Alerts.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
