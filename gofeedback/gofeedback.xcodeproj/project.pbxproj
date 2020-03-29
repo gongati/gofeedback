@@ -62,6 +62,7 @@
 		F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */; };
 		F719271F24307C80006BF52A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719271E24307C80006BF52A /* AccountSettingsViewController.swift */; };
 		F71927232430A980006BF52A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F71927222430A980006BF52A /* GoogleService-Info.plist */; };
+		F71927252430F24A006BF52A /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71927242430F24A006BF52A /* WalletViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFFeedbackModel.swift; sourceTree = "<group>"; };
 		F719271E24307C80006BF52A /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSettingsViewController.swift; path = erSwift/AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		F71927222430A980006BF52A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F71927242430F24A006BF52A /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletViewController.swift; path = erSwift/WalletViewController.swift; sourceTree = "<group>"; };
 		FE8F23F26945089DE5E2EC32 /* Pods-gofeedbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +196,7 @@
 				271CBF5E2418BA7F00CB113D /* HomeViewController.swift */,
 				27839A15240FF1AF004CEE14 /* FeedbackViewController.swift */,
 				F719271E24307C80006BF52A /* AccountSettingsViewController.swift */,
+				F71927242430F24A006BF52A /* WalletViewController.swift */,
 				271CBF622418BBE700CB113D /* GFBaseViewController.swift */,
 				271CBF642418BBF500CB113D /* GFLaunchViewController.swift */,
 			);
@@ -540,6 +543,7 @@
 				F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */,
 				27E6A12724190C4700B4D336 /* GFContactViewController.swift in Sources */,
 				27E6A0DA241909F000B4D336 /* GFStation.swift in Sources */,
+				F71927252430F24A006BF52A /* WalletViewController.swift in Sources */,
 				27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */,
 				271CBF672418D47900CB113D /* GFConstants.swift in Sources */,
 				27E6A0CB2419097700B4D336 /* GFRouteOptionTableViewCell.swift in Sources */,

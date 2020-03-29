@@ -139,7 +139,7 @@ class FeedbackViewController: GFBaseViewController {
     
     func feedbackUpdate(_ userId:String) {
         
-        db.collection("Feedback").document(userId).setData([
+        db.collection("Feedback").document(userId).collection("Ratings").document(self.restaurantTitle).setData([
             Constants.FeedbackCommands.restuarantName : self.restaurantTitle,
             Constants.FeedbackCommands.restuarantAddress : self.address,
             Constants.FeedbackCommands.howWeAreDoing : self.howWeAreDoingRating,
