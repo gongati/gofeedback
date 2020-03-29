@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SideMenuItemsViewController: UIViewController {
 
@@ -207,6 +208,11 @@ class SideMenuItemsViewController: UIViewController {
         }else {
             menuLogin.setTitle("Log Out", for: .normal)
             menuLogin.setImage(UIImage(named: "sign-out-alt-light"), for: .normal)
+            if let name = UserDefaults.standard.string(forKey: "UserName"), let email = UserDefaults.standard.string(forKey: "Email") {
+            
+                self.userNameLabel.text = name
+                self.emailLabel.text = email
+            }
         }
     }
 
@@ -223,6 +229,9 @@ class SideMenuItemsViewController: UIViewController {
     @objc func confirmLogout() -> Void {
         
         UserDefaults.standard.set(false, forKey: "loginStatus")
+        UserDefaults.standard.removeObject(forKey: "UserId")
+        UserDefaults.standard.set("",forKey: "UserName")
+        UserDefaults.standard.set("",forKey: "email")
         UserDefaults.standard.synchronize()
 
         if GFBaseViewController.currentMenuItem == Constants.SideMenuAction.PlanTrip {
@@ -244,7 +253,15 @@ class SideMenuItemsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Logout", style: UIAlertAction.Style.destructive, handler: { action in
             
-            self.confirmLogout()
+            
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                self.confirmLogout()
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+                _ = UIAlertController(title: "Logout Status", message: "Failed to signing out, try again after sometime.", preferredStyle: UIAlertController.Style.alert)
+            }
             
         }))
         

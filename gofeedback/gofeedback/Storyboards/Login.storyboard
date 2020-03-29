@@ -379,19 +379,19 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Mobile Number" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4Rr-dq-CbQ" customClass="GFWhiteButtonTextField" customModule="gofeedback" customModuleProvider="target">
+                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Rr-dq-CbQ" customClass="GFWhiteButtonTextField" customModule="gofeedback" customModuleProvider="target">
                                                 <rect key="frame" x="66" y="203" width="209" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <color key="textColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="light" returnKeyType="next" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="light" returnKeyType="next"/>
                                             </textField>
-                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="eg.+1" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NXI-b3-wY8" customClass="GFWhiteButtonTextField" customModule="gofeedback" customModuleProvider="target">
+                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="eg.+1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NXI-b3-wY8" customClass="GFWhiteButtonTextField" customModule="gofeedback" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="203" width="40" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <color key="textColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="light" returnKeyType="next" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="light" returnKeyType="next"/>
                                             </textField>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="42d-JT-7aJ">
                                                 <rect key="frame" x="4" y="243" width="275" height="2"/>
@@ -417,7 +417,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3i-1c-KbT">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3i-1c-KbT">
                                                 <rect key="frame" x="8" y="326" width="74" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
@@ -425,30 +425,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="f8b-1M-ppv" customClass="GFWhiteButtonTextField" customModule="gofeedback" customModuleProvider="target">
-                                                <rect key="frame" x="5" y="358" width="275" height="36"/>
+                                                <rect key="frame" x="5" y="358" width="275" height="113"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <color key="textColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
-                                            </textField>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Esr-Ss-qwi">
-                                                <rect key="frame" x="4" y="402" width="275" height="2"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W26-Fe-UM5">
-                                                <rect key="frame" x="5" y="412" width="141" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Cfm-Wj-Ir4" customClass="GFWhiteButtonTextField" customModule="gofeedback" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="444" width="275" height="36"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                <color key="textColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="next" textContentType="street-address"/>
                                             </textField>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TkQ-zz-kvD">
                                                 <rect key="frame" x="5" y="486" width="275" height="2"/>
@@ -493,14 +474,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="qzd-cq-cdX"/>
                     <connections>
+                        <outlet property="adrdressTxt" destination="f8b-1M-ppv" id="YN6-oh-2iH"/>
                         <outlet property="countryCode" destination="NXI-b3-wY8" id="ZPU-V2-03t"/>
                         <outlet property="emailTxt" destination="dFQ-0Y-IMx" id="o7F-eq-7kU"/>
                         <outlet property="firstNameTxt" destination="KJz-GM-MGG" id="YPT-EN-Wfe"/>
                         <outlet property="imgUser" destination="Ioq-dw-Ynl" id="I1K-da-mRs"/>
                         <outlet property="lastNameTxt" destination="3wl-lu-sin" id="D3D-WG-EOU"/>
                         <outlet property="mobileNumberTxt" destination="4Rr-dq-CbQ" id="k3f-hb-A8e"/>
-                        <outlet property="passwordTxt1" destination="f8b-1M-ppv" id="6Hs-uk-Edl"/>
-                        <outlet property="passwordTxt2" destination="Cfm-Wj-Ir4" id="9A9-Js-BVP"/>
                         <outlet property="signInNtn" destination="5pc-VL-j2j" id="CLX-iv-DTm"/>
                         <outlet property="signUpBtn" destination="xQC-Wu-e4b" id="jGn-TI-Zr7"/>
                     </connections>

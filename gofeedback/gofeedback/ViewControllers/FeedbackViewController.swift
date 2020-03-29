@@ -14,16 +14,19 @@ class FeedbackViewController: GFBaseViewController {
 
     @IBOutlet weak var restuarantName: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
-    
-    @IBOutlet weak var whatCanWeDoBetter: UITextField!
-    @IBOutlet weak var whatAreWeDoingGreat: UITextField!
-    @IBOutlet weak var howWeAreDoing: UITextField!
+    @IBOutlet weak var whatCanWeDoBetter: CosmosView!
+    @IBOutlet weak var whatAreWeDoingGreat: CosmosView!
+    @IBOutlet weak var howWeAreDoingCosmosView: CosmosView!
     @IBOutlet weak var commentsTxt: UITextView!
     @IBOutlet weak var cosmosView: CosmosView!
     
     var restaurantTitle = ""
     var address = ""
-    var rating : Double = 0
+    var rating : Double = 3
+    var whatCanWeDoBetterRating: Double = 3
+    var whatAreWeDoingGreatRating: Double = 3
+    var howWeAreDoingRating: Double = 3
+
     var searchItem = ""
     let db = Firestore.firestore()
     
@@ -46,11 +49,7 @@ class FeedbackViewController: GFBaseViewController {
         
         super.viewDidAppear(animated)
         
-        cosmosView.didFinishTouchingCosmos = { rating in
-            
-            self.rating = rating
-            print("rating \(rating)")
-        }
+        self.ratingsUpadate()
 
     }
     @IBAction func cancelPressed(_ sender: UIButton) {
@@ -60,24 +59,17 @@ class FeedbackViewController: GFBaseViewController {
     
     @IBAction func submitPressed(_ sender: UIButton) {
         
-
-        db.collection("Feedback").document(restaurantTitle).setData([
-            Constants.FeedbackCommands.howWeAreDoing : self.howWeAreDoing.text as Any,
-            Constants.FeedbackCommands.whatWeAreDoingGreat : self.whatAreWeDoingGreat.text as Any,
-            Constants.FeedbackCommands.whatCanWeDoBetter : self.whatCanWeDoBetter.text as Any,
-            Constants.FeedbackCommands.comments : self.commentsTxt.text,
-            Constants.FeedbackCommands.rating : self.rating
-        ]) { (error) in
-            if let err = error {
-                self.popupAlert(title: "Error", message: err.localizedDescription, actionTitles: ["OK"], actions: [nil])
-            } else {
-                print("Successfully saved data.")
-                self.popupAlert(title: "Alert", message: "Successfully saved data.", actionTitles: ["OK"], actions: [{ action in
-                    
-                    self.moveToHomeVC()
+        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
+            
+            self.feedbackUpdate(userId)
+        } else {
+            
+            self.popupAlert(title: "Alert", message: "Please Login to give Feedback", actionTitles: ["OK"], actions: [{ action in
+                
+                self.navigationController?.popViewController(animated: true)
                 }])
-           }
         }
+        
     }
     
     func addDoneButtonOnKeyboard(){
@@ -92,16 +84,13 @@ class FeedbackViewController: GFBaseViewController {
         doneToolbar.items = items
         doneToolbar.sizeToFit()
 
-        whatCanWeDoBetter.inputAccessoryView = doneToolbar
-        whatAreWeDoingGreat.inputAccessoryView = doneToolbar
-        howWeAreDoing.inputAccessoryView = doneToolbar
         commentsTxt.inputAccessoryView = doneToolbar
     }
 
     @objc func doneButtonAction(){
         whatCanWeDoBetter.resignFirstResponder()
         whatAreWeDoingGreat.resignFirstResponder()
-        howWeAreDoing.resignFirstResponder()
+        howWeAreDoingCosmosView.resignFirstResponder()
         commentsTxt.resignFirstResponder()
     }
     
@@ -112,5 +101,62 @@ class FeedbackViewController: GFBaseViewController {
         }
         viewController.searchItem = searchItem
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    
+    func moveToLogin() {
+        
+        guard let viewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier:  "GFNAVIGATETOLOGIN") as? GFLoginViewController else {
+                   return
+               }
+               self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    func ratingsUpadate() {
+        
+        
+        cosmosView.didFinishTouchingCosmos = { rating in
+
+            self.rating = rating
+        }
+        
+        whatCanWeDoBetter.didFinishTouchingCosmos = { rating in
+            
+            self.whatCanWeDoBetterRating = rating
+        }
+        
+        
+        whatAreWeDoingGreat.didFinishTouchingCosmos = { rating in
+            
+            self.whatAreWeDoingGreatRating = rating
+        }
+        
+        howWeAreDoingCosmosView.didFinishTouchingCosmos = { rating in
+            
+            self.howWeAreDoingRating = rating
+        }
+    }
+    
+    func feedbackUpdate(_ userId:String) {
+        
+        db.collection("Feedback").document(userId).setData([
+            Constants.FeedbackCommands.restuarantName : self.restuarantName,
+            Constants.FeedbackCommands.restuarantAddress : self.addressLabel,
+            Constants.FeedbackCommands.howWeAreDoing : self.howWeAreDoingRating,
+            Constants.FeedbackCommands.whatWeAreDoingGreat : self.whatAreWeDoingGreatRating,
+            Constants.FeedbackCommands.whatCanWeDoBetter : self.whatCanWeDoBetterRating,
+            Constants.FeedbackCommands.comments : self.commentsTxt.text,
+            Constants.FeedbackCommands.rating : self.rating
+        ]) { (error) in
+            if let err = error {
+                self.popupAlert(title: "Error", message: err.localizedDescription, actionTitles: ["OK"], actions: [nil])
+            } else {
+                print("Successfully saved data.")
+                self.popupAlert(title: "Alert", message: "Successfully saved data.", actionTitles: ["OK"], actions: [{ action in
+                    
+                    self.moveToHomeVC()
+                }])
+           }
+        }
     }
 }

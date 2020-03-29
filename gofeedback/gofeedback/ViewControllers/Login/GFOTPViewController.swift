@@ -15,6 +15,7 @@ class GFOTPViewController: GFBaseViewController {
     @IBOutlet weak var otpText: UITextField!
     
     var userID: String?
+    var loginId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +46,11 @@ class GFOTPViewController: GFBaseViewController {
                     self?.popupAlert(title: "Error", message: err?.localizedDescription, actionTitles: ["OK"], actions: [nil])
                      return
                  }
-                 
+                
+                UserDefaults.standard.set(self?.loginId, forKey: "UserId")
                 UserDefaults.standard.set(true, forKey: "loginStatus")
                 UserDefaults.standard.synchronize()
+                
                 self?.dismiss(animated: true, completion: nil)
              }
         } else {

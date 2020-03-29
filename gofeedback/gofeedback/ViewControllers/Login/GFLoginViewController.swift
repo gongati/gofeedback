@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
 class GFLoginViewController: GFBaseViewController {
     
@@ -16,7 +17,10 @@ class GFLoginViewController: GFBaseViewController {
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var registerBtn: UIButton!
     
+    let db = Firestore.firestore()
+    
     var userID: String?
+    var loginId:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +44,15 @@ class GFLoginViewController: GFBaseViewController {
     
     func verifyPhone() {
         
+        
         if let codeValue = self.codeTxt.text, codeValue.count > 1 {
             
             if let phoneValue = self.phoneTxt.text, phoneValue.count >= 10 {
+                
+                loginId = "+"+codeValue+" "+phoneValue
+                
+                let query = self.db.collection("Users").whereField(Constants.userDetails.mobileNumber, isEqualTo: self.loginId!)
+                
                 
                 PhoneAuthProvider.provider().verifyPhoneNumber("+"+codeValue+phoneValue, uiDelegate: nil) { [weak self] (ID, err) in
                     
@@ -52,10 +62,30 @@ class GFLoginViewController: GFBaseViewController {
                         return
                     }
                     
-                    self?.userID = ID!
-                    self?.showOTPScreen()
+                    query.getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            
+                            if querySnapshot?.documents.count == 0 {
+                                
+                                self?.performSegue(withIdentifier: "REGISTER", sender: self)
+                        
+                            } else {
+                                
+                                print("query = \(querySnapshot?.documents)")
+                                UserDefaults.standard.set((querySnapshot?.documents[0].data()[Constants.userDetails.firstName] as! String) + " " + (querySnapshot?.documents[0].data()[Constants.userDetails.lastName] as! String), forKey: "UserName")
+                                
+                                UserDefaults.standard.set((querySnapshot?.documents[0].data()[Constants.userDetails.email] as! String), forKey: "Email")
+                                 UserDefaults.standard.synchronize()
+                                self?.userID = ID!
+                                self?.showOTPScreen()
+                            }
+                        }
+                    }
+                    
                 }
-
+                
                 
             } else {
                 
@@ -82,6 +112,7 @@ class GFLoginViewController: GFBaseViewController {
                 if let userId = sender as? String {
                     
                     secondViewController.userID = userId
+                    secondViewController.loginId = loginId
                 }
             }
          }
