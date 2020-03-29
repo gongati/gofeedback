@@ -29,7 +29,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     var locationLong:String?
     var userCurrentLocation:CLLocationCoordinate2D?
     var searchResponse: [MKMapItem]?
-    var searchItem = ""
+    var searchItem = "Food"
     
     override func viewDidLoad() {
         super.viewDidLoad()
