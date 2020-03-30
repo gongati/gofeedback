@@ -424,13 +424,6 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="f8b-1M-ppv" customClass="GFWhiteButtonTextField" customModule="gofeedback" customModuleProvider="target">
-                                                <rect key="frame" x="5" y="358" width="275" height="113"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                <color key="textColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="next" textContentType="street-address"/>
-                                            </textField>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TkQ-zz-kvD">
                                                 <rect key="frame" x="5" y="486" width="275" height="2"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -441,6 +434,13 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F5m-jz-lR3">
+                                                <rect key="frame" x="-17" y="358" width="343" height="113"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -474,7 +474,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="qzd-cq-cdX"/>
                     <connections>
-                        <outlet property="adrdressTxt" destination="f8b-1M-ppv" id="YN6-oh-2iH"/>
+                        <outlet property="addressTxt" destination="F5m-jz-lR3" id="Uue-V9-izn"/>
                         <outlet property="countryCode" destination="NXI-b3-wY8" id="ZPU-V2-03t"/>
                         <outlet property="emailTxt" destination="dFQ-0Y-IMx" id="o7F-eq-7kU"/>
                         <outlet property="firstNameTxt" destination="KJz-GM-MGG" id="YPT-EN-Wfe"/>

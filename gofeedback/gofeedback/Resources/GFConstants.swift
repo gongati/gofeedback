@@ -160,6 +160,8 @@ struct Constants {
         static let whatCanWeDoBetter = "What can we do better?"
         static let comments = "Comments"
         static let rating = "Rating"
+        static let images = "Images"
+        static let form = "Form"
     }
     
     struct userDetails {
