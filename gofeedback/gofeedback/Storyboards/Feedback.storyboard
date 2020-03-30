@@ -210,6 +210,9 @@
                                     <constraint firstAttribute="width" constant="40" id="f2s-NF-1HZ"/>
                                 </constraints>
                                 <state key="normal" image="upload_image"/>
+                                <connections>
+                                    <action selector="imagePressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="IdB-5s-qXP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5l-2I-cd8">
                                 <rect key="frame" x="274" y="444" width="40" height="40"/>
@@ -218,6 +221,9 @@
                                     <constraint firstAttribute="height" constant="40" id="mjg-6E-4an"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="paper-receipt-icon"/>
+                                <connections>
+                                    <action selector="formPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="ce1-Ub-WEq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZt-1K-MrB" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
                                 <rect key="frame" x="214" y="596" width="145" height="37"/>
@@ -276,7 +282,9 @@
                         <outlet property="addressLabel" destination="e9x-dN-bMG" id="S97-Po-Ogp"/>
                         <outlet property="commentsTxt" destination="SH6-rO-rKd" id="nPf-qG-N2L"/>
                         <outlet property="cosmosView" destination="eqW-Ne-oU2" id="GlV-Lr-iZo"/>
+                        <outlet property="formBtn" destination="m5l-2I-cd8" id="Sqx-fv-1HG"/>
                         <outlet property="howWeAreDoingCosmosView" destination="gyQ-DV-BvQ" id="aPt-i1-j0u"/>
+                        <outlet property="imageBtn" destination="T4f-jh-Ihb" id="WVt-jn-NfG"/>
                         <outlet property="restuarantName" destination="1ZL-2U-TL3" id="0sS-BY-E5B"/>
                         <outlet property="whatAreWeDoingGreat" destination="rHU-LC-XoK" id="O9a-Mf-C3n"/>
                         <outlet property="whatCanWeDoBetter" destination="bYF-rJ-XwL" id="nlw-RF-xOc"/>
