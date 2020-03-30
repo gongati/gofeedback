@@ -10,7 +10,7 @@ import UIKit
 import  Cosmos
 import Firebase
 
-class FeedbackViewController: GFBaseViewController {
+class FeedbackViewController: GFBaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var restuarantName: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -19,6 +19,10 @@ class FeedbackViewController: GFBaseViewController {
     @IBOutlet weak var howWeAreDoingCosmosView: CosmosView!
     @IBOutlet weak var commentsTxt: UITextView!
     @IBOutlet weak var cosmosView: CosmosView!
+    
+    @IBOutlet weak var imageBtn: UIButton!
+    
+    @IBOutlet weak var formBtn: UIButton!
     
     var restaurantTitle = ""
     var address = ""
@@ -29,6 +33,9 @@ class FeedbackViewController: GFBaseViewController {
 
     var searchItem = ""
     let db = Firestore.firestore()
+    var imageFileName = ""
+    var formFilName = ""
+    var isImageFile = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +64,24 @@ class FeedbackViewController: GFBaseViewController {
         navigationController?.popToRootViewController(animated: true)
     }
     
+    
+    @IBAction func imagePressed(_ sender: UIButton) {
+        
+        self.isImageFile = true
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    @IBAction func formPressed(_ sender: UIButton) {
+        
+        self.isImageFile = false
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func submitPressed(_ sender: UIButton) {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
@@ -70,6 +95,89 @@ class FeedbackViewController: GFBaseViewController {
                 }])
         }
         
+    }
+    
+    func uploadImage(image: UIImage) {
+        
+        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
+            
+            let randomName = randomStringWithLength(length: 10)
+            let imageData = image.jpegData(compressionQuality: 0.5)
+            let path = "Images/\(userId)/\(restaurantTitle)/\(randomName).jpg"
+            let uploadRef = Storage.storage().reference().child(path)
+            _ = uploadRef.putData(imageData!, metadata: nil) { metadata,
+                error in
+                if error == nil {
+                    //success
+                    print("success")
+                    self.imageFileName = path
+                } else {
+                    //error
+                    print("error uploading image")
+                }
+            }
+        }
+    }
+    
+    
+    func uploadForm(image: UIImage){
+        
+        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
+            
+            let randomName = randomStringWithLength(length: 10)
+            let imageData = image.jpegData(compressionQuality: 0.5)
+            let path = "Forms/\(userId)/\(restaurantTitle)/\(randomName).jpg"
+            let uploadRef = Storage.storage().reference().child(path)
+            _ = uploadRef.putData(imageData!, metadata: nil) { metadata,
+                error in
+                if error == nil {
+                    //success
+                    print("success")
+                    self.formFilName = path
+                } else {
+                    //error
+                    print("error uploading image")
+                }
+            }
+        }
+    }
+    
+    func randomStringWithLength(length: Int) -> NSString {
+        
+        let characters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let randomString: NSMutableString = NSMutableString(capacity: length)
+
+        for _ in 0..<length {
+            let len = UInt32(characters.length)
+            let rand = arc4random_uniform(len)
+            randomString.appendFormat("%C", characters.character(at: Int(rand)))
+        }
+        return randomString
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // will run if the user hits cancel
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+     
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            
+            if isImageFile {
+                
+                self.imageBtn.isEnabled = false
+                self.imageBtn.isHidden = true
+                self.uploadImage(image: pickedImage)
+                picker.dismiss(animated: true, completion: nil)
+            } else {
+                
+                self.formBtn.isEnabled = false
+                self.formBtn.isHidden = true
+                self.uploadForm(image: pickedImage)
+                picker.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     func addDoneButtonOnKeyboard(){
@@ -146,7 +254,10 @@ class FeedbackViewController: GFBaseViewController {
             Constants.FeedbackCommands.whatWeAreDoingGreat : self.whatAreWeDoingGreatRating,
             Constants.FeedbackCommands.whatCanWeDoBetter : self.whatCanWeDoBetterRating,
             Constants.FeedbackCommands.comments : self.commentsTxt.text,
-            Constants.FeedbackCommands.rating : self.rating
+            Constants.FeedbackCommands.rating : self.rating,
+            Constants.FeedbackCommands.images : self.imageFileName,
+            Constants.FeedbackCommands.form : self.formFilName
+            
         ]) { (error) in
             if let err = error {
                 self.popupAlert(title: "Error", message: err.localizedDescription, actionTitles: ["OK"], actions: [nil])
