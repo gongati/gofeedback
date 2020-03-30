@@ -10,9 +10,9 @@ import Foundation
 
 struct FeedbackModel {
     
-    let howWeAreDoing: String
-    let whatWeAreDoingGreat: String
-    let whatCanWeDoBetter: String
-    let comments: String
-    let rating: Double
+    var howWeAreDoing: String
+    var whatWeAreDoingGreat: String
+    var whatCanWeDoBetter: String
+    var comments: String
+    var rating: Double
 }

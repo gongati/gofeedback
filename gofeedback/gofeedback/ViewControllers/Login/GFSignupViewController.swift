@@ -19,8 +19,7 @@ class GFSignupViewController: GFBaseViewController {
     
     @IBOutlet weak var firstNameTxt: GFWhiteButtonTextField!
     @IBOutlet weak var lastNameTxt: GFWhiteButtonTextField!
-    @IBOutlet weak var passwordTxt1: GFWhiteButtonTextField!
-    @IBOutlet weak var passwordTxt2: GFWhiteButtonTextField!
+    @IBOutlet weak var adrdressTxt: GFWhiteButtonTextField!
     @IBOutlet weak var emailTxt: GFWhiteButtonTextField!
     @IBOutlet weak var signUpBtn: GFMenuButton!
     @IBOutlet var imgUser: UIImageView!
@@ -66,17 +65,13 @@ class GFSignupViewController: GFBaseViewController {
             .bind(to: viewModel.lastNameViewModel.data)
             .disposed(by: disposeBag)
 
-        passwordTxt1.rx.text.orEmpty
-            .bind(to: viewModel.passwordViewModel.data)
-            .disposed(by: disposeBag)
-
-        passwordTxt2.rx.text.orEmpty
-            .bind(to: viewModel.passwordViewModel2.data)
-            .disposed(by: disposeBag)
-
         emailTxt.rx.text.orEmpty
             .bind(to: viewModel.emailIdViewModel.data)
             .disposed(by: disposeBag)
+        
+        adrdressTxt.rx.text.orEmpty
+        .bind(to: viewModel.addressViewModel.data)
+        .disposed(by: disposeBag)
 
         signUpBtn.rx.tap.do(onNext:  { [unowned self] in
             self.view.resignFirstResponder()
@@ -125,11 +120,12 @@ class GFSignupViewController: GFBaseViewController {
     
     func creatingDataBase() {
             
-            db.collection("Users").document((self.countryCode.text ?? "+1") + " " + (self.mobileNumberTxt.text ?? "1234567890")).setData([
-            "First Name": self.firstNameTxt.text as Any,
-            "Last Name": self.lastNameTxt.text as Any,
-            "email": self.emailTxt.text as Any,
-            "Mobile Number": (self.countryCode.text ?? "+1") + "" + (self.mobileNumberTxt.text ?? "1234567890")
+            db.collection("Users").document("+" + (self.countryCode.text ?? "+1") + " " + (self.mobileNumberTxt.text ?? "1234567890")).setData([
+                Constants.userDetails.firstName: self.firstNameTxt.text as Any,
+            Constants.userDetails.lastName: self.lastNameTxt.text as Any,
+            Constants.userDetails.email: self.emailTxt.text as Any,
+            Constants.userDetails.mobileNumber: "+" + (self.countryCode.text ?? "1") + " " + (self.mobileNumberTxt.text ?? "1234567890"),
+            Constants.userDetails.address: self.adrdressTxt.text as Any
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

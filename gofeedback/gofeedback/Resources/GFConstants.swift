@@ -152,11 +152,23 @@ struct Constants {
     }
     
     struct FeedbackCommands {
+        
+        static let restuarantName = "Restuarant Name"
+        static let restuarantAddress = "Restuarant Address"
         static let howWeAreDoing = "We want to know how we are doing?"
         static let whatWeAreDoingGreat = "What are we doing great at?"
         static let whatCanWeDoBetter = "What can we do better?"
         static let comments = "Comments"
         static let rating = "Rating"
+    }
+    
+    struct userDetails {
+        
+        static let email = "Email"
+        static let firstName = "First Name"
+        static let lastName = "Last Name"
+        static let mobileNumber = "Mobile Number"
+        static let address = "Address"
     }
 }
 

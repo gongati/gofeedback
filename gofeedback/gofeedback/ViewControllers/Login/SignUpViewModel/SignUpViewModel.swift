@@ -21,6 +21,7 @@ class SignUpViewModel {
     let emailIdViewModel = EmailIdViewModel()
     let passwordViewModel = PasswordViewModel()
     let passwordViewModel2 = PasswordViewModel()
+    let addressViewModel = AddressViewModel()
     
     // Fields that bind to our view's
     let isSuccess : Variable<Bool> = Variable(false)
@@ -28,7 +29,7 @@ class SignUpViewModel {
     let errorMsg : Variable<String> = Variable("")
     
     func validateCredentials() -> Bool{
-        return firstNameViewModel.validateCredentials() && lastNameViewModel.validateCredentials() && emailIdViewModel.validateCredentials() && passwordViewModel.validateCredentials() && matchPasswords();
+        return firstNameViewModel.validateCredentials() && lastNameViewModel.validateCredentials() && emailIdViewModel.validateCredentials() && addressViewModel.validateCredentials();
     }
     
     func formErrorString() -> String {
@@ -39,8 +40,8 @@ class SignUpViewModel {
             return lastNameViewModel.errorValue.value ?? ""
         }else if(emailIdViewModel.errorValue.value != ""){
             return emailIdViewModel.errorValue.value ?? ""
-        }else if(passwordViewModel.errorValue.value != ""){
-            return passwordViewModel.errorValue.value ?? ""
+        }else if(addressViewModel.errorValue.value != ""){
+            return addressViewModel.errorValue.value ?? ""
         }else if(!matchPasswords()){
             return "Passwords does not match"
         }
@@ -53,19 +54,21 @@ class SignUpViewModel {
     }
     
     func signupUser() {
+        
+        self.isSuccess.value = true
 
-        Auth.auth().createUser(withEmail: emailIdViewModel.data.value, password: passwordViewModel2.data.value) { authResult, error in
-            
-            if let error = error {
-                
-                self.errorMsg.value = error.localizedDescription
-                
-                print(error.localizedDescription)
-            } else {
-                
-                self.isSuccess.value = true
-            }
-        }
+//        Auth.auth().createUser(withEmail: emailIdViewModel.data.value, password: passwordViewModel2.data.value) { authResult, error in
+//
+//            if let error = error {
+//
+//                self.errorMsg.value = error.localizedDescription
+//
+//                print(error.localizedDescription)
+//            } else {
+//
+//
+//            }
+//        }
     }
     
     func loginUser() {
