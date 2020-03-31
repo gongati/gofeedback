@@ -19,7 +19,7 @@ class GFSignupViewController: GFBaseViewController {
     
     @IBOutlet weak var firstNameTxt: GFWhiteButtonTextField!
     @IBOutlet weak var lastNameTxt: GFWhiteButtonTextField!
-    @IBOutlet weak var adrdressTxt: GFWhiteButtonTextField!
+    @IBOutlet weak var addressTxt: UITextView!
     @IBOutlet weak var emailTxt: GFWhiteButtonTextField!
     @IBOutlet weak var signUpBtn: GFMenuButton!
     @IBOutlet var imgUser: UIImageView!
@@ -69,9 +69,6 @@ class GFSignupViewController: GFBaseViewController {
             .bind(to: viewModel.emailIdViewModel.data)
             .disposed(by: disposeBag)
         
-        adrdressTxt.rx.text.orEmpty
-        .bind(to: viewModel.addressViewModel.data)
-        .disposed(by: disposeBag)
 
         signUpBtn.rx.tap.do(onNext:  { [unowned self] in
             self.view.resignFirstResponder()
@@ -125,7 +122,7 @@ class GFSignupViewController: GFBaseViewController {
             Constants.userDetails.lastName: self.lastNameTxt.text as Any,
             Constants.userDetails.email: self.emailTxt.text as Any,
             Constants.userDetails.mobileNumber: "+" + (self.countryCode.text ?? "1") + " " + (self.mobileNumberTxt.text ?? "1234567890"),
-            Constants.userDetails.address: self.adrdressTxt.text as Any
+            Constants.userDetails.address: self.addressTxt.text as Any
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

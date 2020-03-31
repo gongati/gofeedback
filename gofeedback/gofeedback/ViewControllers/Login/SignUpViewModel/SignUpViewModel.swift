@@ -29,7 +29,7 @@ class SignUpViewModel {
     let errorMsg : Variable<String> = Variable("")
     
     func validateCredentials() -> Bool{
-        return firstNameViewModel.validateCredentials() && lastNameViewModel.validateCredentials() && emailIdViewModel.validateCredentials() && addressViewModel.validateCredentials();
+        return firstNameViewModel.validateCredentials() && lastNameViewModel.validateCredentials() && emailIdViewModel.validateCredentials();
     }
     
     func formErrorString() -> String {
