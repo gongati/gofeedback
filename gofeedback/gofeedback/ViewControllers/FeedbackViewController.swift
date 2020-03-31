@@ -10,7 +10,7 @@ import UIKit
 import  Cosmos
 import Firebase
 
-class FeedbackViewController: GFBaseViewController {
+class FeedbackViewController: GFBaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var restuarantName: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -20,21 +20,22 @@ class FeedbackViewController: GFBaseViewController {
     @IBOutlet weak var commentsTxt: UITextView!
     @IBOutlet weak var cosmosView: CosmosView!
     
-    var restaurantTitle = ""
-    var address = ""
-    var rating : Double = 3
-    var whatCanWeDoBetterRating: Double = 3
-    var whatAreWeDoingGreatRating: Double = 3
-    var howWeAreDoingRating: Double = 3
-
+    @IBOutlet weak var imageBtn: UIButton!
+    @IBOutlet weak var formBtn: UIButton!
+    
+    var feedbackModel = FeedbackModel()
     var searchItem = ""
+    var images : UIImage?
+    var formImage : UIImage?
+    var isImageFile = true
+    
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        restuarantName.text = restaurantTitle
-        addressLabel.text = address
+        restuarantName.text = feedbackModel.restaurantTitle
+        addressLabel.text = feedbackModel.address
         
         self.addDoneButtonOnKeyboard()
     }
@@ -54,14 +55,46 @@ class FeedbackViewController: GFBaseViewController {
     }
     @IBAction func cancelPressed(_ sender: UIButton) {
         
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
+    
+    
+    @IBAction func imagePressed(_ sender: UIButton) {
+        
+        self.isImageFile = true
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    @IBAction func formPressed(_ sender: UIButton) {
+        
+        self.isImageFile = false
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
+    }
+    
     
     @IBAction func submitPressed(_ sender: UIButton) {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
             
-            self.feedbackUpdate(userId)
+             self.feedbackModel.comments = self.commentsTxt.text
+            
+            if let _ = images, let form = formImage{
+                
+                self.uploadForm(image: form)
+            } else if let form = self.formImage {
+                
+                self.uploadForm(image: form)
+            } else if let images = images {
+                
+                self.uploadImage(image: images)
+            } else {
+                
+                self.feedbackUpdate(userId)
+            }
         } else {
             
             self.popupAlert(title: "Alert", message: "Please Login to give Feedback", actionTitles: ["OK"], actions: [{ action in
@@ -70,6 +103,104 @@ class FeedbackViewController: GFBaseViewController {
                 }])
         }
         
+    }
+    
+    
+    @IBAction func previewPressed(_ sender: UIButton) {
+        
+        self.feedbackModel.comments = self.commentsTxt.text
+        self.moveToPreview()
+    }
+    
+    func uploadImage(image: UIImage) {
+        
+        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
+         
+            let group = DispatchGroup()
+            let randomName = randomStringWithLength(length: 10)
+            let imageData = image.jpegData(compressionQuality: 0.1)
+            let path = "Images/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).jpg"
+            let uploadRef = Storage.storage().reference().child(path)
+            _ = uploadRef.putData(imageData!, metadata: nil) { metadata,
+                error in
+                group.enter()
+                if error == nil {
+                    //success
+                    print("success\(path)")
+                    self.feedbackModel.imageFileName = path
+                } else {
+                    //error
+                    print("error uploading image")
+                }
+                self.feedbackUpdate(userId)
+            }
+        }
+    }
+    
+    
+    func uploadForm(image: UIImage){
+        
+        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
+            
+            let randomName = randomStringWithLength(length: 10)
+            let imageData = image.jpegData(compressionQuality: 0.1)
+            let path = "Forms/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).jpg"
+            let uploadRef = Storage.storage().reference().child(path)
+            
+            _ = uploadRef.putData(imageData!, metadata: nil) { metadata,
+                error in
+                if error == nil {
+                    //success
+                    print("success \(path)")
+                    self.feedbackModel.formFilName = path
+                } else {
+                    //error
+                    print("error uploading image")
+                }
+                if let image = self.images {
+                    
+                    self.uploadImage(image: image)
+                }
+            }
+        }
+    }
+    
+    func randomStringWithLength(length: Int) -> NSString {
+        
+        let characters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let randomString: NSMutableString = NSMutableString(capacity: length)
+
+        for _ in 0..<length {
+            let len = UInt32(characters.length)
+            let rand = arc4random_uniform(len)
+            randomString.appendFormat("%C", characters.character(at: Int(rand)))
+        }
+        return randomString
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // will run if the user hits cancel
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+     
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            
+            if isImageFile {
+                
+                self.imageBtn.isEnabled = false
+                self.imageBtn.isHidden = true
+                self.images = pickedImage
+                picker.dismiss(animated: true, completion: nil)
+            } else {
+                
+                self.formBtn.isEnabled = false
+                self.formBtn.isHidden = true
+                self.formImage = pickedImage
+                picker.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     func addDoneButtonOnKeyboard(){
@@ -112,41 +243,56 @@ class FeedbackViewController: GFBaseViewController {
                self.navigationController?.pushViewController(viewController, animated: true)
         
     }
+    
+    func moveToPreview() {
+        
+        guard let viewController = UIStoryboard(name: "Feedback", bundle: nil).instantiateViewController(withIdentifier:  "PreviewFeedbackViewController") as? PreviewFeedbackViewController else {
+            return
+        }
+        viewController.feedbackModel = feedbackModel
+        viewController.images = self.images
+        viewController.formImage = self.formImage
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     func ratingsUpadate() {
         
         
         cosmosView.didFinishTouchingCosmos = { rating in
 
-            self.rating = rating
+            self.feedbackModel.rating = rating
         }
         
         whatCanWeDoBetter.didFinishTouchingCosmos = { rating in
             
-            self.whatCanWeDoBetterRating = rating
+            self.feedbackModel.whatCanWeDoBetterRating = rating
         }
         
         
         whatAreWeDoingGreat.didFinishTouchingCosmos = { rating in
             
-            self.whatAreWeDoingGreatRating = rating
+            self.feedbackModel.whatAreWeDoingGreatRating = rating
         }
         
         howWeAreDoingCosmosView.didFinishTouchingCosmos = { rating in
             
-            self.howWeAreDoingRating = rating
+            self.feedbackModel.howWeAreDoingRating = rating
         }
     }
     
     func feedbackUpdate(_ userId:String) {
         
-        db.collection("Feedback").document(userId).collection("Ratings").document(self.restaurantTitle).setData([
-            Constants.FeedbackCommands.restuarantName : self.restaurantTitle,
-            Constants.FeedbackCommands.restuarantAddress : self.address,
-            Constants.FeedbackCommands.howWeAreDoing : self.howWeAreDoingRating,
-            Constants.FeedbackCommands.whatWeAreDoingGreat : self.whatAreWeDoingGreatRating,
-            Constants.FeedbackCommands.whatCanWeDoBetter : self.whatCanWeDoBetterRating,
-            Constants.FeedbackCommands.comments : self.commentsTxt.text,
-            Constants.FeedbackCommands.rating : self.rating
+        db.collection("Feedback").document(userId).collection("Ratings").document(self.feedbackModel.restaurantTitle).setData([
+            Constants.FeedbackCommands.restuarantName : self.feedbackModel.restaurantTitle,
+            Constants.FeedbackCommands.restuarantAddress : self.feedbackModel.address,
+            Constants.FeedbackCommands.howWeAreDoing : self.feedbackModel.howWeAreDoingRating,
+            Constants.FeedbackCommands.whatWeAreDoingGreat : self.feedbackModel.whatAreWeDoingGreatRating,
+            Constants.FeedbackCommands.whatCanWeDoBetter : self.feedbackModel.whatCanWeDoBetterRating,
+            Constants.FeedbackCommands.comments : self.feedbackModel.comments,
+            Constants.FeedbackCommands.rating : self.feedbackModel.rating,
+            Constants.FeedbackCommands.images : self.feedbackModel.imageFileName,
+            Constants.FeedbackCommands.form : self.feedbackModel.formFilName
+            
         ]) { (error) in
             if let err = error {
                 self.popupAlert(title: "Error", message: err.localizedDescription, actionTitles: ["OK"], actions: [nil])

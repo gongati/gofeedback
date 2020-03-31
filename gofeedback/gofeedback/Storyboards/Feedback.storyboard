@@ -534,6 +534,7 @@
                         <outlet property="cosmosView" destination="lMd-1h-hNY" id="WLg-w0-wdk"/>
                         <outlet property="howWeAreDoingCosmosView" destination="Fia-kW-IQH" id="rdg-b6-P4K"/>
                         <outlet property="restuarantName" destination="6cK-1K-Bz8" id="Xx7-Mu-aSu"/>
+                        <outlet property="submitBtnOulet" destination="U81-fn-JJK" id="1EW-qT-w4v"/>
                         <outlet property="whatAreWeDoingGreat" destination="Afl-tv-UJb" id="yQ9-Tz-CVL"/>
                         <outlet property="whatCanWeDoBetter" destination="x3S-bM-hYk" id="Lo2-AM-m1N"/>
                     </connections>

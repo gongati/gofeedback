@@ -349,8 +349,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                     return
                 }
                 
-                viewController.restaurantTitle =  searchResponse?[i].name ?? ""
-                viewController.address = searchResponse?[i].placemark.title ?? ""
+                viewController.feedbackModel.restaurantTitle =  searchResponse?[i].name ?? ""
+                viewController.feedbackModel.address = searchResponse?[i].placemark.title ?? ""
                 viewController.searchItem = whereToGoText.text ?? ""
                 self.navigationController?.pushViewController(viewController, animated: true)
             }
