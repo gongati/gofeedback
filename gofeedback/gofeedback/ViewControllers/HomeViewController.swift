@@ -42,7 +42,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         nearLocation3.isHidden = true
         
         whereToGoText.text = searchItem
-        self.mapQuery()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -161,6 +160,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         locationLong = "\(locations[0].coordinate.longitude)"
         self.centerViewOnUserLocation()
         manager.stopUpdatingLocation()
+        self.mapQuery()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -349,8 +349,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                     return
                 }
                 
-                viewController.restaurantTitle =  searchResponse?[i].name ?? ""
-                viewController.address = searchResponse?[i].placemark.title ?? ""
+                viewController.feedbackModel.restaurantTitle =  searchResponse?[i].name ?? ""
+                viewController.feedbackModel.address = searchResponse?[i].placemark.title ?? ""
                 viewController.searchItem = whereToGoText.text ?? ""
                 self.navigationController?.pushViewController(viewController, animated: true)
             }
