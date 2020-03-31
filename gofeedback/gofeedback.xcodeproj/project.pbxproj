@@ -60,9 +60,11 @@
 		27E6A12B241916CC00B4D336 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A129241916CB00B4D336 /* Api.swift */; };
 		950D452A6F9F9F0D7E1F4902 /* Pods_gofeedbackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2611EF6C660B330B018A05FD /* Pods_gofeedbackTests.framework */; };
 		F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */; };
+		F70F92FE24324062000D0D8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F70F92FD24324062000D0D8A /* GoogleService-Info.plist */; };
+		F70F9300243240DF000D0D8A /* PreviewFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70F92FF243240DE000D0D8A /* PreviewFeedbackViewController.swift */; };
 		F719271F24307C80006BF52A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719271E24307C80006BF52A /* AccountSettingsViewController.swift */; };
-		F71927232430A980006BF52A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F71927222430A980006BF52A /* GoogleService-Info.plist */; };
 		F71927252430F24A006BF52A /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71927242430F24A006BF52A /* WalletViewController.swift */; };
+		F719B7B324334A880017D5D1 /* ContactViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,9 +138,11 @@
 		D82E0E98D0271541D17988D4 /* Pods-gofeedbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.release.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.release.xcconfig"; sourceTree = "<group>"; };
 		E06929F06686B830FC20C9F0 /* Pods-gofeedback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.debug.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.debug.xcconfig"; sourceTree = "<group>"; };
 		F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFFeedbackModel.swift; sourceTree = "<group>"; };
+		F70F92FD24324062000D0D8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F70F92FF243240DE000D0D8A /* PreviewFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewFeedbackViewController.swift; path = erSwift/PreviewFeedbackViewController.swift; sourceTree = "<group>"; };
 		F719271E24307C80006BF52A /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSettingsViewController.swift; path = erSwift/AccountSettingsViewController.swift; sourceTree = "<group>"; };
-		F71927222430A980006BF52A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F71927242430F24A006BF52A /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletViewController.swift; path = erSwift/WalletViewController.swift; sourceTree = "<group>"; };
+		F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewControllerViewController.swift; path = erSwift/ContactViewControllerViewController.swift; sourceTree = "<group>"; };
 		FE8F23F26945089DE5E2EC32 /* Pods-gofeedbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,8 +199,10 @@
 				27E6A12624190C4700B4D336 /* GFContactViewController.swift */,
 				271CBF5E2418BA7F00CB113D /* HomeViewController.swift */,
 				27839A15240FF1AF004CEE14 /* FeedbackViewController.swift */,
+				F70F92FF243240DE000D0D8A /* PreviewFeedbackViewController.swift */,
 				F719271E24307C80006BF52A /* AccountSettingsViewController.swift */,
 				F71927242430F24A006BF52A /* WalletViewController.swift */,
+				F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */,
 				271CBF622418BBE700CB113D /* GFBaseViewController.swift */,
 				271CBF642418BBF500CB113D /* GFLaunchViewController.swift */,
 			);
@@ -269,8 +275,8 @@
 				27839A13240FF1AF004CEE14 /* AppDelegate.swift */,
 				27839A17240FF1AF004CEE14 /* Main.storyboard */,
 				27839A1F240FF1B4004CEE14 /* LaunchScreen.storyboard */,
-				F71927222430A980006BF52A /* GoogleService-Info.plist */,
 				27839A22240FF1B4004CEE14 /* Info.plist */,
+				F70F92FD24324062000D0D8A /* GoogleService-Info.plist */,
 				27839A1A240FF1AF004CEE14 /* gofeedback.xcdatamodeld */,
 			);
 			path = gofeedback;
@@ -436,7 +442,7 @@
 				271CBF6B2418D51E00CB113D /* Login.storyboard in Resources */,
 				271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */,
 				2741C188242D2512007A9F9D /* Account.storyboard in Resources */,
-				F71927232430A980006BF52A /* GoogleService-Info.plist in Resources */,
+				F70F92FE24324062000D0D8A /* GoogleService-Info.plist in Resources */,
 				2741C18A242D27AB007A9F9D /* Contact.storyboard in Resources */,
 				2741C18C242D27BC007A9F9D /* Alerts.storyboard in Resources */,
 			);
@@ -538,8 +544,10 @@
 				274D69D22427AEB200597AFF /* LoginViewModel.swift in Sources */,
 				274D69D62427AEB200597AFF /* NameTextViewModel.swift in Sources */,
 				27E6A0DB241909F000B4D336 /* GFRecentTrip.swift in Sources */,
+				F719B7B324334A880017D5D1 /* ContactViewControllerViewController.swift in Sources */,
 				271CBF802418D55A00CB113D /* GFSignupViewController.swift in Sources */,
 				27E6A0C92419097700B4D336 /* GFTextFieldBackGround.swift in Sources */,
+				F70F9300243240DF000D0D8A /* PreviewFeedbackViewController.swift in Sources */,
 				F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */,
 				27E6A12724190C4700B4D336 /* GFContactViewController.swift in Sources */,
 				27E6A0DA241909F000B4D336 /* GFStation.swift in Sources */,
