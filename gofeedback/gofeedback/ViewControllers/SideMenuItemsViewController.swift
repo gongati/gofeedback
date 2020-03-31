@@ -164,7 +164,7 @@ class SideMenuItemsViewController: UIViewController {
         GFBaseViewController.currentMenuItem = Constants.SideMenuAction.ContactUs
     }
         func showContactPage() {
-            if let controller = UIStoryboard(name: "Contact", bundle: nil).instantiateViewController(withIdentifier: Constants.StoryBoard.Contact) as? GFContactViewController {
+            if let controller = UIStoryboard(name: "Contact", bundle: nil).instantiateViewController(withIdentifier: Constants.StoryBoard.Contact) as? ContactViewControllerViewController {
                 attachControllerToMainWindow(controller: controller)
         }
     }

@@ -10,9 +10,15 @@ import Foundation
 
 struct FeedbackModel {
     
-    var howWeAreDoing: String
-    var whatWeAreDoingGreat: String
-    var whatCanWeDoBetter: String
-    var comments: String
-    var rating: Double
+    var restaurantTitle = ""
+    var address = ""
+    var rating : Double = 3
+    var whatCanWeDoBetterRating: Double = 3
+    var whatAreWeDoingGreatRating: Double = 3
+    var howWeAreDoingRating: Double = 3
+    var comments = ""
+    var searchItem = ""
+    var imageFileName = ""
+    var formFilName = ""
+    var isSubmitBtnHidden = false
 }
