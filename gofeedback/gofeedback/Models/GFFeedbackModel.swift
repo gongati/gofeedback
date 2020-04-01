@@ -18,7 +18,7 @@ struct FeedbackModel {
     var howWeAreDoingRating: Double = 3
     var comments = ""
     var searchItem = ""
-    var imageFileName = ""
+    var imageFileName = [""]
     var formFilName = ""
     var isSubmitBtnHidden = false
 }

@@ -17,6 +17,7 @@ target 'gofeedback' do
   pod 'SnapKit'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'OpalImagePicker'
 
   # add pods for desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods

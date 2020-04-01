@@ -20,11 +20,12 @@ class PreviewFeedbackViewController: GFBaseViewController {
     @IBOutlet weak var howWeAreDoingCosmosView: CosmosView!
     @IBOutlet weak var commentsTxt: UITextView!
     @IBOutlet weak var cosmosView: CosmosView!
-    
     @IBOutlet weak var submitBtnOulet: UIButton!
+    @IBOutlet weak var imagesStackView: UIStackView!
+    @IBOutlet weak var formImageView: UIImageView!
     
     var feedbackModel = FeedbackModel()
-    var images:UIImage?
+    var images:[UIImage]?
     var formImage:UIImage?
     
     let db = Firestore.firestore()
@@ -61,8 +62,10 @@ class PreviewFeedbackViewController: GFBaseViewController {
                 
                 self.uploadForm(image: form)
             } else if let images = images {
-                
-                self.uploadImage(image: images)
+                self.feedbackModel.imageFileName.removeAll()
+                for image in images {
+                self.uploadImage(image: image)
+                }
             } else {
                 
                 self.feedbackUpdate(userID)
@@ -80,10 +83,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
     
     @IBAction func imagesView(_ sender: UIButton) {
         
-        if let images = images {
-            
-        self.showImage(images, "Images")
-        }
+        
     }
     
     @IBAction func formView(_ sender: UIButton) {
@@ -164,7 +164,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
                 if error == nil {
                     //success
                     print("success\(path)")
-                    self.feedbackModel.imageFileName = path
+                    self.feedbackModel.imageFileName.append(path)
                 } else {
                     //error
                     print("error uploading image")
@@ -194,9 +194,11 @@ class PreviewFeedbackViewController: GFBaseViewController {
                     //error
                     print("error uploading image")
                 }
-                if let image = self.images {
-                    
+                if let images = self.images {
+                    self.feedbackModel.imageFileName.removeAll()
+                    for image in images {
                     self.uploadImage(image: image)
+                    }
                 }
             }
         }
@@ -224,10 +226,24 @@ class PreviewFeedbackViewController: GFBaseViewController {
         whatAreWeDoingGreat.rating = feedbackModel.whatAreWeDoingGreatRating
         howWeAreDoingCosmosView.rating = feedbackModel.howWeAreDoingRating
         commentsTxt.text = feedbackModel.comments
+        formImageView.image = formImage
+        formImageView.contentMode = .scaleAspectFit
         
+        if let images = self.images {
+        for image in images {
+            
+          let imageView = UIImageView(image: image)
+            imageView.contentMode = .scaleAspectFit
+            imageView.clipsToBounds = true
+        imagesStackView.addArrangedSubview(imageView)
+            imagesStackView.translatesAutoresizingMaskIntoConstraints = false
+        }
+        }
         if feedbackModel.isSubmitBtnHidden {
             
             submitBtnOulet.isHidden = true
         }
+        
+        
     }
 }

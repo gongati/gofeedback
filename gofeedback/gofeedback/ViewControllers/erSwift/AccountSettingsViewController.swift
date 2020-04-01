@@ -31,11 +31,6 @@ class AccountSettingsViewController: GFBaseViewController {
     }
     
     
-    @IBAction func Back(_ sender: UIButton) {
-        
-        self.moveToHomeVC()
-    }
-    
     func userData() {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {

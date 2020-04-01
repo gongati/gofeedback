@@ -69,7 +69,8 @@ class GFLoginViewController: GFBaseViewController {
                             
                             if querySnapshot?.documents.count == 0 {
                                 
-                                self?.performSegue(withIdentifier: "REGISTER", sender: self)
+                                self?.userID = ID!
+                                self?.performSegue(withIdentifier: "REGISTER", sender: self?.userID)
                         
                             } else {
                                 
@@ -115,10 +116,23 @@ class GFLoginViewController: GFBaseViewController {
                     secondViewController.loginId = loginId
                 }
             }
-         }
+        }
+        if (segue.identifier == "REGISTER") {
+            
+            if let vc = segue.destination as? GFSignupViewController {
+                
+                if let userId = sender as? String {
+                    
+                    vc.userID = userId
+                    vc.loginId = loginId
+                    vc.mobileNumber = self.phoneTxt.text
+                    vc.code = self.codeTxt.text
+                }
+            }
+        }
     }
     
-    func addDoneButtonOnKeyboard(){
+    func addDoneButtonOnKeyboard() {
         
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         doneToolbar.barStyle = .default

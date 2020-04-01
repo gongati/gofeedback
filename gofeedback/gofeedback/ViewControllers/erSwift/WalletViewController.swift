@@ -19,6 +19,7 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     let storage = Storage.storage()
     var feedBackDataTitle : [String] = []
     var feedBackData = [[String:Any]]()
+    var images = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,19 +31,6 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
         tableView.dataSource = self
     }
     
-
-    @IBAction func backPressed(_ sender: UIButton) {
-        
-        self.moveToHomeVC()
-    }
-    
-    func moveToHomeVC() {
-        
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "GFNAVIGATEMENUHOME") as? HomeViewController else {
-            return
-        }
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
     
     func getFeedBackDetails() {
         
@@ -87,11 +75,12 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         moveToPreviewVC(indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func moveToPreviewVC(_ at:Int) {
         
-        let pathReferenceOfImages = storage.reference(withPath: self.feedBackData[at][Constants.FeedbackCommands.images] as? String ?? "" )
+        
         let pathReferenceOfForm = storage.reference(withPath: self.feedBackData[at][Constants.FeedbackCommands.form] as? String ?? "" )
         
         guard let viewController = UIStoryboard(name: "Feedback", bundle: nil).instantiateViewController(withIdentifier:  "PreviewFeedbackViewController") as? PreviewFeedbackViewController else {
@@ -106,7 +95,12 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
         viewController.feedbackModel.comments = self.feedBackData[at][Constants.FeedbackCommands.comments] as? String ?? ""
         viewController.feedbackModel.isSubmitBtnHidden = true
         let group = DispatchGroup()
-         group.enter()
+         
+        
+        for path in self.feedBackData[at][Constants.FeedbackCommands.images] as? [String] ?? [""] {
+            
+            group.enter()
+        let pathReferenceOfImages = storage.reference(withPath: path )
         pathReferenceOfImages.getData(maxSize: 1 * 1024 * 1024) { data, error in
            
             if error != nil {
@@ -115,35 +109,45 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
             } else {
                 // Data for "images/island.jpg" is returned
                 let image = UIImage(data: data!)
-                viewController.images = image
+                if let image = image {
+                self.images.append(image)
+                print(self.images)
                 print(image)
                 print("sucess Image")
-                print(viewController.images)
+                }
             }
             group.leave()
         }
         
-        group.enter()
-        pathReferenceOfForm.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            
-                if error != nil {
-                    print(error?.localizedDescription)
-                } else {
-                    // Data for "images/island.jpg" is returned
-                    let dataForm = UIImage(data: data!)
-                    print(dataForm)
-                    viewController.formImage = dataForm
-                    print("sucess Form")
-                    print(viewController.formImage)
-                }
-                
-                 group.leave()
         }
         
         group.notify(queue: .main) {
             
+            let group2 = DispatchGroup()
+            group2.enter()
+            pathReferenceOfForm.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                
+                    if error != nil {
+                        print(error?.localizedDescription)
+                    } else {
+                        // Data for "images/island.jpg" is returned
+                        let dataForm = UIImage(data: data!)
+                        print(dataForm)
+                        viewController.formImage = dataForm
+                        print("sucess Form")
+                        print(viewController.formImage)
+                    }
+                    
+                     group2.leave()
+            }
+            
+             group2.notify(queue: .main) {
+                
+                viewController.images = self.images
+                print(viewController.images)
            print("navigation")
             self.navigationController?.pushViewController(viewController, animated: true)
+            }
         }
     }
  
