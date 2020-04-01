@@ -15,18 +15,5 @@ class ContactViewControllerViewController: GFBaseViewController {
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func backPressed(_ sender: UIButton) {
-        
-        moveToHomeVC()
-    }
-    
-    func moveToHomeVC() {
-        
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "GFNAVIGATEMENUHOME") as? HomeViewController else {
-            return
-        }
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
 
 }

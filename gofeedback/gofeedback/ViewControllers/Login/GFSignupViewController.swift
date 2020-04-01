@@ -17,9 +17,15 @@ class GFSignupViewController: GFBaseViewController {
     let disposeBag = DisposeBag()
     let db = Firestore.firestore()
     
+    var userID: String?
+    var loginId:String?
+    var code: String?
+    var mobileNumber: String?
+    
     @IBOutlet weak var firstNameTxt: GFWhiteButtonTextField!
     @IBOutlet weak var lastNameTxt: GFWhiteButtonTextField!
-    @IBOutlet weak var adrdressTxt: GFWhiteButtonTextField!
+    
+    @IBOutlet weak var addressTxtView: UITextView!
     @IBOutlet weak var emailTxt: GFWhiteButtonTextField!
     @IBOutlet weak var signUpBtn: GFMenuButton!
     @IBOutlet var imgUser: UIImageView!
@@ -35,6 +41,12 @@ class GFSignupViewController: GFBaseViewController {
         createViewModelBinding()
         createCallbacks()
 //        self.imgUser.image =  UIImage(named: "\(Utilities.tenantId().lowercased())LogoBig")
+        if let code = self.code, let number = self.mobileNumber {
+            
+            countryCode.text = code
+            mobileNumberTxt.text = number
+        }
+        
         self.addDoneButtonOnKeyboard()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -68,10 +80,6 @@ class GFSignupViewController: GFBaseViewController {
         emailTxt.rx.text.orEmpty
             .bind(to: viewModel.emailIdViewModel.data)
             .disposed(by: disposeBag)
-        
-        adrdressTxt.rx.text.orEmpty
-        .bind(to: viewModel.addressViewModel.data)
-        .disposed(by: disposeBag)
 
         signUpBtn.rx.tap.do(onNext:  { [unowned self] in
             self.view.resignFirstResponder()
@@ -95,7 +103,7 @@ class GFSignupViewController: GFBaseViewController {
                     self.creatingDataBase()
                     self.popupAlert(title: "Alert", message: "Successfully Registered", actionTitles: ["OK"], actions: [{ action in
                         
-                        self.navigationController?.popViewController(animated: true)
+                        self.showOTPScreen()
                     }])
                 }
             }.disposed(by: disposeBag)
@@ -125,12 +133,17 @@ class GFSignupViewController: GFBaseViewController {
             Constants.userDetails.lastName: self.lastNameTxt.text as Any,
             Constants.userDetails.email: self.emailTxt.text as Any,
             Constants.userDetails.mobileNumber: "+" + (self.countryCode.text ?? "1") + " " + (self.mobileNumberTxt.text ?? "1234567890"),
-            Constants.userDetails.address: self.adrdressTxt.text as Any
+            Constants.userDetails.address: self.addressTxtView.text as Any
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
                 print("Document added with ID: \(self.countryCode.text ?? "+1") \(self.mobileNumberTxt.text ?? "1234567890")")
+                
+                UserDefaults.standard.set((self.firstNameTxt.text ?? "") + " " + (self.lastNameTxt.text ?? ""), forKey: "UserName")
+                
+                UserDefaults.standard.set(self.emailTxt.text ?? "", forKey: "Email")
+                 UserDefaults.standard.synchronize()
             }
         }
     }
@@ -147,12 +160,32 @@ class GFSignupViewController: GFBaseViewController {
         doneToolbar.items = items
         doneToolbar.sizeToFit()
 
-        countryCode.inputAccessoryView = doneToolbar
-        mobileNumberTxt.inputAccessoryView = doneToolbar
+        addressTxtView.inputAccessoryView = doneToolbar
     }
 
-    @objc func doneButtonAction(){
-        countryCode.resignFirstResponder()
-        mobileNumberTxt.resignFirstResponder()
+    @objc func doneButtonAction() {
+        
+        addressTxtView.resignFirstResponder()
+        }
+    
+    func showOTPScreen() {
+        
+        self.performSegue(withIdentifier: "REGISTERTOOTP", sender: self.userID)
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if (segue.identifier == "REGISTERTOOTP") {
+            
+            if let secondViewController = segue.destination as? GFOTPViewController {
+                
+                if let userId = sender as? String {
+                    
+                    secondViewController.userID = userId
+                    secondViewController.loginId = self.loginId
+                }
+            }
+         }
+    }
+
 }

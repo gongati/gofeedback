@@ -9,8 +9,9 @@
 import UIKit
 import  Cosmos
 import Firebase
+import OpalImagePicker
 
-class FeedbackViewController: GFBaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDelegate {
 
     @IBOutlet weak var restuarantName: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -25,7 +26,7 @@ class FeedbackViewController: GFBaseViewController, UIImagePickerControllerDeleg
     
     var feedbackModel = FeedbackModel()
     var searchItem = ""
-    var images : UIImage?
+    var images : [UIImage]?
     var formImage : UIImage?
     var isImageFile = true
     
@@ -62,17 +63,25 @@ class FeedbackViewController: GFBaseViewController, UIImagePickerControllerDeleg
     @IBAction func imagePressed(_ sender: UIButton) {
         
         self.isImageFile = true
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        self.present(picker, animated: true, completion: nil)
+       let imagePicker = OpalImagePickerController()
+        imagePicker.imagePickerDelegate = self
+        imagePicker.maximumSelectionsAllowed = 10
+        let configuration = OpalImagePickerConfiguration()
+        configuration.maximumSelectionsAllowedMessage = NSLocalizedString("You cannot select that many images!", comment: "")
+        imagePicker.configuration = configuration
+        present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func formPressed(_ sender: UIButton) {
         
         self.isImageFile = false
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        self.present(picker, animated: true, completion: nil)
+        let imagePicker = OpalImagePickerController()
+        imagePicker.imagePickerDelegate = self
+        imagePicker.maximumSelectionsAllowed = 1
+        let configuration = OpalImagePickerConfiguration()
+        configuration.maximumSelectionsAllowedMessage = NSLocalizedString("You cannot select more than one images!", comment: "")
+        imagePicker.configuration = configuration
+        present(imagePicker, animated: true, completion: nil)
     }
     
     
@@ -90,7 +99,11 @@ class FeedbackViewController: GFBaseViewController, UIImagePickerControllerDeleg
                 self.uploadForm(image: form)
             } else if let images = images {
                 
-                self.uploadImage(image: images)
+                self.feedbackModel.imageFileName.removeAll()
+                for image in images {
+                    
+                self.uploadImage(image: image)
+                }
             } else {
                 
                 self.feedbackUpdate(userId)
@@ -127,13 +140,14 @@ class FeedbackViewController: GFBaseViewController, UIImagePickerControllerDeleg
                 if error == nil {
                     //success
                     print("success\(path)")
-                    self.feedbackModel.imageFileName = path
+                    self.feedbackModel.imageFileName.append(path)
                 } else {
                     //error
                     print("error uploading image")
                 }
                 self.feedbackUpdate(userId)
             }
+                
         }
     }
     
@@ -157,9 +171,12 @@ class FeedbackViewController: GFBaseViewController, UIImagePickerControllerDeleg
                     //error
                     print("error uploading image")
                 }
-                if let image = self.images {
-                    
+                if let images = self.images {
+                    self.feedbackModel.imageFileName.removeAll()
+                    for image in images {
+                        
                     self.uploadImage(image: image)
+                    }
                 }
             }
         }
@@ -178,29 +195,27 @@ class FeedbackViewController: GFBaseViewController, UIImagePickerControllerDeleg
         return randomString
     }
 
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // will run if the user hits cancel
+    func imagePickerDidCancel(_ picker: OpalImagePickerController) {
+        // Cancel action
         picker.dismiss(animated: true, completion: nil)
     }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-     
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+
+    func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
+        
+        if isImageFile {
             
-            if isImageFile {
-                
-                self.imageBtn.isEnabled = false
-                self.imageBtn.isHidden = true
-                self.images = pickedImage
-                picker.dismiss(animated: true, completion: nil)
-            } else {
-                
-                self.formBtn.isEnabled = false
-                self.formBtn.isHidden = true
-                self.formImage = pickedImage
-                picker.dismiss(animated: true, completion: nil)
-            }
+            self.imageBtn.isEnabled = false
+            self.imageBtn.isHidden = true
+            self.images = images
+            picker.dismiss(animated: true, completion: nil)
+        } else {
+            
+            self.formBtn.isEnabled = false
+            self.formBtn.isHidden = true
+            self.formImage = images[0]
+            picker.dismiss(animated: true, completion: nil)
         }
+        presentedViewController?.dismiss(animated: true, completion: nil)
     }
     
     func addDoneButtonOnKeyboard(){
