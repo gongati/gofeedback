@@ -11,11 +11,11 @@ import Firebase
 
 class WalletViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-    
     @IBOutlet weak var walletBalanceLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     let db = Firestore.firestore()
+
     let storage = Storage.storage()
     var feedBackDataTitle : [String] = []
     var feedBackData = [[String:Any]]()
@@ -24,6 +24,7 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         self.getFeedBackDetails()
         
         tableView.delegate = self
@@ -35,6 +36,7 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         if let userid = UserDefaults.standard.string(forKey: "UserId") {
             
+
             let docRef = db.collection("Feedback").document(userid).collection("Ratings")
             
             docRef.getDocuments() { (querySnapshot, err) in
@@ -65,6 +67,7 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
+
         cell.textLabel?.text = self.feedBackDataTitle[indexPath.row]
         return cell
     }
@@ -147,5 +150,6 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
             }
         }
     }
+ 
 }
 
