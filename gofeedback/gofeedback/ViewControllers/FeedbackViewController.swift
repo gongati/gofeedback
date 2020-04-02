@@ -154,10 +154,16 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     
     @IBAction func cameraPressed(_ sender: UIButton) {
         
-       let  imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
+            let  imagePicker =  UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            
+            self.popupAlert(title: "Alert", message: "No camera Device", actionTitles: ["OK"], actions: [nil])
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -170,6 +176,11 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
             images?.append(pickedImage)
+            
+        }
+        
+        if let pickedVideo = info[UIImagePickerController.InfoKey.mediaURL] {
+            
             
         }
     }
