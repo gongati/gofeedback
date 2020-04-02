@@ -11,7 +11,7 @@ import  Cosmos
 import Firebase
 import OpalImagePicker
 
-class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDelegate {
+class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var restuarantName: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -151,6 +151,28 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         }
     }
     
+    
+    @IBAction func cameraPressed(_ sender: UIButton) {
+        
+       let  imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // will run if the user hits cancel
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            
+            images?.append(pickedImage)
+            
+        }
+    }
     
     func uploadForm(image: UIImage){
         
