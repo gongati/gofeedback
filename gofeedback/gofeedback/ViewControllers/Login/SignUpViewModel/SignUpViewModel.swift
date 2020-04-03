@@ -21,6 +21,7 @@ class SignUpViewModel {
     let emailIdViewModel = EmailIdViewModel()
     let passwordViewModel = PasswordViewModel()
     let passwordViewModel2 = PasswordViewModel()
+    let addressViewModel = AddressViewModel()
     
     // Fields that bind to our view's
     let isSuccess : Variable<Bool> = Variable(false)
@@ -39,6 +40,8 @@ class SignUpViewModel {
             return lastNameViewModel.errorValue.value ?? ""
         }else if(emailIdViewModel.errorValue.value != ""){
             return emailIdViewModel.errorValue.value ?? ""
+        }else if(addressViewModel.errorValue.value != ""){
+            return addressViewModel.errorValue.value ?? ""
         }else if(!matchPasswords()){
             return "Passwords does not match"
         }

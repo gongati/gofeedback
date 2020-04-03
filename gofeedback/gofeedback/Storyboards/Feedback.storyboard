@@ -248,11 +248,24 @@
                                     <action selector="submitPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="C0S-BC-Nwq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8A-Rr-ZLA">
+                                <rect key="frame" x="48" y="402.5" width="56" height="38"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="09q-Pg-Ivs"/>
+                                    <constraint firstAttribute="width" constant="56" id="NTN-ci-EXH"/>
+                                </constraints>
+                                <state key="normal" image="camera.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="cameraPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="yQe-az-Ev6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="eqW-Ne-oU2" firstAttribute="centerX" secondItem="wbY-xM-F0n" secondAttribute="centerX" id="02V-Iv-SCp"/>
                             <constraint firstItem="tvD-Mq-pKO" firstAttribute="top" secondItem="SH6-rO-rKd" secondAttribute="bottom" constant="15" id="54b-7E-Rtd"/>
+                            <constraint firstItem="Z8b-uD-FGF" firstAttribute="top" secondItem="D8A-Rr-ZLA" secondAttribute="bottom" constant="16" id="7Is-1k-QFA"/>
                             <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="m5l-2I-cd8" secondAttribute="trailing" constant="61" id="9LT-b8-Oou"/>
                             <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="SH6-rO-rKd" secondAttribute="trailing" constant="16" id="AGt-iW-ZB1"/>
                             <constraint firstItem="Vor-97-c4q" firstAttribute="top" secondItem="eqW-Ne-oU2" secondAttribute="bottom" constant="12.5" id="C0g-pk-M1L"/>
@@ -261,12 +274,14 @@
                             <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="xZt-1K-MrB" secondAttribute="trailing" constant="16" id="F9T-Xf-HDl"/>
                             <constraint firstItem="XdK-kU-xtE" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" id="GlZ-oN-Hly"/>
                             <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="e9x-dN-bMG" secondAttribute="trailing" constant="16" id="K0z-0X-u9f"/>
+                            <constraint firstItem="D8A-Rr-ZLA" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="48" id="MFG-hq-9Xi"/>
                             <constraint firstItem="e9x-dN-bMG" firstAttribute="top" secondItem="XdK-kU-xtE" secondAttribute="bottom" constant="39" id="Nxl-5p-4rf"/>
                             <constraint firstItem="xZt-1K-MrB" firstAttribute="top" secondItem="SH6-rO-rKd" secondAttribute="bottom" constant="15" id="OCg-rn-zbm"/>
                             <constraint firstItem="SH6-rO-rKd" firstAttribute="top" secondItem="m5l-2I-cd8" secondAttribute="bottom" constant="8" id="QNZ-uP-HSq"/>
                             <constraint firstItem="e9x-dN-bMG" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="SYc-MM-0AP"/>
                             <constraint firstItem="SH6-rO-rKd" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="Sru-wU-9j8"/>
                             <constraint firstItem="Z8b-uD-FGF" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="WI9-yS-tBV"/>
+                            <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="D8A-Rr-ZLA" secondAttribute="trailing" constant="271" id="cLy-Vu-w2h"/>
                             <constraint firstItem="SU7-Uw-EmJ" firstAttribute="trailing" secondItem="gJh-eo-BM1" secondAttribute="trailing" id="cMW-yM-LtZ"/>
                             <constraint firstItem="1ZL-2U-TL3" firstAttribute="centerX" secondItem="wbY-xM-F0n" secondAttribute="centerX" id="eQn-cM-JKW"/>
                             <constraint firstItem="SH6-rO-rKd" firstAttribute="top" secondItem="T4f-jh-Ihb" secondAttribute="bottom" constant="8" id="emx-Fi-E7Y"/>
@@ -558,6 +573,7 @@
     </scenes>
     <resources>
         <image name="Hamburger" width="20" height="13"/>
+        <image name="camera.fill" catalog="system" width="64" height="48"/>
         <image name="feedback-logo" width="170.66667175292969" height="105"/>
         <image name="paper-receipt-icon" width="347" height="461.5"/>
         <image name="starbucks-bg" width="323" height="156"/>

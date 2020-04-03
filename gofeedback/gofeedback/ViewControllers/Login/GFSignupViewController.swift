@@ -82,6 +82,11 @@ class GFSignupViewController: GFBaseViewController {
         emailTxt.rx.text.orEmpty
             .bind(to: viewModel.emailIdViewModel.data)
             .disposed(by: disposeBag)
+        
+        addressTxtView.rx.text.orEmpty
+        .bind(to: viewModel.addressViewModel.data)
+        .disposed(by: disposeBag)
+        
 
         signUpBtn.rx.tap.do(onNext:  { [unowned self] in
             self.view.resignFirstResponder()
