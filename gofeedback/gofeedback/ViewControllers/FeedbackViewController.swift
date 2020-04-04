@@ -10,6 +10,7 @@ import UIKit
 import  Cosmos
 import Firebase
 import OpalImagePicker
+import Photos
 
 class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -179,11 +180,24 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             
         }
         
-        if let pickedVideo = info[UIImagePickerController.InfoKey.mediaURL] {
+        if let pickedVideo = info[UIImagePickerController.InfoKey.mediaURL] as? String {
             
-            
+            let status = PHPhotoLibrary.authorizationStatus()
+            if (status == PHAuthorizationStatus.authorized) {
+                // Access has been granted.
+                getPhotosAndVideos()
+            }
         }
     }
+    
+    private func getPhotosAndVideos(){
+
+           let fetchOptions = PHFetchOptions()
+           fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate",ascending: false)]
+           fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.video.rawValue)
+           let videos = PHAsset.fetchAssets(with: fetchOptions)
+           print(videos.count)
+       }
     
     func uploadForm(image: UIImage){
         
@@ -237,14 +251,10 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         
         if isImageFile {
             
-            self.imageBtn.isEnabled = false
-            self.imageBtn.isHidden = true
             self.images = images
             picker.dismiss(animated: true, completion: nil)
         } else {
-            
-            self.formBtn.isEnabled = false
-            self.formBtn.isHidden = true
+
             self.formImage = images[0]
             picker.dismiss(animated: true, completion: nil)
         }

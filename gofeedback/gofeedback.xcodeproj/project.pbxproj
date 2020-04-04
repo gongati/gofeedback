@@ -65,6 +65,8 @@
 		F719271F24307C80006BF52A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719271E24307C80006BF52A /* AccountSettingsViewController.swift */; };
 		F71927252430F24A006BF52A /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71927242430F24A006BF52A /* WalletViewController.swift */; };
 		F719B7B324334A880017D5D1 /* ContactViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */; };
+		F7295FC32438C283003AFE77 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */; };
+		F7295FC52438CE71003AFE77 /* AnnotationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +145,8 @@
 		F719271E24307C80006BF52A /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSettingsViewController.swift; path = erSwift/AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		F71927242430F24A006BF52A /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletViewController.swift; path = erSwift/WalletViewController.swift; sourceTree = "<group>"; };
 		F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewControllerViewController.swift; path = erSwift/ContactViewControllerViewController.swift; sourceTree = "<group>"; };
+		F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewImageViewController.swift; path = erSwift/PreviewImageViewController.swift; sourceTree = "<group>"; };
+		F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsListViewController.swift; path = erSwift/AnnotationsListViewController.swift; sourceTree = "<group>"; };
 		FE8F23F26945089DE5E2EC32 /* Pods-gofeedbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,8 +202,10 @@
 				271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */,
 				27E6A12624190C4700B4D336 /* GFContactViewController.swift */,
 				271CBF5E2418BA7F00CB113D /* HomeViewController.swift */,
+				F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */,
 				27839A15240FF1AF004CEE14 /* FeedbackViewController.swift */,
 				F70F92FF243240DE000D0D8A /* PreviewFeedbackViewController.swift */,
+				F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */,
 				F719271E24307C80006BF52A /* AccountSettingsViewController.swift */,
 				F71927242430F24A006BF52A /* WalletViewController.swift */,
 				F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */,
@@ -531,6 +537,7 @@
 				27E6A0CA2419097700B4D336 /* GFMenuButton.swift in Sources */,
 				271CBF822418D55A00CB113D /* SignUpViewModel.swift in Sources */,
 				27E6A0DC241909F000B4D336 /* GFRouteLeg.swift in Sources */,
+				F7295FC52438CE71003AFE77 /* AnnotationsListViewController.swift in Sources */,
 				27E6A0DE241909F000B4D336 /* GFRoute.swift in Sources */,
 				271CBF632418BBE700CB113D /* GFBaseViewController.swift in Sources */,
 				27E6A0C82419097700B4D336 /* GFStationListTableViewCell.swift in Sources */,
@@ -540,6 +547,7 @@
 				271CBF5D2418B93D00CB113D /* SideMenuItemsViewController.swift in Sources */,
 				27E6A0CE2419097700B4D336 /* GFHistoryTableViewCell.swift in Sources */,
 				F719271F24307C80006BF52A /* AccountSettingsViewController.swift in Sources */,
+				F7295FC32438C283003AFE77 /* PreviewImageViewController.swift in Sources */,
 				274D69D32427AEB200597AFF /* LoginModel.swift in Sources */,
 				274D69D22427AEB200597AFF /* LoginViewModel.swift in Sources */,
 				274D69D62427AEB200597AFF /* NameTextViewModel.swift in Sources */,

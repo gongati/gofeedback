@@ -22,7 +22,9 @@ class PreviewFeedbackViewController: GFBaseViewController {
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var submitBtnOulet: UIButton!
     @IBOutlet weak var imagesStackView: UIStackView!
-    @IBOutlet weak var formImageView: UIImageView!
+    @IBOutlet weak var formImageView: UIButton!
+    @IBOutlet weak var imageLabel: UILabel!
+    @IBOutlet weak var formLabel: UILabel!
     
     var feedbackModel = FeedbackModel()
     var images:[UIImage]?
@@ -33,8 +35,8 @@ class PreviewFeedbackViewController: GFBaseViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        
+        imageLabel.isHidden = true
+        formLabel.isHidden = true
         self.UIUpdate()
         
     }
@@ -81,19 +83,11 @@ class PreviewFeedbackViewController: GFBaseViewController {
         
     }
     
-    @IBAction func imagesView(_ sender: UIButton) {
-        
-        
-    }
     
-    @IBAction func formView(_ sender: UIButton) {
+    @IBAction func formPressed(_ sender: UIButton) {
         
-        if let form = formImage {
-            
-            self.showImage(form, "Form")
-        }
+        performSegue(withIdentifier: "ImageView", sender: sender.imageView?.image)
     }
-    
     
     func moveToHomeVC() {
         
@@ -226,24 +220,48 @@ class PreviewFeedbackViewController: GFBaseViewController {
         whatAreWeDoingGreat.rating = feedbackModel.whatAreWeDoingGreatRating
         howWeAreDoingCosmosView.rating = feedbackModel.howWeAreDoingRating
         commentsTxt.text = feedbackModel.comments
-        formImageView.image = formImage
-        formImageView.contentMode = .scaleAspectFit
+        
+        if let form = self.formImage {
+            
+            formLabel.isHidden = false
+            formImageView.setImage(form, for: .normal)
+            formImageView.imageView?.contentMode = .scaleAspectFit
+            
+        }
         
         if let images = self.images {
-        for image in images {
             
-          let imageView = UIImageView(image: image)
-            imageView.contentMode = .scaleAspectFit
-            imageView.clipsToBounds = true
-        imagesStackView.addArrangedSubview(imageView)
-            imagesStackView.translatesAutoresizingMaskIntoConstraints = false
-        }
+            imageLabel.isHidden = false
+            for image in images {
+                
+                let button = UIButton()
+                button.imageView?.contentMode = .scaleAspectFit
+                button.setImage(image, for: .normal)
+                 button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+                imagesStackView.addArrangedSubview(button)
+                imagesStackView.translatesAutoresizingMaskIntoConstraints = false
+            }
         }
         if feedbackModel.isSubmitBtnHidden {
             
             submitBtnOulet.isHidden = true
         }
+    }
+    
+    @objc func buttonAction(sender: UIButton!) {
         
+        performSegue(withIdentifier: "ImageView", sender: sender.imageView?.image)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ImageView" {
+            
+            
+            let vc = segue.destination as! PreviewImageViewController
+            
+            vc.image = sender as? UIImage
+        }
         
     }
 }
