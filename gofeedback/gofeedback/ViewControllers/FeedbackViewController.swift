@@ -23,15 +23,19 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     @IBOutlet weak var cosmosView: CosmosView!
     
     @IBOutlet weak var imageBtn: UIButton!
+
     @IBOutlet weak var formBtn: UIButton!
     
     var feedbackModel = FeedbackModel()
+
     var searchItem = ""
     var images : [UIImage]?
     var formImage : UIImage?
     var isImageFile = true
     
     let db = Firestore.firestore()
+    var imageFileName = ""
+    var formFilName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +77,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         present(imagePicker, animated: true, completion: nil)
     }
     
+
     @IBAction func formPressed(_ sender: UIButton) {
         
         self.isImageFile = false
@@ -119,7 +124,6 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         
     }
     
-    
     @IBAction func previewPressed(_ sender: UIButton) {
         
         self.feedbackModel.comments = self.commentsTxt.text
@@ -146,7 +150,8 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                     //error
                     print("error uploading image")
                 }
-                self.feedbackUpdate(userId)
+
+
             }
                 
         }
@@ -207,13 +212,14 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             let imageData = image.jpegData(compressionQuality: 0.1)
             let path = "Forms/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).jpg"
             let uploadRef = Storage.storage().reference().child(path)
-            
+          
             _ = uploadRef.putData(imageData!, metadata: nil) { metadata,
                 error in
                 if error == nil {
                     //success
                     print("success \(path)")
                     self.feedbackModel.formFilName = path
+
                 } else {
                     //error
                     print("error uploading image")
@@ -257,6 +263,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
 
             self.formImage = images[0]
             picker.dismiss(animated: true, completion: nil)
+
         }
         presentedViewController?.dismiss(animated: true, completion: nil)
     }
@@ -340,6 +347,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     
     func feedbackUpdate(_ userId:String) {
         
+
         db.collection("Feedback").document(userId).collection("Ratings").document(self.feedbackModel.restaurantTitle).setData([
             Constants.FeedbackCommands.restuarantName : self.feedbackModel.restaurantTitle,
             Constants.FeedbackCommands.restuarantAddress : self.feedbackModel.address,
@@ -350,6 +358,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             Constants.FeedbackCommands.rating : self.feedbackModel.rating,
             Constants.FeedbackCommands.images : self.feedbackModel.imageFileName,
             Constants.FeedbackCommands.form : self.feedbackModel.formFilName
+
             
         ]) { (error) in
             if let err = error {

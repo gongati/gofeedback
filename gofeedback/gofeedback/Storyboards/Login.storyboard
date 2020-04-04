@@ -458,7 +458,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="qzd-cq-cdX"/>
                     <connections>
+
                         <outlet property="addressTxtView" destination="TrQ-bA-x9W" id="vC1-KL-qMs"/>
+
                         <outlet property="countryCode" destination="NXI-b3-wY8" id="ZPU-V2-03t"/>
                         <outlet property="emailTxt" destination="dFQ-0Y-IMx" id="o7F-eq-7kU"/>
                         <outlet property="firstNameTxt" destination="KJz-GM-MGG" id="YPT-EN-Wfe"/>

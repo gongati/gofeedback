@@ -147,34 +147,55 @@
                                 <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
                             </mapView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OBE-eC-CAI">
-                                <rect key="frame" x="55" y="533" width="265" height="100"/>
+                                <rect key="frame" x="55" y="573" width="265" height="60"/>
                                 <subviews>
+
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceP-Rw-XGw">
                                         <rect key="frame" x="0.0" y="0.0" width="59" height="100"/>
                                         <color key="backgroundColor" red="0.32531052830000001" green="0.39269918199999998" blue="0.64615559580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="nearLocation1Pressed:" destination="Cu0-g3-Sf1" eventType="touchUpInside" id="8bI-Nz-mCL"/>
                                         </connections>
                                     </button>
+
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHE-FW-hxY">
                                         <rect key="frame" x="69" y="0.0" width="58.5" height="100"/>
                                         <color key="backgroundColor" red="0.32531052830000001" green="0.39269918199999998" blue="0.64615559580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="nearLocation2Pressed:" destination="Cu0-g3-Sf1" eventType="touchUpInside" id="fRZ-B6-EB9"/>
                                         </connections>
                                     </button>
+
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Dn-kS-If5">
                                         <rect key="frame" x="137.5" y="0.0" width="59" height="100"/>
                                         <color key="backgroundColor" red="0.32531052830000001" green="0.39269918199999998" blue="0.64615559580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="nearLocation3Pressed:" destination="Cu0-g3-Sf1" eventType="touchUpInside" id="hZt-JO-A9g"/>
                                         </connections>
@@ -191,7 +212,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="gdc-hg-GV3"/>
+                                    <constraint firstAttribute="height" constant="60" id="gdc-hg-GV3"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pH-b5-SZo" customClass="GFTextFieldBackGround" customModule="gofeedback" customModuleProvider="target">
