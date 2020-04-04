@@ -23,13 +23,14 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     @IBOutlet weak var nearLocation1: UIButton!
     @IBOutlet weak var nearLocation2: UIButton!
     @IBOutlet weak var nearLocation3: UIButton!
+    @IBOutlet weak var listOutlet: UIButton!
     
     var locationManager = CLLocationManager()
     var locationLat:String?
     var locationLong:String?
     var userCurrentLocation:CLLocationCoordinate2D?
     var searchResponse: [MKMapItem]?
-    var searchItem = "Food"
+    var searchItem = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +41,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         nearLocation1.isHidden = true
         nearLocation2.isHidden = true
         nearLocation3.isHidden = true
-        
-        whereToGoText.text = searchItem
+        listOutlet.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -122,6 +122,11 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     @IBAction func nearLocation3Pressed(_ sender: UIButton) {
         
         self.wayToFeedbackViewController(sender.titleLabel?.text)
+    }
+    
+    @IBAction func listPressed(_ sender: UIButton) {
+        
+        self.wayToAnnotationList()
     }
     
     
@@ -208,7 +213,13 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         self.mapView.removeAnnotations(mapView.annotations)
         
         let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = whereToGoText.text
+        if whereToGoText.text == "" {
+            
+            request.naturalLanguageQuery = "Food"
+        } else {
+            
+            request.naturalLanguageQuery = whereToGoText.text
+        }
         request.region = mapView.region
         
         let search = MKLocalSearch(request: request)
@@ -246,6 +257,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         nearLocation1.isHidden = false
         nearLocation2.isHidden = false
         nearLocation3.isHidden = false
+        listOutlet.isHidden = false
+        self.listOutlet.titleLabel?.numberOfLines = 2
         
         var distances = [CLLocationDistance]()
         if let currentLocation = self.userCurrentLocation {
@@ -357,6 +370,16 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         }
     }
     
+    func wayToAnnotationList() {
+        
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "AnnotationsListViewController") as? AnnotationsListViewController else {
+            return
+        }
+          
+        viewController.dataSource = self.searchResponse
+        viewController.searchItem = whereToGoText.text ?? ""
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 extension MKMapView {
