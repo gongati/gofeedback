@@ -39,6 +39,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Do you allow this app to use camera to take your photos?</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Will you allow this app to always know your location?</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -47,8 +49,6 @@
 	<string>Do you allow this app to know your current location?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Do you allow this app to use your photos?</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Do you allow this app to use camera to take your photos?</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

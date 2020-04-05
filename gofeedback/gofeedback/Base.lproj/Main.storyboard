@@ -207,7 +207,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="nearLocation3Pressed:" destination="Cu0-g3-Sf1" eventType="touchUpInside" id="Ge1-bz-ATL"/>
+                                            <action selector="listPressed:" destination="Cu0-g3-Sf1" eventType="touchUpInside" id="0rR-iQ-gMq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -227,7 +227,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FinishCircle" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-Jg-6Rd">
-                                        <rect key="frame" x="-3" y="5" width="26" height="26"/>
+                                        <rect key="frame" x="10" y="11.5" width="13" height="13"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -328,7 +328,7 @@
                     <navigationItem key="navigationItem" id="EeC-7M-cWe"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="listOutlet" destination="fu7-qw-dYN" id="wHd-ye-Dh3"/>
+                        <outlet property="listOutlet" destination="iup-h5-bAy" id="bfu-PW-0bo"/>
                         <outlet property="mapView" destination="GvB-tQ-RmC" id="1So-Ne-Yez"/>
                         <outlet property="navBarLogo" destination="EJ0-qZ-yLH" id="klB-Y2-HNK"/>
                         <outlet property="nearLocation1" destination="ceP-Rw-XGw" id="1gl-qs-JpE"/>
