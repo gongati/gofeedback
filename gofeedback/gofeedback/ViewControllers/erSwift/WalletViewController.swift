@@ -23,9 +23,7 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        self.getFeedBackDetails()
+        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Paid.rawValue)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -33,13 +31,49 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
         tableView.tableFooterView = UIView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     
-    func getFeedBackDetails() {
+    @IBAction func submiteedPressed(_ sender: UIButton) {
+        
+        self.feedBackData.removeAll()
+        self.feedBackDataTitle.removeAll()
+        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Submitted.rawValue)
+        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Paid.rawValue)
+
+    }
+    
+    @IBAction func paidPressed(_ sender: UIButton) {
+        
+       self.feedBackData.removeAll()
+        self.feedBackDataTitle.removeAll()
+        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Paid.rawValue)
+    }
+    
+    @IBAction func draftsPressed(_ sender: UIButton) {
+        
+       self.feedBackData.removeAll()
+        self.feedBackDataTitle.removeAll()
+        self.getFeedBackDetails(FeedbackStatus.Drafts.rawValue,FeedbackStatus.Drafts.rawValue)
+    }
+    
+
+    @IBAction func pendingPressed(_ sender: UIButton) {
+        
+       self.feedBackData.removeAll()
+        self.feedBackDataTitle.removeAll()
+        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Submitted.rawValue)
+    }
+    
+    func getFeedBackDetails(_ collectionStatus: String,_ state:String) {
         
         if let userid = UserDefaults.standard.string(forKey: "UserId") {
             
 
-            let docRef = db.collection("Feedback").document(userid).collection("Ratings")
+            let docRef = db.collection("Feedback").document(userid).collection(collectionStatus).whereField(Constants.FeedbackCommands.status, isEqualTo: state)
             
             docRef.getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -53,7 +87,10 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
                         print("\(document.documentID) => \(document.data())")
                         self.feedBackData.append(document.data())
                     }
+                    if state == FeedbackStatus.Paid.rawValue {
+                        
                     self.walletBalanceLabel.text = "$\(Float(self.feedBackDataTitle.count))"
+                    }
                     self.tableView.reloadData()
                 }
             }
@@ -71,6 +108,7 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
 
         cell.textLabel?.text = self.feedBackDataTitle[indexPath.row]
+        cell.detailTextLabel?.text = self.feedBackData[indexPath.row][Constants.FeedbackCommands.restuarantAddress] as? String ?? ""
         return cell
     }
     
@@ -95,7 +133,16 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
         viewController.feedbackModel.howWeAreDoingRating = self.feedBackData[at][Constants.FeedbackCommands.howWeAreDoing] as? Double ?? 0
         viewController.feedbackModel.whatCanWeDoBetterRating = self.feedBackData[at][Constants.FeedbackCommands.whatCanWeDoBetter] as? Double ?? 0
         viewController.feedbackModel.comments = self.feedBackData[at][Constants.FeedbackCommands.comments] as? String ?? ""
-        viewController.feedbackModel.isSubmitBtnHidden = true
+        
+        if self.feedBackData[at][Constants.FeedbackCommands.status]  as? String ?? ""  == FeedbackStatus.Drafts.rawValue {
+            
+            viewController.feedbackModel.isSubmitBtnHidden = false
+            viewController.feedbackModel.status = .Drafts
+            
+        } else {
+            
+            viewController.feedbackModel.isSubmitBtnHidden = true
+        }
         let group = DispatchGroup()
          
         

@@ -57,6 +57,19 @@ class PreviewFeedbackViewController: GFBaseViewController {
         
         if let userID =  UserDefaults.standard.string(forKey: "UserId") {
             
+            if self.feedbackModel.status == .Drafts {
+                
+                db.collection("Feedback").document(userID).collection(self.feedbackModel.status.rawValue).document(self.feedbackModel.restaurantTitle).delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        print("Document successfully removed!")
+                    }
+                }
+            }
+            
+            self.feedbackModel.status = .Submitted
+            
             if let _ = images, let form = formImage{
                 
                 self.uploadForm(image: form)
@@ -70,7 +83,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
                 }
             } else {
                 
-                self.feedbackUpdate(userID)
+                self.feedbackUpdate(userID,self.feedbackModel.status.rawValue)
             }
             
         } else {
@@ -104,9 +117,9 @@ class PreviewFeedbackViewController: GFBaseViewController {
         
     }
     
-    func feedbackUpdate(_ userId:String) {
+    func feedbackUpdate(_ userId:String, _ status: String) {
         
-        db.collection("Feedback").document(userId).collection("Ratings").document(self.feedbackModel.restaurantTitle).setData([
+        db.collection("Feedback").document(userId).collection(status).document(self.feedbackModel.restaurantTitle).setData([
             Constants.FeedbackCommands.restuarantName : self.feedbackModel.restaurantTitle,
             Constants.FeedbackCommands.restuarantAddress : self.feedbackModel.address,
             Constants.FeedbackCommands.howWeAreDoing : self.feedbackModel.howWeAreDoingRating,
@@ -115,7 +128,9 @@ class PreviewFeedbackViewController: GFBaseViewController {
             Constants.FeedbackCommands.comments : self.feedbackModel.comments,
             Constants.FeedbackCommands.rating : self.feedbackModel.rating,
             Constants.FeedbackCommands.images : self.feedbackModel.imageFileName,
-            Constants.FeedbackCommands.form : self.feedbackModel.formFilName
+            Constants.FeedbackCommands.form : self.feedbackModel.formFilName,
+            Constants.FeedbackCommands.status : self.feedbackModel.status.rawValue
+            
         ]) { (error) in
             if let err = error {
                 self.popupAlert(title: "Error", message: err.localizedDescription, actionTitles: ["OK"], actions: [nil])
@@ -163,7 +178,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
                     //error
                     print("error uploading image")
                 }
-                self.feedbackUpdate(userId)
+                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
             }
         }
     }
@@ -192,7 +207,10 @@ class PreviewFeedbackViewController: GFBaseViewController {
                     self.feedbackModel.imageFileName.removeAll()
                     for image in images {
                     self.uploadImage(image: image)
-                    }
+                    } 
+                } else {
+                 
+                    self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
                 }
             }
         }

@@ -95,6 +95,8 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
             
+            self.feedbackModel.status = .Submitted
+            
              self.feedbackModel.comments = self.commentsTxt.text
             
             if let _ = images, let form = formImage{
@@ -112,7 +114,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                 }
             } else {
                 
-                self.feedbackUpdate(userId)
+                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
             }
         } else {
             
@@ -129,6 +131,41 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         self.feedbackModel.comments = self.commentsTxt.text
         self.moveToPreview()
     }
+    
+    @IBAction func draftPressed(_ sender: UIButton) {
+        
+        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
+            
+            self.feedbackModel.status = .Drafts
+            
+           self.feedbackModel.comments = self.commentsTxt.text
+           
+           if let _ = images, let form = formImage{
+               
+               self.uploadForm(image: form)
+           } else if let form = self.formImage {
+               
+               self.uploadForm(image: form)
+           } else if let images = images {
+               
+               self.feedbackModel.imageFileName.removeAll()
+               for image in images {
+                   
+               self.uploadImage(image: image)
+               }
+            } else {
+                
+                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
+            }
+        } else {
+            
+            self.popupAlert(title: "Alert", message: "Please Login to saved to drafts", actionTitles: ["OK"], actions: [{ action in
+                
+                self.navigationController?.popViewController(animated: true)
+                }])
+        }
+    }
+    
     
     func uploadImage(image: UIImage) {
         
@@ -150,7 +187,8 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                     //error
                     print("error uploading image")
                 }
-
+                
+               self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
 
             }
                 
@@ -230,6 +268,9 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                         
                     self.uploadImage(image: image)
                     }
+                } else {
+                 
+                    self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
                 }
             }
         }
@@ -345,10 +386,8 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         }
     }
     
-    func feedbackUpdate(_ userId:String) {
-        
-
-        db.collection("Feedback").document(userId).collection("Ratings").document(self.feedbackModel.restaurantTitle).setData([
+    func feedbackUpdate(_ userId:String, _ status:String) {
+        db.collection("Feedback").document(userId).collection(status).document(self.feedbackModel.restaurantTitle).setData([
             Constants.FeedbackCommands.restuarantName : self.feedbackModel.restaurantTitle,
             Constants.FeedbackCommands.restuarantAddress : self.feedbackModel.address,
             Constants.FeedbackCommands.howWeAreDoing : self.feedbackModel.howWeAreDoingRating,
@@ -357,8 +396,8 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             Constants.FeedbackCommands.comments : self.feedbackModel.comments,
             Constants.FeedbackCommands.rating : self.feedbackModel.rating,
             Constants.FeedbackCommands.images : self.feedbackModel.imageFileName,
-            Constants.FeedbackCommands.form : self.feedbackModel.formFilName
-
+            Constants.FeedbackCommands.form : self.feedbackModel.formFilName,
+            Constants.FeedbackCommands.status : self.feedbackModel.status.rawValue
             
         ]) { (error) in
             if let err = error {
