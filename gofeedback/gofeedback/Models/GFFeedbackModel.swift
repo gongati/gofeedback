@@ -21,4 +21,13 @@ struct FeedbackModel {
     var imageFileName = [""]
     var formFilName = ""
     var isSubmitBtnHidden = false
+    var status:FeedbackStatus = .none
+}
+
+enum FeedbackStatus: String {
+    
+    case Submitted
+    case Paid
+    case Drafts
+    case none
 }

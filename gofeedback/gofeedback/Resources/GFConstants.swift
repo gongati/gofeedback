@@ -162,6 +162,7 @@ struct Constants {
         static let rating = "Rating"
         static let images = "Images"
         static let form = "Form"
+        static let status = "Status"
     }
     
     struct userDetails {
