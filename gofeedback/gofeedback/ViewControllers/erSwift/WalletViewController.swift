@@ -29,6 +29,8 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.tableFooterView = UIView()
     }
     
     
