@@ -21,6 +21,8 @@ class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,U
       
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.tableFooterView = UIView()
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
