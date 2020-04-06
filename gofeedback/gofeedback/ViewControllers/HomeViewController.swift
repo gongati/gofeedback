@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import CDYelpFusionKit
 
 class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
     
@@ -29,8 +30,10 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     var locationLat:String?
     var locationLong:String?
     var userCurrentLocation:CLLocationCoordinate2D?
-    var searchResponse: [MKMapItem]?
+    var searchResponse: [CDYelpBusiness]?
     var searchItem = ""
+    
+    let yelpAPIClient = CDYelpAPIClient(apiKey: "JuFWYKLiETl9O-z6Tn7ysBeGyXbzON1Eh-_lbP56VDbu5YdZMRLQTBE2rNWfLCCM85Ot21lMMhiW9GsuaEVAg8kBQLPPVoAaTFP99Fm3m9_2WHMBibfkoItNQhuLXnYx")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +45,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         nearLocation2.isHidden = true
         nearLocation3.isHidden = true
         listOutlet.isHidden = true
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -144,7 +148,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        self.mapQuery()
+        self.yelpQuery()
         textField.resignFirstResponder()
         return true
     }
@@ -165,7 +169,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         locationLong = "\(locations[0].coordinate.longitude)"
         self.centerViewOnUserLocation()
         manager.stopUpdatingLocation()
-        self.mapQuery()
+        self.yelpQuery()
+        yelpQuery()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -208,6 +213,59 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         
     }
     
+    func yelpQuery() {
+        
+        self.mapView.removeAnnotations(mapView.annotations)
+        
+        yelpAPIClient.cancelAllPendingAPIRequests()
+        
+        yelpAPIClient.searchBusinesses(byTerm: whereToGoText.text,
+                                       location: nil,
+                                       latitude: Double(self.locationLat ?? ""),
+                                       longitude: Double(self.locationLong ?? ""),
+                                       radius: 10000,
+                                       categories: nil,
+                                       locale: .english_unitedStates,
+                                       limit: nil,
+                                       offset: nil,
+                                       sortBy: .rating,
+                                       priceTiers: nil,
+                                       openNow: nil,
+                                       openAt: nil,
+                                       attributes: nil) { (response) in
+                                        
+                                        if let response = response,
+                                            let businesses = response.businesses {
+                                            
+                                            if businesses.count == 0 {
+                                                
+                                                self.popupAlert(title: "Alert", message: "No matches Found", actionTitles: ["OK"], actions: [nil])
+                                                
+                                            } else {
+                                                print(response)
+                                                
+                                                self.searchResponse = response.businesses
+                                                for business in businesses {
+                                                    
+                                                    let annotation = MKPointAnnotation()
+                                                    annotation.coordinate = CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 0, longitude: business.coordinates?.longitude ?? 0)
+                                                    annotation.title = business.name
+                                                    self.mapView.addAnnotation(annotation)
+                                                }
+                                                
+                                                DispatchQueue.main.async {
+                                                    
+                                                    self.nearestLocationButtons()
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            
+                                            print("error")
+                                        }
+        }
+        
+    }
     func mapQuery() {
         
         self.mapView.removeAnnotations(mapView.annotations)
@@ -235,7 +293,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             } else {
                 
                 print(response?.mapItems)
-                self.searchResponse = response?.mapItems
+               // self.searchResponse = response?.mapItems
                 for item in response!.mapItems {
                     
                     print(item.name)
@@ -266,8 +324,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             
             for annotation in 0..<(self.searchResponse?.count ?? 1) {
                 if let searchResponse = self.searchResponse {
-                    let value = searchResponse[annotation].placemark.coordinate
-                    let selectedLoc = CLLocation(latitude: value.latitude, longitude: value.longitude)
+                    let value = searchResponse[annotation].coordinates
+                    let selectedLoc = CLLocation(latitude: value?.latitude ?? 0, longitude: value?.longitude ?? 0)
                     distances.append(currentLoc.distance(from: selectedLoc))
                 }
             }
@@ -363,7 +421,10 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                 }
                 
                 viewController.feedbackModel.restaurantTitle =  searchResponse?[i].name ?? ""
-                viewController.feedbackModel.address = searchResponse?[i].placemark.title ?? ""
+                if let location = searchResponse?[i].location {
+                    
+                    viewController.feedbackModel.address = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
+                }
                 viewController.searchItem = whereToGoText.text ?? ""
                 self.navigationController?.pushViewController(viewController, animated: true)
             }

@@ -159,12 +159,17 @@ PODS:
     - abseil/base/config
     - abseil/meta/type_traits
   - Alamofire (4.9.1)
+  - AlamofireObjectMapper (5.2.0):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
   - BoringSSL-GRPC (0.0.3):
     - BoringSSL-GRPC/Implementation (= 0.0.3)
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Implementation (0.0.3):
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
+  - CDYelpFusionKit (1.5.1):
+    - AlamofireObjectMapper (= 5.2.0)
   - Cosmos (21.0.0)
   - Firebase (6.21.0):
     - Firebase/Core (= 6.21.0)
@@ -278,6 +283,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - ObjectMapper (3.5.2)
   - OpalImagePicker (2.1.2)
   - PromisesObjC (1.2.8)
   - RxCocoa (5.1.1):
@@ -291,12 +297,15 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - AlamofireObjectMapper (~> 5.2)
+  - CDYelpFusionKit
   - Cosmos (~> 21.0)
   - Firebase (>= 2.5.0)
   - Firebase/Firestore
   - FirebaseAuth
   - FirebaseFirestoreSwift
   - FirebaseStorage
+  - ObjectMapper (~> 3.5)
   - OpalImagePicker
   - RxCocoa
   - RxSwift
@@ -307,7 +316,9 @@ SPEC REPOS:
   trunk:
     - abseil
     - Alamofire
+    - AlamofireObjectMapper
     - BoringSSL-GRPC
+    - CDYelpFusionKit
     - Cosmos
     - Firebase
     - FirebaseAnalytics
@@ -329,6 +340,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - ObjectMapper
     - OpalImagePicker
     - PromisesObjC
     - RxCocoa
@@ -340,7 +352,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
+  CDYelpFusionKit: 94a7802fa23ef0eb78514c8a6f246f55b6bc91f0
   Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
   FirebaseAnalytics: a1a0b3327ceb5cd5b4bacffdb293f6c909aa087d
@@ -362,6 +376,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  ObjectMapper: b53ae947d370bf89423e86be7d4e2d2b2a8d3f40
   OpalImagePicker: 51cbf714f337a93c2631219f1a90389ba936077f
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
@@ -370,6 +385,6 @@ SPEC CHECKSUMS:
   SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: ae6389f405d3db7f8ef0f90974f1fdf5e6f4e270
+PODFILE CHECKSUM: ea2837ff4193fadf7b7820330c9a89751aa5d709
 
 COCOAPODS: 1.9.1
