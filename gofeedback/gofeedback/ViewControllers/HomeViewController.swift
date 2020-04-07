@@ -98,9 +98,29 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         }
     }
     
+    fileprivate func fetchYelpBusinesses(latitude: Double, longitude: Double) {
+        let apikey = "4XSgITa2PpPWqH7YO_UhRH3a7fImYQHHI_yVOXve8pHozQSoimEW8Rf_D6DbhTv9-b3TfTe9v34hIbhVA0BIYTulTauO1RG6kbEmS02V42idN9eP5IcIBjI6PwiLXnYx"
+        let url = URL(string: "https://api.yelp.com/v3/businesses/search?latitude=\(latitude)&longitude=\(longitude)")
+        var request = URLRequest(url: url!)
+        request.setValue("Bearer \(apikey)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                print(">>>>>", json, #line, "<<<<<<<<<")
+            } catch {
+                print("caught")
+            }
+            }.resume()
+    }
     //MARK:- IBActions
     
     @IBAction func gotoCurrentLocation(_ sender: UIButton) {
+        
         requestCurrentLocation()
     }
     
@@ -166,6 +186,9 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
             mapView.setRegion(region, animated: true)
+            
+            self.fetchYelpBusinesses(latitude: location.latitude, longitude: location.longitude)
+
         }
     }
     

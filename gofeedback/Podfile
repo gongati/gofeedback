@@ -4,7 +4,7 @@
 target 'gofeedback' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for gofeedback
   pod 'SideMenu'
   pod 'RxSwift'
@@ -21,6 +21,7 @@ target 'gofeedback' do
   pod 'Alamofire', '~> 4.7'
   pod 'ObjectMapper', '~> 3.5'
   pod 'CDYelpFusionKit'
+  pod 'YPImagePicker'
 
   # add pods for desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods

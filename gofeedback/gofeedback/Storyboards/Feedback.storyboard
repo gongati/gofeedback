@@ -206,28 +206,6 @@
                                     <action selector="previewPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="eOK-c0-Qy3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4f-jh-Ihb">
-                                <rect key="frame" x="167.5" y="421" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="ZN3-k0-GSR"/>
-                                    <constraint firstAttribute="width" constant="40" id="f2s-NF-1HZ"/>
-                                </constraints>
-                                <state key="normal" image="upload_image"/>
-                                <connections>
-                                    <action selector="imagePressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="cKs-H7-aMe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5l-2I-cd8">
-                                <rect key="frame" x="274" y="421" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="Cq3-y6-2vA"/>
-                                    <constraint firstAttribute="height" constant="40" id="mjg-6E-4an"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="paper-receipt-icon"/>
-                                <connections>
-                                    <action selector="formPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="RF2-mS-D3U"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZt-1K-MrB" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
                                 <rect key="frame" x="214" y="566" width="145" height="37"/>
                                 <color key="backgroundColor" red="0.1578813791" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -246,20 +224,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="draftPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="xYD-Sg-aNY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8A-Rr-ZLA">
-                                <rect key="frame" x="48" y="379.5" width="56" height="38"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="09q-Pg-Ivs"/>
-                                    <constraint firstAttribute="width" constant="56" id="NTN-ci-EXH"/>
-                                </constraints>
-                                <state key="normal" image="camera.fill" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="heavy"/>
-                                </state>
-                                <connections>
-                                    <action selector="cameraPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="yQe-az-Ev6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSm-3f-Ff9" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
@@ -282,43 +246,64 @@
                                     <action selector="submitPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="yme-gD-v6f"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8A-Rr-ZLA">
+                                <rect key="frame" x="16" y="362" width="151" height="63"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="KVi-9L-i4f"/>
+                                    <constraint firstAttribute="width" constant="151" id="q8O-Z7-g1K"/>
+                                </constraints>
+                                <state key="normal" image="1144464-200">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="heavy"/>
+                                </state>
+                                <connections>
+                                    <action selector="cameraPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="yQe-az-Ev6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5l-2I-cd8">
+                                <rect key="frame" x="197" y="368" width="59" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="59" id="KmG-P1-SuY"/>
+                                    <constraint firstAttribute="height" constant="52" id="yXc-Of-Oij"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="paper-receipt-icon"/>
+                                <connections>
+                                    <action selector="formPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="RF2-mS-D3U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="eqW-Ne-oU2" firstAttribute="centerX" secondItem="wbY-xM-F0n" secondAttribute="centerX" id="02V-Iv-SCp"/>
                             <constraint firstItem="tvD-Mq-pKO" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="2o3-KH-Iin"/>
-                            <constraint firstItem="Z8b-uD-FGF" firstAttribute="top" secondItem="D8A-Rr-ZLA" secondAttribute="bottom" constant="16" id="7Is-1k-QFA"/>
-                            <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="m5l-2I-cd8" secondAttribute="trailing" constant="61" id="9LT-b8-Oou"/>
                             <constraint firstItem="uSm-3f-Ff9" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="A7i-2X-449"/>
                             <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="SH6-rO-rKd" secondAttribute="trailing" constant="16" id="AGt-iW-ZB1"/>
                             <constraint firstItem="Vor-97-c4q" firstAttribute="top" secondItem="eqW-Ne-oU2" secondAttribute="bottom" constant="12.5" id="C0g-pk-M1L"/>
                             <constraint firstItem="SU7-Uw-EmJ" firstAttribute="top" secondItem="XdK-kU-xtE" secondAttribute="bottom" constant="1" id="CYQ-Wu-b3Q"/>
+                            <constraint firstItem="Z8b-uD-FGF" firstAttribute="top" secondItem="D8A-Rr-ZLA" secondAttribute="bottom" constant="8.5" id="F8O-FH-90g"/>
                             <constraint firstItem="SH6-rO-rKd" firstAttribute="top" secondItem="Z8b-uD-FGF" secondAttribute="bottom" constant="15" id="F95-0V-NNZ"/>
                             <constraint firstItem="XdK-kU-xtE" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" id="GlZ-oN-Hly"/>
                             <constraint firstItem="tvD-Mq-pKO" firstAttribute="top" secondItem="SH6-rO-rKd" secondAttribute="bottom" constant="8" id="Hu0-3k-PLi"/>
                             <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="e9x-dN-bMG" secondAttribute="trailing" constant="16" id="K0z-0X-u9f"/>
                             <constraint firstItem="uSm-3f-Ff9" firstAttribute="top" secondItem="xZt-1K-MrB" secondAttribute="bottom" constant="12" id="Ktd-8B-N36"/>
-                            <constraint firstItem="D8A-Rr-ZLA" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="48" id="MFG-hq-9Xi"/>
                             <constraint firstItem="e9x-dN-bMG" firstAttribute="top" secondItem="XdK-kU-xtE" secondAttribute="bottom" constant="39" id="Nxl-5p-4rf"/>
                             <constraint firstItem="uSm-3f-Ff9" firstAttribute="top" secondItem="tvD-Mq-pKO" secondAttribute="bottom" constant="12" id="PC4-rI-wmx"/>
-                            <constraint firstItem="SH6-rO-rKd" firstAttribute="top" secondItem="m5l-2I-cd8" secondAttribute="bottom" constant="8" id="QNZ-uP-HSq"/>
                             <constraint firstItem="e9x-dN-bMG" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="SYc-MM-0AP"/>
                             <constraint firstItem="SH6-rO-rKd" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="Sru-wU-9j8"/>
                             <constraint firstItem="gJh-eo-BM1" firstAttribute="bottom" secondItem="uSm-3f-Ff9" secondAttribute="bottom" constant="15" id="UrC-1G-8HB"/>
                             <constraint firstItem="Z8b-uD-FGF" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="WI9-yS-tBV"/>
-                            <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="D8A-Rr-ZLA" secondAttribute="trailing" constant="271" id="cLy-Vu-w2h"/>
+                            <constraint firstItem="m5l-2I-cd8" firstAttribute="leading" secondItem="D8A-Rr-ZLA" secondAttribute="trailing" constant="30" id="cKH-aK-uO8"/>
                             <constraint firstItem="SU7-Uw-EmJ" firstAttribute="trailing" secondItem="gJh-eo-BM1" secondAttribute="trailing" id="cMW-yM-LtZ"/>
                             <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="xZt-1K-MrB" secondAttribute="trailing" constant="16" id="crn-d5-yDo"/>
                             <constraint firstItem="1ZL-2U-TL3" firstAttribute="centerX" secondItem="wbY-xM-F0n" secondAttribute="centerX" id="eQn-cM-JKW"/>
-                            <constraint firstItem="SH6-rO-rKd" firstAttribute="top" secondItem="T4f-jh-Ihb" secondAttribute="bottom" constant="8" id="emx-Fi-E7Y"/>
                             <constraint firstItem="XdK-kU-xtE" firstAttribute="trailing" secondItem="gJh-eo-BM1" secondAttribute="trailing" id="hC9-aJ-Ifg"/>
                             <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="uSm-3f-Ff9" secondAttribute="trailing" constant="16" id="kf4-Ig-rBM"/>
-                            <constraint firstItem="T4f-jh-Ihb" firstAttribute="centerX" secondItem="wbY-xM-F0n" secondAttribute="centerX" id="mcz-9B-uh8"/>
-                            <constraint firstItem="SH6-rO-rKd" firstAttribute="top" secondItem="T4f-jh-Ihb" secondAttribute="bottom" constant="8" id="oPR-2y-nlG"/>
                             <constraint firstItem="Vor-97-c4q" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="odJ-nh-qRb"/>
                             <constraint firstItem="eqW-Ne-oU2" firstAttribute="top" secondItem="SU7-Uw-EmJ" secondAttribute="bottom" constant="10" id="qCj-pf-Ips"/>
                             <constraint firstItem="SU7-Uw-EmJ" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" id="s3l-QY-7sH"/>
+                            <constraint firstItem="D8A-Rr-ZLA" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="sXa-7t-EOh"/>
                             <constraint firstItem="1ZL-2U-TL3" firstAttribute="top" secondItem="XdK-kU-xtE" secondAttribute="bottom" constant="2" id="sht-ME-ikp"/>
+                            <constraint firstItem="SH6-rO-rKd" firstAttribute="top" secondItem="m5l-2I-cd8" secondAttribute="bottom" constant="49" id="vl2-Ib-EZb"/>
                             <constraint firstItem="XdK-kU-xtE" firstAttribute="top" secondItem="gJh-eo-BM1" secondAttribute="top" id="wph-at-bZe"/>
                             <constraint firstItem="eqW-Ne-oU2" firstAttribute="top" secondItem="SU7-Uw-EmJ" secondAttribute="bottom" constant="10" id="x9m-Ec-RU1"/>
                         </constraints>
@@ -332,7 +317,6 @@
                         <outlet property="cosmosView" destination="eqW-Ne-oU2" id="GlV-Lr-iZo"/>
                         <outlet property="formBtn" destination="m5l-2I-cd8" id="u34-jM-vKb"/>
                         <outlet property="howWeAreDoingCosmosView" destination="gyQ-DV-BvQ" id="U4p-sD-DFC"/>
-                        <outlet property="imageBtn" destination="T4f-jh-Ihb" id="25Z-6B-6XP"/>
                         <outlet property="restuarantName" destination="1ZL-2U-TL3" id="0sS-BY-E5B"/>
                         <outlet property="whatAreWeDoingGreat" destination="rHU-LC-XoK" id="O9a-Mf-C3n"/>
                         <outlet property="whatCanWeDoBetter" destination="bYF-rJ-XwL" id="nlw-RF-xOc"/>
@@ -660,11 +644,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1144464-200" width="100" height="100"/>
         <image name="Hamburger" width="20" height="13"/>
-        <image name="camera.fill" catalog="system" width="64" height="48"/>
         <image name="feedback-logo" width="170.66667175292969" height="105"/>
         <image name="paper-receipt-icon" width="347" height="461.5"/>
         <image name="starbucks-bg" width="323" height="156"/>
-        <image name="upload_image" width="200" height="200"/>
     </resources>
 </document>

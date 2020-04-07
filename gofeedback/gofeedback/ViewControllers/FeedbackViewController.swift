@@ -11,6 +11,7 @@ import  Cosmos
 import Firebase
 import OpalImagePicker
 import Photos
+import YPImagePicker
 
 class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -64,20 +65,6 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         navigationController?.popViewController(animated: true)
     }
     
-    
-    @IBAction func imagePressed(_ sender: UIButton) {
-        
-        self.isImageFile = true
-       let imagePicker = OpalImagePickerController()
-        imagePicker.imagePickerDelegate = self
-        imagePicker.maximumSelectionsAllowed = 10
-        let configuration = OpalImagePickerConfiguration()
-        configuration.maximumSelectionsAllowedMessage = NSLocalizedString("You cannot select that many images!", comment: "")
-        imagePicker.configuration = configuration
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-
     @IBAction func formPressed(_ sender: UIButton) {
         
         self.isImageFile = false
@@ -198,16 +185,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     
     @IBAction func cameraPressed(_ sender: UIButton) {
         
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            
-            let  imagePicker =  UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .camera
-            present(imagePicker, animated: true, completion: nil)
-        } else {
-            
-            self.popupAlert(title: "Alert", message: "No camera Device", actionTitles: ["OK"], actions: [nil])
-        }
+        self.openCamera()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -410,5 +388,62 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                 }])
            }
         }
+    }
+}
+
+
+extension FeedbackViewController {
+    
+    func configureCamera() -> YPImagePickerConfiguration {
+        
+        var config = YPImagePickerConfiguration()
+        config.library.onlySquare = false
+        config.onlySquareImagesFromCamera = false
+        config.targetImageSize = .original
+        config.usesFrontCamera = true
+        config.shouldSaveNewPicturesToAlbum = true
+        config.video.compression = AVAssetExportPresetHighestQuality
+        config.albumName = "MyGreatAppName"
+        config.screens = [.photo, .video, .library]
+        config.startOnScreen = .photo
+        config.video.recordingTimeLimit = 10
+        config.video.libraryTimeLimit = 20
+        config.showsCrop = .rectangle(ratio: (16/9))
+        config.wordings.libraryTitle = "Gallery"
+        config.hidesStatusBar = false
+        config.showsPhotoFilters = false
+        config.showsCrop = .none
+        config.wordings.next = "Select"
+        
+        //config.overlayView = myOverlayView
+
+        return config
+    }
+    
+    func openCamera() {
+        
+        let picker = YPImagePicker(configuration: configureCamera())
+
+        picker.didFinishPicking { [unowned picker] items, cancelled in
+            
+            if cancelled {
+                
+                print("Picker was canceled")
+                picker.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            for item in items {
+                switch item {
+                case .photo(let photo):
+                    print(photo)
+                case .video(let video):
+                    print(video)
+                }
+            }
+            picker.dismiss(animated: true, completion: nil)
+        }
+        
+        self.present(picker, animated: true, completion: nil)
     }
 }
