@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0CC0166DA36069BEFF14A621 /* Pods_gofeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826B6A7ACB7C66ACAF0D7230 /* Pods_gofeedback.framework */; };
+		0A218A0961C3A39928E55A5C /* Pods_gofeedbackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D25C7BFEB745C6E061644E /* Pods_gofeedbackTests.framework */; };
 		271CBF572418B71000CB113D /* Sidemenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF562418B71000CB113D /* Sidemenu.storyboard */; };
 		271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF592418B80E00CB113D /* Assets.xcassets */; };
 		271CBF5D2418B93D00CB113D /* SideMenuItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */; };
@@ -58,7 +58,7 @@
 		27E6A0DE241909F000B4D336 /* GFRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0D7241909F000B4D336 /* GFRoute.swift */; };
 		27E6A12724190C4700B4D336 /* GFContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A12624190C4700B4D336 /* GFContactViewController.swift */; };
 		27E6A12B241916CC00B4D336 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A129241916CB00B4D336 /* Api.swift */; };
-		950D452A6F9F9F0D7E1F4902 /* Pods_gofeedbackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2611EF6C660B330B018A05FD /* Pods_gofeedbackTests.framework */; };
+		90116B633AF4CC4D38366820 /* Pods_gofeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D759A38249385D60FBE8162 /* Pods_gofeedback.framework */; };
 		F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */; };
 		F70F9300243240DF000D0D8A /* PreviewFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70F92FF243240DE000D0D8A /* PreviewFeedbackViewController.swift */; };
 		F719271F24307C80006BF52A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719271E24307C80006BF52A /* AccountSettingsViewController.swift */; };
@@ -80,7 +80,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2611EF6C660B330B018A05FD /* Pods_gofeedbackTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gofeedbackTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16D25C7BFEB745C6E061644E /* Pods_gofeedbackTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gofeedbackTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		19F6ADF0944BF1137B77B106 /* Pods-gofeedback.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.release.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.release.xcconfig"; sourceTree = "<group>"; };
+		1D759A38249385D60FBE8162 /* Pods_gofeedback.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gofeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		271CBF562418B71000CB113D /* Sidemenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sidemenu.storyboard; sourceTree = "<group>"; };
 		271CBF592418B80E00CB113D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuItemsViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,9 @@
 		27839A27240FF1B4004CEE14 /* gofeedbackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gofeedbackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27839A2B240FF1B4004CEE14 /* gofeedbackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gofeedbackTests.swift; sourceTree = "<group>"; };
 		27839A2D240FF1B4004CEE14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27858E63243C7810006FDB52 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27858E65243C7A82006FDB52 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27858E69243C7B30006FDB52 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E6A0BB2419087E00B4D336 /* GFUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFUtilities.swift; sourceTree = "<group>"; };
 		27E6A0BE2419097700B4D336 /* GFRouteLegsScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFRouteLegsScrollView.swift; sourceTree = "<group>"; };
 		27E6A0BF2419097700B4D336 /* GFStationListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFStationListTableViewCell.swift; sourceTree = "<group>"; };
@@ -135,10 +140,9 @@
 		27E6A0D7241909F000B4D336 /* GFRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFRoute.swift; sourceTree = "<group>"; };
 		27E6A12624190C4700B4D336 /* GFContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFContactViewController.swift; sourceTree = "<group>"; };
 		27E6A129241916CB00B4D336 /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
-		63CECA2BC3CB4D95C4CFC95D /* Pods-gofeedback.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.release.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.release.xcconfig"; sourceTree = "<group>"; };
-		826B6A7ACB7C66ACAF0D7230 /* Pods_gofeedback.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gofeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D82E0E98D0271541D17988D4 /* Pods-gofeedbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.release.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.release.xcconfig"; sourceTree = "<group>"; };
-		E06929F06686B830FC20C9F0 /* Pods-gofeedback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.debug.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.debug.xcconfig"; sourceTree = "<group>"; };
+		2B6D270D9BA3D3282F99ECFB /* Pods-gofeedbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.release.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.release.xcconfig"; sourceTree = "<group>"; };
+		B46273BE11CE967BBE7170DE /* Pods-gofeedbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E49BBA875BF6DE69A0D685CC /* Pods-gofeedback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.debug.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.debug.xcconfig"; sourceTree = "<group>"; };
 		F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFFeedbackModel.swift; sourceTree = "<group>"; };
 		F70F92FF243240DE000D0D8A /* PreviewFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewFeedbackViewController.swift; path = erSwift/PreviewFeedbackViewController.swift; sourceTree = "<group>"; };
 		F719271E24307C80006BF52A /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSettingsViewController.swift; path = erSwift/AccountSettingsViewController.swift; sourceTree = "<group>"; };
@@ -146,8 +150,7 @@
 		F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewControllerViewController.swift; path = erSwift/ContactViewControllerViewController.swift; sourceTree = "<group>"; };
 		F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewImageViewController.swift; path = erSwift/PreviewImageViewController.swift; sourceTree = "<group>"; };
 		F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsListViewController.swift; path = erSwift/AnnotationsListViewController.swift; sourceTree = "<group>"; };
-		F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FE8F23F26945089DE5E2EC32 /* Pods-gofeedbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CC0166DA36069BEFF14A621 /* Pods_gofeedback.framework in Frameworks */,
+				90116B633AF4CC4D38366820 /* Pods_gofeedback.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950D452A6F9F9F0D7E1F4902 /* Pods_gofeedbackTests.framework in Frameworks */,
+				0A218A0961C3A39928E55A5C /* Pods_gofeedbackTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,8 +342,11 @@
 		292A9FDC7B5EDF7A922ACFF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				826B6A7ACB7C66ACAF0D7230 /* Pods_gofeedback.framework */,
-				2611EF6C660B330B018A05FD /* Pods_gofeedbackTests.framework */,
+				27858E69243C7B30006FDB52 /* Alamofire.framework */,
+				27858E65243C7A82006FDB52 /* Alamofire.framework */,
+				27858E63243C7810006FDB52 /* Alamofire.framework */,
+				1D759A38249385D60FBE8162 /* Pods_gofeedback.framework */,
+				16D25C7BFEB745C6E061644E /* Pods_gofeedbackTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -348,10 +354,10 @@
 		E1A1BCF3F60319B41FEC0984 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E06929F06686B830FC20C9F0 /* Pods-gofeedback.debug.xcconfig */,
-				63CECA2BC3CB4D95C4CFC95D /* Pods-gofeedback.release.xcconfig */,
-				FE8F23F26945089DE5E2EC32 /* Pods-gofeedbackTests.debug.xcconfig */,
-				D82E0E98D0271541D17988D4 /* Pods-gofeedbackTests.release.xcconfig */,
+				E49BBA875BF6DE69A0D685CC /* Pods-gofeedback.debug.xcconfig */,
+				19F6ADF0944BF1137B77B106 /* Pods-gofeedback.release.xcconfig */,
+				B46273BE11CE967BBE7170DE /* Pods-gofeedbackTests.debug.xcconfig */,
+				2B6D270D9BA3D3282F99ECFB /* Pods-gofeedbackTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -363,11 +369,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27839A30240FF1B4004CEE14 /* Build configuration list for PBXNativeTarget "gofeedback" */;
 			buildPhases = (
-				0040E67AAEFDCB4684255230 /* [CP] Check Pods Manifest.lock */,
+				1643B2C352B5F3B94902CF78 /* [CP] Check Pods Manifest.lock */,
 				27839A0C240FF1AF004CEE14 /* Sources */,
 				27839A0D240FF1AF004CEE14 /* Frameworks */,
 				27839A0E240FF1AF004CEE14 /* Resources */,
-				54FE862CF1B55E0557F0DB29 /* [CP] Embed Pods Frameworks */,
+				B61A677382F1ADEED5A7428C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -382,7 +388,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27839A33240FF1B4004CEE14 /* Build configuration list for PBXNativeTarget "gofeedbackTests" */;
 			buildPhases = (
-				16BE1F72A7A2EF6A0A0F2397 /* [CP] Check Pods Manifest.lock */,
+				3DF3BFBC48A26382199B2CD5 /* [CP] Check Pods Manifest.lock */,
 				27839A23240FF1B4004CEE14 /* Sources */,
 				27839A24240FF1B4004CEE14 /* Frameworks */,
 				27839A25240FF1B4004CEE14 /* Resources */,
@@ -464,7 +470,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0040E67AAEFDCB4684255230 /* [CP] Check Pods Manifest.lock */ = {
+		1643B2C352B5F3B94902CF78 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -486,7 +492,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		16BE1F72A7A2EF6A0A0F2397 /* [CP] Check Pods Manifest.lock */ = {
+		3DF3BFBC48A26382199B2CD5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -508,7 +514,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		54FE862CF1B55E0557F0DB29 /* [CP] Embed Pods Frameworks */ = {
+		B61A677382F1ADEED5A7428C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -737,7 +743,7 @@
 		};
 		27839A31240FF1B4004CEE14 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E06929F06686B830FC20C9F0 /* Pods-gofeedback.debug.xcconfig */;
+			baseConfigurationReference = E49BBA875BF6DE69A0D685CC /* Pods-gofeedback.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -756,17 +762,17 @@
 		};
 		27839A32240FF1B4004CEE14 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63CECA2BC3CB4D95C4CFC95D /* Pods-gofeedback.release.xcconfig */;
+			baseConfigurationReference = 19F6ADF0944BF1137B77B106 /* Pods-gofeedback.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = THW327YK56;
+				DEVELOPMENT_TEAM = C55HUR6Y5E;
 				INFOPLIST_FILE = gofeedback/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.omni.saintz.gofeedback;
+				PRODUCT_BUNDLE_IDENTIFIER = com.omni.saintz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -775,7 +781,7 @@
 		};
 		27839A34240FF1B4004CEE14 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE8F23F26945089DE5E2EC32 /* Pods-gofeedbackTests.debug.xcconfig */;
+			baseConfigurationReference = B46273BE11CE967BBE7170DE /* Pods-gofeedbackTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -796,7 +802,7 @@
 		};
 		27839A35240FF1B4004CEE14 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D82E0E98D0271541D17988D4 /* Pods-gofeedbackTests.release.xcconfig */;
+			baseConfigurationReference = 2B6D270D9BA3D3282F99ECFB /* Pods-gofeedbackTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
