@@ -32,6 +32,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     var userCurrentLocation:CLLocationCoordinate2D?
     var searchResponse: [CDYelpBusiness]?
     var searchItem = ""
+    var radiusOffset = 100
     
     let yelpAPIClient = CDYelpAPIClient(apiKey: "JuFWYKLiETl9O-z6Tn7ysBeGyXbzON1Eh-_lbP56VDbu5YdZMRLQTBE2rNWfLCCM85Ot21lMMhiW9GsuaEVAg8kBQLPPVoAaTFP99Fm3m9_2WHMBibfkoItNQhuLXnYx")
     
@@ -106,11 +107,17 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     @IBAction func zoomInMap(_ sender: UIButton) {
         
         self.mapView.setZoomByDelta(delta: 0.5, animated: true)
+        self.radiusOffset /= 2
+        print(radiusOffset)
+        self.yelpQuery()
     }
     
     @IBAction func zoomOutMap(_ sender: UIButton) {
         
         self.mapView.setZoomByDelta(delta: 2, animated: true)
+        self.radiusOffset *= 2
+        print(radiusOffset)
+        self.yelpQuery()
     }
     
     @IBAction func nearLocation1Pressed(_ sender: UIButton) {
@@ -169,8 +176,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         locationLong = "\(locations[0].coordinate.longitude)"
         self.centerViewOnUserLocation()
         manager.stopUpdatingLocation()
+        self.radiusOffset = 100
         self.yelpQuery()
-        yelpQuery()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -193,7 +200,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         let zoomFactor = Int(log2(zoomWidth)) - 9
         let pinDistance = (20 * zoomFactor)
         
-        
+        //self.radius = 200
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
     }
@@ -217,16 +224,30 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         
         self.mapView.removeAnnotations(mapView.annotations)
         
+        var radius = 100
+        
         yelpAPIClient.cancelAllPendingAPIRequests()
         
+        if self.radiusOffset > 40000 {
+            
+            radius = 40000
+        } else if self.radiusOffset < 0 {
+            
+            radius = 0
+        } else if self.radiusOffset >= 0 && self.radiusOffset <= 40000 {
+            
+            radius = self.radiusOffset
+        }
+        
+        print("Radius : \(radius)")
         yelpAPIClient.searchBusinesses(byTerm: whereToGoText.text,
                                        location: nil,
                                        latitude: Double(self.locationLat ?? ""),
                                        longitude: Double(self.locationLong ?? ""),
-                                       radius: 10000,
+                                       radius: radius,
                                        categories: nil,
                                        locale: .english_unitedStates,
-                                       limit: nil,
+                                       limit: 50,
                                        offset: nil,
                                        sortBy: .rating,
                                        priceTiers: nil,
