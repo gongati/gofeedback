@@ -9,7 +9,6 @@ target 'gofeedback' do
   pod 'SideMenu'
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'Alamofire', '~> 4.7'
   pod 'Firebase', '>= 2.5.0'
   pod 'FirebaseStorage'
   pod 'FirebaseAuth'
@@ -18,7 +17,10 @@ target 'gofeedback' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'OpalImagePicker'
-  pod "CDYelpFusionKit"
+  pod 'AlamofireObjectMapper', '~> 5.2'
+  pod 'Alamofire', '~> 4.7'
+  pod 'ObjectMapper', '~> 3.5'
+  pod 'CDYelpFusionKit'
   pod 'YPImagePicker'
 
   # add pods for desired Firebase products

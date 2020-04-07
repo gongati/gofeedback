@@ -8,13 +8,14 @@
 
 import UIKit
 import MapKit
+import CDYelpFusionKit
 
 class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
     var searchItem = "Food"
-    var dataSource : [MKMapItem]?
+    var dataSource : [CDYelpBusiness]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,9 @@ class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,U
         if let data = self.dataSource {
             
             cell.textLabel?.text = data[indexPath.row].name
-            cell.detailTextLabel?.text = data[indexPath.row].placemark.title
+            if let location = data[indexPath.row].location {
+            cell.detailTextLabel?.text = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
+            }
         }
         return cell
     }
@@ -60,7 +63,9 @@ class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,U
         }
         
         viewController.feedbackModel.restaurantTitle =  dataSource?[value].name ?? ""
-        viewController.feedbackModel.address = dataSource?[value].placemark.title ?? ""
+        if let location = dataSource?[value].location {
+        viewController.feedbackModel.address = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
+        }
         viewController.searchItem = self.searchItem
         self.navigationController?.pushViewController(viewController, animated: true)
     }

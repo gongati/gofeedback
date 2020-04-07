@@ -302,6 +302,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - AlamofireObjectMapper (~> 5.2)
   - CDYelpFusionKit
   - Cosmos (~> 21.0)
   - Firebase (>= 2.5.0)
@@ -309,6 +310,7 @@ DEPENDENCIES:
   - FirebaseAuth
   - FirebaseFirestoreSwift
   - FirebaseStorage
+  - ObjectMapper (~> 3.5)
   - OpalImagePicker
   - RxCocoa
   - RxSwift
@@ -395,6 +397,6 @@ SPEC CHECKSUMS:
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   YPImagePicker: accf310f9526641a84372c0ecf943547d9b1e52c
 
-PODFILE CHECKSUM: 92a4ae41d616bf873f8f1f0298282eb54f74ea8d
+PODFILE CHECKSUM: ea2837ff4193fadf7b7820330c9a89751aa5d709
 
 COCOAPODS: 1.7.1
