@@ -20,10 +20,14 @@ class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,U
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        self.view.backgroundColor = .gray
+        self.tableView.backgroundColor = .clear
+        
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.tableFooterView = UIView()
+        tableView.register(GFHistoryTableViewCell.self, forCellReuseIdentifier: "DefaultCell")
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
@@ -39,13 +43,11 @@ class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ANNOTATIONCELL", for: indexPath)
-        if let data = self.dataSource {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath) as! GFHistoryTableViewCell
+        if let business = self.dataSource?[indexPath.row] {
             
-            cell.textLabel?.text = data[indexPath.row].name
-            if let location = data[indexPath.row].location {
-            cell.detailTextLabel?.text = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
-            }
+            cell.configureCell(business)
+            
         }
         return cell
     }

@@ -65,7 +65,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="g4g-wH-1KX">
-                                <rect key="frame" x="16" y="125" width="343" height="324"/>
+                                <rect key="frame" x="16" y="125" width="343" height="264"/>
                                 <subviews>
                                     <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmB-4j-FPO">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
@@ -91,24 +91,12 @@
                                             <action selector="showPasses:" destination="on8-Rv-jhf" eventType="touchUpInside" id="r1u-2v-eHt"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4b-78-cce">
+                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nF-vd-Ra9">
                                         <rect key="frame" x="0.0" y="120" width="343" height="24"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                         <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Alerts" image="exclamation-triangle-solid-white">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showAlerts:" destination="on8-Rv-jhf" eventType="touchUpInside" id="OXR-80-IYg"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nF-vd-Ra9">
-                                        <rect key="frame" x="0.0" y="180" width="343" height="24"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                                        <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Account Settings" image="cog-regular">
+                                        <state key="normal" title="Settings" image="cog-regular">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -116,7 +104,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Re7-O1-yvf">
-                                        <rect key="frame" x="0.0" y="240" width="343" height="24"/>
+                                        <rect key="frame" x="0.0" y="180" width="343" height="24"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                         <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -128,7 +116,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OC7-mN-3da">
-                                        <rect key="frame" x="0.0" y="300" width="343" height="24"/>
+                                        <rect key="frame" x="0.0" y="240" width="343" height="24"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                         <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -156,7 +144,6 @@
                     <navigationItem key="navigationItem" id="gvE-0I-YQd"/>
                     <connections>
                         <outlet property="emailLabel" destination="J4X-1p-5Ub" id="zpS-2N-7AG"/>
-                        <outlet property="menuAlerts" destination="M4b-78-cce" id="gh6-f3-SwJ"/>
                         <outlet property="menuContactus" destination="Re7-O1-yvf" id="7rV-cX-z34"/>
                         <outlet property="menuLogin" destination="OC7-mN-3da" id="siv-HN-Aee"/>
                         <outlet property="menuPassPurchase" destination="nzg-cx-soP" id="Sw9-RV-PfG"/>
@@ -174,7 +161,6 @@
     <resources>
         <image name="bus-solid-white" width="22" height="21"/>
         <image name="cog-regular" width="23" height="23"/>
-        <image name="exclamation-triangle-solid-white" width="26" height="23.5"/>
         <image name="phone-solid" width="23" height="23"/>
         <image name="sign-out-alt-light" width="27" height="20"/>
         <image name="ticket-alt-light" width="26" height="17"/>
