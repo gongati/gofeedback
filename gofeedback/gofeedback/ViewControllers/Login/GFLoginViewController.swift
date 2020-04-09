@@ -40,7 +40,7 @@ class GFLoginViewController: GFBaseViewController {
     func verifyPhone() {
         
         
-        if let codeValue = self.codeTxt.text, codeValue.count > 1 {
+        if let codeValue = self.codeTxt.text, codeValue.count > 0 {
             
             if let phoneValue = self.phoneTxt.text, phoneValue.count >= 10 {
                 
