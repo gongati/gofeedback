@@ -87,7 +87,7 @@
                                 <rect key="frame" x="0.0" y="84" width="375" height="583"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ANNOTATIONCELL" textLabel="Nd8-HH-n9P" detailTextLabel="USo-jV-JJg" style="IBUITableViewCellStyleSubtitle" id="psj-ub-tci">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ANNOTATIONCELL" textLabel="Nd8-HH-n9P" detailTextLabel="USo-jV-JJg" rowHeight="55.5" style="IBUITableViewCellStyleSubtitle" id="psj-ub-tci">
                                         <rect key="frame" x="0.0" y="28" width="375" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="psj-ub-tci" id="fAw-5H-2Mg">
@@ -366,7 +366,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oyM-tE-pbX" customClass="GFCustomTableViewCellShadowView" customModule="gofeedback" customModuleProvider="target">
-                                                    <rect key="frame" x="-2" y="-9" width="375" height="68"/>
+                                                    <rect key="frame" x="-2" y="-10" width="375" height="69"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jM-H0-G52">

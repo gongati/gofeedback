@@ -35,6 +35,10 @@ class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,U
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func makeCall(number: String) {
+        
+        
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -47,8 +51,8 @@ class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,U
         if let business = self.dataSource?[indexPath.row] {
             
             cell.configureCell(business)
-            
         }
+        
         return cell
     }
     
@@ -56,6 +60,11 @@ class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,U
         
         self.wayToFeedback(indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 120
     }
     
     func wayToFeedback(_ value:Int) {

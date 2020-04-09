@@ -27,6 +27,8 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
 
     @IBOutlet weak var formBtn: UIButton!
     
+    @IBOutlet weak var cameraButton: UIButton!
+    
     var feedbackModel = FeedbackModel()
 
     var searchItem = ""
@@ -51,6 +53,10 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         
         super.viewWillAppear(animated)
         super.view.backgroundColor = UIColor.white
+        self.cameraButton.layer.cornerRadius = 10
+        self.cameraButton.layer.borderWidth = 1
+        self.cameraButton.contentMode = .scaleAspectFit
+        self.cameraButton.layer.borderColor = UIColor.black.cgColor
     }
     
     override func viewDidAppear(_ animated: Bool) {
