@@ -27,14 +27,18 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
 
     @IBOutlet weak var formBtn: UIButton!
     
+    @IBOutlet weak var imageStackView: UIStackView!
     @IBOutlet weak var cameraButton: UIButton!
     
     var feedbackModel = FeedbackModel()
 
     var searchItem = ""
     var images : [UIImage]?
+    var videoUrl:[URL]?
     var formImage : UIImage?
     var isImageFile = true
+    var stackImageView = [UIImageView]()
+    var removedImageNumber = [Int]()
     
     let db = Firestore.firestore()
     var imageFileName = ""
@@ -404,6 +408,7 @@ extension FeedbackViewController {
         
         var config = YPImagePickerConfiguration()
         config.library.onlySquare = false
+        config.library.mediaType = YPlibraryMediaType.photoAndVideo
         config.onlySquareImagesFromCamera = false
         config.targetImageSize = .original
         config.usesFrontCamera = true
@@ -438,18 +443,122 @@ extension FeedbackViewController {
                 picker.dismiss(animated: true, completion: nil)
                 return
             }
+            if self.imageStackView.subviews.count > 0 {
+                
+                for subview in self.imageStackView.subviews {
+                    
+                    subview.removeFromSuperview()
+                }
+            }
             
+            if self.removedImageNumber.count != 0 {
+                
+                let array = self.removedImageNumber.sorted(by: <)
+                for i in stride(from: self.removedImageNumber.count-1, through: 0, by: -1) {
+                    
+                    self.stackImageView.remove(at: array[i])
+                }
+                self.removedImageNumber.removeAll()
+            }
+            self.imageStackView.addArrangedSubview(self.cameraButton)
             for item in items {
+                let images = UIImageView()
+                let button = UIButton(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+                button.setImage(UIImage(named: "Delete"), for: .normal)
+                button.addTarget(self, action: #selector(self.imageDeletePressed(sender:)), for: .touchUpInside)
+                button.tag = self.stackImageView.count
+                images.addSubview(button)
+                images.isUserInteractionEnabled = true
+                button.snp.makeConstraints { (make) in
+                    
+                    make.top.equalToSuperview()
+                    make.trailing.equalToSuperview()
+                    make.height.equalTo(30)
+                    make.width.equalTo(30)
+                }
                 switch item {
                 case .photo(let photo):
+                    self.images?.append(photo.image)
+                    images.image = (photo.image)
+                    self.stackImageView.append(images)
                     print(photo)
                 case .video(let video):
-                    print(video)
+                    print(video.thumbnail)
+                    self.videoUrl?.append(video.url)
+                    self.images?.append(video.thumbnail)
+                    images.image = (video.thumbnail)
+                     self.stackImageView.append(images)
+                }
+                for subview in self.stackImageView {
+                    
+                self.imageStackView.addArrangedSubview(subview)
                 }
             }
             picker.dismiss(animated: true, completion: nil)
         }
         
         self.present(picker, animated: true, completion: nil)
+    }
+    
+    @objc func imageDeletePressed(sender: UIButton) {
+        
+        var i = 0
+        while i<self.stackImageView.count {
+            
+            if i == sender.tag && self.imageStackView.subviews.count <= i   {
+                
+                print(sender.tag)
+                self.imageStackView.subviews[(i+1) - removedImageNumber.count].removeFromSuperview()
+                 removedImageNumber.append(i)
+            } else if i == sender.tag && self.imageStackView.subviews.count > i {
+                
+                print(sender.tag)
+                self.imageStackView.subviews[(i+1)].removeFromSuperview()
+                removedImageNumber.append(i)
+            }
+            
+            i += 1
+        }
+        
+    }
+    
+    func uploadVideo(_ url:URL) {
+        
+        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
+            
+            var data : Data?
+            let randomName = randomStringWithLength(length: 10)
+            do {
+              data = try Data(contentsOf: url as URL)
+            } catch {
+
+                print(error)
+            }
+
+            let path = "Forms/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).mov"
+            let uploadRef = Storage.storage().reference().child(path)
+          
+            _ = uploadRef.putData(data!, metadata: nil) { metadata,
+                error in
+                if error == nil {
+                    //success
+                    print("success \(path)")
+                    self.feedbackModel.formFilName = path
+
+                } else {
+                    //error
+                    print("error uploading image")
+                }
+                if let images = self.images {
+                    self.feedbackModel.imageFileName.removeAll()
+                    for image in images {
+                        
+                    self.uploadImage(image: image)
+                    }
+                } else {
+                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
+                }
+            }
+        }
     }
 }

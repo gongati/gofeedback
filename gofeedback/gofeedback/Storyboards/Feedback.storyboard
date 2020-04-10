@@ -160,8 +160,12 @@
                                     <action selector="submitPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="yme-gD-v6f"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8A-Rr-ZLA">
-                                <rect key="frame" x="17" y="518" width="343" height="52"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" id="P8q-yy-BMh">
+                                <rect key="frame" x="17" y="480" width="342" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" id="D8A-Rr-ZLA">
+                                <rect key="frame" x="16" y="480" width="343" height="81"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="1144464-200">
@@ -215,6 +219,7 @@
                         <outlet property="commentsTxt" destination="SH6-rO-rKd" id="nPf-qG-N2L"/>
                         <outlet property="cosmosView" destination="eqW-Ne-oU2" id="GlV-Lr-iZo"/>
                         <outlet property="howWeAreDoingCosmosView" destination="gyQ-DV-BvQ" id="U4p-sD-DFC"/>
+                        <outlet property="imageStackView" destination="P8q-yy-BMh" id="6AM-zK-sZd"/>
                         <outlet property="restuarantName" destination="1ZL-2U-TL3" id="0sS-BY-E5B"/>
                         <outlet property="whatAreWeDoingGreat" destination="rHU-LC-XoK" id="O9a-Mf-C3n"/>
                         <outlet property="whatCanWeDoBetter" destination="bYF-rJ-XwL" id="nlw-RF-xOc"/>

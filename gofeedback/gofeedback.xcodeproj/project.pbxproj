@@ -66,6 +66,7 @@
 		F719B7B324334A880017D5D1 /* ContactViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */; };
 		F7295FC32438C283003AFE77 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */; };
 		F7295FC52438CE71003AFE77 /* AnnotationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */; };
+		F77E7A1F243F6EB400DFDC7B /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */; };
 		F7FDB506243A2BAF00B8168A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -150,6 +151,7 @@
 		F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewControllerViewController.swift; path = erSwift/ContactViewControllerViewController.swift; sourceTree = "<group>"; };
 		F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewImageViewController.swift; path = erSwift/PreviewImageViewController.swift; sourceTree = "<group>"; };
 		F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsListViewController.swift; path = erSwift/AnnotationsListViewController.swift; sourceTree = "<group>"; };
+		F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotation.swift; path = emplate/CustomAnnotation.swift; sourceTree = "<group>"; };
 		F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -312,6 +314,7 @@
 				27E6A0C42419097700B4D336 /* GFCustomTableViewCellShadowView.swift */,
 				27E6A0C52419097700B4D336 /* GFHistoryTableViewCell.swift */,
 				27E6A0C62419097700B4D336 /* GFWhiteButtonTextField.swift */,
+				F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */,
 			);
 			path = "Custom Objects";
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */,
 				271CBF672418D47900CB113D /* GFConstants.swift in Sources */,
 				27E6A0CB2419097700B4D336 /* GFRouteOptionTableViewCell.swift in Sources */,
+				F77E7A1F243F6EB400DFDC7B /* CustomAnnotation.swift in Sources */,
 				27E6A0CF2419097700B4D336 /* GFWhiteButtonTextField.swift in Sources */,
 				271CBF812418D55A00CB113D /* SignUpModel.swift in Sources */,
 				271CBF7E2418D55A00CB113D /* GFLoginViewController.swift in Sources */,
