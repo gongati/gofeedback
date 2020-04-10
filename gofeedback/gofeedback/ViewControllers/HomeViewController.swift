@@ -20,7 +20,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     @IBOutlet weak var zoomOutBtn: UIButton!
     @IBOutlet weak var zoomInBtn: UIButton!
-    
+    @IBOutlet weak var currentLocationBtn: UIButton!
+
     @IBOutlet weak var nearLocation1: UIButton!
     @IBOutlet weak var nearLocation2: UIButton!
     @IBOutlet weak var nearLocation3: UIButton!
@@ -47,6 +48,10 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         nearLocation3.isHidden = true
         listOutlet.isHidden = true
         
+        self.zoomInBtn.makeCircular()
+        self.zoomOutBtn.makeCircular()
+        self.currentLocationBtn.makeCircular()
+        self.currentLocationBtn.imageEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -501,5 +506,18 @@ extension MKMapView {
         _region.span = _span;
         
         setRegion(_region, animated: animated)
+    }
+}
+
+extension UIView {
+    
+    func makeCircular() {
+        
+        self.layer.cornerRadius = min(self.frame.size.height, self.frame.size.width) / 2.0
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowRadius = 1
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.masksToBounds = false
     }
 }
