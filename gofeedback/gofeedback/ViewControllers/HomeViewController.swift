@@ -187,7 +187,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
             mapView.setRegion(region, animated: true)
             
-            self.fetchYelpBusinesses(latitude: location.latitude, longitude: location.longitude)
+           // self.fetchYelpBusinesses(latitude: location.latitude, longitude: location.longitude)
 
         }
     }
@@ -291,10 +291,14 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                                 self.searchResponse = response.businesses
                                                 for business in businesses {
                                                     
-                                                    let annotation = MKPointAnnotation()
-                                                    annotation.coordinate = CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 0, longitude: business.coordinates?.longitude ?? 0)
-                                                    annotation.title = business.name
-                                                    self.mapView.addAnnotation(annotation)
+                                                    let point = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 0, longitude: business.coordinates?.longitude ?? 0))
+                                                    point.business = business
+                                                     self.mapView.addAnnotation(point)
+                                                    
+//                                                    let annotation = MKPointAnnotation()
+//                                                    annotation.coordinate = CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 0, longitude: business.coordinates?.longitude ?? 0)
+//                                                    annotation.title = business.name
+//                                                    self.mapView.addAnnotation(annotation)
                                                 }
                                                 
                                                 DispatchQueue.main.async {
@@ -440,18 +444,33 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            
+           if let customAnnotation = view.annotation as? CustomAnnotation {
+                    
+                let calloutView = GFHistoryTableViewCell()
+                calloutView.configureCell(customAnnotation.business)
+            
+                    calloutView.contentView.snp.makeConstraints { (make) in
+                        make.edges.equalToSuperview()
+                        make.height.equalTo(110)
+                    }
+            
+            
+            let btn = UIButton(frame: calloutView.frame)
+            btn.addTarget(self, action: #selector(self.annotationPressed(sender:)), for: .touchUpInside)
+            btn.text(customAnnotation.business?.name ?? "")
+            btn.titleLabel?.height(0)
+            calloutView.addSubview(btn)
+            calloutView.isUserInteractionEnabled = true
+            view.detailCalloutAccessoryView = calloutView
+            }
         }
         return view
     }
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
-                 calloutAccessoryControlTapped control: UIControl) {
-        
-        if let title = view.annotation?.title {
+    @objc func annotationPressed(sender: UIButton) {
             
-            self.wayToFeedbackViewController(title)
-        }
+        self.wayToFeedbackViewController(sender.titleLabel?.text)
     }
     
     func wayToFeedbackViewController(_ title:String?) {
