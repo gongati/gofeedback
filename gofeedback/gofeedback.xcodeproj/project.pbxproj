@@ -67,6 +67,7 @@
 		F7295FC32438C283003AFE77 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */; };
 		F7295FC52438CE71003AFE77 /* AnnotationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */; };
 		F77E7A1F243F6EB400DFDC7B /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */; };
+		F78495A12441FB200086B70B /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F78495A02441FAAF0086B70B /* video.mp4 */; };
 		F7FDB506243A2BAF00B8168A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,7 @@
 		F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewImageViewController.swift; path = erSwift/PreviewImageViewController.swift; sourceTree = "<group>"; };
 		F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsListViewController.swift; path = erSwift/AnnotationsListViewController.swift; sourceTree = "<group>"; };
 		F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotation.swift; path = emplate/CustomAnnotation.swift; sourceTree = "<group>"; };
+		F78495A02441FAAF0086B70B /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -277,6 +279,7 @@
 		27839A12240FF1AF004CEE14 /* gofeedback */ = {
 			isa = PBXGroup;
 			children = (
+				F78495A02441FAAF0086B70B /* video.mp4 */,
 				27E6A128241916CB00B4D336 /* API Manager */,
 				27E6A0D0241909F000B4D336 /* Models */,
 				27E6A0BD2419097700B4D336 /* Custom Objects */,
@@ -458,6 +461,7 @@
 				271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */,
 				2741C188242D2512007A9F9D /* Account.storyboard in Resources */,
 				F7FDB506243A2BAF00B8168A /* GoogleService-Info.plist in Resources */,
+				F78495A12441FB200086B70B /* video.mp4 in Resources */,
 				2741C18A242D27AB007A9F9D /* Contact.storyboard in Resources */,
 				2741C18C242D27BC007A9F9D /* Alerts.storyboard in Resources */,
 			);

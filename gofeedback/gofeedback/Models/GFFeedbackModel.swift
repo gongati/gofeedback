@@ -20,6 +20,7 @@ struct FeedbackModel {
     var searchItem = ""
     var imageFileName = [""]
     var formFilName = ""
+    var videoFilName = [""]
     var isSubmitBtnHidden = false
     var status:FeedbackStatus = .none
 }
