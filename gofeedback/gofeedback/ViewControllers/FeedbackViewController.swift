@@ -40,6 +40,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     var formImage : UIImage?
     var isImageFile = true
     var stackImageView = [UIImageView]()
+    var videoTag = [Int]()
     
     let db = Firestore.firestore()
     var imageFileName = ""
@@ -107,9 +108,13 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             if let _ = images, let form = formImage{
                 
                 self.uploadForm(image: form)
-            } else if let form = self.formImage {
+            } else if let videoUrl = self.videoUrl {
                 
-                self.uploadForm(image: form)
+                self.feedbackModel.videoFilName.removeAll()
+                for url in videoUrl {
+                    
+                    self.uploadVideo(url)
+                }
             } else if let images = images {
                 
                 self.feedbackModel.imageFileName.removeAll()
@@ -148,9 +153,13 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
            if let _ = images, let form = formImage{
                
                self.uploadForm(image: form)
-           } else if let form = self.formImage {
-               
-               self.uploadForm(image: form)
+           } else if let videoUrl = self.videoUrl {
+
+             self.feedbackModel.videoFilName.removeAll()
+            for url in videoUrl {
+                
+                self.uploadVideo(url)
+            }
            } else if let images = images {
                
                self.feedbackModel.imageFileName.removeAll()
@@ -393,7 +402,8 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             Constants.FeedbackCommands.rating : self.feedbackModel.rating,
             Constants.FeedbackCommands.images : self.feedbackModel.imageFileName,
             Constants.FeedbackCommands.form : self.feedbackModel.formFilName,
-            Constants.FeedbackCommands.status : self.feedbackModel.status.rawValue
+            Constants.FeedbackCommands.status : self.feedbackModel.status.rawValue,
+            Constants.FeedbackCommands.videoUrl : self.feedbackModel.videoFilName
             
         ]) { (error) in
             if let err = error {
@@ -461,19 +471,8 @@ extension FeedbackViewController {
             
             self.imageStackView.addArrangedSubview(self.cameraButton)
             for item in items {
+                
                 let images = UIImageView()
-                let button = UIButton(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-                button.setImage(UIImage(named: "Delete"), for: .normal)
-                button.addTarget(self, action: #selector(self.imageDeletePressed(sender:)), for: .touchUpInside)
-                images.addSubview(button)
-                images.isUserInteractionEnabled = true
-                button.snp.makeConstraints { (make) in
-                    
-                    make.top.equalToSuperview()
-                    make.trailing.equalToSuperview()
-                    make.height.equalTo(30)
-                    make.width.equalTo(30)
-                }
                 switch item {
                 case .photo(let photo):
                     self.images?.append(photo.image)
@@ -485,12 +484,31 @@ extension FeedbackViewController {
                     self.videoUrl?.append(video.url)
                     self.images?.append(video.thumbnail)
                     images.image = (video.thumbnail)
-                     self.stackImageView.append(images)
+                    self.stackImageView.append(images)
+                    self.videoTag.append(self.stackImageView[self.stackImageView.count - 1].hashValue)
                 }
-                button.tag = self.stackImageView[self.stackImageView.count - 1].hashValue
+    
                 for subview in self.stackImageView {
                     
-                self.imageStackView.addArrangedSubview(subview)
+                    let imageButton = UIButton()
+                    imageButton.addTarget(self, action: #selector(self.imageButtonPressed(sender:)), for: .touchUpInside)
+                    imageButton.setImage(subview.image, for: .normal)
+                    imageButton.tag = subview.hashValue
+                    
+                    let button = UIButton(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+                    button.setImage(UIImage(named: "Delete"), for: .normal)
+                    button.addTarget(self, action: #selector(self.imageDeletePressed(sender:)), for: .touchUpInside)
+                    button.tag = subview.hashValue
+                    imageButton.addSubview(button)
+                    button.snp.makeConstraints { (make) in
+                        
+                        make.top.equalToSuperview()
+                        make.trailing.equalToSuperview()
+                        make.height.equalTo(30)
+                        make.width.equalTo(30)
+                    }
+                    
+                    self.imageStackView.addArrangedSubview(imageButton)
                 }
             }
             picker.dismiss(animated: true, completion: nil)
@@ -514,6 +532,48 @@ extension FeedbackViewController {
         
     }
     
+    @objc func imageButtonPressed(sender: UIButton) {
+        
+        for i in 0..<self.stackImageView.count {
+            
+            if sender.tag == self.stackImageView[i].hashValue {
+                
+                if  self.videoTag.count != 0 {
+                    
+                    for j in 0..<self.videoTag.count {
+                        
+                        if sender.tag == self.videoTag[j] {
+                            
+                            performSegue(withIdentifier: "FeedbackPreviewImage", sender: self.videoUrl?[j])
+                        }
+                    }
+                } else {
+                
+                 performSegue(withIdentifier: "FeedbackPreviewImage", sender: sender.imageView?.image)
+                }
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "FeedbackPreviewImage" {
+            
+            
+            let vc = segue.destination as! PreviewImageViewController
+            
+            vc.image = sender as? UIImage
+            
+            if let sender = sender as? URL {
+                
+                vc.videoUrl = sender
+                vc.isVideo = true
+            }
+            
+        }
+        
+    }
+    
     func uploadVideo(_ url:URL) {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
@@ -527,7 +587,7 @@ extension FeedbackViewController {
                 print(error)
             }
 
-            let path = "Forms/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).mov"
+            let path = "Videos/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).mov"
             let uploadRef = Storage.storage().reference().child(path)
           
             _ = uploadRef.putData(data!, metadata: nil) { metadata,
@@ -535,7 +595,7 @@ extension FeedbackViewController {
                 if error == nil {
                     //success
                     print("success \(path)")
-                    self.feedbackModel.formFilName = path
+                    self.feedbackModel.videoFilName.append(path)
 
                 } else {
                     //error

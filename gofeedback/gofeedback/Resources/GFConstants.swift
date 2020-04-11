@@ -163,6 +163,7 @@ struct Constants {
         static let images = "Images"
         static let form = "Form"
         static let status = "Status"
+        static let videoUrl = "Videos"
     }
     
     struct userDetails {

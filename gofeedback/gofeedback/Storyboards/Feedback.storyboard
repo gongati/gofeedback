@@ -224,6 +224,7 @@
                         <outlet property="restuarantName" destination="1ZL-2U-TL3" id="0sS-BY-E5B"/>
                         <outlet property="whatAreWeDoingGreat" destination="rHU-LC-XoK" id="O9a-Mf-C3n"/>
                         <outlet property="whatCanWeDoBetter" destination="bYF-rJ-XwL" id="nlw-RF-xOc"/>
+                        <segue destination="MP3-k5-u9k" kind="presentation" identifier="FeedbackPreviewImage" id="ULF-wO-Zq4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BFx-d9-v7X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -554,4 +555,7 @@
         <image name="gofeedback-logo-180x180" width="180" height="180"/>
         <image name="starbucks-bg" width="323" height="156"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ULF-wO-Zq4"/>
+    </inferredMetricsTieBreakers>
 </document>
