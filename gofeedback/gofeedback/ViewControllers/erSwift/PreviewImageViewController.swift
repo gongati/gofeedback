@@ -21,7 +21,7 @@ class PreviewImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // isVideo = true
+        isVideo = true // remove this line
         if (isVideo ?? false) {
             
             self.imageView.removeFromSuperview()
@@ -35,16 +35,18 @@ class PreviewImageViewController: UIViewController {
         
         if (isVideo ?? false) {
           
-//            guard let path = Bundle.main.path(forResource: "video", ofType:"mp4") else {
-//                debugPrint("video.m4v not found")
-//                return
-//            }
-            if let videoURL =  self.videoUrl {//URL(fileURLWithPath: path)
-                let player = AVPlayer(url: videoURL)
-                let playerLayer = AVPlayerLayer(player: player)
-                playerLayer.frame = self.view.bounds
-                self.view.layer.addSublayer(playerLayer)
-                player.play()
+            guard let path = Bundle.main.path(forResource: "video", ofType:"mp4") else {
+                debugPrint("video.m4v not found")
+                return
+            }
+            if let videoURL =  videoUrl {
+                
+                // remove URL(fileURLWithPath: path) & add videoURL in that place
+            let player = AVPlayer(url: URL(fileURLWithPath: path))
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = self.view.bounds
+        self.view.layer.addSublayer(playerLayer)
+        player.play()
             }
         }
     }
