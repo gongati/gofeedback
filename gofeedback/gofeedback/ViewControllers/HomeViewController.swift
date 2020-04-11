@@ -298,6 +298,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                                     
                                                     let point = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 0, longitude: business.coordinates?.longitude ?? 0))
                                                     point.business = business
+                                                    point.title = business.name
                                                      self.mapView.addAnnotation(point)
                                                     
 //                                                    let annotation = MKPointAnnotation()
@@ -448,24 +449,20 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
+            view.titleVisibility = .adaptive
             view.calloutOffset = CGPoint(x: -5, y: 5)
             
            if let customAnnotation = view.annotation as? CustomAnnotation {
                     
-                let calloutView = GFHistoryTableViewCell()
-                calloutView.configureCell(customAnnotation.business)
+                let calloutView = CustomAnnotationView()
+                calloutView.configureView(customAnnotation.business)
             
-                    calloutView.contentView.snp.makeConstraints { (make) in
-                        make.edges.equalToSuperview()
-                        make.height.equalTo(110)
+                    calloutView.snp.makeConstraints { (make) in
+                        
+                        make.height.equalTo(80)
                     }
-            
-            
-            let btn = UIButton(frame: calloutView.frame)
-            btn.addTarget(self, action: #selector(self.annotationPressed(sender:)), for: .touchUpInside)
-            btn.text(customAnnotation.business?.name ?? "")
-            btn.titleLabel?.height(0)
-            calloutView.addSubview(btn)
+
+            calloutView.actionButton.addTarget(self, action: #selector(self.annotationPressed(sender:)), for: .touchUpInside)
             calloutView.isUserInteractionEnabled = true
             view.detailCalloutAccessoryView = calloutView
             }
@@ -480,6 +477,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     func wayToFeedbackViewController(_ title:String?) {
         
+        //TODO - this for loop can be removed
         for i in 0..<(searchResponse?.count ?? 1) {
             
             if searchResponse?[i].name ?? "" == title {
