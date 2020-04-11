@@ -12,6 +12,7 @@ import Firebase
 import OpalImagePicker
 import Photos
 import YPImagePicker
+import CDYelpFusionKit
 
 class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -29,6 +30,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     
     @IBOutlet weak var imageStackView: UIStackView!
     @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var headerImageView: UIImageView!
     
     var feedbackModel = FeedbackModel()
 
@@ -42,12 +44,19 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     let db = Firestore.firestore()
     var imageFileName = ""
     var formFilName = ""
+    var bussiness: CDYelpBusiness?
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        restuarantName.text = feedbackModel.restaurantTitle
-        addressLabel.text = feedbackModel.address
+        self.restuarantName.text = feedbackModel.restaurantTitle
+        self.addressLabel.text = feedbackModel.address
+        if let bimages = self.bussiness?.photos, bimages.count > 0 {
+            
+            self.headerImageView.downloaded(from: bimages[0], contentMode: .scaleAspectFill)
+        } else {
+            self.headerImageView.downloaded(from: self.bussiness?.imageUrl?.absoluteString ?? "", contentMode: .scaleAspectFill)
+        }
         
         self.addDoneButtonOnKeyboard()
     }

@@ -487,6 +487,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                 }
                 
                 viewController.feedbackModel.restaurantTitle =  searchResponse?[i].name ?? ""
+                viewController.bussiness = searchResponse?[i]
+                
                 if let location = searchResponse?[i].location {
                     
                     viewController.feedbackModel.address = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
