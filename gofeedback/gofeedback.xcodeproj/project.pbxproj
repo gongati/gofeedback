@@ -33,6 +33,8 @@
 		274D69D62427AEB200597AFF /* NameTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69D12427AEB200597AFF /* NameTextViewModel.swift */; };
 		276BAEC2241BF43600C66EAC /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276BAEC1241BF43600C66EAC /* Feedback.storyboard */; };
 		276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAECB241D58E100C66EAC /* GFReachability.swift */; };
+		277EB41B2440F33B000CA425 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277EB41A2440F33B000CA425 /* CustomAnnotation.swift */; };
+		277EB41D244102EE000CA425 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277EB41C244102EE000CA425 /* CustomAnnotationView.swift */; };
 		27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A13240FF1AF004CEE14 /* AppDelegate.swift */; };
 		27839A16240FF1AF004CEE14 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A15240FF1AF004CEE14 /* FeedbackViewController.swift */; };
 		27839A19240FF1AF004CEE14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27839A17240FF1AF004CEE14 /* Main.storyboard */; };
@@ -66,8 +68,10 @@
 		F719B7B324334A880017D5D1 /* ContactViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */; };
 		F7295FC32438C283003AFE77 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */; };
 		F7295FC52438CE71003AFE77 /* AnnotationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */; };
+
 		F77E7A1F243F6EB400DFDC7B /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */; };
 		F78495A12441FB200086B70B /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F78495A02441FAAF0086B70B /* video.mp4 */; };
+
 		F7FDB506243A2BAF00B8168A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +114,8 @@
 		274D69D12427AEB200597AFF /* NameTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTextViewModel.swift; sourceTree = "<group>"; };
 		276BAEC1241BF43600C66EAC /* Feedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feedback.storyboard; sourceTree = "<group>"; };
 		276BAECB241D58E100C66EAC /* GFReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFReachability.swift; sourceTree = "<group>"; };
+		277EB41A2440F33B000CA425 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		277EB41C244102EE000CA425 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		27839A10240FF1AF004CEE14 /* gofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gofeedback.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27839A13240FF1AF004CEE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27839A15240FF1AF004CEE14 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
@@ -152,8 +158,10 @@
 		F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewControllerViewController.swift; path = erSwift/ContactViewControllerViewController.swift; sourceTree = "<group>"; };
 		F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewImageViewController.swift; path = erSwift/PreviewImageViewController.swift; sourceTree = "<group>"; };
 		F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsListViewController.swift; path = erSwift/AnnotationsListViewController.swift; sourceTree = "<group>"; };
+
 		F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotation.swift; path = emplate/CustomAnnotation.swift; sourceTree = "<group>"; };
 		F78495A02441FAAF0086B70B /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
+
 		F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -308,6 +316,7 @@
 		27E6A0BD2419097700B4D336 /* Custom Objects */ = {
 			isa = PBXGroup;
 			children = (
+				277EB41A2440F33B000CA425 /* CustomAnnotation.swift */,
 				27E6A0BE2419097700B4D336 /* GFRouteLegsScrollView.swift */,
 				27E6A0BF2419097700B4D336 /* GFStationListTableViewCell.swift */,
 				27E6A0C02419097700B4D336 /* GFTextFieldBackGround.swift */,
@@ -317,7 +326,7 @@
 				27E6A0C42419097700B4D336 /* GFCustomTableViewCellShadowView.swift */,
 				27E6A0C52419097700B4D336 /* GFHistoryTableViewCell.swift */,
 				27E6A0C62419097700B4D336 /* GFWhiteButtonTextField.swift */,
-				F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */,
+				277EB41C244102EE000CA425 /* CustomAnnotationView.swift */,
 			);
 			path = "Custom Objects";
 			sourceTree = "<group>";
@@ -567,7 +576,9 @@
 				27E6A0DB241909F000B4D336 /* GFRecentTrip.swift in Sources */,
 				F719B7B324334A880017D5D1 /* ContactViewControllerViewController.swift in Sources */,
 				271CBF802418D55A00CB113D /* GFSignupViewController.swift in Sources */,
+				277EB41D244102EE000CA425 /* CustomAnnotationView.swift in Sources */,
 				27E6A0C92419097700B4D336 /* GFTextFieldBackGround.swift in Sources */,
+				277EB41B2440F33B000CA425 /* CustomAnnotation.swift in Sources */,
 				F70F9300243240DF000D0D8A /* PreviewFeedbackViewController.swift in Sources */,
 				F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */,
 				27E6A12724190C4700B4D336 /* GFContactViewController.swift in Sources */,
@@ -576,7 +587,6 @@
 				27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */,
 				271CBF672418D47900CB113D /* GFConstants.swift in Sources */,
 				27E6A0CB2419097700B4D336 /* GFRouteOptionTableViewCell.swift in Sources */,
-				F77E7A1F243F6EB400DFDC7B /* CustomAnnotation.swift in Sources */,
 				27E6A0CF2419097700B4D336 /* GFWhiteButtonTextField.swift in Sources */,
 				271CBF812418D55A00CB113D /* SignUpModel.swift in Sources */,
 				271CBF7E2418D55A00CB113D /* GFLoginViewController.swift in Sources */,

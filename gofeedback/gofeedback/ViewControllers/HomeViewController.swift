@@ -20,7 +20,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     @IBOutlet weak var zoomOutBtn: UIButton!
     @IBOutlet weak var zoomInBtn: UIButton!
-    
+    @IBOutlet weak var currentLocationBtn: UIButton!
+
     @IBOutlet weak var nearLocation1: UIButton!
     @IBOutlet weak var nearLocation2: UIButton!
     @IBOutlet weak var nearLocation3: UIButton!
@@ -47,6 +48,10 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         nearLocation3.isHidden = true
         listOutlet.isHidden = true
         
+        self.zoomInBtn.makeCircular()
+        self.zoomOutBtn.makeCircular()
+        self.currentLocationBtn.makeCircular()
+        self.currentLocationBtn.imageEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -293,6 +298,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                                     
                                                     let point = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 0, longitude: business.coordinates?.longitude ?? 0))
                                                     point.business = business
+                                                    point.title = business.name
                                                      self.mapView.addAnnotation(point)
                                                     
 //                                                    let annotation = MKPointAnnotation()
@@ -443,24 +449,20 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
+            view.titleVisibility = .adaptive
             view.calloutOffset = CGPoint(x: -5, y: 5)
             
            if let customAnnotation = view.annotation as? CustomAnnotation {
                     
-                let calloutView = GFHistoryTableViewCell()
-                calloutView.configureCell(customAnnotation.business)
+                let calloutView = CustomAnnotationView()
+                calloutView.configureView(customAnnotation.business)
             
-                    calloutView.contentView.snp.makeConstraints { (make) in
-                        make.edges.equalToSuperview()
-                        make.height.equalTo(110)
+                    calloutView.snp.makeConstraints { (make) in
+                        
+                        make.height.equalTo(80)
                     }
-            
-            
-            let btn = UIButton(frame: calloutView.frame)
-            btn.addTarget(self, action: #selector(self.annotationPressed(sender:)), for: .touchUpInside)
-            btn.text(customAnnotation.business?.name ?? "")
-            btn.titleLabel?.height(0)
-            calloutView.addSubview(btn)
+
+            calloutView.actionButton.addTarget(self, action: #selector(self.annotationPressed(sender:)), for: .touchUpInside)
             calloutView.isUserInteractionEnabled = true
             view.detailCalloutAccessoryView = calloutView
             }
@@ -475,6 +477,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     func wayToFeedbackViewController(_ title:String?) {
         
+        //TODO - this for loop can be removed
         for i in 0..<(searchResponse?.count ?? 1) {
             
             if searchResponse?[i].name ?? "" == title {
@@ -520,5 +523,18 @@ extension MKMapView {
         _region.span = _span;
         
         setRegion(_region, animated: animated)
+    }
+}
+
+extension UIView {
+    
+    func makeCircular() {
+        
+        self.layer.cornerRadius = min(self.frame.size.height, self.frame.size.width) / 2.0
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowRadius = 1
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.masksToBounds = false
     }
 }
