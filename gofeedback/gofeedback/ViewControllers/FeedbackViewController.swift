@@ -38,7 +38,6 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     var formImage : UIImage?
     var isImageFile = true
     var stackImageView = [UIImageView]()
-    var removedImageNumber = [Int]()
     
     let db = Firestore.firestore()
     var imageFileName = ""
@@ -451,22 +450,12 @@ extension FeedbackViewController {
                 }
             }
             
-            if self.removedImageNumber.count != 0 {
-                
-                let array = self.removedImageNumber.sorted(by: <)
-                for i in stride(from: self.removedImageNumber.count-1, through: 0, by: -1) {
-                    
-                    self.stackImageView.remove(at: array[i])
-                }
-                self.removedImageNumber.removeAll()
-            }
             self.imageStackView.addArrangedSubview(self.cameraButton)
             for item in items {
                 let images = UIImageView()
                 let button = UIButton(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
                 button.setImage(UIImage(named: "Delete"), for: .normal)
                 button.addTarget(self, action: #selector(self.imageDeletePressed(sender:)), for: .touchUpInside)
-                button.tag = self.stackImageView.count
                 images.addSubview(button)
                 images.isUserInteractionEnabled = true
                 button.snp.makeConstraints { (make) in
@@ -489,6 +478,7 @@ extension FeedbackViewController {
                     images.image = (video.thumbnail)
                      self.stackImageView.append(images)
                 }
+                button.tag = self.stackImageView[self.stackImageView.count - 1].hashValue
                 for subview in self.stackImageView {
                     
                 self.imageStackView.addArrangedSubview(subview)
@@ -505,18 +495,11 @@ extension FeedbackViewController {
         var i = 0
         while i<self.stackImageView.count {
             
-            if i == sender.tag && self.imageStackView.subviews.count <= i   {
+            if sender.tag == self.stackImageView[i].hashValue {
                 
-                print(sender.tag)
-                self.imageStackView.subviews[(i+1) - removedImageNumber.count].removeFromSuperview()
-                 removedImageNumber.append(i)
-            } else if i == sender.tag && self.imageStackView.subviews.count > i {
-                
-                print(sender.tag)
-                self.imageStackView.subviews[(i+1)].removeFromSuperview()
-                removedImageNumber.append(i)
+                self.imageStackView.subviews[i+1].removeFromSuperview()
+                self.stackImageView.remove(at: i)
             }
-            
             i += 1
         }
         
@@ -560,5 +543,11 @@ extension FeedbackViewController {
                 }
             }
         }
+    }
+}
+
+extension Array {
+    mutating func move(at index: Index, to newIndex: Index) {
+        insert(remove(at: index), at: newIndex)
     }
 }
