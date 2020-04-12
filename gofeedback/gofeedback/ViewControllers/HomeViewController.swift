@@ -92,6 +92,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     func requestCurrentLocation()
     {
+        GFGlobal.localDebug = false
+
         mapView.showsUserLocation = true
         
         if CLLocationManager.locationServicesEnabled() == true {
@@ -165,6 +167,10 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         self.wayToAnnotationList()
     }
     
+    @IBAction func setupLocalLocation(_ sender: UIButton) {
+        
+        self.setupDebugLocation(lat: "37.785834", long: "-122.406417")
+    }
     
     //MARK:- UITextField Delegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -187,6 +193,15 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     func centerViewOnUserLocation() {
         
+        if GFGlobal.localDebug {
+            
+            let location = CLLocationCoordinate2D(
+                latitude: Double(self.locationLat ?? "0")!,
+                longitude: Double(self.locationLong ?? "0")!)
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
+            mapView.setRegion(region, animated: true)
+        }
+        
         if let location = locationManager.location?.coordinate {
             
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
@@ -195,6 +210,16 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
            // self.fetchYelpBusinesses(latitude: location.latitude, longitude: location.longitude)
 
         }
+    }
+    
+    func setupDebugLocation(lat:String, long:String) {
+        
+        GFGlobal.localDebug = true
+        self.locationLat = lat
+        self.locationLong = long
+        
+        self.centerViewOnUserLocation()
+        self.yelpQuery()
     }
     
     //MARK:- CLLocationManager Delegates
