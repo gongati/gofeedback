@@ -26,17 +26,21 @@ class PreviewFeedbackViewController: GFBaseViewController {
     @IBOutlet weak var imageLabel: UILabel!
     @IBOutlet weak var formLabel: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+
+    @IBOutlet weak var imageStackView: UIStackView!
+    
     var feedbackModel = FeedbackModel()
     var images:[UIImage]?
     var formImage:UIImage?
+    var videoUrl:[URL]?
+    var videoTag:[Int]?
     
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        imageLabel.isHidden = true
-        formLabel.isHidden = true
         self.UIUpdate()
         
     }
@@ -73,9 +77,13 @@ class PreviewFeedbackViewController: GFBaseViewController {
             if let _ = images, let form = formImage{
                 
                 self.uploadForm(image: form)
-            } else if let form = self.formImage {
+            } else if let videoUrl = self.videoUrl {
+
+             self.feedbackModel.videoFilName.removeAll()
+            for url in videoUrl {
                 
-                self.uploadForm(image: form)
+                self.uploadVideo(url)
+            }
             } else if let images = images {
                 self.feedbackModel.imageFileName.removeAll()
                 for image in images {
@@ -144,19 +152,6 @@ class PreviewFeedbackViewController: GFBaseViewController {
         }
     }
     
-    func showImage(_ image:UIImage,_ title:String) {
-        
-        let showAlert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        let imageView = UIImageView(frame: CGRect(x: 10, y: 50, width: 250, height: 230))
-        imageView.image = image
-        showAlert.view.addSubview(imageView)
-        let height = NSLayoutConstraint(item: showAlert.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 320)
-        let width = NSLayoutConstraint(item: showAlert.view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
-        showAlert.view.addConstraint(height)
-        showAlert.view.addConstraint(width)
-        showAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(showAlert, animated: true, completion: nil)
-    }
     
     func uploadImage(image: UIImage) {
         
@@ -239,26 +234,23 @@ class PreviewFeedbackViewController: GFBaseViewController {
         howWeAreDoingCosmosView.rating = feedbackModel.howWeAreDoingRating
         commentsTxt.text = feedbackModel.comments
         
-        if let form = self.formImage {
-            
-            formLabel.isHidden = false
-            formImageView.setImage(form, for: .normal)
-            formImageView.imageView?.contentMode = .scaleAspectFit
-            
-        }
-        
         if let images = self.images {
-            
-            imageLabel.isHidden = false
-            for image in images {
+            for subview in images {
+                let imageButton = UIButton()
+                imageButton.addTarget(self, action: #selector(self.imageButtonPressed(sender:)), for: .touchUpInside)
+                imageButton.setImage(subview, for: .normal)
+                imageButton.tag = subview.hashValue
                 
-                let button = UIButton()
-                button.imageView?.contentMode = .scaleAspectFit
-                button.setImage(image, for: .normal)
-                 button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-                imagesStackView.addArrangedSubview(button)
-                imagesStackView.translatesAutoresizingMaskIntoConstraints = false
+                imageButton.snp.makeConstraints { (make) in
+                    
+                    make.height.equalTo(self.imageStackView.frame.height)
+                    make.width.equalTo(120)
+                }
+                self.imageStackView.addArrangedSubview(imageButton)
+                
+                self.imageStackView.translatesAutoresizingMaskIntoConstraints = false
             }
+            self.scrollView.contentSize = CGSize(width: self.imageStackView.frame.width + 130, height: self.scrollView.frame.height)
         }
         if feedbackModel.isSubmitBtnHidden {
             
@@ -279,7 +271,80 @@ class PreviewFeedbackViewController: GFBaseViewController {
             let vc = segue.destination as! PreviewImageViewController
             
             vc.image = sender as? UIImage
+            
+            if let sender = sender as? URL {
+                
+                vc.videoUrl = sender
+                vc.isVideo = true
+            }
         }
         
+    }
+    
+    func uploadVideo(_ url:URL) {
+        
+        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
+            
+            var data : Data?
+            let randomName = randomStringWithLength(length: 10)
+            do {
+              data = try Data(contentsOf: url as URL)
+            } catch {
+
+                print(error)
+            }
+
+            let path = "Videos/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).mov"
+            let uploadRef = Storage.storage().reference().child(path)
+          
+            _ = uploadRef.putData(data!, metadata: nil) { metadata,
+                error in
+                if error == nil {
+                    //success
+                    print("success \(path)")
+                    self.feedbackModel.videoFilName.append(path)
+
+                } else {
+                    //error
+                    print("error uploading image")
+                }
+                if let images = self.images {
+                    self.feedbackModel.imageFileName.removeAll()
+                    for image in images {
+                        
+                    self.uploadImage(image: image)
+                    }
+                } else {
+                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
+                }
+            }
+        }
+    }
+    
+  
+    @objc func imageButtonPressed(sender: UIButton) {
+        
+        if let images = self.images {
+            
+            for i in 0..<images.count {
+                
+                if sender.tag == images[i].hashValue {
+                    
+                    if  self.videoTag?.count != 0 {
+                        
+                        for j in self.videoTag ?? [-1] {
+                            
+                            if i == j {
+                                
+                                performSegue(withIdentifier: "ImageView", sender: self.videoUrl?[j])
+                            }
+                        }
+                    } else {
+                        
+                        performSegue(withIdentifier: "ImageView", sender: sender.imageView?.image)
+                    }
+                }
+            }
+        }
     }
 }

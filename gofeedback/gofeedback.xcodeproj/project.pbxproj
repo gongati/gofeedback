@@ -68,7 +68,7 @@
 		F7295FC52438CE71003AFE77 /* AnnotationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */; };
 		F77E7A1F243F6EB400DFDC7B /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */; };
 		F78495A12441FB200086B70B /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F78495A02441FAAF0086B70B /* video.mp4 */; };
-		F7FDB506243A2BAF00B8168A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */; };
+		F78B6DE1244321F5007DFB94 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F78B6DE0244321F5007DFB94 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,7 +154,7 @@
 		F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsListViewController.swift; path = erSwift/AnnotationsListViewController.swift; sourceTree = "<group>"; };
 		F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotation.swift; path = emplate/CustomAnnotation.swift; sourceTree = "<group>"; };
 		F78495A02441FAAF0086B70B /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
-		F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F78B6DE0244321F5007DFB94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,8 +289,8 @@
 				27839A13240FF1AF004CEE14 /* AppDelegate.swift */,
 				27839A17240FF1AF004CEE14 /* Main.storyboard */,
 				27839A1F240FF1B4004CEE14 /* LaunchScreen.storyboard */,
+				F78B6DE0244321F5007DFB94 /* GoogleService-Info.plist */,
 				27839A22240FF1B4004CEE14 /* Info.plist */,
-				F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */,
 				27839A1A240FF1AF004CEE14 /* gofeedback.xcdatamodeld */,
 			);
 			path = gofeedback;
@@ -457,10 +457,10 @@
 				276BAEC2241BF43600C66EAC /* Feedback.storyboard in Resources */,
 				27839A21240FF1B4004CEE14 /* LaunchScreen.storyboard in Resources */,
 				27839A19240FF1AF004CEE14 /* Main.storyboard in Resources */,
+				F78B6DE1244321F5007DFB94 /* GoogleService-Info.plist in Resources */,
 				271CBF6B2418D51E00CB113D /* Login.storyboard in Resources */,
 				271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */,
 				2741C188242D2512007A9F9D /* Account.storyboard in Resources */,
-				F7FDB506243A2BAF00B8168A /* GoogleService-Info.plist in Resources */,
 				F78495A12441FB200086B70B /* video.mp4 in Resources */,
 				2741C18A242D27AB007A9F9D /* Contact.storyboard in Resources */,
 				2741C18C242D27BC007A9F9D /* Alerts.storyboard in Resources */,
@@ -761,7 +761,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.omni.saintz.gofeedback;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patan.saintz.gofeedback;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -23,6 +23,7 @@ struct FeedbackModel {
     var videoFilName = [""]
     var isSubmitBtnHidden = false
     var status:FeedbackStatus = .none
+    var thumnail = [""]
 }
 
 enum FeedbackStatus: String {

@@ -27,18 +27,21 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
 
     @IBOutlet weak var formBtn: UIButton!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var imageStackView: UIStackView!
     @IBOutlet weak var cameraButton: UIButton!
     
     var feedbackModel = FeedbackModel()
 
     var searchItem = ""
-    var images : [UIImage]?
-    var videoUrl:[URL]?
+    var images = [UIImage]()
+    var videoUrl = [URL]()
     var formImage : UIImage?
     var isImageFile = true
     var stackImageView = [UIImageView]()
     var videoTag = [Int]()
+    var thumnailTag = [Int]()
     
     let db = Firestore.firestore()
     var imageFileName = ""
@@ -96,22 +99,33 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             
              self.feedbackModel.comments = self.commentsTxt.text
             
-            if let _ = images, let form = formImage{
-                
-                self.uploadForm(image: form)
-            } else if let videoUrl = self.videoUrl {
+            if  images.count != 0 && videoUrl.count != 0 {
                 
                 self.feedbackModel.videoFilName.removeAll()
                 for url in videoUrl {
                     
                     self.uploadVideo(url)
                 }
-            } else if let images = images {
+            } else if self.videoUrl.count != 0 {
+                
+                self.feedbackModel.videoFilName.removeAll()
+                for url in videoUrl {
+                    
+                    self.uploadVideo(url)
+                }
+            } else if images.count != 0 {
                 
                 self.feedbackModel.imageFileName.removeAll()
-                for image in images {
+                for image in 0..<images.count {
                     
-                self.uploadImage(image: image)
+                    for tag in self.thumnailTag {
+                        
+                        if image == tag  {
+                            
+                            self.uploadImage(image: images[image],tag)
+                        } 
+                        self.uploadImage(image: images[image],nil)
+                    }
                 }
             } else {
                 
@@ -139,25 +153,36 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             
             self.feedbackModel.status = .Drafts
             
-           self.feedbackModel.comments = self.commentsTxt.text
-           
-           if let _ = images, let form = formImage{
-               
-               self.uploadForm(image: form)
-           } else if let videoUrl = self.videoUrl {
-
-             self.feedbackModel.videoFilName.removeAll()
-            for url in videoUrl {
+             self.feedbackModel.comments = self.commentsTxt.text
+            
+            if  images.count != 0 && videoUrl.count != 0 {
                 
-                self.uploadVideo(url)
-            }
-           } else if let images = images {
-               
-               self.feedbackModel.imageFileName.removeAll()
-               for image in images {
-                   
-               self.uploadImage(image: image)
-               }
+                self.feedbackModel.videoFilName.removeAll()
+                for url in videoUrl {
+                    
+                    self.uploadVideo(url)
+                }
+            } else if self.videoUrl.count != 0 {
+                
+                self.feedbackModel.videoFilName.removeAll()
+                for url in videoUrl {
+                    
+                    self.uploadVideo(url)
+                }
+            } else if images.count != 0 {
+                
+                self.feedbackModel.imageFileName.removeAll()
+               for image in 0..<images.count {
+                    
+                    for tag in self.thumnailTag {
+                        
+                        if image == tag  {
+                            
+                            self.uploadImage(image: images[image],tag)
+                        }
+                        self.uploadImage(image: images[image],nil)
+                    }
+                }
             } else {
                 
                 self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
@@ -172,7 +197,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     }
     
     
-    func uploadImage(image: UIImage) {
+    func uploadImage(image: UIImage, _ tag:Int?) {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
          
@@ -187,10 +212,16 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                 if error == nil {
                     //success
                     print("success\(path)")
+                    if let tag = tag {
+                        
+                        self.feedbackModel.thumnail.append(path)
+                        
+                    }
                     self.feedbackModel.imageFileName.append(path)
                 } else {
                     //error
                     print("error uploading image")
+                    print(error)
                 }
                 
                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
@@ -206,72 +237,6 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         self.openCamera()
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // will run if the user hits cancel
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            
-            images?.append(pickedImage)
-            
-        }
-        
-        if let pickedVideo = info[UIImagePickerController.InfoKey.mediaURL] as? String {
-            
-            let status = PHPhotoLibrary.authorizationStatus()
-            if (status == PHAuthorizationStatus.authorized) {
-                // Access has been granted.
-                getPhotosAndVideos()
-            }
-        }
-    }
-    
-    private func getPhotosAndVideos(){
-
-           let fetchOptions = PHFetchOptions()
-           fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate",ascending: false)]
-           fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.video.rawValue)
-           let videos = PHAsset.fetchAssets(with: fetchOptions)
-           print(videos.count)
-       }
-    
-    func uploadForm(image: UIImage){
-        
-        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
-            
-            let randomName = randomStringWithLength(length: 10)
-            let imageData = image.jpegData(compressionQuality: 0.1)
-            let path = "Forms/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).jpg"
-            let uploadRef = Storage.storage().reference().child(path)
-          
-            _ = uploadRef.putData(imageData!, metadata: nil) { metadata,
-                error in
-                if error == nil {
-                    //success
-                    print("success \(path)")
-                    self.feedbackModel.formFilName = path
-
-                } else {
-                    //error
-                    print("error uploading image")
-                }
-                if let images = self.images {
-                    self.feedbackModel.imageFileName.removeAll()
-                    for image in images {
-                        
-                    self.uploadImage(image: image)
-                    }
-                } else {
-                 
-                    self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
-                }
-            }
-        }
-    }
-    
     func randomStringWithLength(length: Int) -> NSString {
         
         let characters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -283,26 +248,6 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             randomString.appendFormat("%C", characters.character(at: Int(rand)))
         }
         return randomString
-    }
-
-    func imagePickerDidCancel(_ picker: OpalImagePickerController) {
-        // Cancel action
-        picker.dismiss(animated: true, completion: nil)
-    }
-
-    func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
-        
-        if isImageFile {
-            
-            self.images = images
-            picker.dismiss(animated: true, completion: nil)
-        } else {
-
-            self.formImage = images[0]
-            picker.dismiss(animated: true, completion: nil)
-
-        }
-        presentedViewController?.dismiss(animated: true, completion: nil)
     }
     
     func addDoneButtonOnKeyboard(){
@@ -394,7 +339,9 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             Constants.FeedbackCommands.images : self.feedbackModel.imageFileName,
             Constants.FeedbackCommands.form : self.feedbackModel.formFilName,
             Constants.FeedbackCommands.status : self.feedbackModel.status.rawValue,
-            Constants.FeedbackCommands.videoUrl : self.feedbackModel.videoFilName
+            Constants.FeedbackCommands.videoUrl : self.feedbackModel.videoFilName,
+             Constants.FeedbackCommands.thumnailTag
+                : self.feedbackModel.thumnail
             
         ]) { (error) in
             if let err = error {
@@ -466,14 +413,15 @@ extension FeedbackViewController {
                 let images = UIImageView()
                 switch item {
                 case .photo(let photo):
-                    self.images?.append(photo.image)
+                    self.images.append(photo.image)
                     images.image = (photo.image)
                     self.stackImageView.append(images)
                     print(photo)
                 case .video(let video):
                     print(video.thumbnail)
-                    self.videoUrl?.append(video.url)
-                    self.images?.append(video.thumbnail)
+                    self.videoUrl.append(video.url)
+                    self.images.append(video.thumbnail)
+                    self.thumnailTag.append(self.images.count - 1)
                     images.image = (video.thumbnail)
                     self.stackImageView.append(images)
                     self.videoTag.append(self.stackImageView[self.stackImageView.count - 1].hashValue)
@@ -499,8 +447,18 @@ extension FeedbackViewController {
                         make.width.equalTo(30)
                     }
                     
+                    imageButton.snp.makeConstraints { (make) in
+                        
+                        make.height.equalTo(self.imageStackView.frame.height)
+                        make.width.equalTo(120)
+                    }
+                    
                     self.imageStackView.addArrangedSubview(imageButton)
+                    
+                    self.imageStackView.translatesAutoresizingMaskIntoConstraints = false
                 }
+                
+                self.scrollView.contentSize = CGSize(width: self.imageStackView.frame.width + 130, height: self.scrollView.frame.height)
             }
             picker.dismiss(animated: true, completion: nil)
         }
@@ -535,7 +493,7 @@ extension FeedbackViewController {
                         
                         if sender.tag == self.videoTag[j] {
                             
-                            performSegue(withIdentifier: "FeedbackPreviewImage", sender: self.videoUrl?[j])
+                            performSegue(withIdentifier: "FeedbackPreviewImage", sender: self.videoUrl[j])
                         }
                     }
                 } else {
@@ -569,34 +527,37 @@ extension FeedbackViewController {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
             
-            var data : Data?
             let randomName = randomStringWithLength(length: 10)
-            do {
-              data = try Data(contentsOf: url as URL)
-            } catch {
-
-                print(error)
-            }
 
             let path = "Videos/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).mov"
             let uploadRef = Storage.storage().reference().child(path)
           
-            _ = uploadRef.putData(data!, metadata: nil) { metadata,
-                error in
+            
+            _ = uploadRef.putFile(from: url, metadata: nil) { metadata, error in
+            
                 if error == nil {
                     //success
-                    print("success \(path)")
-                    self.feedbackModel.videoFilName.append(path)
-
+                        
+                        print("success \(path)")
+                        self.feedbackModel.videoFilName.append(path)
+                        
                 } else {
                     //error
-                    print("error uploading image")
+                    print("error uploading video")
+                    print(error)
                 }
-                if let images = self.images {
+                if self.images.count != 0 {
                     self.feedbackModel.imageFileName.removeAll()
-                    for image in images {
+                    for image in 0..<self.images.count {
                         
-                    self.uploadImage(image: image)
+                        for tag in self.thumnailTag {
+                            
+                            if image == tag  {
+                                
+                                self.uploadImage(image: self.images[image],tag)
+                            }
+                            self.uploadImage(image: self.images[image],nil)
+                        }
                     }
                 } else {
                 self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
