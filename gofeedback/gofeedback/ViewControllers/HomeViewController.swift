@@ -34,6 +34,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     var searchResponse: [CDYelpBusiness]?
     var searchItem = ""
     var radiusOffset = 100
+    var bottomController: AnnotationsListViewController?
     
     let yelpAPIClient = CDYelpAPIClient(apiKey: "JuFWYKLiETl9O-z6Tn7ysBeGyXbzON1Eh-_lbP56VDbu5YdZMRLQTBE2rNWfLCCM85Ot21lMMhiW9GsuaEVAg8kBQLPPVoAaTFP99Fm3m9_2WHMBibfkoItNQhuLXnYx")
     
@@ -54,6 +55,12 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         self.currentLocationBtn.imageEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         //TripDataManager.resetTrip()
         //Show user currentlocation
@@ -63,6 +70,23 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func attachBottomController() {
+        
+        if let annotations = self.bottomController {
+            
+            annotations.dataSource = self.searchResponse
+            annotations.tableView.reloadData()
+        } else {
+            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "AnnotationsListViewController") as? AnnotationsListViewController {
+                
+                viewController.dataSource = self.searchResponse
+                viewController.searchItem = whereToGoText.text ?? ""
+                self.bottomController = viewController
+                viewController.attach(to: self)
+            }
+        }
     }
     
     @objc override func keyboardWillShow(notification: NSNotification) {
@@ -319,6 +343,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                                 print(response)
                                                 
                                                 self.searchResponse = response.businesses
+                                                self.attachBottomController()
                                                 for business in businesses {
                                                     
                                                     let point = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 0, longitude: business.coordinates?.longitude ?? 0))
@@ -564,4 +589,14 @@ extension UIView {
         self.layer.shadowOffset = CGSize(width: 0, height: 1)
         self.layer.masksToBounds = false
     }
+}
+
+extension UIViewController {
+   
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        view.layer.mask = mask
+   }
 }
