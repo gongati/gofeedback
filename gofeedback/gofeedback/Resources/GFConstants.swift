@@ -164,6 +164,7 @@ struct Constants {
         static let form = "Form"
         static let status = "Status"
         static let videoUrl = "Videos"
+        static let thumnailTag = "Thumnail"
     }
     
     struct userDetails {
@@ -173,6 +174,7 @@ struct Constants {
         static let lastName = "Last Name"
         static let mobileNumber = "Mobile Number"
         static let address = "Address"
+        static let userType = "User Type"
     }
 }
 

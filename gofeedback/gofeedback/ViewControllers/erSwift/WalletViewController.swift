@@ -20,6 +20,8 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     var feedBackDataTitle : [String] = []
     var feedBackData = [[String:Any]]()
     var images = [UIImage]()
+    var videoUrl = [URL]()
+    var videotag = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,8 +123,6 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     func moveToPreviewVC(_ at:Int) {
         
         
-        let pathReferenceOfForm = storage.reference(withPath: self.feedBackData[at][Constants.FeedbackCommands.form] as? String ?? "" )
-        
         guard let viewController = UIStoryboard(name: "Feedback", bundle: nil).instantiateViewController(withIdentifier:  "PreviewFeedbackViewController") as? PreviewFeedbackViewController else {
             return
         }
@@ -149,6 +149,8 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
         for path in self.feedBackData[at][Constants.FeedbackCommands.images] as? [String] ?? [""] {
             
             group.enter()
+            
+            
         let pathReferenceOfImages = storage.reference(withPath: path )
         pathReferenceOfImages.getData(maxSize: 1 * 1024 * 1024) { data, error in
            
@@ -163,6 +165,14 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
                 print(self.images)
                 print(image)
                 print("sucess Image")
+                    
+                    for tag in self.feedBackData[at][Constants.FeedbackCommands.thumnailTag] as? [String] ?? [""] {
+                        if path == tag {
+                            
+                            self.videotag.append(self.images.count)
+                        }
+                        
+                    }
                 }
             }
             group.leave()
@@ -174,25 +184,32 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             let group2 = DispatchGroup()
             group2.enter()
-            pathReferenceOfForm.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            
+            for path in self.feedBackData[at][Constants.FeedbackCommands.videoUrl] as? [String] ?? [""] {
+            let pathReferenceOfVideos = self.storage.reference(withPath: path )
+            pathReferenceOfVideos.downloadURL { url, error in
                 
                     if error != nil {
                         print(error?.localizedDescription)
                     } else {
                         // Data for "images/island.jpg" is returned
-                        let dataForm = UIImage(data: data!)
-                        print(dataForm)
-                        viewController.formImage = dataForm
+                        if let url = url {
+                            
+                        self.videoUrl.append(url)
                         print("sucess Form")
-                        print(viewController.formImage)
+                        print(viewController.videoUrl)
+                        }
                     }
                     
                      group2.leave()
             }
+        }
             
              group2.notify(queue: .main) {
                 
                 viewController.images = self.images
+                viewController.videoUrl = self.videoUrl
+                viewController.videoTag = self.videotag
                 print(viewController.images)
            print("navigation")
             self.navigationController?.pushViewController(viewController, animated: true)
