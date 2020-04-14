@@ -74,20 +74,32 @@ class PreviewFeedbackViewController: GFBaseViewController {
             
             self.feedbackModel.status = .Submitted
             
-            if let _ = images, let form = formImage{
+            if   self.images?.count != 0 &&  self.videoUrl?.count != 0 {
                 
-                self.uploadForm(image: form)
-            } else if let videoUrl = self.videoUrl {
-
-             self.feedbackModel.videoFilName.removeAll()
-            for url in videoUrl {
+                self.feedbackModel.videoFilName.removeAll()
+                if let videoUrl = self.videoUrl {
+                    
+                    for url in 0..<videoUrl.count {
+                        
+                        self.uploadVideo(videoUrl[url], url)
+                    }
+                }
+            }  else if  self.images?.count != 0 {
                 
-                self.uploadVideo(url)
-            }
-            } else if let images = images {
                 self.feedbackModel.imageFileName.removeAll()
-                for image in images {
-                self.uploadImage(image: image)
+                if let images = self.images {
+                    outer: for image in 0..<images.count {
+                        
+                        for tag in self.videoTag ?? [-1] {
+                            
+                            if image == tag  {
+                                
+                               self.uploadImage(image: images[image],image,tag)
+                                continue outer
+                            }
+                        }
+                        self.uploadImage(image: images[image],image,nil)
+                    }
                 }
             } else {
                 
@@ -137,7 +149,10 @@ class PreviewFeedbackViewController: GFBaseViewController {
             Constants.FeedbackCommands.rating : self.feedbackModel.rating,
             Constants.FeedbackCommands.images : self.feedbackModel.imageFileName,
             Constants.FeedbackCommands.form : self.feedbackModel.formFilName,
-            Constants.FeedbackCommands.status : self.feedbackModel.status.rawValue
+            Constants.FeedbackCommands.status : self.feedbackModel.status.rawValue,
+            Constants.FeedbackCommands.videoUrl : self.feedbackModel.videoFilName,
+            Constants.FeedbackCommands.thumnailTag
+               : self.feedbackModel.thumnail
             
         ]) { (error) in
             if let err = error {
@@ -153,7 +168,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
     }
     
     
-    func uploadImage(image: UIImage) {
+    func uploadImage(image: UIImage,_ value : Int , _ tag:Int?) {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
          
@@ -168,43 +183,21 @@ class PreviewFeedbackViewController: GFBaseViewController {
                 if error == nil {
                     //success
                     print("success\(path)")
+                    
+                    if tag != nil {
+                        
+                        self.feedbackModel.thumnail.removeAll()
+                        self.feedbackModel.thumnail.append(path)
+                        
+                    }
                     self.feedbackModel.imageFileName.append(path)
                 } else {
                     //error
                     print("error uploading image")
                 }
-                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
-            }
-        }
-    }
-    
-    
-    func uploadForm(image: UIImage){
-        
-        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
-            
-            let randomName = randomStringWithLength(length: 10)
-            let imageData = image.jpegData(compressionQuality: 0.1)
-            let path = "Forms/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).jpg"
-            let uploadRef = Storage.storage().reference().child(path)
-            
-            _ = uploadRef.putData(imageData!, metadata: nil) { metadata,
-                error in
-                if error == nil {
-                    //success
-                    print("success \(path)")
-                    self.feedbackModel.formFilName = path
-                } else {
-                    //error
-                    print("error uploading image")
-                }
-                if let images = self.images {
-                    self.feedbackModel.imageFileName.removeAll()
-                    for image in images {
-                    self.uploadImage(image: image)
-                    } 
-                } else {
-                 
+                
+                if value == ((self.images?.count ?? 0) - 1) {
+                    
                     self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
                 }
             }
@@ -281,7 +274,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
         
     }
     
-    func uploadVideo(_ url:URL) {
+    func uploadVideo(_ url:URL, _ value:Int) {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
             
@@ -303,19 +296,29 @@ class PreviewFeedbackViewController: GFBaseViewController {
                     //success
                     print("success \(path)")
                     self.feedbackModel.videoFilName.append(path)
-
+                    
                 } else {
                     //error
                     print("error uploading image")
                 }
-                if let images = self.images {
-                    self.feedbackModel.imageFileName.removeAll()
-                    for image in images {
-                        
-                    self.uploadImage(image: image)
+                if value == ((self.videoUrl?.count ?? 0) - 1) {
+                    if let images = self.images {
+                        self.feedbackModel.imageFileName.removeAll()
+                        outer: for image in 0..<images.count {
+                            
+                            for tag in self.videoTag ?? [-1] {
+                                
+                                if image == tag  {
+                                    
+                                    self.uploadImage(image: images[image],image,tag)
+                                    continue outer
+                                }
+                            }
+                            self.uploadImage(image: images[image],image,nil)
+                        }
+                    } else {
+                        self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
                     }
-                } else {
-                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
                 }
             }
         }
@@ -332,13 +335,15 @@ class PreviewFeedbackViewController: GFBaseViewController {
                     
                     if  self.videoTag?.count != 0 {
                         
-                        for j in self.videoTag ?? [-1] {
+                        for j in 0..<(self.videoTag?.count ?? 0) {
                             
-                            if i == j {
+                            if i == self.videoTag?[j] {
                                 
                                 performSegue(withIdentifier: "ImageView", sender: self.videoUrl?[j])
+                                return
                             }
                         }
+                        performSegue(withIdentifier: "ImageView", sender: sender.imageView?.image)
                     } else {
                         
                         performSegue(withIdentifier: "ImageView", sender: sender.imageView?.image)
