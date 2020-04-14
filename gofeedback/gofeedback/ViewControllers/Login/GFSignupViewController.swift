@@ -53,7 +53,6 @@ class GFSignupViewController: GFBaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        applyStylesAndColors()
     }
 
     override func didReceiveMemoryWarning() {
@@ -129,10 +128,7 @@ class GFSignupViewController: GFBaseViewController {
             }.disposed(by: disposeBag)
 
     }
-    func applyStylesAndColors(){
-        self.signUpBtn.backgroundColor = UIColor(hexString:Utilities.colorHexString(resourceId: "BigButtonBGColor" )!)
-    }
-    
+
     func creatingDataBase() {
             
             db.collection("Users").document("+" + (self.countryCode.text ?? "+1") + " " + (self.mobileNumberTxt.text ?? "1234567890")).setData([

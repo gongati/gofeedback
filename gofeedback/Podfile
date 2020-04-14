@@ -22,6 +22,7 @@ target 'gofeedback' do
   pod 'ObjectMapper', '~> 3.5'
   pod 'CDYelpFusionKit'
   pod 'YPImagePicker'
+  pod 'UBottomSheet'
 
   # add pods for desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods

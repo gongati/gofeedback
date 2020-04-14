@@ -96,7 +96,7 @@ class GFHistoryTableViewCell: UITableViewCell {
         self.bgView.addSubview(self.distanceLabel)
         self.bgView.addSubview(self.callButton)
         self.contentView.addSubview(self.bgView)
-        self.backgroundColor = .gray
+        self.backgroundColor = .clear
         self.contentView.backgroundColor = .clear
     }
     

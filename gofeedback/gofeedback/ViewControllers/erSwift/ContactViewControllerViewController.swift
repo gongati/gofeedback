@@ -31,9 +31,9 @@ class ContactViewControllerViewController: GFBaseViewController,MFMailComposeVie
         
         if MFMailComposeViewController.canSendMail() {
             
-            let emailTitle = "Feedback"
+            let emailTitle = emailTxt.text ?? "No Subject"
             let messageBody = (exp1 + exp2 + (emailTxt?.text ?? ""))
-            let toRecipents = ["kalebupatan7@gmail.com"]
+            let toRecipents = ["info@saintz.com"]
             let mc: MFMailComposeViewController = MFMailComposeViewController()
             mc.mailComposeDelegate = self
             mc.setSubject(emailTitle)

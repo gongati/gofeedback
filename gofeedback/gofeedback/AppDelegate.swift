@@ -14,6 +14,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var localDebug: Bool = false
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -93,3 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+struct GFGlobal {
+    
+    static var localDebug:Bool = false
+}

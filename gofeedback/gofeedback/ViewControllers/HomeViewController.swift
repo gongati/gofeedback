@@ -20,7 +20,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     @IBOutlet weak var zoomOutBtn: UIButton!
     @IBOutlet weak var zoomInBtn: UIButton!
-    
+    @IBOutlet weak var currentLocationBtn: UIButton!
+
     @IBOutlet weak var nearLocation1: UIButton!
     @IBOutlet weak var nearLocation2: UIButton!
     @IBOutlet weak var nearLocation3: UIButton!
@@ -33,6 +34,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     var searchResponse: [CDYelpBusiness]?
     var searchItem = ""
     var radiusOffset = 100
+    var bottomController: AnnotationsListViewController?
     
     let yelpAPIClient = CDYelpAPIClient(apiKey: "JuFWYKLiETl9O-z6Tn7ysBeGyXbzON1Eh-_lbP56VDbu5YdZMRLQTBE2rNWfLCCM85Ot21lMMhiW9GsuaEVAg8kBQLPPVoAaTFP99Fm3m9_2WHMBibfkoItNQhuLXnYx")
     
@@ -47,6 +49,16 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         nearLocation3.isHidden = true
         listOutlet.isHidden = true
         
+        self.zoomInBtn.makeCircular()
+        self.zoomOutBtn.makeCircular()
+        self.currentLocationBtn.makeCircular()
+        self.currentLocationBtn.imageEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,6 +70,23 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func attachBottomController() {
+        
+        if let annotations = self.bottomController {
+            
+            annotations.dataSource = self.searchResponse
+            annotations.tableView.reloadData()
+        } else {
+            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "AnnotationsListViewController") as? AnnotationsListViewController {
+                
+                viewController.dataSource = self.searchResponse
+                viewController.searchItem = whereToGoText.text ?? ""
+                self.bottomController = viewController
+                viewController.attach(to: self)
+            }
+        }
     }
     
     @objc override func keyboardWillShow(notification: NSNotification) {
@@ -87,6 +116,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     func requestCurrentLocation()
     {
+        GFGlobal.localDebug = false
+
         mapView.showsUserLocation = true
         
         if CLLocationManager.locationServicesEnabled() == true {
@@ -160,6 +191,10 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         self.wayToAnnotationList()
     }
     
+    @IBAction func setupLocalLocation(_ sender: UIButton) {
+        
+        self.setupDebugLocation(lat: "37.785834", long: "-122.406417")
+    }
     
     //MARK:- UITextField Delegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -182,6 +217,15 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     func centerViewOnUserLocation() {
         
+        if GFGlobal.localDebug {
+            
+            let location = CLLocationCoordinate2D(
+                latitude: Double(self.locationLat ?? "0")!,
+                longitude: Double(self.locationLong ?? "0")!)
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
+            mapView.setRegion(region, animated: true)
+        }
+        
         if let location = locationManager.location?.coordinate {
             
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
@@ -190,6 +234,16 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
            // self.fetchYelpBusinesses(latitude: location.latitude, longitude: location.longitude)
 
         }
+    }
+    
+    func setupDebugLocation(lat:String, long:String) {
+        
+        GFGlobal.localDebug = true
+        self.locationLat = lat
+        self.locationLong = long
+        
+        self.centerViewOnUserLocation()
+        self.yelpQuery()
     }
     
     //MARK:- CLLocationManager Delegates
@@ -289,10 +343,12 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                                 print(response)
                                                 
                                                 self.searchResponse = response.businesses
+                                                self.attachBottomController()
                                                 for business in businesses {
                                                     
                                                     let point = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 0, longitude: business.coordinates?.longitude ?? 0))
                                                     point.business = business
+                                                    point.title = business.name
                                                      self.mapView.addAnnotation(point)
                                                     
 //                                                    let annotation = MKPointAnnotation()
@@ -443,24 +499,20 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
+            view.titleVisibility = .adaptive
             view.calloutOffset = CGPoint(x: -5, y: 5)
             
            if let customAnnotation = view.annotation as? CustomAnnotation {
                     
-                let calloutView = GFHistoryTableViewCell()
-                calloutView.configureCell(customAnnotation.business)
+                let calloutView = CustomAnnotationView()
+                calloutView.configureView(customAnnotation.business)
             
-                    calloutView.contentView.snp.makeConstraints { (make) in
-                        make.edges.equalToSuperview()
-                        make.height.equalTo(110)
+                    calloutView.snp.makeConstraints { (make) in
+                        
+                        make.height.equalTo(80)
                     }
-            
-            
-            let btn = UIButton(frame: calloutView.frame)
-            btn.addTarget(self, action: #selector(self.annotationPressed(sender:)), for: .touchUpInside)
-            btn.text(customAnnotation.business?.name ?? "")
-            btn.titleLabel?.height(0)
-            calloutView.addSubview(btn)
+
+            calloutView.actionButton.addTarget(self, action: #selector(self.annotationPressed(sender:)), for: .touchUpInside)
             calloutView.isUserInteractionEnabled = true
             view.detailCalloutAccessoryView = calloutView
             }
@@ -475,6 +527,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     func wayToFeedbackViewController(_ title:String?) {
         
+        //TODO - this for loop can be removed
         for i in 0..<(searchResponse?.count ?? 1) {
             
             if searchResponse?[i].name ?? "" == title {
@@ -484,6 +537,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                 }
                 
                 viewController.feedbackModel.restaurantTitle =  searchResponse?[i].name ?? ""
+                viewController.bussiness = searchResponse?[i]
+                
                 if let location = searchResponse?[i].location {
                     
                     viewController.feedbackModel.address = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
@@ -521,4 +576,27 @@ extension MKMapView {
         
         setRegion(_region, animated: animated)
     }
+}
+
+extension UIView {
+    
+    func makeCircular() {
+        
+        self.layer.cornerRadius = min(self.frame.size.height, self.frame.size.width) / 2.0
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowRadius = 1
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.masksToBounds = false
+    }
+}
+
+extension UIViewController {
+   
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        view.layer.mask = mask
+   }
 }

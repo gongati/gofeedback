@@ -9,18 +9,26 @@
 import UIKit
 import MapKit
 import CDYelpFusionKit
+import UBottomSheet
 
-class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,UITableViewDataSource {
+class AnnotationsListViewController: BottomSheetController {
 
     @IBOutlet weak var tableView: UITableView!
     
     var searchItem = "Food"
+    
     var dataSource : [CDYelpBusiness]?
+    
+    override var initialPosition: SheetPosition {
+        return .bottom
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        self.view.backgroundColor = .gray
+        self.view.backgroundColor = UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        self.roundCorners(corners: [.topLeft, .topRight], radius: 12)
+
         self.tableView.backgroundColor = .clear
         
         tableView.delegate = self
@@ -39,6 +47,23 @@ class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,U
         
         
     }
+    
+    func wayToFeedback(_ value:Int) {
+        
+        guard let viewController = UIStoryboard(name: "Feedback", bundle: nil).instantiateViewController(withIdentifier:  "FeedbackViewController") as? FeedbackViewController else {
+            return
+        }
+        
+        viewController.feedbackModel.restaurantTitle =  dataSource?[value].name ?? ""
+        if let location = dataSource?[value].location {
+        viewController.feedbackModel.address = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
+        }
+        viewController.searchItem = self.searchItem
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension AnnotationsListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -66,18 +91,33 @@ class AnnotationsListViewController: GFBaseViewController, UITableViewDelegate,U
         
         return 120
     }
+}
+
+
+extension AnnotationsListViewController {
     
-    func wayToFeedback(_ value:Int) {
+        //MARK: BottomSheetController configurations
+    //    override var topYPercentage: CGFloat
         
-        guard let viewController = UIStoryboard(name: "Feedback", bundle: nil).instantiateViewController(withIdentifier:  "FeedbackViewController") as? FeedbackViewController else {
-            return
-        }
+    //    override var bottomYPercentage: CGFloat
         
-        viewController.feedbackModel.restaurantTitle =  dataSource?[value].name ?? ""
-        if let location = dataSource?[value].location {
-        viewController.feedbackModel.address = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
-        }
-        viewController.searchItem = self.searchItem
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
+    //    override var middleYPercentage: CGFloat
+        
+    //    override var bottomInset: CGFloat
+        
+    //    override var topInset: CGFloat
+        
+    //    Don't override if not necessary as it is auto-detected
+    //    override var scrollView: UIScrollView?{
+    //        return put_your_tableView, collectionView, etc.
+    //    }
+        
+    //    //Override this to apply custom animations
+    //    override func animate(animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil) {
+    //        UIView.animate(withDuration: 0.3, animations: animations)
+    //    }
+        
+    //    To change sheet position manually
+    //    call ´changePosition(to: .top)´ anywhere in the code
+
 }

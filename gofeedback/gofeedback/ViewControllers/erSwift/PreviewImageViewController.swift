@@ -35,6 +35,7 @@ class PreviewImageViewController: UIViewController {
         
         if (isVideo ?? false) {
           
+
         
             if let videoURL =  videoUrl {
                 
@@ -45,6 +46,7 @@ class PreviewImageViewController: UIViewController {
         self.view.layer.addSublayer(playerLayer)
         player.play()
             }
+
         }
     }
     
