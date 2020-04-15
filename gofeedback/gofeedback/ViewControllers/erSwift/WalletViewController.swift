@@ -116,6 +116,9 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        images.removeAll()
+        videoUrl.removeAll()
+        videotag.removeAll()
         moveToPreviewVC(indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -167,9 +170,9 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
                 print("sucess Image")
                     
                     for tag in self.feedBackData[at][Constants.FeedbackCommands.thumnailTag] as? [String] ?? [""] {
-                        if path == tag {
+                        if path == ("Images/"+tag+".jpg"){
                             
-                            self.videotag.append(self.images.count)
+                            self.videotag.append(self.images.count - 1)
                         }
                         
                     }
@@ -183,9 +186,9 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
         group.notify(queue: .main) {
             
             let group2 = DispatchGroup()
-            group2.enter()
             
             for path in self.feedBackData[at][Constants.FeedbackCommands.videoUrl] as? [String] ?? [""] {
+                 group2.enter()
             let pathReferenceOfVideos = self.storage.reference(withPath: path )
             pathReferenceOfVideos.downloadURL { url, error in
                 

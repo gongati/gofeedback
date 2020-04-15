@@ -44,6 +44,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     var stackImageView = [UIImageView]()
     var videoTag = [Int]()
     var thumnailTag = [Int]()
+    var videoPath = [String]()
     
     let db = Firestore.firestore()
     var imageFileName = ""
@@ -111,30 +112,24 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             if  images.count != 0 && videoUrl.count != 0 {
                 
                 self.feedbackModel.videoFilName.removeAll()
-                for url in videoUrl {
+                for url in 0..<videoUrl.count {
                     
-                    self.uploadVideo(url)
-                }
-            } else if self.videoUrl.count != 0 {
-                
-                self.feedbackModel.videoFilName.removeAll()
-                for url in videoUrl {
-                    
-                    self.uploadVideo(url)
+                    self.uploadVideo(videoUrl[url],url)
                 }
             } else if images.count != 0 {
                 
                 self.feedbackModel.imageFileName.removeAll()
-                for image in 0..<images.count {
+                outer: for image in 0..<images.count {
                     
                     for tag in self.thumnailTag {
                         
                         if image == tag  {
                             
-                            self.uploadImage(image: images[image],tag)
-                        } 
-                        self.uploadImage(image: images[image],nil)
+                            self.uploadImage(image: images[image],image,tag)
+                            continue outer
+                        }
                     }
+                    self.uploadImage(image: images[image],image,nil)
                 }
             } else {
                 
@@ -167,30 +162,24 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             if  images.count != 0 && videoUrl.count != 0 {
                 
                 self.feedbackModel.videoFilName.removeAll()
-                for url in videoUrl {
+                for url in 0..<videoUrl.count {
                     
-                    self.uploadVideo(url)
-                }
-            } else if self.videoUrl.count != 0 {
-                
-                self.feedbackModel.videoFilName.removeAll()
-                for url in videoUrl {
-                    
-                    self.uploadVideo(url)
+                    self.uploadVideo(videoUrl[url],url)
                 }
             } else if images.count != 0 {
                 
                 self.feedbackModel.imageFileName.removeAll()
-               for image in 0..<images.count {
+                outer: for image in 0..<images.count {
                     
-                    for tag in self.thumnailTag {
+                      for tag in self.thumnailTag {
                         
                         if image == tag  {
                             
-                            self.uploadImage(image: images[image],tag)
+                            self.uploadImage(image: images[image],image,tag)
+                            continue outer
                         }
-                        self.uploadImage(image: images[image],nil)
                     }
+                    self.uploadImage(image: images[image],image,nil)
                 }
             } else {
                 
@@ -205,26 +194,33 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         }
     }
     
-    
-    func uploadImage(image: UIImage, _ tag:Int?) {
+    let dispatchGroup = DispatchGroup()
+    func uploadImage(image: UIImage, _ value:Int, _ tag:Int?) {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
          
-            let group = DispatchGroup()
+            dispatchGroup.enter()
             let randomName = randomStringWithLength(length: 10)
             let imageData = image.jpegData(compressionQuality: 0.1)
-            let path = "Images/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).jpg"
+            var path = ""
+            if tag == nil {
+             path = "Images/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).jpg"
+            } else {
+                let path2 = self.videoPath[tag!]
+                path = "Images/"+path2+".jpg"
+            }
+            
             let uploadRef = Storage.storage().reference().child(path)
             _ = uploadRef.putData(imageData!, metadata: nil) { metadata,
                 error in
-                group.enter()
+    
                 if error == nil {
                     //success
-                    print("success\(path)")
-                    if let tag = tag {
+                    print("success \(path)")
+                    if tag != nil {
                         
-                        self.feedbackModel.thumnail.append(path)
-                        
+                        let path2 = self.videoPath[tag!]
+                        self.feedbackModel.thumnail.append(path2)
                     }
                     self.feedbackModel.imageFileName.append(path)
                 } else {
@@ -233,8 +229,15 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                     print(error)
                 }
                 
-               self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
-
+                self.dispatchGroup.leave()
+            }
+            
+            dispatchGroup.notify(queue: DispatchQueue.main) {
+                
+                if value == (self.images.count - 1) {
+                 
+                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
+                 }
             }
                 
         }
@@ -364,6 +367,63 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
            }
         }
     }
+    
+    let group = DispatchGroup()
+    
+    func uploadVideo(_ url:URL,_ value:Int) {
+        
+        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
+            
+            group.enter()
+            let randomName = randomStringWithLength(length: 10)
+
+            let path = "Videos/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).mov"
+            videoPath.append("\(userId)/\(feedbackModel.restaurantTitle)/\(randomName)")
+            let uploadRef = Storage.storage().reference().child(path)
+          
+            
+            _ = uploadRef.putFile(from: url, metadata: nil) { metadata, error in
+            
+                if error == nil {
+                    //success
+                        
+                        print("success \(path)")
+                        self.feedbackModel.videoFilName.append(path)
+                        
+                } else {
+                    //error
+                    print("error uploading video")
+                    print(error)
+                }
+                
+                self.group.leave()
+            }
+            
+            group.notify(queue: DispatchQueue.main) {
+                
+                if value == (self.videoUrl.count - 1) {
+                    if self.images.count != 0 {
+                        self.feedbackModel.imageFileName.removeAll()
+                        self.feedbackModel.thumnail.removeAll()
+                        outer: for image in 0..<self.images.count {
+                            
+                            for tag in self.thumnailTag {
+                                
+                                if image == tag  {
+                                    
+                                    self.uploadImage(image: self.images[image],image,tag)
+                                    continue outer
+                                }
+                            }
+                            self.uploadImage(image: self.images[image],image,nil)
+                        }
+                    } else {
+                        self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -392,14 +452,14 @@ extension FeedbackViewController {
         config.wordings.next = "Select"
         
         //config.overlayView = myOverlayView
-
+        
         return config
     }
     
     func openCamera() {
         
         let picker = YPImagePicker(configuration: configureCamera())
-
+        
         picker.didFinishPicking { [unowned picker] items, cancelled in
             
             if cancelled {
@@ -435,7 +495,7 @@ extension FeedbackViewController {
                     self.stackImageView.append(images)
                     self.videoTag.append(self.stackImageView[self.stackImageView.count - 1].hashValue)
                 }
-    
+                
                 for subview in self.stackImageView {
                     
                     let imageButton = UIButton()
@@ -506,8 +566,8 @@ extension FeedbackViewController {
                         }
                     }
                 } else {
-                
-                 performSegue(withIdentifier: "FeedbackPreviewImage", sender: sender.imageView?.image)
+                    
+                    performSegue(withIdentifier: "FeedbackPreviewImage", sender: sender.imageView?.image)
                 }
             }
         }
@@ -532,52 +592,4 @@ extension FeedbackViewController {
         
     }
     
-    func uploadVideo(_ url:URL) {
-        
-        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
-            
-            let randomName = randomStringWithLength(length: 10)
-
-            let path = "Videos/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).mov"
-            let uploadRef = Storage.storage().reference().child(path)
-          
-            
-            _ = uploadRef.putFile(from: url, metadata: nil) { metadata, error in
-            
-                if error == nil {
-                    //success
-                        
-                        print("success \(path)")
-                        self.feedbackModel.videoFilName.append(path)
-                        
-                } else {
-                    //error
-                    print("error uploading video")
-                    print(error)
-                }
-                if self.images.count != 0 {
-                    self.feedbackModel.imageFileName.removeAll()
-                    for image in 0..<self.images.count {
-                        
-                        for tag in self.thumnailTag {
-                            
-                            if image == tag  {
-                                
-                                self.uploadImage(image: self.images[image],tag)
-                            }
-                            self.uploadImage(image: self.images[image],nil)
-                        }
-                    }
-                } else {
-                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
-                }
-            }
-        }
-    }
-}
-
-extension Array {
-    mutating func move(at index: Index, to newIndex: Index) {
-        insert(remove(at: index), at: newIndex)
-    }
 }

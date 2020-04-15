@@ -70,8 +70,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gyQ-DV-BvQ" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="27.333333333333329" width="120" height="20"/>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyQ-DV-BvQ" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="27.333333333333329" width="120" height="10"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
@@ -79,14 +79,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9R3-w4-0M5">
-                                        <rect key="frame" x="0.0" y="54.333333333333336" width="76.666666666666671" height="20.333333333333336"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ambience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9R3-w4-0M5">
+                                        <rect key="frame" x="0.0" y="44.333333333333336" width="76.666666666666671" height="20.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rHU-LC-XoK" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="81.666666666666671" width="120" height="20"/>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rHU-LC-XoK" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="71.666666666666671" width="120" height="0.0"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
@@ -94,14 +94,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwA-0Z-TWN">
-                                        <rect key="frame" x="0.0" y="108.66666666666667" width="57" height="20.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwA-0Z-TWN">
+                                        <rect key="frame" x="0.0" y="78.666666666666671" width="57" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bYF-rJ-XwL" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="136" width="120" height="20"/>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bYF-rJ-XwL" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="106" width="120" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
@@ -161,11 +161,11 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="302-Ia-2kC">
-                                <rect key="frame" x="16" y="480" width="343" height="100"/>
+                                <rect key="frame" x="16" y="460" width="343" height="120"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" id="P8q-yy-BMh">
-                                        <rect key="frame" x="0.0" y="19" width="343" height="100"/>
+                                        <rect key="frame" x="0.0" y="10" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     </stackView>
                                 </subviews>
@@ -302,8 +302,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
 
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fia-kW-IQH" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="34.333333333333336" width="120" height="20"/>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fia-kW-IQH" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="34.333333333333336" width="120" height="10"/>
 
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -313,16 +313,16 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
 
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqC-Og-yP3">
-                                        <rect key="frame" x="0.0" y="68.333333333333329" width="76.666666666666671" height="20.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ambience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqC-Og-yP3">
+                                        <rect key="frame" x="0.0" y="58.333333333333336" width="76.666666666666671" height="20.333333333333336"/>
 
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
 
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Afl-tv-UJb" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="102.66666666666667" width="120" height="20"/>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Afl-tv-UJb" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="92.666666666666671" width="120" height="0.0"/>
 
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -332,16 +332,16 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
 
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uja-9s-R68">
-                                        <rect key="frame" x="0.0" y="136.66666666666666" width="57" height="20.333333333333343"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uja-9s-R68">
+                                        <rect key="frame" x="0.0" y="106.66666666666667" width="57" height="20.333333333333329"/>
 
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
 
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x3S-bM-hYk" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="171" width="120" height="20"/>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x3S-bM-hYk" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="141" width="120" height="50"/>
 
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -392,11 +392,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="wLo-Uj-GGW">
-                                <rect key="frame" x="16" y="480" width="343" height="92"/>
+                                <rect key="frame" x="16" y="460" width="343" height="120"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" id="Oah-DI-evk">
-                                        <rect key="frame" x="0.0" y="-8" width="343" height="100"/>
+                                        <rect key="frame" x="0.0" y="10" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     </stackView>
                                 </subviews>
