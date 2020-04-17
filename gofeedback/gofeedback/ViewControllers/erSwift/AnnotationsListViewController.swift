@@ -19,10 +19,31 @@ class AnnotationsListViewController: BottomSheetController {
     
     var dataSource : [CDYelpBusiness]?
     
+//    override var bottomYPercentage: CGFloat {
+//
+//        return 30.0
+//    }
+//
+    override var bottomInset: CGFloat {
+        
+        return 20.0
+    }
+        
+    override var topInset: CGFloat {
+        
+        return 100.0
+    }
+
     override var initialPosition: SheetPosition {
+        
         return .bottom
     }
     
+//    required init?(coder aDecoder: NSCoder) {
+//
+//        super.init(coder: aDecoder)
+//    }
+//
     override func viewDidLoad() {
         super.viewDidLoad()
       

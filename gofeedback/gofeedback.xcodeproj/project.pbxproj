@@ -35,6 +35,7 @@
 		276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAECB241D58E100C66EAC /* GFReachability.swift */; };
 		277EB41B2440F33B000CA425 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277EB41A2440F33B000CA425 /* CustomAnnotation.swift */; };
 		277EB41D244102EE000CA425 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277EB41C244102EE000CA425 /* CustomAnnotationView.swift */; };
+		277EB42524478DA2000CA425 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 277EB42424478DA2000CA425 /* GoogleService-Info.plist */; };
 		27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A13240FF1AF004CEE14 /* AppDelegate.swift */; };
 		27839A16240FF1AF004CEE14 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A15240FF1AF004CEE14 /* FeedbackViewController.swift */; };
 		27839A19240FF1AF004CEE14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27839A17240FF1AF004CEE14 /* Main.storyboard */; };
@@ -68,12 +69,7 @@
 		F719B7B324334A880017D5D1 /* ContactViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */; };
 		F7295FC32438C283003AFE77 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */; };
 		F7295FC52438CE71003AFE77 /* AnnotationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */; };
-
-		F77E7A1F243F6EB400DFDC7B /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */; };
 		F78495A12441FB200086B70B /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F78495A02441FAAF0086B70B /* video.mp4 */; };
-
-
-		F7FDB506243A2BAF00B8168A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +113,7 @@
 		276BAECB241D58E100C66EAC /* GFReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFReachability.swift; sourceTree = "<group>"; };
 		277EB41A2440F33B000CA425 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		277EB41C244102EE000CA425 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
+		277EB42424478DA2000CA425 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27839A10240FF1AF004CEE14 /* gofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gofeedback.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27839A13240FF1AF004CEE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27839A15240FF1AF004CEE14 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
@@ -159,13 +156,7 @@
 		F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewControllerViewController.swift; path = erSwift/ContactViewControllerViewController.swift; sourceTree = "<group>"; };
 		F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewImageViewController.swift; path = erSwift/PreviewImageViewController.swift; sourceTree = "<group>"; };
 		F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsListViewController.swift; path = erSwift/AnnotationsListViewController.swift; sourceTree = "<group>"; };
-
-		F77E7A1E243F6EB400DFDC7B /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotation.swift; path = emplate/CustomAnnotation.swift; sourceTree = "<group>"; };
 		F78495A02441FAAF0086B70B /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
-
-
-		F7FDB505243A2BAF00B8168A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,7 +291,7 @@
 				27839A13240FF1AF004CEE14 /* AppDelegate.swift */,
 				27839A17240FF1AF004CEE14 /* Main.storyboard */,
 				27839A1F240FF1B4004CEE14 /* LaunchScreen.storyboard */,
-				F78B6DE0244321F5007DFB94 /* GoogleService-Info.plist */,
+				277EB42424478DA2000CA425 /* GoogleService-Info.plist */,
 				27839A22240FF1B4004CEE14 /* Info.plist */,
 				27839A1A240FF1AF004CEE14 /* gofeedback.xcdatamodeld */,
 			);
@@ -469,7 +460,7 @@
 				276BAEC2241BF43600C66EAC /* Feedback.storyboard in Resources */,
 				27839A21240FF1B4004CEE14 /* LaunchScreen.storyboard in Resources */,
 				27839A19240FF1AF004CEE14 /* Main.storyboard in Resources */,
-				F78B6DE1244321F5007DFB94 /* GoogleService-Info.plist in Resources */,
+				277EB42524478DA2000CA425 /* GoogleService-Info.plist in Resources */,
 				271CBF6B2418D51E00CB113D /* Login.storyboard in Resources */,
 				271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */,
 				2741C188242D2512007A9F9D /* Account.storyboard in Resources */,
@@ -697,7 +688,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -752,7 +743,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
