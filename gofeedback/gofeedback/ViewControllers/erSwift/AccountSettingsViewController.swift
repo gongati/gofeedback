@@ -31,6 +31,11 @@ class AccountSettingsViewController: GFBaseViewController {
     }
     
     
+    @IBAction func backPressed(_ sender: UIButton) {
+        
+        self.moveToHomeVC()
+    }
+    
     func userData() {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {

@@ -25,12 +25,14 @@ class GFOTPViewController: GFBaseViewController {
     @IBAction func submitOtp(_ sender: Any) {
         
         self.verifyOpt()
+        self.attachSpinner(value: true)
     }
     
     func verifyOpt() {
         
         guard let userId = self.userID else {
             
+            self.attachSpinner(value: false)
             self.popupAlert(title: "Error", message: "User ID not found", actionTitles: ["OK"], actions: [nil])
             return
         }
@@ -43,6 +45,7 @@ class GFOTPViewController: GFBaseViewController {
                  
                  if err != nil{
                      
+                    self?.attachSpinner(value: false)
                     self?.popupAlert(title: "Error", message: err?.localizedDescription, actionTitles: ["OK"], actions: [nil])
                      return
                  }
@@ -55,6 +58,7 @@ class GFOTPViewController: GFBaseViewController {
              }
         } else {
             
+            self.attachSpinner(value: false)
             self.popupAlert(title: "Error", message: "Code can not be empty", actionTitles: ["OK"], actions: [nil])
         }
     }

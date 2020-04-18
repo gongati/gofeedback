@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class WalletViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var walletBalanceLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +31,8 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
         tableView.dataSource = self
         
         tableView.tableFooterView = UIView()
+        
+        self.attachSpinner(value: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +43,8 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBAction func submiteedPressed(_ sender: UIButton) {
         
+        self.attachSpinner(value: true)
+        
         self.feedBackData.removeAll()
         self.feedBackDataTitle.removeAll()
         self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Submitted.rawValue)
@@ -50,14 +54,16 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBAction func paidPressed(_ sender: UIButton) {
         
-       self.feedBackData.removeAll()
+        self.attachSpinner(value: true)
+        self.feedBackData.removeAll()
         self.feedBackDataTitle.removeAll()
         self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Paid.rawValue)
     }
     
     @IBAction func draftsPressed(_ sender: UIButton) {
         
-       self.feedBackData.removeAll()
+        self.attachSpinner(value: true)
+        self.feedBackData.removeAll()
         self.feedBackDataTitle.removeAll()
         self.getFeedBackDetails(FeedbackStatus.Drafts.rawValue,FeedbackStatus.Drafts.rawValue)
     }
@@ -65,7 +71,8 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
 
     @IBAction func pendingPressed(_ sender: UIButton) {
         
-       self.feedBackData.removeAll()
+        self.attachSpinner(value: true)
+        self.feedBackData.removeAll()
         self.feedBackDataTitle.removeAll()
         self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Submitted.rawValue)
     }
@@ -94,6 +101,7 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
                     self.walletBalanceLabel.text = "$\(Float(self.feedBackDataTitle.count))"
                     }
                     self.tableView.reloadData()
+                    self.attachSpinner(value: false)
                 }
             }
             
@@ -115,6 +123,8 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.attachSpinner(value: true)
         
         images.removeAll()
         videoUrl.removeAll()
@@ -208,14 +218,15 @@ class WalletViewController: UIViewController,UITableViewDelegate,UITableViewData
             }
         }
             
-             group2.notify(queue: .main) {
+            group2.notify(queue: .main) {
                 
                 viewController.images = self.images
                 viewController.videoUrl = self.videoUrl
                 viewController.videoTag = self.videotag
                 print(viewController.images)
-           print("navigation")
-            self.navigationController?.pushViewController(viewController, animated: true)
+                print("navigation")
+                self.attachSpinner(value: false)
+                self.navigationController?.pushViewController(viewController, animated: true)
             }
         }
     }

@@ -69,6 +69,24 @@ class AnnotationsListViewController: BottomSheetController {
         
     }
     
+    func distanceSorting() {
+        
+        if self.dataSource != nil {
+            
+            for i in 0..<(self.dataSource?.count  ?? 0){
+                for j in 0..<(self.dataSource?.count  ?? 0){
+                    
+                    if self.dataSource?[i].distance ?? 0 < self.dataSource?[j].distance ?? 0 {
+                        
+                        let temp = self.dataSource?[i]
+                        let temp2 = self.dataSource?[j]
+                        self.dataSource?[i] = (temp2)!
+                        self.dataSource?[j] = temp!
+                    }
+                }
+            }
+        }
+    }
     func wayToFeedback(_ value:Int) {
         
         guard let viewController = UIStoryboard(name: "Feedback", bundle: nil).instantiateViewController(withIdentifier:  "FeedbackViewController") as? FeedbackViewController else {
@@ -92,6 +110,8 @@ extension AnnotationsListViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        self.distanceSorting()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath) as! GFHistoryTableViewCell
         if let business = self.dataSource?[indexPath.row] {
