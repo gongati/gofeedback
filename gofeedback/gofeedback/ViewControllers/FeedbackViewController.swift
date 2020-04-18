@@ -74,6 +74,10 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         self.cameraButton.layer.borderWidth = 1
         self.cameraButton.contentMode = .scaleAspectFit
         self.cameraButton.layer.borderColor = UIColor.black.cgColor
+        
+        self.commentsTxt.layer.borderColor = UIColor.lightGray.cgColor
+        self.commentsTxt.layer.borderWidth = 1
+        self.commentsTxt.layer.cornerRadius = 5
     }
     
     override func viewDidAppear(_ animated: Bool) {
