@@ -70,9 +70,10 @@
                                     <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmB-4j-FPO">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Home" image="bus-solid-white">
+                                        <state key="normal" title="Home" image="map" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -129,6 +130,20 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTW-3K-Z9K">
+                                <rect key="frame" x="16" y="490" width="240" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Feeds" image="text.badge.minus" catalog="system">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="showContactus:" destination="on8-Rv-jhf" eventType="touchUpInside" id="Gqk-Ts-lyY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.32531052830000001" green="0.39269918199999998" blue="0.64615559580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -155,14 +170,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t53-nw-YY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="97" y="181"/>
+            <point key="canvasLocation" x="95.652173913043484" y="180.80357142857142"/>
         </scene>
     </scenes>
     <resources>
-        <image name="bus-solid-white" width="22" height="21"/>
         <image name="cog-regular" width="23" height="23"/>
+        <image name="map" catalog="system" width="64" height="56"/>
         <image name="phone-solid" width="23" height="23"/>
         <image name="sign-out-alt-light" width="27" height="20"/>
+        <image name="text.badge.minus" catalog="system" width="64" height="54"/>
         <image name="ticket-alt-light" width="26" height="17"/>
         <image name="user_icon_default" width="300" height="300"/>
     </resources>
