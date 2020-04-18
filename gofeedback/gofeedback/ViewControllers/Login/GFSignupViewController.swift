@@ -107,10 +107,7 @@ class GFSignupViewController: GFBaseViewController {
                 if value {
                     
                     self.creatingDataBase()
-                    self.popupAlert(title: "Alert", message: "Successfully Registered", actionTitles: ["OK"], actions: [{ action in
-                        
-                        self.showOTPScreen()
-                    }])
+                    self.attachSpinner(value: true)
                 }
             }.disposed(by: disposeBag)
 
@@ -143,6 +140,8 @@ class GFSignupViewController: GFBaseViewController {
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
+                self.attachSpinner(value: false)
+                self.popupAlert(title: "Alert", message: "Fail to register,try again", actionTitles: ["OK"], actions:[nil])
             } else {
                 print("Document added with ID: \(self.countryCode.text ?? "+1") \(self.mobileNumberTxt.text ?? "1234567890")")
                 
@@ -150,6 +149,12 @@ class GFSignupViewController: GFBaseViewController {
                 
                 UserDefaults.standard.set(self.emailTxt.text ?? "", forKey: "Email")
                  UserDefaults.standard.synchronize()
+                
+                self.popupAlert(title: "Alert", message: "Successfully Registered", actionTitles: ["OK"], actions: [{ action in
+                    
+                    self.attachSpinner(value: false)
+                    self.showOTPScreen()
+                    }])
             }
         }
     }

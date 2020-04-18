@@ -61,6 +61,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
         
         if let userID =  UserDefaults.standard.string(forKey: "UserId") {
             
+            self.attachSpinner(value: true)
             if self.feedbackModel.status == .Drafts {
                 
                 db.collection("Feedback").document(userID).collection(self.feedbackModel.status.rawValue).document(self.feedbackModel.restaurantTitle).delete() { err in
@@ -159,6 +160,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
                 self.popupAlert(title: "Error", message: err.localizedDescription, actionTitles: ["OK"], actions: [nil])
             } else {
                 print("Successfully saved data.")
+                self.attachSpinner(value: false)
                 self.popupAlert(title: "Alert", message: "Successfully saved data.", actionTitles: ["OK"], actions: [{ action in
                     
                     self.moveToHomeVC()

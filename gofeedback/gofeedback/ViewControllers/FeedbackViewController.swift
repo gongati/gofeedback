@@ -109,6 +109,8 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
             
+            self.attachSpinner(value: true)
+            
             self.feedbackModel.status = .Submitted
             
              self.feedbackModel.comments = self.commentsTxt.text
@@ -364,6 +366,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                 self.popupAlert(title: "Error", message: err.localizedDescription, actionTitles: ["OK"], actions: [nil])
             } else {
                 print("Successfully saved data.")
+                self.attachSpinner(value: false)
                 self.popupAlert(title: "Alert", message: "Successfully saved data.", actionTitles: ["OK"], actions: [{ action in
                     
                     self.moveToHomeVC()

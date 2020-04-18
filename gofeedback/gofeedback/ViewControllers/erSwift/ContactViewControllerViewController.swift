@@ -25,6 +25,9 @@ class ContactViewControllerViewController: GFBaseViewController,MFMailComposeVie
     
     @IBAction func sendPressed(_ sender: UIButton) {
         
+        dismissKeyboard()
+        self.attachSpinner(value: true)
+        
         let exp1 = commentsTextView.text + "\n\nWith Regards, \n"
         let exp2 = (nameTxtF?.text ?? "Anonymous") + "\n"
         print(exp1 + exp2 + (emailTxt?.text ?? ""))
@@ -50,6 +53,7 @@ class ContactViewControllerViewController: GFBaseViewController,MFMailComposeVie
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
+        self.attachSpinner(value: false)
         switch result.rawValue {
         case MFMailComposeResult.cancelled.rawValue:
             self.popupAlert(title: "ALert", message: "Mail Canceled", actionTitles: ["OK"], actions: [nil])
@@ -84,10 +88,20 @@ class ContactViewControllerViewController: GFBaseViewController,MFMailComposeVie
         doneToolbar.sizeToFit()
         
         commentsTextView.inputAccessoryView = doneToolbar
+        emailTxt.inputAccessoryView = doneToolbar
     }
     
     @objc func doneButtonAction() {
         
         commentsTextView.resignFirstResponder()
+        emailTxt.resignFirstResponder()
+    }
+    
+    @objc override func keyboardWillShow(notification: NSNotification) {
+    
+    
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= 120
+            }
     }
 }

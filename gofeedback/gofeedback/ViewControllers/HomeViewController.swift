@@ -67,6 +67,11 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         determineCurrentLocation()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        self.children[0].removeFromParent()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -129,25 +134,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         }
     }
     
-    fileprivate func fetchYelpBusinesses(latitude: Double, longitude: Double) {
-        let apikey = "4XSgITa2PpPWqH7YO_UhRH3a7fImYQHHI_yVOXve8pHozQSoimEW8Rf_D6DbhTv9-b3TfTe9v34hIbhVA0BIYTulTauO1RG6kbEmS02V42idN9eP5IcIBjI6PwiLXnYx"
-        let url = URL(string: "https://api.yelp.com/v3/businesses/search?latitude=\(latitude)&longitude=\(longitude)")
-        var request = URLRequest(url: url!)
-        request.setValue("Bearer \(apikey)", forHTTPHeaderField: "Authorization")
-        request.httpMethod = "GET"
-
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let err = error {
-                print(err.localizedDescription)
-            }
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                print(">>>>>", json, #line, "<<<<<<<<<")
-            } catch {
-                print("caught")
-            }
-            }.resume()
-    }
     //MARK:- IBActions
     
     @IBAction func gotoCurrentLocation(_ sender: UIButton) {
@@ -161,6 +147,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         self.radiusOffset /= 2
         print(radiusOffset)
         self.yelpQuery()
+        self.attachSpinner(value: true)
     }
     
     @IBAction func zoomOutMap(_ sender: UIButton) {
@@ -169,6 +156,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         self.radiusOffset *= 2
         print(radiusOffset)
         self.yelpQuery()
+        self.attachSpinner(value: true)
     }
     
     @IBAction func nearLocation1Pressed(_ sender: UIButton) {
@@ -211,6 +199,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         self.yelpQuery()
+        self.attachSpinner(value: true)
         textField.resignFirstResponder()
         return true
     }
@@ -230,8 +219,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
             mapView.setRegion(region, animated: true)
-            
-           // self.fetchYelpBusinesses(latitude: location.latitude, longitude: location.longitude)
 
         }
     }
@@ -263,6 +250,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
+        self.attachSpinner(value: false)
+        self.attachSpinner(value: true)
         guard userCurrentLocation?.latitude != nil else {
             print("User location is nil")
             return
@@ -277,6 +266,13 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         let zoomFactor = Int(log2(zoomWidth)) - 9
         let pinDistance = (20 * zoomFactor)
         
+        let lat = Double(round(selectedLoc.coordinate.latitude * 1000000)/1000000)
+        let long = Double(round(selectedLoc.coordinate.longitude * 1000000)/1000000)
+        if currentLoc.coordinate.latitude != lat && currentLoc.coordinate.longitude != long {
+            locationLat = "\(mapView.centerCoordinate.latitude)"
+            locationLong = "\(mapView.centerCoordinate.longitude)"
+            self.yelpQuery()
+        }
         //self.radius = 200
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
@@ -326,7 +322,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                        locale: .english_unitedStates,
                                        limit: 50,
                                        offset: nil,
-                                       sortBy: .rating,
+                                       sortBy: .bestMatch,
                                        priceTiers: nil,
                                        openNow: nil,
                                        openAt: nil,
@@ -350,16 +346,13 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                                     point.business = business
                                                     point.title = business.name
                                                      self.mapView.addAnnotation(point)
-                                                    
-//                                                    let annotation = MKPointAnnotation()
-//                                                    annotation.coordinate = CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 0, longitude: business.coordinates?.longitude ?? 0)
-//                                                    annotation.title = business.name
-//                                                    self.mapView.addAnnotation(annotation)
                                                 }
                                                 
-                                                DispatchQueue.main.async {
-                                                    
-                                                    self.nearestLocationButtons()
+                                                if "\(self.userCurrentLocation?.latitude ?? 0)" != self.locationLat && "\(self.userCurrentLocation?.longitude ?? 0)" != self.locationLong {
+                                                let annotation = MKPointAnnotation()
+                                                    annotation.coordinate = CLLocationCoordinate2D(latitude: Double(self.locationLat ?? "")!, longitude: Double(self.locationLong ?? "")!)
+                                                         annotation.title = "Refernce Location"
+                                                self.mapView.addAnnotation(annotation)
                                                 }
                                             }
                                         }
@@ -367,121 +360,11 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                             
                                             print("error")
                                         }
+                                        self.attachSpinner(value: false)
         }
         
     }
-    func mapQuery() {
         
-        self.mapView.removeAnnotations(mapView.annotations)
-        
-        let request = MKLocalSearch.Request()
-        if whereToGoText.text == "" {
-            
-            request.naturalLanguageQuery = "Food"
-        } else {
-            
-            request.naturalLanguageQuery = whereToGoText.text
-        }
-        request.region = mapView.region
-        
-        let search = MKLocalSearch(request: request)
-        
-        search.start(completionHandler: {(response, error) in
-            
-            if error != nil {
-                print(
-                    error!.localizedDescription)
-            } else if response!.mapItems.count == 0 {
-                
-                self.popupAlert(title: "Alert", message: "No matches Found", actionTitles: ["OK"], actions: [nil])
-            } else {
-                
-                print(response?.mapItems)
-               // self.searchResponse = response?.mapItems
-                for item in response!.mapItems {
-                    
-                    print(item.name)
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = item.placemark.coordinate
-                    annotation.title = item.name
-                    self.mapView.addAnnotation(annotation)
-                }
-                DispatchQueue.main.async {
-                    
-                    self.nearestLocationButtons()
-                }
-            }
-        })
-    }
-    
-    func nearestLocationButtons() {
-        
-        nearLocation1.isHidden = false
-        nearLocation2.isHidden = false
-        nearLocation3.isHidden = false
-        listOutlet.isHidden = false
-        self.listOutlet.titleLabel?.numberOfLines = 2
-        
-        var distances = [CLLocationDistance]()
-        if let currentLocation = self.userCurrentLocation {
-            let currentLoc = CLLocation(latitude: (userCurrentLocation?.latitude)!, longitude: (userCurrentLocation?.longitude)!)
-            
-            for annotation in 0..<(self.searchResponse?.count ?? 1) {
-                if let searchResponse = self.searchResponse {
-                    let value = searchResponse[annotation].coordinates
-                    let selectedLoc = CLLocation(latitude: value?.latitude ?? 0, longitude: value?.longitude ?? 0)
-                    distances.append(currentLoc.distance(from: selectedLoc))
-                }
-            }
-            
-            let sortedDistances = distances.sorted(by:<)
-            print(distances)
-            print(sortedDistances)
-            var values = [Int]()
-            
-            for i in 0..<sortedDistances.count {
-                
-                for j in 0..<distances.count {
-                    
-                    if distances[j] == (sortedDistances[i]) {
-                        
-                        values.append(j)
-                    }
-                }
-            }
-            print(values)
-            
-            if values.count >= 3 {
-                self.nearLocation1.setTitle(self.searchResponse?[values[0]].name ?? "1", for: .normal)
-                self.nearLocation1.titleLabel?.numberOfLines = 2
-                self.nearLocation1.titleLabel?.adjustsFontSizeToFitWidth = true
-                self.nearLocation2.setTitle(self.searchResponse?[values[1]].name ?? "2", for: .normal)
-                self.nearLocation2.titleLabel?.numberOfLines = 2
-                self.nearLocation2.titleLabel?.adjustsFontSizeToFitWidth = true
-                self.nearLocation3.setTitle(self.searchResponse?[values[2]].name ?? "3", for: .normal)
-                self.nearLocation3.titleLabel?.numberOfLines = 2
-                self.nearLocation3.titleLabel?.adjustsFontSizeToFitWidth = true
-            } else if values.count == 2 {
-                
-                self.nearLocation1.setTitle(self.searchResponse?[values[0]].name ?? "1", for: .normal)
-                self.nearLocation1.titleLabel?.numberOfLines = 2
-                self.nearLocation1.titleLabel?.adjustsFontSizeToFitWidth = true
-                self.nearLocation2.setTitle(self.searchResponse?[values[1]].name ?? "2", for: .normal)
-                self.nearLocation2.titleLabel?.numberOfLines = 2
-                self.nearLocation2.titleLabel?.adjustsFontSizeToFitWidth = true
-                self.nearLocation3.isHidden = true
-            } else {
-                
-                self.nearLocation2.setTitle(self.searchResponse?[values[0]].name ?? "2", for: .normal)
-                self.nearLocation2.titleLabel?.numberOfLines = 2
-                self.nearLocation2.titleLabel?.adjustsFontSizeToFitWidth = true
-                self.nearLocation1.isHidden = true
-                self.nearLocation3.isHidden = true
-            }
-        }
-    }
-    
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation {
@@ -491,32 +374,31 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         let identifier = "marker"
         var view: MKMarkerAnnotationView
         
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            as? MKMarkerAnnotationView {
-            dequeuedView.annotation = annotation
-            view = dequeuedView
-        } else {
+        view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        
+        if let customAnnotation = view.annotation as? CustomAnnotation {
             
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.titleVisibility = .adaptive
             view.calloutOffset = CGPoint(x: -5, y: 5)
             
-           if let customAnnotation = view.annotation as? CustomAnnotation {
-                    
-                let calloutView = CustomAnnotationView()
-                calloutView.configureView(customAnnotation.business)
+            let calloutView = CustomAnnotationView()
+            calloutView.configureView(customAnnotation.business)
             
-                    calloutView.snp.makeConstraints { (make) in
-                        
-                        make.height.equalTo(80)
-                    }
-
+            calloutView.snp.makeConstraints { (make) in
+                
+                make.height.equalTo(80)
+            }
+            
             calloutView.actionButton.addTarget(self, action: #selector(self.annotationPressed(sender:)), for: .touchUpInside)
             calloutView.isUserInteractionEnabled = true
             view.detailCalloutAccessoryView = calloutView
-            }
+        } else if let _ = view.annotation as? MKPointAnnotation {
+            
+            view.canShowCallout = false
+            view.markerTintColor = UIColor.green
         }
+        
         return view
     }
     

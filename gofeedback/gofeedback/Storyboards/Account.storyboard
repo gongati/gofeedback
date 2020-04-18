@@ -181,7 +181,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="goBack:" destination="yg7-CJ-zVs" eventType="touchUpInside" id="j9q-3o-YBs"/>
+                                            <action selector="backPressed:" destination="yg7-CJ-zVs" eventType="touchUpInside" id="rAI-1A-l1a"/>
                                         </connections>
                                     </button>
                                 </subviews>

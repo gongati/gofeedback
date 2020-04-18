@@ -113,7 +113,7 @@
                                 <color key="tintColor" red="0.55833711630000005" green="0.58587701390000002" blue="0.80995315310000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dF8-Mw-i13">
-                                <rect key="frame" x="0.0" y="230" width="375" height="582"/>
+                                <rect key="frame" x="0.0" y="245" width="375" height="567"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -226,6 +226,6 @@
         <image name="gofeedback-logo-180x180" width="180" height="180"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qgO-l7-IH9"/>
+        <segue reference="NNZ-hE-MC5"/>
     </inferredMetricsTieBreakers>
 </document>
