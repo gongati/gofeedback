@@ -1,142 +1,108 @@
 //
-//  WalletViewController.swift
+//  AdminFeedsViewController.swift
 //  gofeedback
 //
-//  Created by OMNIADMIN on 29/03/20.
+//  Created by OMNIADMIN on 19/04/20.
 //  Copyright © 2020 Vishnu. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableViewDataSource {
-    
-    @IBOutlet weak var walletBalanceLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
+class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITableViewDelegate {
     
     let db = Firestore.firestore()
-
     let storage = Storage.storage()
     var feedBackDataTitle : [String] = []
     var feedBackData = [[String:Any]]()
+    var totalFeedback = [[String:[[String:Any]]]]()
     var images = [UIImage]()
     var videoUrl = [URL]()
     var videotag = [Int]()
-    var firstTimeLoad = true
     
-    let dg = DispatchGroup()
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-                
+        
         tableView.tableFooterView = UIView()
-        self.draftsLoadFirstTime()
-        self.attachSpinner(value: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
-    
-    @IBAction func submiteedPressed(_ sender: UIButton) {
-        
-        self.attachSpinner(value: true)
-        
         self.feedBackData.removeAll()
         self.feedBackDataTitle.removeAll()
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Rejected.rawValue)
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Submitted.rawValue)
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Paid.rawValue)
-    }
-    
-    @IBAction func paidPressed(_ sender: UIButton) {
-        
+        self.totalFeedback.removeAll()
         self.attachSpinner(value: true)
-        self.feedBackData.removeAll()
-        self.feedBackDataTitle.removeAll()
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Paid.rawValue)
+        getFeedsDetails()
     }
     
-    @IBAction func draftsPressed(_ sender: UIButton) {
+    func getFeedsDetails() {
         
-        self.attachSpinner(value: true)
-        self.feedBackData.removeAll()
-        self.feedBackDataTitle.removeAll()
-        self.getFeedBackDetails(FeedbackStatus.Drafts.rawValue,FeedbackStatus.Drafts.rawValue)
-    }
-    
-
-    @IBAction func pendingPressed(_ sender: UIButton) {
-        
-        self.attachSpinner(value: true)
-        self.feedBackData.removeAll()
-        self.feedBackDataTitle.removeAll()
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Submitted.rawValue)
-    }
-    
-    func getFeedBackDetails(_ collectionStatus: String,_ state:String) {
-        
-        if let userid = UserDefaults.standard.string(forKey: "UserId") {
-            
-
-            let docRef = db.collection("Feedback").document(userid).collection(collectionStatus).whereField(Constants.FeedbackCommands.status, isEqualTo: state)
-            
-            docRef.getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
+        db.collection("Feedback").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let dg = DispatchGroup()
+                for document in querySnapshot!.documents {
                     
-                    for document in querySnapshot!.documents {
-                        
-                        self.feedBackDataTitle.append(document.documentID)
-                        print(document.data()["Comments"] as! String)
-                        print("\(document.documentID) => \(document.data())")
-                        self.feedBackData.append(document.data())
+                    dg.enter()
+                    let docId = document.documentID
+                    print("\(document.documentID) => \(document.data())")
+                    self.db.collection("Feedback").document(document.documentID).collection(FeedbackStatus.Submitted.rawValue).getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            var data = [[String:Any]]()
+                            for document in querySnapshot!.documents {
+                                
+                                self.feedBackDataTitle.append(document.documentID)
+                                print(document.data()["Comments"] as! String)
+                                print("\(document.documentID) => \(document.data())")
+                                self.feedBackData.append(document.data())
+                                data.append(document.data())
+                            }
+                            self.totalFeedback.append([docId:data])
+                            data.removeAll()
+                        }
+                        dg.leave()
                     }
-                    if state == FeedbackStatus.Paid.rawValue {
-                        
-                        self.walletBalanceLabel.text = "$\(Float(self.feedBackDataTitle.count))"
-                    }
-                    if self.firstTimeLoad {
-                        
-                        self.feedBackData.removeAll()
-                        self.feedBackDataTitle.removeAll()
-                        self.firstTimeLoad = false
-                        self.dg.leave()
-                    } else {
-                        
-                        self.tableView.reloadData()
-                    }
+                }
+                dg.notify(queue: .main) {
+                    
+                    self.tableView.reloadData()
                     self.attachSpinner(value: false)
                 }
             }
-            
-            
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return self.feedBackDataTitle.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
-
-        cell.textLabel?.text = self.feedBackDataTitle[indexPath.row]
-        cell.detailTextLabel?.text = self.feedBackData[indexPath.row][Constants.FeedbackCommands.restuarantAddress] as? String ?? ""
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AdminFeedsCell", for: indexPath)
+        
+        if self.feedBackData[indexPath.row][Constants.FeedbackCommands.status] as? String ?? "" == FeedbackStatus.Paid.rawValue {
+       
+            cell.backgroundColor = UIColor.green
+        } else if self.feedBackData[indexPath.row][Constants.FeedbackCommands.status] as? String ?? "" == FeedbackStatus.Rejected.rawValue {
+            
+            cell.backgroundColor = UIColor.red
+        }
+         cell.textLabel?.text = self.feedBackDataTitle[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.attachSpinner(value: true)
-        
         images.removeAll()
         videoUrl.removeAll()
         videotag.removeAll()
@@ -146,7 +112,22 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     
     func moveToPreviewVC(_ at:Int) {
         
+        var userId = ""
         
+        for i in 0..<totalFeedback.count {
+            
+            for value in totalFeedback[i].values {
+                
+                for j in 0..<value.count{
+                    if value[j][Constants.FeedbackCommands.restuarantName] as? String ?? "" == self.feedBackData[at][Constants.FeedbackCommands.restuarantName] as? String ?? "" {
+                        for id in totalFeedback[i] {
+                            
+                            userId = id.key
+                        }
+                    }
+                }
+            }
+        }
         guard let viewController = UIStoryboard(name: "Feedback", bundle: nil).instantiateViewController(withIdentifier:  "PreviewFeedbackViewController") as? PreviewFeedbackViewController else {
             return
         }
@@ -158,14 +139,11 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
         viewController.feedbackModel.whatCanWeDoBetterRating = self.feedBackData[at][Constants.FeedbackCommands.whatCanWeDoBetter] as? Double ?? 0
         viewController.feedbackModel.comments = self.feedBackData[at][Constants.FeedbackCommands.comments] as? String ?? ""
         
-        if self.feedBackData[at][Constants.FeedbackCommands.status]  as? String ?? ""  == FeedbackStatus.Drafts.rawValue {
+        viewController.feedbackModel.isSubmitBtnHidden = true
+        if (self.feedBackData[at][Constants.FeedbackCommands.status] as? String ?? "" != FeedbackStatus.Rejected.rawValue)  && self.feedBackData[at][Constants.FeedbackCommands.status] as? String ?? "" != FeedbackStatus.Paid.rawValue {
             
-            viewController.feedbackModel.isSubmitBtnHidden = false
-            viewController.feedbackModel.status = .Drafts
-            
-        } else {
-            
-            viewController.feedbackModel.isSubmitBtnHidden = true
+            viewController.feedbackModel.isApprovedBtnHidden = false
+            viewController.feedbackModel.isRejectbtnHidden = false
         }
         let group = DispatchGroup()
          
@@ -234,6 +212,7 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
                 viewController.images = self.images
                 viewController.videoUrl = self.videoUrl
                 viewController.videoTag = self.videotag
+                viewController.adminUserId = userId
                 print(viewController.images)
                 print("navigation")
                 self.attachSpinner(value: false)
@@ -241,16 +220,4 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
             }
         }
     }
- 
-    func draftsLoadFirstTime() {
-        
-        dg.enter()
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Paid.rawValue)
-        
-        dg.notify(queue: .main) {
-            self.getFeedBackDetails(FeedbackStatus.Drafts.rawValue,FeedbackStatus.Drafts.rawValue)
-            self.attachSpinner(value: true)
-        }
-    }
 }
-

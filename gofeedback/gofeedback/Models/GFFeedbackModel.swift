@@ -22,6 +22,8 @@ struct FeedbackModel {
     var formFilName = ""
     var videoFilName = [""]
     var isSubmitBtnHidden = false
+    var isApprovedBtnHidden = true
+    var isRejectbtnHidden = true
     var status:FeedbackStatus = .none
     var thumnail = [""]
 }
@@ -32,4 +34,5 @@ enum FeedbackStatus: String {
     case Paid
     case Drafts
     case none
+    case Rejected
 }

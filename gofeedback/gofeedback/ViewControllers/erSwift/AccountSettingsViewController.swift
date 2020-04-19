@@ -23,6 +23,7 @@ class AccountSettingsViewController: GFBaseViewController {
         super.viewDidLoad()
 
         self.userData()
+        self.attachSpinner(value: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +49,7 @@ class AccountSettingsViewController: GFBaseViewController {
                     print("Document data: \(dataDescription)")
                     
                     self.UIUpdate(dataDescription)
+                    self.attachSpinner(value: false)
                 } else {
                     print("Document does not exist")
                     self.popupAlert(title: "Alert", message: "Document does not exist", actionTitles: ["OK"], actions: [{ action in
