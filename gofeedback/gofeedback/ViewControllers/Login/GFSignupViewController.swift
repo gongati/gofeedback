@@ -135,7 +135,7 @@ class GFSignupViewController: GFBaseViewController {
             Constants.userDetails.mobileNumber: "+" + (self.countryCode.text ?? "1") + " " + (self.mobileNumberTxt.text ?? "1234567890"),
 
             Constants.userDetails.address: self.addressTxtView.text as Any,
-            Constants.userDetails.address: 0
+            Constants.userDetails.userType: 0
 
         ]) { err in
             if let err = err {

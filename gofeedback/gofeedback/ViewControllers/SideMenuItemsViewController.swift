@@ -149,6 +149,11 @@ class SideMenuItemsViewController: UIViewController {
             return
         }
 
+        if shouldShowLogin() {
+            navigateToLogin()
+            return
+        }
+
         if let controller = UIStoryboard(name: "Account", bundle: nil).instantiateInitialViewController(){
             
             attachControllerToMainWindow(controller: controller)
