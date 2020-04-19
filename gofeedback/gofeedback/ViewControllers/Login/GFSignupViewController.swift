@@ -148,6 +148,9 @@ class GFSignupViewController: GFBaseViewController {
                 UserDefaults.standard.set((self.firstNameTxt.text ?? "") + " " + (self.lastNameTxt.text ?? ""), forKey: "UserName")
                 
                 UserDefaults.standard.set(self.emailTxt.text ?? "", forKey: "Email")
+                
+                UserDefaults.standard.set("0", forKey: "UserType")
+                
                  UserDefaults.standard.synchronize()
                 
                 self.popupAlert(title: "Alert", message: "Successfully Registered", actionTitles: ["OK"], actions: [{ action in

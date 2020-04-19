@@ -367,6 +367,23 @@
                                     <action selector="submitPressed:" destination="Ic8-SU-jUa" eventType="touchUpInside" id="84b-fZ-bPM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9f5-tq-xfx" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
+                                <rect key="frame" x="31" y="746" width="134" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.1578813791" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="Approve">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="approvedPressed:" destination="Ic8-SU-jUa" eventType="touchUpInside" id="tSC-Vk-Dlh"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comments:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxk-2U-34a">
                                 <rect key="frame" x="16" y="443" width="88" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -391,6 +408,23 @@
                                     </stackView>
                                 </subviews>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWE-U2-0sH" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
+                                <rect key="frame" x="231" y="748" width="116" height="35"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.1578813791" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="Reject">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="rejectedPressed:" destination="Ic8-SU-jUa" eventType="touchUpInside" id="dx7-KU-fBe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="47F-rN-pIq"/>
@@ -399,6 +433,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addressLabel" destination="wpm-DC-DXW" id="Pov-4e-QaT"/>
+                        <outlet property="adminApprove" destination="9f5-tq-xfx" id="BTb-cz-gkm"/>
+                        <outlet property="adminRejecect" destination="TWE-U2-0sH" id="g6x-Y1-Q2B"/>
                         <outlet property="commentsTxt" destination="MMx-cI-HF8" id="gdr-UJ-2aD"/>
                         <outlet property="cosmosView" destination="lMd-1h-hNY" id="WLg-w0-wdk"/>
                         <outlet property="howWeAreDoingCosmosView" destination="Fia-kW-IQH" id="rdg-b6-P4K"/>
