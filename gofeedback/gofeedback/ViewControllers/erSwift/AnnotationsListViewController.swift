@@ -24,11 +24,6 @@ class AnnotationsListViewController: BottomSheetController {
 //        return 30.0
 //    }
 //
-    override var bottomInset: CGFloat {
-        
-        return 20.0
-    }
-        
     override var topInset: CGFloat {
         
         return 100.0

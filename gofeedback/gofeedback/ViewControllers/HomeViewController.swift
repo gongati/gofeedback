@@ -69,7 +69,10 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        self.children[0].removeFromParent()
+        if self.children.count > 0 {
+            
+            self.children[0].removeFromParent()
+        }
     }
     
     override func didReceiveMemoryWarning() {
