@@ -34,6 +34,7 @@ class GFLoginViewController: GFBaseViewController {
     @IBAction func loginUser(_ sender: UIButton) {
         
         self.verifyPhone()
+        self.attachSpinner(value: true)
     }
     
     
@@ -58,6 +59,7 @@ class GFLoginViewController: GFBaseViewController {
                     }
                     
                     query.getDocuments() { (querySnapshot, err) in
+                        
                         if let err = err {
                             print("Error getting documents: \(err)")
                         } else {
@@ -73,6 +75,9 @@ class GFLoginViewController: GFBaseViewController {
                                 UserDefaults.standard.set((querySnapshot?.documents[0].data()[Constants.userDetails.firstName] as! String) + " " + (querySnapshot?.documents[0].data()[Constants.userDetails.lastName] as! String), forKey: "UserName")
                                 
                                 UserDefaults.standard.set((querySnapshot?.documents[0].data()[Constants.userDetails.email] as! String), forKey: "Email")
+                                
+                                UserDefaults.standard.set("\(querySnapshot?.documents[0].data()[Constants.userDetails.userType] as! Int)", forKey: "UserType")
+                                
                                  UserDefaults.standard.synchronize()
                                 self?.userID = ID!
                                 self?.showOTPScreen()
@@ -100,6 +105,8 @@ class GFLoginViewController: GFBaseViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        self.attachSpinner(value: false)
         
         if (segue.identifier == "SHOWOTP") {
             

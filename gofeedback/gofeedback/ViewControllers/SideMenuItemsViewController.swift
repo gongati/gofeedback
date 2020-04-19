@@ -25,12 +25,13 @@ class SideMenuItemsViewController: UIViewController {
     
     @IBOutlet weak var userImage: UIImageView!
     
+    @IBOutlet weak var feedsBtn: UIButton!
+    
     var currentAction:String?
     static var rightNavController:UINavigationController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -94,6 +95,15 @@ class SideMenuItemsViewController: UIViewController {
         }
     }
 
+    @IBAction func adminFeeds(_ sender: UIButton) {
+        
+        currentAction = Constants.SideMenuAction.AdminFeeds
+
+        dismiss(animated: false) {
+            self.navigateToAdminFeeds()
+        }
+    }
+    
     @objc func navigateToPlanTrip() {
         print("SIDEMENU - Plan Trip")
         if GFBaseViewController.currentMenuItem == Constants.SideMenuAction.PlanTrip {
@@ -166,6 +176,23 @@ class SideMenuItemsViewController: UIViewController {
         //TODO - Alerts need to be integrated
         GFBaseViewController.currentMenuItem = Constants.SideMenuAction.ContactUs
     }
+    
+    @objc func navigateToAdminFeeds() -> Void {
+        if GFBaseViewController.currentMenuItem == Constants.SideMenuAction.AdminFeeds {
+            SideMenuItemsViewController.rightNavController?.popToRootViewController(animated: false)
+            return
+        }
+        showAdminFeedsPage()
+        //TODO - Alerts need to be integrated
+        GFBaseViewController.currentMenuItem = Constants.SideMenuAction.AdminFeeds
+    }
+    
+    func showAdminFeedsPage() {
+        if let controller = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: Constants.StoryBoard.AdminFeeds) as? AdminFeedsViewController {
+                attachControllerToMainWindow(controller: controller)
+        }
+    }
+    
         func showContactPage() {
             if let controller = UIStoryboard(name: "Contact", bundle: nil).instantiateViewController(withIdentifier: Constants.StoryBoard.Contact) as? ContactViewControllerViewController {
                 attachControllerToMainWindow(controller: controller)
@@ -208,13 +235,22 @@ class SideMenuItemsViewController: UIViewController {
         if status {
             menuLogin.setTitle("Log In", for: .normal)
             menuLogin.setImage(UIImage(named: "sign-in-alt-light"), for: .normal)
+            self.feedsBtn.isHidden = true
         }else {
             menuLogin.setTitle("Log Out", for: .normal)
             menuLogin.setImage(UIImage(named: "sign-out-alt-light"), for: .normal)
-            if let name = UserDefaults.standard.string(forKey: "UserName"), let email = UserDefaults.standard.string(forKey: "Email") {
+            if let name = UserDefaults.standard.string(forKey: "UserName"), let email = UserDefaults.standard.string(forKey: "Email"),let userType =  UserDefaults.standard.string(forKey: "UserType") {
             
                 self.userNameLabel.text = name
                 self.emailLabel.text = email
+                
+                if userType == "1" {
+                    
+                    self.feedsBtn.isHidden = false
+                } else {
+                    
+                    self.feedsBtn.isHidden = true
+                }
             }
         }
     }
@@ -235,6 +271,7 @@ class SideMenuItemsViewController: UIViewController {
         UserDefaults.standard.removeObject(forKey: "UserId")
         UserDefaults.standard.set("",forKey: "UserName")
         UserDefaults.standard.set("",forKey: "email")
+        UserDefaults.standard.set(0, forKey: "UserType")
         UserDefaults.standard.synchronize()
 
         if GFBaseViewController.currentMenuItem == Constants.SideMenuAction.PlanTrip {

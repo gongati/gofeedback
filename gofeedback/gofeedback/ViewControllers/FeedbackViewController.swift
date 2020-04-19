@@ -89,7 +89,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     }
     @IBAction func cancelPressed(_ sender: UIButton) {
         
-        navigationController?.popViewController(animated: true)
+        moveToHomeVC()
     }
     
     @IBAction func formPressed(_ sender: UIButton) {

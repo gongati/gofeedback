@@ -21,20 +21,20 @@ class PreviewFeedbackViewController: GFBaseViewController {
     @IBOutlet weak var commentsTxt: UITextView!
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var submitBtnOulet: UIButton!
-    @IBOutlet weak var imagesStackView: UIStackView!
-    @IBOutlet weak var formImageView: UIButton!
-    @IBOutlet weak var imageLabel: UILabel!
-    @IBOutlet weak var formLabel: UILabel!
     
     @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var imageStackView: UIStackView!
+  
+    @IBOutlet weak var adminApprove: UIButton!
+    @IBOutlet weak var adminRejecect: UIButton!
     
     var feedbackModel = FeedbackModel()
     var images:[UIImage]?
     var formImage:UIImage?
     var videoUrl:[URL]?
     var videoTag:[Int]?
+    var adminUserId:String?
     
     let db = Firestore.firestore()
     
@@ -104,7 +104,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
                 }
             } else {
                 
-                self.feedbackUpdate(userID,self.feedbackModel.status.rawValue)
+                self.feedbackUpdate(userID,self.feedbackModel.status.rawValue, nil)
             }
             
         } else {
@@ -117,10 +117,25 @@ class PreviewFeedbackViewController: GFBaseViewController {
         
     }
     
-    
-    @IBAction func formPressed(_ sender: UIButton) {
+    @IBAction func approvedPressed(_ sender: UIButton) {
         
-        performSegue(withIdentifier: "ImageView", sender: sender.imageView?.image)
+        self.feedbackModel.status = .Paid
+        
+        if let userid = self.adminUserId {
+            
+            self.feedbackUpdate(userid,FeedbackStatus.Submitted.rawValue, "Approved")
+        }
+    }
+    
+    
+    @IBAction func rejectedPressed(_ sender: UIButton) {
+     
+        self.feedbackModel.status = .Rejected
+        
+         if let userid = self.adminUserId {
+             
+            self.feedbackUpdate(userid,FeedbackStatus.Submitted.rawValue, "Rejected")
+         }
     }
     
     func moveToHomeVC() {
@@ -138,7 +153,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
         
     }
     
-    func feedbackUpdate(_ userId:String, _ status: String) {
+    func feedbackUpdate(_ userId:String, _ status: String,_ messageData:String?) {
         
         db.collection("Feedback").document(userId).collection(status).document(self.feedbackModel.restaurantTitle).setData([
             Constants.FeedbackCommands.restuarantName : self.feedbackModel.restaurantTitle,
@@ -156,15 +171,25 @@ class PreviewFeedbackViewController: GFBaseViewController {
                : self.feedbackModel.thumnail
             
         ]) { (error) in
+            
+            self.attachSpinner(value: false)
             if let err = error {
                 self.popupAlert(title: "Error", message: err.localizedDescription, actionTitles: ["OK"], actions: [nil])
             } else {
+                
+                if let messageData = messageData {
+                    
+                 self.popupAlert(title: "Alert", message: messageData, actionTitles: ["OK"], actions: [{ action in
+                                    
+                    self.navigationController?.popViewController(animated: true)
+                                }])
+                } else {
                 print("Successfully saved data.")
-                self.attachSpinner(value: false)
                 self.popupAlert(title: "Alert", message: "Successfully saved data.", actionTitles: ["OK"], actions: [{ action in
                     
                     self.moveToHomeVC()
                 }])
+                }
            }
         }
     }
@@ -200,7 +225,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
                 
                 if value == ((self.images?.count ?? 0) - 1) {
                     
-                    self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
+                    self.feedbackUpdate(userId,self.feedbackModel.status.rawValue, nil)
                 }
             }
         }
@@ -250,6 +275,11 @@ class PreviewFeedbackViewController: GFBaseViewController {
         if feedbackModel.isSubmitBtnHidden {
             
             submitBtnOulet.isHidden = true
+        }
+        if feedbackModel.isApprovedBtnHidden && feedbackModel.isRejectbtnHidden {
+            
+            adminApprove.isHidden = true
+            adminRejecect.isHidden = true
         }
     }
     
@@ -319,7 +349,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
                             self.uploadImage(image: images[image],image,nil)
                         }
                     } else {
-                        self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
+                        self.feedbackUpdate(userId,self.feedbackModel.status.rawValue, nil)
                     }
                 }
             }

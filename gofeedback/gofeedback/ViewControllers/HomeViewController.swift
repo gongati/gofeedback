@@ -35,6 +35,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     var searchItem = ""
     var radiusOffset = 100
     var bottomController: AnnotationsListViewController?
+    var matchesCount = 0
     
     let yelpAPIClient = CDYelpAPIClient(apiKey: "JuFWYKLiETl9O-z6Tn7ysBeGyXbzON1Eh-_lbP56VDbu5YdZMRLQTBE2rNWfLCCM85Ot21lMMhiW9GsuaEVAg8kBQLPPVoAaTFP99Fm3m9_2WHMBibfkoItNQhuLXnYx")
     
@@ -59,6 +60,10 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         
         super.viewWillAppear(animated)
         
+        if self.bottomController != nil {
+            
+            self.addChild(self.bottomController!)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,7 +74,9 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        if self.children.count > 0 {
+
+        super.viewWillDisappear(animated)
+        if self.children.count != 0 {
             
             self.children[0].removeFromParent()
         }
@@ -150,7 +157,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         self.radiusOffset /= 2
         print(radiusOffset)
         self.yelpQuery()
-        self.attachSpinner(value: true)
     }
     
     @IBAction func zoomOutMap(_ sender: UIButton) {
@@ -159,7 +165,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         self.radiusOffset *= 2
         print(radiusOffset)
         self.yelpQuery()
-        self.attachSpinner(value: true)
     }
     
     @IBAction func nearLocation1Pressed(_ sender: UIButton) {
@@ -202,7 +207,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         self.yelpQuery()
-        self.attachSpinner(value: true)
         textField.resignFirstResponder()
         return true
     }
@@ -253,12 +257,12 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        self.attachSpinner(value: false)
-        self.attachSpinner(value: true)
         guard userCurrentLocation?.latitude != nil else {
             print("User location is nil")
             return
         }
+        
+        yelpAPIClient.cancelAllPendingAPIRequests()
         
         let currentLoc = CLLocation(latitude: (userCurrentLocation?.latitude)!, longitude: (userCurrentLocation?.longitude)!)
         let selectedLoc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
@@ -336,8 +340,11 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                             
                                             if businesses.count == 0 {
                                                 
+                                                self.searchResponse = nil
+                                                if self.matchesCount < 2 {
                                                 self.popupAlert(title: "Alert", message: "No matches Found", actionTitles: ["OK"], actions: [nil])
-                                                
+                                                    self.matchesCount = self.matchesCount + 1
+                                                }
                                             } else {
                                                 print(response)
                                                 
@@ -363,7 +370,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                             
                                             print("error")
                                         }
-                                        self.attachSpinner(value: false)
         }
         
     }
