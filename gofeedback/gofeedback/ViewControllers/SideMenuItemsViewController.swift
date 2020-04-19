@@ -18,6 +18,8 @@ class SideMenuItemsViewController: UIViewController {
     @IBOutlet weak var menuAlerts: UIButton!
     @IBOutlet weak var menuContactus: UIButton!
     
+    @IBOutlet weak var feedListButton: UIButton!
+    
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
@@ -35,6 +37,7 @@ class SideMenuItemsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.feedListButton.isHidden = true
         updateSideMenu()
     }
     

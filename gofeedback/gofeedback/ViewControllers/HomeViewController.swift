@@ -74,6 +74,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     override func viewWillDisappear(_ animated: Bool) {
         
+
         super.viewWillDisappear(animated)
         if self.children.count != 0 {
             

@@ -19,16 +19,6 @@ class AnnotationsListViewController: BottomSheetController {
     
     var dataSource : [CDYelpBusiness]?
     
-//    override var bottomYPercentage: CGFloat {
-//
-//        return 30.0
-//    }
-//
-    override var bottomInset: CGFloat {
-        
-        return 20.0
-    }
-        
     override var topInset: CGFloat {
         
         return 100.0
