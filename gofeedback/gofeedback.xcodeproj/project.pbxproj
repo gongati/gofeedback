@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A218A0961C3A39928E55A5C /* Pods_gofeedbackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D25C7BFEB745C6E061644E /* Pods_gofeedbackTests.framework */; };
+		27094B88244EE46B00BFECE1 /* GFUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27094B87244EE46B00BFECE1 /* GFUserModel.swift */; };
 		271CBF572418B71000CB113D /* Sidemenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF562418B71000CB113D /* Sidemenu.storyboard */; };
 		271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF592418B80E00CB113D /* Assets.xcassets */; };
 		271CBF5D2418B93D00CB113D /* SideMenuItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */; };
@@ -61,6 +62,8 @@
 		27E6A0DE241909F000B4D336 /* GFRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0D7241909F000B4D336 /* GFRoute.swift */; };
 		27E6A12724190C4700B4D336 /* GFContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A12624190C4700B4D336 /* GFContactViewController.swift */; };
 		27E6A12B241916CC00B4D336 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A129241916CB00B4D336 /* Api.swift */; };
+		27F6A64F244CC28200C9AB93 /* AdminFeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F6A64E244CC28200C9AB93 /* AdminFeedsViewController.swift */; };
+		27F6A651244DD39200C9AB93 /* GFFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F6A650244DD39200C9AB93 /* GFFirebaseManager.swift */; };
 		90116B633AF4CC4D38366820 /* Pods_gofeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D759A38249385D60FBE8162 /* Pods_gofeedback.framework */; };
 		F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */; };
 		F70F9300243240DF000D0D8A /* PreviewFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70F92FF243240DE000D0D8A /* PreviewFeedbackViewController.swift */; };
@@ -86,6 +89,7 @@
 		16D25C7BFEB745C6E061644E /* Pods_gofeedbackTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gofeedbackTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19F6ADF0944BF1137B77B106 /* Pods-gofeedback.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.release.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.release.xcconfig"; sourceTree = "<group>"; };
 		1D759A38249385D60FBE8162 /* Pods_gofeedback.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gofeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27094B87244EE46B00BFECE1 /* GFUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFUserModel.swift; sourceTree = "<group>"; };
 		271CBF562418B71000CB113D /* Sidemenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sidemenu.storyboard; sourceTree = "<group>"; };
 		271CBF592418B80E00CB113D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuItemsViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 		27E6A0D7241909F000B4D336 /* GFRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFRoute.swift; sourceTree = "<group>"; };
 		27E6A12624190C4700B4D336 /* GFContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFContactViewController.swift; sourceTree = "<group>"; };
 		27E6A129241916CB00B4D336 /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		27F6A64E244CC28200C9AB93 /* AdminFeedsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminFeedsViewController.swift; path = erSwift/AdminFeedsViewController.swift; sourceTree = "<group>"; };
+		27F6A650244DD39200C9AB93 /* GFFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFFirebaseManager.swift; sourceTree = "<group>"; };
 		2B6D270D9BA3D3282F99ECFB /* Pods-gofeedbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.release.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.release.xcconfig"; sourceTree = "<group>"; };
 		B46273BE11CE967BBE7170DE /* Pods-gofeedbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E49BBA875BF6DE69A0D685CC /* Pods-gofeedback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.debug.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.debug.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +213,7 @@
 		271CBF5B2418B90600CB113D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				27F6A64E244CC28200C9AB93 /* AdminFeedsViewController.swift */,
 				271CBF6C2418D55A00CB113D /* Login */,
 				271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */,
 				27E6A12624190C4700B4D336 /* GFContactViewController.swift */,
@@ -336,6 +343,7 @@
 				27E6A0D5241909F000B4D336 /* GFRouteLeg.swift */,
 				27E6A0D6241909F000B4D336 /* GFTransitStop.swift */,
 				27E6A0D7241909F000B4D336 /* GFRoute.swift */,
+				27094B87244EE46B00BFECE1 /* GFUserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -344,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				27E6A129241916CB00B4D336 /* Api.swift */,
+				27F6A650244DD39200C9AB93 /* GFFirebaseManager.swift */,
 			);
 			path = "API Manager";
 			sourceTree = "<group>";
@@ -573,13 +582,16 @@
 				277EB41D244102EE000CA425 /* CustomAnnotationView.swift in Sources */,
 				27E6A0C92419097700B4D336 /* GFTextFieldBackGround.swift in Sources */,
 				277EB41B2440F33B000CA425 /* CustomAnnotation.swift in Sources */,
+				27F6A651244DD39200C9AB93 /* GFFirebaseManager.swift in Sources */,
 				F70F9300243240DF000D0D8A /* PreviewFeedbackViewController.swift in Sources */,
 				F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */,
 				27E6A12724190C4700B4D336 /* GFContactViewController.swift in Sources */,
+				27F6A64F244CC28200C9AB93 /* AdminFeedsViewController.swift in Sources */,
 				27E6A0DA241909F000B4D336 /* GFStation.swift in Sources */,
 				F71927252430F24A006BF52A /* WalletViewController.swift in Sources */,
 				27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */,
 				271CBF672418D47900CB113D /* GFConstants.swift in Sources */,
+				27094B88244EE46B00BFECE1 /* GFUserModel.swift in Sources */,
 				27E6A0CB2419097700B4D336 /* GFRouteOptionTableViewCell.swift in Sources */,
 				27E6A0CF2419097700B4D336 /* GFWhiteButtonTextField.swift in Sources */,
 				271CBF812418D55A00CB113D /* SignUpModel.swift in Sources */,

@@ -37,7 +37,6 @@ class SideMenuItemsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.feedListButton.isHidden = true
         updateSideMenu()
     }
     
