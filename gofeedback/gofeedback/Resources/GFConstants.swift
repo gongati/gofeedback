@@ -167,16 +167,13 @@ struct Constants {
         static let status = "Status"
         static let videoUrl = "Videos"
         static let thumnailTag = "Thumnail"
+        
+        static let userId = "User Id"
     }
     
     struct userDetails {
-        
-        static let email = "Email"
-        static let firstName = "First Name"
-        static let lastName = "Last Name"
+    
         static let mobileNumber = "Mobile Number"
-        static let address = "Address"
-        static let userType = "User Type"
     }
 }
 

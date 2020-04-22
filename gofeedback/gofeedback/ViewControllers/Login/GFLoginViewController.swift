@@ -37,64 +37,43 @@ class GFLoginViewController: GFBaseViewController {
         self.attachSpinner(value: true)
     }
     
-    
     func verifyPhone() {
-        
         
         if let codeValue = self.codeTxt.text, codeValue.count > 0 {
             
             if let phoneValue = self.phoneTxt.text, phoneValue.count >= 10 {
                 
                 loginId = "+"+codeValue+" "+phoneValue
-                
-                let query = self.db.collection("Users").whereField(Constants.userDetails.mobileNumber, isEqualTo: self.loginId!)
-                
-                
+    
                 PhoneAuthProvider.provider().verifyPhoneNumber("+"+codeValue+phoneValue, uiDelegate: nil) { [weak self] (ID, err) in
                     
                     if err != nil{
                         
                         self?.popupAlert(title: "Error", message: err?.localizedDescription, actionTitles: ["OK"], actions: [nil])
+                        self?.attachSpinner(value: false)
                         return
                     }
                     
-                    query.getDocuments() { (querySnapshot, err) in
+                    GFFirebaseManager.isUserHasRegistered(userId: self?.loginId! ?? "") { (value) in
                         
-                        if let err = err {
-                            print("Error getting documents: \(err)")
+                        self?.userID = ID!
+                        if value {
+                            
+                            self?.performSegue(withIdentifier: "REGISTER", sender: self?.userID)
                         } else {
                             
-                            if querySnapshot?.documents.count == 0 {
-                                
-                                self?.userID = ID!
-                                self?.performSegue(withIdentifier: "REGISTER", sender: self?.userID)
-                        
-                            } else {
-                                
-                                print("query = \(querySnapshot?.documents)")
-                                UserDefaults.standard.set((querySnapshot?.documents[0].data()[Constants.userDetails.firstName] as! String) + " " + (querySnapshot?.documents[0].data()[Constants.userDetails.lastName] as! String), forKey: "UserName")
-                                
-                                UserDefaults.standard.set((querySnapshot?.documents[0].data()[Constants.userDetails.email] as! String), forKey: "Email")
-                                
-                                UserDefaults.standard.set("\(querySnapshot?.documents[0].data()[Constants.userDetails.userType] as! Int)", forKey: "UserType")
-                                
-                                 UserDefaults.standard.synchronize()
-                                self?.userID = ID!
-                                self?.showOTPScreen()
-                            }
+                            self?.showOTPScreen()
                         }
                     }
-                    
                 }
-                
-                
             } else {
                 
+                self.attachSpinner(value: false)
                 self.popupAlert(title: "Error", message: "Invalid Phone Number", actionTitles: ["OK"], actions: [nil])
             }
-            
         } else {
             
+            self.attachSpinner(value: false)
             self.popupAlert(title: "Error", message: "Code can not be empty", actionTitles: ["OK"], actions: [nil])
         }
     }

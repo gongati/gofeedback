@@ -8,13 +8,11 @@
 
 import UIKit
 import  Cosmos
-import Firebase
-import OpalImagePicker
 import Photos
 import YPImagePicker
 import CDYelpFusionKit
 
-class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class FeedbackViewController: GFBaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var restuarantName: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -23,10 +21,6 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     @IBOutlet weak var howWeAreDoingCosmosView: CosmosView!
     @IBOutlet weak var commentsTxt: UITextView!
     @IBOutlet weak var cosmosView: CosmosView!
-    
-    @IBOutlet weak var imageBtn: UIButton!
-
-    @IBOutlet weak var formBtn: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -45,8 +39,6 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     var videoTag = [Int]()
     var thumnailTag = [Int]()
     var videoPath = [String]()
-    
-    let db = Firestore.firestore()
     var imageFileName = ""
     var formFilName = ""
     var bussiness: CDYelpBusiness?
@@ -87,22 +79,6 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         self.ratingsUpadate()
 
     }
-    @IBAction func cancelPressed(_ sender: UIButton) {
-        
-        moveToHomeVC()
-    }
-    
-    @IBAction func formPressed(_ sender: UIButton) {
-        
-        self.isImageFile = false
-        let imagePicker = OpalImagePickerController()
-        imagePicker.imagePickerDelegate = self
-        imagePicker.maximumSelectionsAllowed = 1
-        let configuration = OpalImagePickerConfiguration()
-        configuration.maximumSelectionsAllowedMessage = NSLocalizedString("You cannot select more than one images!", comment: "")
-        imagePicker.configuration = configuration
-        present(imagePicker, animated: true, completion: nil)
-    }
     
     
     @IBAction func submitPressed(_ sender: UIButton) {
@@ -117,14 +93,14 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             
             if  images.count != 0 && videoUrl.count != 0 {
                 
-                self.feedbackModel.videoFilName.removeAll()
+                self.feedbackModel.videoFilName?.removeAll()
                 for url in 0..<videoUrl.count {
                     
                     self.uploadVideo(videoUrl[url],url)
                 }
             } else if images.count != 0 {
                 
-                self.feedbackModel.imageFileName.removeAll()
+                self.feedbackModel.imageFileName?.removeAll()
                 outer: for image in 0..<images.count {
                     
                     for tag in self.thumnailTag {
@@ -139,7 +115,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                 }
             } else {
                 
-                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
+                self.feedbackUpdate(userId)
             }
         } else {
             
@@ -151,15 +127,12 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         
     }
     
-    @IBAction func previewPressed(_ sender: UIButton) {
-        
-        self.feedbackModel.comments = self.commentsTxt.text
-        self.moveToPreview()
-    }
     
     @IBAction func draftPressed(_ sender: UIButton) {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
+            
+            self.attachSpinner(value: true)
             
             self.feedbackModel.status = .Drafts
             
@@ -167,14 +140,14 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             
             if  images.count != 0 && videoUrl.count != 0 {
                 
-                self.feedbackModel.videoFilName.removeAll()
+                self.feedbackModel.videoFilName?.removeAll()
                 for url in 0..<videoUrl.count {
                     
                     self.uploadVideo(videoUrl[url],url)
                 }
             } else if images.count != 0 {
                 
-                self.feedbackModel.imageFileName.removeAll()
+                self.feedbackModel.imageFileName?.removeAll()
                 outer: for image in 0..<images.count {
                     
                       for tag in self.thumnailTag {
@@ -189,7 +162,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                 }
             } else {
                 
-                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
+                self.feedbackUpdate(userId)
             }
         } else {
             
@@ -204,35 +177,25 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
     func uploadImage(image: UIImage, _ value:Int, _ tag:Int?) {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
-         
+            
             dispatchGroup.enter()
             let randomName = randomStringWithLength(length: 10)
-            let imageData = image.jpegData(compressionQuality: 0.1)
             var path = ""
             if tag == nil {
-             path = "Images/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).jpg"
+                path = "Images/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).jpg"
             } else {
                 let path2 = self.videoPath[tag!]
                 path = "Images/"+path2+".jpg"
             }
-            
-            let uploadRef = Storage.storage().reference().child(path)
-            _ = uploadRef.putData(imageData!, metadata: nil) { metadata,
-                error in
-    
-                if error == nil {
-                    //success
+            GFFirebaseManager.uploadImage(image: image, path) { (value) in
+                
+                if value {
+                    
                     print("success \(path)")
-                    if tag != nil {
-                        
-                        let path2 = self.videoPath[tag!]
-                        self.feedbackModel.thumnail.append(path2)
-                    }
-                    self.feedbackModel.imageFileName.append(path)
+                    self.feedbackModel.imageFileName?.append(path)
                 } else {
-                    //error
+        
                     print("error uploading image")
-                    print(error)
                 }
                 
                 self.dispatchGroup.leave()
@@ -241,11 +204,10 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             dispatchGroup.notify(queue: DispatchQueue.main) {
                 
                 if value == (self.images.count - 1) {
-                 
-                self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
-                 }
+                    
+                    self.feedbackUpdate(userId)
+                }
             }
-                
         }
     }
     
@@ -289,16 +251,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         howWeAreDoingCosmosView.resignFirstResponder()
         commentsTxt.resignFirstResponder()
     }
-    
-    func moveToHomeVC() {
-        
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "GFNAVIGATEMENUHOME") as? HomeViewController else {
-            return
-        }
-        viewController.searchItem = searchItem
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
+
     
     func moveToLogin() {
         
@@ -345,33 +298,23 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
         }
     }
     
-    func feedbackUpdate(_ userId:String, _ status:String) {
-        db.collection("Feedback").document(userId).collection(status).document(self.feedbackModel.restaurantTitle).setData([
-            Constants.FeedbackCommands.restuarantName : self.feedbackModel.restaurantTitle,
-            Constants.FeedbackCommands.restuarantAddress : self.feedbackModel.address,
-            Constants.FeedbackCommands.howWeAreDoing : self.feedbackModel.howWeAreDoingRating,
-            Constants.FeedbackCommands.whatWeAreDoingGreat : self.feedbackModel.whatAreWeDoingGreatRating,
-            Constants.FeedbackCommands.whatCanWeDoBetter : self.feedbackModel.whatCanWeDoBetterRating,
-            Constants.FeedbackCommands.comments : self.feedbackModel.comments,
-            Constants.FeedbackCommands.rating : self.feedbackModel.rating,
-            Constants.FeedbackCommands.images : self.feedbackModel.imageFileName,
-            Constants.FeedbackCommands.form : self.feedbackModel.formFilName,
-            Constants.FeedbackCommands.status : self.feedbackModel.status.rawValue,
-            Constants.FeedbackCommands.videoUrl : self.feedbackModel.videoFilName,
-             Constants.FeedbackCommands.thumnailTag
-                : self.feedbackModel.thumnail
+    func feedbackUpdate(_ userId:String) {
+        
+        self.feedbackModel.userId = userId
+        GFFirebaseManager.creatingFeedBack(feedbackModel: self.feedbackModel) { (value) in
             
-        ]) { (error) in
-            if let err = error {
-                self.popupAlert(title: "Error", message: err.localizedDescription, actionTitles: ["OK"], actions: [nil])
-            } else {
+            if value {
                 print("Successfully saved data.")
                 self.attachSpinner(value: false)
                 self.popupAlert(title: "Alert", message: "Successfully saved data.", actionTitles: ["OK"], actions: [{ action in
                     
-                    self.moveToHomeVC()
-                }])
-           }
+                    self.navigationController?.popViewController(animated: true)
+                    }])
+            } else {
+                self.popupAlert(title: "Error", message: "Error in saving Feedback", actionTitles: ["OK"], actions: [nil])
+            }
+            
+            self.attachSpinner(value: false)
         }
     }
     
@@ -383,26 +326,20 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
             
             group.enter()
             let randomName = randomStringWithLength(length: 10)
-
+            
             let path = "Videos/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).mov"
             videoPath.append("\(userId)/\(feedbackModel.restaurantTitle)/\(randomName)")
-            let uploadRef = Storage.storage().reference().child(path)
-          
             
-            _ = uploadRef.putFile(from: url, metadata: nil) { metadata, error in
-            
-                if error == nil {
-                    //success
-                        
-                        print("success \(path)")
-                        self.feedbackModel.videoFilName.append(path)
-                        
-                } else {
-                    //error
-                    print("error uploading video")
-                    print(error)
-                }
+            GFFirebaseManager.uploadVideo(url: url, path) { (value) in
                 
+                if value {
+                    
+                    print("success \(path)")
+                    self.feedbackModel.videoFilName?.append(path)
+                } else {
+                    
+                    print("error uploading video")
+                }
                 self.group.leave()
             }
             
@@ -410,8 +347,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                 
                 if value == (self.videoUrl.count - 1) {
                     if self.images.count != 0 {
-                        self.feedbackModel.imageFileName.removeAll()
-                        self.feedbackModel.thumnail.removeAll()
+                        self.feedbackModel.imageFileName?.removeAll()
                         outer: for image in 0..<self.images.count {
                             
                             for tag in self.thumnailTag {
@@ -425,7 +361,7 @@ class FeedbackViewController: GFBaseViewController, OpalImagePickerControllerDel
                             self.uploadImage(image: self.images[image],image,nil)
                         }
                     } else {
-                        self.feedbackUpdate(userId,self.feedbackModel.status.rawValue)
+                        self.feedbackUpdate(userId)
                     }
                 }
             }
@@ -594,9 +530,6 @@ extension FeedbackViewController {
                 vc.videoUrl = sender
                 vc.isVideo = true
             }
-            
         }
-        
     }
-    
 }
