@@ -210,13 +210,8 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" scale="small" weight="heavy"/>
                                 </state>
                                 <connections>
-                                    <action selector="cameraPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="yQe-az-Ev6"/>
+                                    <action selector="cameraPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="sRy-cI-PXF"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="220-m2-xfT">
-                                <rect key="frame" x="335" y="397" width="24" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="camera.fill" catalog="system"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -496,7 +491,6 @@
     <resources>
         <image name="1144464-200" width="40" height="40"/>
         <image name="Hamburger" width="20" height="13"/>
-        <image name="camera.fill" catalog="system" width="64" height="48"/>
         <image name="gofeedback-logo-180x180" width="180" height="180"/>
         <image name="starbucks-bg" width="323" height="156"/>
     </resources>

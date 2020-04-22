@@ -271,12 +271,7 @@ class SideMenuItemsViewController: UIViewController {
     
     @objc func confirmLogout() -> Void {
         
-        UserDefaults.standard.set(false, forKey: "loginStatus")
-        UserDefaults.standard.removeObject(forKey: "UserId")
-        UserDefaults.standard.set("",forKey: "UserName")
-        UserDefaults.standard.set("",forKey: "email")
-        UserDefaults.standard.set(0, forKey: "UserType")
-        UserDefaults.standard.synchronize()
+        GFUserDefaults.removingUserDefaults()
 
         if GFBaseViewController.currentMenuItem == Constants.SideMenuAction.PlanTrip {
             SideMenuItemsViewController.rightNavController?.popToRootViewController(animated: false)

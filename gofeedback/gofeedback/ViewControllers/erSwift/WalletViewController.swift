@@ -15,14 +15,13 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     @IBOutlet weak var tableView: UITableView!
     
     let db = Firestore.firestore()
-
+    
     let storage = Storage.storage()
-    var feedBackDataTitle : [String] = []
-    var feedBackData = [[String:Any]]()
     var images = [UIImage]()
     var videoUrl = [URL]()
     var videotag = [Int]()
     var firstTimeLoad = true
+    var feedbackModel = [FeedbackModel]()
     
     let dg = DispatchGroup()
     
@@ -31,7 +30,7 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
-                
+        
         tableView.tableFooterView = UIView()
         self.draftsLoadFirstTime()
         self.attachSpinner(value: true)
@@ -47,89 +46,92 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
         
         self.attachSpinner(value: true)
         
-        self.feedBackData.removeAll()
-        self.feedBackDataTitle.removeAll()
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Rejected.rawValue)
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Submitted.rawValue)
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Paid.rawValue)
+        self.feedbackModel.removeAll()
+        dg.enter()
+        self.getFeedBackDetails(FeedbackStatus.Rejected.rawValue) {
+            self.dg.leave()
+        }
+        dg.notify(queue: .main) {
+            self.dg.enter()
+            self.getFeedBackDetails(FeedbackStatus.Paid.rawValue) {
+                self.dg.leave()
+            }
+            self.dg.notify(queue: .main) {
+                self.dg.enter()
+                self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue) {
+                    self.dg.leave()
+                }
+                self.dg.notify(queue: .main) {
+                    self.attachSpinner(value: false)
+                }
+            }
+        }
     }
     
     @IBAction func paidPressed(_ sender: UIButton) {
         
         self.attachSpinner(value: true)
-        self.feedBackData.removeAll()
-        self.feedBackDataTitle.removeAll()
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Paid.rawValue)
+        self.feedbackModel.removeAll()
+        dg.enter()
+        self.getFeedBackDetails(FeedbackStatus.Paid.rawValue) {
+            self.dg.leave()
+        }
+        dg.notify(queue: .main) {
+            self.attachSpinner(value: false)
+        }
     }
     
     @IBAction func draftsPressed(_ sender: UIButton) {
         
         self.attachSpinner(value: true)
-        self.feedBackData.removeAll()
-        self.feedBackDataTitle.removeAll()
-        self.getFeedBackDetails(FeedbackStatus.Drafts.rawValue,FeedbackStatus.Drafts.rawValue)
+        self.feedbackModel.removeAll()
+        dg.enter()
+        self.getFeedBackDetails(FeedbackStatus.Drafts.rawValue) {
+            self.dg.leave()
+        }
+        dg.notify(queue: .main) {
+            self.attachSpinner(value: false)
+        }
     }
     
-
-    @IBAction func pendingPressed(_ sender: UIButton) {
-        
-        self.attachSpinner(value: true)
-        self.feedBackData.removeAll()
-        self.feedBackDataTitle.removeAll()
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Submitted.rawValue)
-    }
-    
-    func getFeedBackDetails(_ collectionStatus: String,_ state:String) {
+    func getFeedBackDetails(_ state:String,_ completion:(()->())?) {
         
         if let userid = UserDefaults.standard.string(forKey: "UserId") {
             
-
-            let docRef = db.collection("Feedback").document(userid).collection(collectionStatus).whereField(Constants.FeedbackCommands.status, isEqualTo: state)
-            
-            docRef.getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
+            GFFirebaseManager.loadFeedsForUser(userId: userid, state) { (feeds) in
+                
+                if let feeds = feeds {
                     
-                    for document in querySnapshot!.documents {
-                        
-                        self.feedBackDataTitle.append(document.documentID)
-                        print(document.data()["Comments"] as! String)
-                        print("\(document.documentID) => \(document.data())")
-                        self.feedBackData.append(document.data())
-                    }
+                    self.feedbackModel.append(contentsOf: feeds)
                     if state == FeedbackStatus.Paid.rawValue {
                         
-                        self.walletBalanceLabel.text = "$\(Float(self.feedBackDataTitle.count))"
+                        self.walletBalanceLabel.text = "$\(Float(feeds.count))"
                     }
                     if self.firstTimeLoad {
                         
-                        self.feedBackData.removeAll()
-                        self.feedBackDataTitle.removeAll()
                         self.firstTimeLoad = false
-                        self.dg.leave()
                     } else {
                         
                         self.tableView.reloadData()
                     }
-                    self.attachSpinner(value: false)
+                    completion?()
+                } else {
+                    print("Error getting documents")
                 }
             }
-            
-            
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.feedBackDataTitle.count
+        return self.feedbackModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
-
-        cell.textLabel?.text = self.feedBackDataTitle[indexPath.row]
-        cell.detailTextLabel?.text = self.feedBackData[indexPath.row][Constants.FeedbackCommands.restuarantAddress] as? String ?? ""
+        
+        cell.textLabel?.text = self.feedbackModel[indexPath.row].restaurantTitle
+        cell.detailTextLabel?.text = self.feedbackModel[indexPath.row].address
         return cell
     }
     
@@ -146,110 +148,107 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     
     func moveToPreviewVC(_ at:Int) {
         
-        
         guard let viewController = UIStoryboard(name: "Feedback", bundle: nil).instantiateViewController(withIdentifier:  "PreviewFeedbackViewController") as? PreviewFeedbackViewController else {
             return
         }
-        viewController.feedbackModel.address = self.feedBackData[at][Constants.FeedbackCommands.restuarantAddress] as? String ?? ""
-        viewController.feedbackModel.restaurantTitle = self.feedBackData[at][Constants.FeedbackCommands.restuarantName] as? String ?? ""
-        viewController.feedbackModel.rating = self.feedBackData[at][Constants.FeedbackCommands.rating] as? Double ?? 0
-        viewController.feedbackModel.whatAreWeDoingGreatRating = self.feedBackData[at][Constants.FeedbackCommands.whatWeAreDoingGreat] as? Double ?? 0
-        viewController.feedbackModel.howWeAreDoingRating = self.feedBackData[at][Constants.FeedbackCommands.howWeAreDoing] as? Double ?? 0
-        viewController.feedbackModel.whatCanWeDoBetterRating = self.feedBackData[at][Constants.FeedbackCommands.whatCanWeDoBetter] as? Double ?? 0
-        viewController.feedbackModel.comments = self.feedBackData[at][Constants.FeedbackCommands.comments] as? String ?? ""
         
-        if self.feedBackData[at][Constants.FeedbackCommands.status]  as? String ?? ""  == FeedbackStatus.Drafts.rawValue {
+        viewController.feedbackModel = self.feedbackModel[at]
+        
+        if self.feedbackModel[at].status  == FeedbackStatus.Drafts {
             
-            viewController.feedbackModel.isSubmitBtnHidden = false
+            viewController.isSubmitBtnHidden = false
             viewController.feedbackModel.status = .Drafts
             
         } else {
             
-            viewController.feedbackModel.isSubmitBtnHidden = true
+            viewController.isSubmitBtnHidden = true
         }
         let group = DispatchGroup()
-         
         
-        for path in self.feedBackData[at][Constants.FeedbackCommands.images] as? [String] ?? [""] {
-            
-            group.enter()
-            
-            
-        let pathReferenceOfImages = storage.reference(withPath: path )
-        pathReferenceOfImages.getData(maxSize: 1 * 1024 * 1024) { data, error in
-           
-            if error != nil {
-                // Uh-oh, an error occurred!
-                print(error?.localizedDescription)
-            } else {
-                // Data for "images/island.jpg" is returned
-                let image = UIImage(data: data!)
-                if let image = image {
-                self.images.append(image)
-                print(self.images)
-                print(image)
-                print("sucess Image")
+        if let videoFiles = self.feedbackModel[at].videoFilName {
+            for path in videoFiles {
+                group.enter()
+                GFFirebaseManager.downloadVideoUrl(path) { (url) in
                     
-                    for tag in self.feedBackData[at][Constants.FeedbackCommands.thumnailTag] as? [String] ?? [""] {
-                        if path == ("Images/"+tag+".jpg"){
-                            
-                            self.videotag.append(self.images.count - 1)
-                        }
+                    if let url = url {
                         
+                        self.videoUrl.append(url)
+                        print("sucess Form")
+                        print(viewController.videoUrl!)
+                    } else {
+                        
+                        print("error")
                     }
+                    group.leave()
                 }
             }
-            group.leave()
-        }
-        
         }
         
         group.notify(queue: .main) {
             
             let group2 = DispatchGroup()
             
-            for path in self.feedBackData[at][Constants.FeedbackCommands.videoUrl] as? [String] ?? [""] {
-                 group2.enter()
-            let pathReferenceOfVideos = self.storage.reference(withPath: path )
-            pathReferenceOfVideos.downloadURL { url, error in
-                
-                    if error != nil {
-                        print(error?.localizedDescription)
-                    } else {
-                        // Data for "images/island.jpg" is returned
-                        if let url = url {
-                            
-                        self.videoUrl.append(url)
-                        print("sucess Form")
-                        print(viewController.videoUrl)
-                        }
-                    }
+            if let imagefiles = self.feedbackModel[at].imageFileName {
+                for path in imagefiles {
                     
-                     group2.leave()
+                    group2.enter()
+                    GFFirebaseManager.downloadImage(path) { (image) in
+                        
+                        if let image = image {
+                            self.images.append(image)
+                            print(self.images)
+                            print(image)
+                            print("sucess Image")
+                            
+                            if let videoFiles = self.feedbackModel[at].videoFilName {
+                                for tag in videoFiles {
+                                    
+                                    let new = tag.replacingOccurrences(of: "Videos/", with: "Images/", options: .regularExpression, range: nil)
+                                    let new2 = new.replacingOccurrences(of: ".mp4", with: ".jpg", options: .regularExpression, range: nil)
+                                    if path == new2 {
+                                        
+                                        self.videotag.append(self.images.count - 1)
+                                    }
+                                }
+                            }
+                        } else {
+                            
+                            print("error")
+                        }
+                        group2.leave()
+                    }
+                }
             }
-        }
-            
             group2.notify(queue: .main) {
                 
                 viewController.images = self.images
                 viewController.videoUrl = self.videoUrl
                 viewController.videoTag = self.videotag
-                print(viewController.images)
+                print(viewController.images!)
                 print("navigation")
                 self.attachSpinner(value: false)
                 self.navigationController?.pushViewController(viewController, animated: true)
             }
         }
     }
- 
+    
     func draftsLoadFirstTime() {
         
         dg.enter()
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue,FeedbackStatus.Paid.rawValue)
+        self.getFeedBackDetails(FeedbackStatus.Paid.rawValue){
+            
+            self.dg.leave()
+        }
         
         dg.notify(queue: .main) {
-            self.getFeedBackDetails(FeedbackStatus.Drafts.rawValue,FeedbackStatus.Drafts.rawValue)
-            self.attachSpinner(value: true)
+            self.feedbackModel.removeAll()
+            self.dg.enter()
+            self.getFeedBackDetails(FeedbackStatus.Drafts.rawValue){
+                self.dg.leave()
+            }
+            self.dg.notify(queue: .main) {
+                self.attachSpinner(value: false)
+            }
         }
     }
 }

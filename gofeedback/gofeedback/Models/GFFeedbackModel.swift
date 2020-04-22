@@ -8,27 +8,39 @@
 
 import Foundation
 
-struct FeedbackModel {
+struct FeedbackModel: Codable {
     
-    var restaurantTitle = ""
-    var address = ""
+    var userId:String = ""
+    var restaurantTitle : String = ""
+    var address : String = ""
     var rating : Double = 3
     var whatCanWeDoBetterRating: Double = 3
     var whatAreWeDoingGreatRating: Double = 3
     var howWeAreDoingRating: Double = 3
-    var comments = ""
-    var searchItem = ""
-    var imageFileName = [""]
-    var formFilName = ""
-    var videoFilName = [""]
-    var isSubmitBtnHidden = false
-    var isApprovedBtnHidden = true
-    var isRejectbtnHidden = true
+    var comments : String = ""
+    var imageFileName : [String]?
+    var videoFilName : [String]?
     var status:FeedbackStatus = .none
-    var thumnail = [""]
+    var feedbackId:String?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case restaurantTitle = "Restuarant Name"
+        case address = "Restuarant Address"
+        case rating = "Rating"
+        case whatCanWeDoBetterRating = "What can we do better?"
+        case whatAreWeDoingGreatRating = "What are we doing great at?"
+        case howWeAreDoingRating = "We want to know how we are doing?"
+        case comments = "Comments"
+        case imageFileName = "Images"
+        case videoFilName = "Videos"
+        case status = "Status"
+        case userId = "User Id"
+        case feedbackId = "Feedback id"
+    }
 }
 
-enum FeedbackStatus: String {
+enum FeedbackStatus: String,Codable {
     
     case Submitted
     case Paid

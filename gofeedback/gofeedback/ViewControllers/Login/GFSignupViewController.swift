@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Firebase
+import FirebaseFirestoreSwift
 
 class GFSignupViewController: GFBaseViewController {
 
@@ -127,37 +128,24 @@ class GFSignupViewController: GFBaseViewController {
     }
 
     func creatingDataBase() {
+        
+        let userModel = UserModel(email: self.emailTxt.text ?? "", firstName: self.firstNameTxt.text ?? "", lastName: self.lastNameTxt.text ?? "", mobileNumber: "+" + (self.countryCode.text ?? "1") + " " + (self.mobileNumberTxt.text ?? "1234567890"), address: self.addressTxtView.text ?? "", userType: 0)
+        
+        GFFirebaseManager.creatingUserDetails(userModel: userModel){ (value) in
             
-            db.collection("Users").document("+" + (self.countryCode.text ?? "+1") + " " + (self.mobileNumberTxt.text ?? "1234567890")).setData([
-                Constants.userDetails.firstName: self.firstNameTxt.text as Any,
-            Constants.userDetails.lastName: self.lastNameTxt.text as Any,
-            Constants.userDetails.email: self.emailTxt.text as Any,
-            Constants.userDetails.mobileNumber: "+" + (self.countryCode.text ?? "1") + " " + (self.mobileNumberTxt.text ?? "1234567890"),
-
-            Constants.userDetails.address: self.addressTxtView.text as Any,
-            Constants.userDetails.userType: 0
-
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-                self.attachSpinner(value: false)
-                self.popupAlert(title: "Alert", message: "Fail to register,try again", actionTitles: ["OK"], actions:[nil])
-            } else {
-                print("Document added with ID: \(self.countryCode.text ?? "+1") \(self.mobileNumberTxt.text ?? "1234567890")")
-                
-                UserDefaults.standard.set((self.firstNameTxt.text ?? "") + " " + (self.lastNameTxt.text ?? ""), forKey: "UserName")
-                
-                UserDefaults.standard.set(self.emailTxt.text ?? "", forKey: "Email")
-                
-                UserDefaults.standard.set("0", forKey: "UserType")
-                
-                 UserDefaults.standard.synchronize()
+            if value {
                 
                 self.popupAlert(title: "Alert", message: "Successfully Registered", actionTitles: ["OK"], actions: [{ action in
                     
                     self.attachSpinner(value: false)
                     self.showOTPScreen()
                     }])
+                
+            } else {
+                
+                print("Error adding document: ")
+                self.attachSpinner(value: false)
+                self.popupAlert(title: "Alert", message: "Fail to register,try again", actionTitles: ["OK"], actions:[nil])
             }
         }
     }
@@ -201,5 +189,4 @@ class GFSignupViewController: GFBaseViewController {
             }
          }
     }
-
 }

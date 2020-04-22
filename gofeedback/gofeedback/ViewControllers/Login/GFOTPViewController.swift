@@ -50,7 +50,6 @@ class GFOTPViewController: GFBaseViewController {
                      return
                  }
                 
-                UserDefaults.standard.set(self?.loginId, forKey: "UserId")
                 UserDefaults.standard.set(true, forKey: "loginStatus")
                 UserDefaults.standard.synchronize()
                 

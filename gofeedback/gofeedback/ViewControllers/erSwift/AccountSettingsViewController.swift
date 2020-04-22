@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class AccountSettingsViewController: GFBaseViewController {
-
+    
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var MobileNumberLabel: UILabel!
@@ -21,7 +21,7 @@ class AccountSettingsViewController: GFBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.userData()
         self.attachSpinner(value: true)
     }
@@ -41,24 +41,21 @@ class AccountSettingsViewController: GFBaseViewController {
         
         if let userId = UserDefaults.standard.string(forKey: "UserId")  {
             
-            let docRef = db.collection("Users").document(userId)
             
-            docRef.getDocument { (document, error) in
-                if let document = document, document.exists,
-                    let dataDescription = document.data() {
-                    print("Document data: \(dataDescription)")
+            GFFirebaseManager.getUserdetails(userName: userId) { (userModel) in
+                
+                if let userModel = userModel {
                     
-                    self.UIUpdate(dataDescription)
+                    self.UIUpdate(userModel)
                     self.attachSpinner(value: false)
                 } else {
-                    print("Document does not exist")
+                    
                     self.popupAlert(title: "Alert", message: "Document does not exist", actionTitles: ["OK"], actions: [{ action in
                         
                         self.moveToHomeVC()
-                    }])
+                        }])
                 }
             }
-            
         }
     }
     
@@ -70,13 +67,13 @@ class AccountSettingsViewController: GFBaseViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func UIUpdate(_ data:[String:Any]) {
+    func UIUpdate(_ data:UserModel) {
         
-        self.firstNameLabel.text = data[Constants.userDetails.firstName] as? String
-        self.lastNameLabel.text = data[Constants.userDetails.lastName] as? String
-        self.MobileNumberLabel.text = data[Constants.userDetails.mobileNumber] as? String
-        self.emailLabel.text = data[Constants.userDetails.email] as? String
-        self.addressLabel.text = data[Constants.userDetails.address] as? String
+        self.firstNameLabel.text = data.firstName
+        self.lastNameLabel.text = data.lastName
+        self.MobileNumberLabel.text = data.mobileNumber
+        self.emailLabel.text = data.email
+        self.addressLabel.text = data.address
     }
-
+    
 }

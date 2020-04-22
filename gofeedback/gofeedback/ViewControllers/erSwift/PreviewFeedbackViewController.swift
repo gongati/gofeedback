@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import Cosmos
 
 class PreviewFeedbackViewController: GFBaseViewController {
@@ -34,9 +33,10 @@ class PreviewFeedbackViewController: GFBaseViewController {
     var formImage:UIImage?
     var videoUrl:[URL]?
     var videoTag:[Int]?
-    var adminUserId:String?
-    
-    let db = Firestore.firestore()
+    var adminFeedId:String?
+    var isSubmitBtnHidden = false
+    var isApprovedBtnHidden = true
+    var isRejectbtnHidden = true
     
     override func viewDidLoad() {
         
@@ -62,50 +62,9 @@ class PreviewFeedbackViewController: GFBaseViewController {
         if let userID =  UserDefaults.standard.string(forKey: "UserId") {
             
             self.attachSpinner(value: true)
-            if self.feedbackModel.status == .Drafts {
-                
-                db.collection("Feedback").document(userID).collection(self.feedbackModel.status.rawValue).document(self.feedbackModel.restaurantTitle).delete() { err in
-                    if let err = err {
-                        print("Error removing document: \(err)")
-                    } else {
-                        print("Document successfully removed!")
-                    }
-                }
-            }
-            
             self.feedbackModel.status = .Submitted
             
-            if   self.images?.count != 0 &&  self.videoUrl?.count != 0 {
-                
-                self.feedbackModel.videoFilName.removeAll()
-                if let videoUrl = self.videoUrl {
-                    
-                    for url in 0..<videoUrl.count {
-                        
-                        self.uploadVideo(videoUrl[url], url)
-                    }
-                }
-            }  else if  self.images?.count != 0 {
-                
-                self.feedbackModel.imageFileName.removeAll()
-                if let images = self.images {
-                    outer: for image in 0..<images.count {
-                        
-                        for tag in self.videoTag ?? [-1] {
-                            
-                            if image == tag  {
-                                
-                               self.uploadImage(image: images[image],image,tag)
-                                continue outer
-                            }
-                        }
-                        self.uploadImage(image: images[image],image,nil)
-                    }
-                }
-            } else {
-                
-                self.feedbackUpdate(userID,self.feedbackModel.status.rawValue, nil)
-            }
+            self.feedbackUpdate(userID)
             
         } else {
             
@@ -121,9 +80,21 @@ class PreviewFeedbackViewController: GFBaseViewController {
         
         self.feedbackModel.status = .Paid
         
-        if let userid = self.adminUserId {
+        if let feedId = self.adminFeedId {
             
-            self.feedbackUpdate(userid,FeedbackStatus.Submitted.rawValue, "Approved")
+            GFFirebaseManager.updateFeedStatus(feedId, self.feedbackModel) { (value) in
+                
+                if value {
+                    
+                 self.popupAlert(title: "Alert", message: "Approved", actionTitles: ["OK"], actions: [{ action in
+                                    
+                    self.navigationController?.popViewController(animated: true)
+                                }])
+                } else {
+                    
+                    self.popupAlert(title: "Error", message: "Error in saving Feedback", actionTitles: ["OK"], actions: [nil])
+                }
+            }
         }
     }
     
@@ -132,9 +103,21 @@ class PreviewFeedbackViewController: GFBaseViewController {
      
         self.feedbackModel.status = .Rejected
         
-         if let userid = self.adminUserId {
+         if let feedId = self.adminFeedId {
              
-            self.feedbackUpdate(userid,FeedbackStatus.Submitted.rawValue, "Rejected")
+             GFFirebaseManager.updateFeedStatus(feedId, self.feedbackModel) { (value) in
+                 
+                 if value {
+                     
+                  self.popupAlert(title: "Alert", message: "Rejected", actionTitles: ["OK"], actions: [{ action in
+                                     
+                     self.navigationController?.popViewController(animated: true)
+                                 }])
+                 } else {
+                     
+                     self.popupAlert(title: "Error", message: "Error in saving Feedback", actionTitles: ["OK"], actions: [nil])
+                 }
+             }
          }
     }
     
@@ -153,80 +136,20 @@ class PreviewFeedbackViewController: GFBaseViewController {
         
     }
     
-    func feedbackUpdate(_ userId:String, _ status: String,_ messageData:String?) {
+    func feedbackUpdate(_ userId:String) {
         
-        db.collection("Feedback").document(userId).collection(status).document(self.feedbackModel.restaurantTitle).setData([
-            Constants.FeedbackCommands.restuarantName : self.feedbackModel.restaurantTitle,
-            Constants.FeedbackCommands.restuarantAddress : self.feedbackModel.address,
-            Constants.FeedbackCommands.howWeAreDoing : self.feedbackModel.howWeAreDoingRating,
-            Constants.FeedbackCommands.whatWeAreDoingGreat : self.feedbackModel.whatAreWeDoingGreatRating,
-            Constants.FeedbackCommands.whatCanWeDoBetter : self.feedbackModel.whatCanWeDoBetterRating,
-            Constants.FeedbackCommands.comments : self.feedbackModel.comments,
-            Constants.FeedbackCommands.rating : self.feedbackModel.rating,
-            Constants.FeedbackCommands.images : self.feedbackModel.imageFileName,
-            Constants.FeedbackCommands.form : self.feedbackModel.formFilName,
-            Constants.FeedbackCommands.status : self.feedbackModel.status.rawValue,
-            Constants.FeedbackCommands.videoUrl : self.feedbackModel.videoFilName,
-            Constants.FeedbackCommands.thumnailTag
-               : self.feedbackModel.thumnail
+        self.feedbackModel.userId = userId
+        GFFirebaseManager.creatingFeedBack(feedbackModel: self.feedbackModel) { (value) in
             
-        ]) { (error) in
-            
-            self.attachSpinner(value: false)
-            if let err = error {
-                self.popupAlert(title: "Error", message: err.localizedDescription, actionTitles: ["OK"], actions: [nil])
+            if value {
+                 
+                 print("Successfully saved data.")
+                 self.popupAlert(title: "Alert", message: "Successfully saved data.", actionTitles: ["OK"], actions: [{ action in
+                     
+                     self.moveToHomeVC()
+                 }])
             } else {
-                
-                if let messageData = messageData {
-                    
-                 self.popupAlert(title: "Alert", message: messageData, actionTitles: ["OK"], actions: [{ action in
-                                    
-                    self.navigationController?.popViewController(animated: true)
-                                }])
-                } else {
-                print("Successfully saved data.")
-                self.popupAlert(title: "Alert", message: "Successfully saved data.", actionTitles: ["OK"], actions: [{ action in
-                    
-                    self.moveToHomeVC()
-                }])
-                }
-           }
-        }
-    }
-    
-    
-    func uploadImage(image: UIImage,_ value : Int , _ tag:Int?) {
-        
-        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
-         
-            let group = DispatchGroup()
-            let randomName = randomStringWithLength(length: 10)
-            let imageData = image.jpegData(compressionQuality: 0.1)
-            let path = "Images/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).jpg"
-            let uploadRef = Storage.storage().reference().child(path)
-            _ = uploadRef.putData(imageData!, metadata: nil) { metadata,
-                error in
-                group.enter()
-                if error == nil {
-                    //success
-                    print("success\(path)")
-                    
-                    if tag != nil {
-                        
-                        self.feedbackModel.thumnail.removeAll()
-                        self.feedbackModel.thumnail.append(path)
-                        
-                    }
-                    self.feedbackModel.imageFileName.append(path)
-                } else {
-                    //error
-                    print("error uploading image")
-                }
-                
-                if value == ((self.images?.count ?? 0) - 1) {
-                    
-                    self.feedbackUpdate(userId,self.feedbackModel.status.rawValue, nil)
-                }
+                self.popupAlert(title: "Error", message: "Error in saving Feedback", actionTitles: ["OK"], actions: [nil])
             }
         }
     }
@@ -272,11 +195,11 @@ class PreviewFeedbackViewController: GFBaseViewController {
             }
             self.scrollView.contentSize = CGSize(width: self.imageStackView.frame.width + 130, height: self.scrollView.frame.height)
         }
-        if feedbackModel.isSubmitBtnHidden {
+        if self.isSubmitBtnHidden {
             
             submitBtnOulet.isHidden = true
         }
-        if feedbackModel.isApprovedBtnHidden && feedbackModel.isRejectbtnHidden {
+        if self.isApprovedBtnHidden && self.isRejectbtnHidden {
             
             adminApprove.isHidden = true
             adminRejecect.isHidden = true
@@ -305,57 +228,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
         }
         
     }
-    
-    func uploadVideo(_ url:URL, _ value:Int) {
         
-        if let userId = UserDefaults.standard.string(forKey: "UserId")  {
-            
-            var data : Data?
-            let randomName = randomStringWithLength(length: 10)
-            do {
-              data = try Data(contentsOf: url as URL)
-            } catch {
-
-                print(error)
-            }
-
-            let path = "Videos/\(userId)/\(feedbackModel.restaurantTitle)/\(randomName).mov"
-            let uploadRef = Storage.storage().reference().child(path)
-          
-            _ = uploadRef.putData(data!, metadata: nil) { metadata,
-                error in
-                if error == nil {
-                    //success
-                    print("success \(path)")
-                    self.feedbackModel.videoFilName.append(path)
-                    
-                } else {
-                    //error
-                    print("error uploading image")
-                }
-                if value == ((self.videoUrl?.count ?? 0) - 1) {
-                    if let images = self.images {
-                        self.feedbackModel.imageFileName.removeAll()
-                        outer: for image in 0..<images.count {
-                            
-                            for tag in self.videoTag ?? [-1] {
-                                
-                                if image == tag  {
-                                    
-                                    self.uploadImage(image: images[image],image,tag)
-                                    continue outer
-                                }
-                            }
-                            self.uploadImage(image: images[image],image,nil)
-                        }
-                    } else {
-                        self.feedbackUpdate(userId,self.feedbackModel.status.rawValue, nil)
-                    }
-                }
-            }
-        }
-    }
-    
   
     @objc func imageButtonPressed(sender: UIButton) {
         
