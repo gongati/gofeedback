@@ -60,6 +60,9 @@ class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITab
         } else if self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Rejected.rawValue {
             
             cell.backgroundColor = UIColor.red
+        } else {
+            
+            cell.backgroundColor = UIColor.white
         }
         cell.textLabel?.text = self.feedbackModels?[indexPath.row].restaurantTitle
         return cell

@@ -15,8 +15,6 @@ class GFLoginViewController: GFBaseViewController {
     @IBOutlet weak var phoneTxt: UITextField!
     @IBOutlet weak var signInBtn: UIButton!
     
-    let db = Firestore.firestore()
-    
     var userID: String?
     var loginId:String?
     

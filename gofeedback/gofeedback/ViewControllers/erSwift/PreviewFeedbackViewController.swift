@@ -59,12 +59,12 @@ class PreviewFeedbackViewController: GFBaseViewController {
     
     @IBAction func submitPressed(_ sender: UIButton) {
         
-        if let userID =  UserDefaults.standard.string(forKey: "UserId") {
+        if let _ =  UserDefaults.standard.string(forKey: "UserId"),let feedId = self.feedbackModel.feedbackId {
             
             self.attachSpinner(value: true)
             self.feedbackModel.status = .Submitted
             
-            self.feedbackUpdate(userID)
+            self.feedbackUpdate(feedId)
             
         } else {
             
@@ -136,10 +136,9 @@ class PreviewFeedbackViewController: GFBaseViewController {
         
     }
     
-    func feedbackUpdate(_ userId:String) {
+    func feedbackUpdate(_ feedId:String) {
         
-        self.feedbackModel.userId = userId
-        GFFirebaseManager.creatingFeedBack(feedbackModel: self.feedbackModel) { (value) in
+         GFFirebaseManager.updateFeedStatus(feedId, self.feedbackModel) { (value) in
             
             if value {
                  
@@ -152,19 +151,6 @@ class PreviewFeedbackViewController: GFBaseViewController {
                 self.popupAlert(title: "Error", message: "Error in saving Feedback", actionTitles: ["OK"], actions: [nil])
             }
         }
-    }
-    
-    func randomStringWithLength(length: Int) -> NSString {
-        
-        let characters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let randomString: NSMutableString = NSMutableString(capacity: length)
-
-        for _ in 0..<length {
-            let len = UInt32(characters.length)
-            let rand = arc4random_uniform(len)
-            randomString.appendFormat("%C", characters.character(at: Int(rand)))
-        }
-        return randomString
     }
     
     func UIUpdate() {

@@ -69,11 +69,12 @@ class GFFirebaseManager {
                     guard let data = try? JSONSerialization.data(withJSONObject: document.data() as Any, options: []) else {
                         print(err!)
                         return }
-                    guard let feedBackModel = try? JSONDecoder().decode(FeedbackModel.self, from: data) else {
+                    guard var feedBackModel = try? JSONDecoder().decode(FeedbackModel.self, from: data) else {
                         
                         print(err!)
                         return
                     }
+                    feedBackModel.feedbackId = document.documentID
                     feedbackModel.append(feedBackModel)
                 }
                 
