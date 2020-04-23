@@ -39,8 +39,8 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
     var videoTag = [Int]()
     var thumnailTag = [Int]()
     var videoPath = [String]()
-    var imageFileName = ""
-    var formFilName = ""
+    var imageFileName = [String]()
+    var videoFilName = [String]()
     var bussiness: CDYelpBusiness?
     
     override func viewDidLoad() {
@@ -93,14 +93,14 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
             
             if  images.count != 0 && videoUrl.count != 0 {
                 
-                self.feedbackModel.videoFilName?.removeAll()
+                self.videoFilName.removeAll()
                 for url in 0..<videoUrl.count {
                     
                     self.uploadVideo(videoUrl[url],url)
                 }
             } else if images.count != 0 {
                 
-                self.feedbackModel.imageFileName?.removeAll()
+                self.imageFileName.removeAll()
                 outer: for image in 0..<images.count {
                     
                     for tag in self.thumnailTag {
@@ -140,14 +140,14 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
             
             if  images.count != 0 && videoUrl.count != 0 {
                 
-                self.feedbackModel.videoFilName?.removeAll()
+                self.videoFilName.removeAll()
                 for url in 0..<videoUrl.count {
                     
                     self.uploadVideo(videoUrl[url],url)
                 }
             } else if images.count != 0 {
                 
-                self.feedbackModel.imageFileName?.removeAll()
+                self.imageFileName.removeAll()
                 outer: for image in 0..<images.count {
                     
                       for tag in self.thumnailTag {
@@ -192,7 +192,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
                 if value {
                     
                     print("success \(path)")
-                    self.feedbackModel.imageFileName?.append(path)
+                    self.imageFileName.append(path)
                 } else {
         
                     print("error uploading image")
@@ -301,6 +301,8 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
     func feedbackUpdate(_ userId:String) {
         
         self.feedbackModel.userId = userId
+        self.feedbackModel.videoFilName = self.videoFilName
+        self.feedbackModel.imageFileName = self.imageFileName
         GFFirebaseManager.creatingFeedBack(feedbackModel: self.feedbackModel) { (value) in
             
             if value {
@@ -335,7 +337,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
                 if value {
                     
                     print("success \(path)")
-                    self.feedbackModel.videoFilName?.append(path)
+                    self.videoFilName.append(path)
                 } else {
                     
                     print("error uploading video")
@@ -347,7 +349,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
                 
                 if value == (self.videoUrl.count - 1) {
                     if self.images.count != 0 {
-                        self.feedbackModel.imageFileName?.removeAll()
+                        self.imageFileName.removeAll()
                         outer: for image in 0..<self.images.count {
                             
                             for tag in self.thumnailTag {
