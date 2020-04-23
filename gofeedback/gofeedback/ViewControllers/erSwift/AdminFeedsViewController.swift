@@ -7,12 +7,9 @@
 //
 
 import UIKit
-import Firebase
 
 class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITableViewDelegate {
     
-    let db = Firestore.firestore()
-    let storage = Storage.storage()
     var images = [UIImage]()
     var videoUrl = [URL]()
     var videotag = [Int]()
