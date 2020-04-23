@@ -9,8 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Firebase
-import FirebaseFirestoreSwift
 
 class GFSignupViewController: GFBaseViewController {
 

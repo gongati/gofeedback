@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class AccountSettingsViewController: GFBaseViewController {
     
@@ -16,8 +15,6 @@ class AccountSettingsViewController: GFBaseViewController {
     @IBOutlet weak var MobileNumberLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
-    
-    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()

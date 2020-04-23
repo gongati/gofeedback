@@ -7,16 +7,12 @@
 //
 
 import UIKit
-import Firebase
 
 class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var walletBalanceLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    let db = Firestore.firestore()
-    
-    let storage = Storage.storage()
     var images = [UIImage]()
     var videoUrl = [URL]()
     var videotag = [Int]()
@@ -182,6 +178,9 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
                     group.leave()
                 }
             }
+        } else {
+            group.enter()
+            group.leave()
         }
         
         group.notify(queue: .main) {
@@ -218,6 +217,10 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
                         group2.leave()
                     }
                 }
+            } else {
+                
+                group2.enter()
+                group2.leave()
             }
             group2.notify(queue: .main) {
                 
