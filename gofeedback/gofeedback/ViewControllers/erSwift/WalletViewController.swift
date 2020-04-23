@@ -18,6 +18,7 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     var videotag = [Int]()
     var firstTimeLoad = true
     var feedbackModel = [FeedbackModel]()
+    var state:FeedbackStatus = .none
     
     let dg = DispatchGroup()
     
@@ -35,7 +36,20 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        if self.state == .Drafts {
+            self.attachSpinner(value: true)
+            self.feedbackModel.removeAll()
+            dg.enter()
+            self.getFeedBackDetails(FeedbackStatus.Drafts.rawValue) {
+                self.dg.leave()
+            }
+            dg.notify(queue: .main) {
+                self.attachSpinner(value: false)
+            }
+        } else {
+            
         tableView.reloadData()
+        }
     }
     
     @IBAction func submiteedPressed(_ sender: UIButton) {
@@ -229,6 +243,7 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
                 viewController.videoTag = self.videotag
                 print(viewController.images!)
                 print("navigation")
+                self.state = self.feedbackModel[at].status
                 self.attachSpinner(value: false)
                 self.navigationController?.pushViewController(viewController, animated: true)
             }

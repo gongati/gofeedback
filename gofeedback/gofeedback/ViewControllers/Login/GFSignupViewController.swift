@@ -14,7 +14,6 @@ class GFSignupViewController: GFBaseViewController {
 
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
-    let db = Firestore.firestore()
     
     var userID: String?
     var loginId:String?
