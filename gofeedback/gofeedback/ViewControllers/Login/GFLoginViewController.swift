@@ -14,7 +14,7 @@ class GFLoginViewController: GFBaseViewController {
     @IBOutlet weak var codeTxt: UITextField!
     @IBOutlet weak var phoneTxt: UITextField!
     @IBOutlet weak var signInBtn: UIButton!
-    
+
     var userID: String?
     var loginId:String?
     

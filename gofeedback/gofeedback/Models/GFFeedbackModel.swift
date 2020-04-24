@@ -22,6 +22,7 @@ struct FeedbackModel: Codable {
     var videoFilName : [String]?
     var status:FeedbackStatus = .none
     var feedbackId:String?
+    var price:Float? = 0.0
     
     enum CodingKeys: String, CodingKey {
         
@@ -37,6 +38,7 @@ struct FeedbackModel: Codable {
         case status = "Status"
         case userId = "User Id"
         case feedbackId = "Feedback id"
+        case price = "Feed Price"
     }
 }
 
@@ -47,4 +49,5 @@ enum FeedbackStatus: String,Codable {
     case Drafts
     case none
     case Rejected
+    case Approved
 }

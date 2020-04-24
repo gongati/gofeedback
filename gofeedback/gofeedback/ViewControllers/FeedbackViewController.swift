@@ -62,10 +62,6 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
         
         super.viewWillAppear(animated)
         super.view.backgroundColor = UIColor.white
-        self.cameraButton.layer.cornerRadius = 10
-        self.cameraButton.layer.borderWidth = 1
-        self.cameraButton.contentMode = .scaleAspectFit
-        self.cameraButton.layer.borderColor = UIColor.black.cgColor
         
         self.commentsTxt.layer.borderColor = UIColor.lightGray.cgColor
         self.commentsTxt.layer.borderWidth = 1
@@ -88,6 +84,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
             self.attachSpinner(value: true)
             
             self.feedbackModel.status = .Submitted
+            self.feedbackModel.price = 0.0
             
              self.feedbackModel.comments = self.commentsTxt.text
             
@@ -421,7 +418,6 @@ extension FeedbackViewController {
                 }
             }
             
-            self.imageStackView.addArrangedSubview(self.cameraButton)
             for item in items {
                 
                 let images = UIImageView()
