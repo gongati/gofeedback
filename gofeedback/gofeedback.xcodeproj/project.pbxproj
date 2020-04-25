@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0A218A0961C3A39928E55A5C /* Pods_gofeedbackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D25C7BFEB745C6E061644E /* Pods_gofeedbackTests.framework */; };
 		27094B88244EE46B00BFECE1 /* GFUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27094B87244EE46B00BFECE1 /* GFUserModel.swift */; };
+		27094B8A2453F96100BFECE1 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27094B892453F96100BFECE1 /* Store.storyboard */; };
+		27094B8D2453FAE000BFECE1 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27094B8C2453FAE000BFECE1 /* StoreViewController.swift */; };
+		27094B8F2453FAF000BFECE1 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27094B8E2453FAF000BFECE1 /* StoreViewModel.swift */; };
 		271CBF572418B71000CB113D /* Sidemenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF562418B71000CB113D /* Sidemenu.storyboard */; };
 		271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF592418B80E00CB113D /* Assets.xcassets */; };
 		271CBF5D2418B93D00CB113D /* SideMenuItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */; };
@@ -90,6 +93,9 @@
 		19F6ADF0944BF1137B77B106 /* Pods-gofeedback.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.release.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.release.xcconfig"; sourceTree = "<group>"; };
 		1D759A38249385D60FBE8162 /* Pods_gofeedback.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gofeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27094B87244EE46B00BFECE1 /* GFUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFUserModel.swift; sourceTree = "<group>"; };
+		27094B892453F96100BFECE1 /* Store.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
+		27094B8C2453FAE000BFECE1 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		27094B8E2453FAF000BFECE1 /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		271CBF562418B71000CB113D /* Sidemenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sidemenu.storyboard; sourceTree = "<group>"; };
 		271CBF592418B80E00CB113D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuItemsViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +191,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27094B8B2453FABD00BFECE1 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				27094B8C2453FAE000BFECE1 /* StoreViewController.swift */,
+				27094B8E2453FAF000BFECE1 /* StoreViewModel.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		271CBF552418B6D900CB113D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +210,7 @@
 				2741C187242D2512007A9F9D /* Account.storyboard */,
 				2741C189242D27AB007A9F9D /* Contact.storyboard */,
 				2741C18B242D27BC007A9F9D /* Alerts.storyboard */,
+				27094B892453F96100BFECE1 /* Store.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -213,6 +229,7 @@
 		271CBF5B2418B90600CB113D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				27094B8B2453FABD00BFECE1 /* Store */,
 				27F6A64E244CC28200C9AB93 /* AdminFeedsViewController.swift */,
 				271CBF6C2418D55A00CB113D /* Login */,
 				271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */,
@@ -473,6 +490,7 @@
 				271CBF6B2418D51E00CB113D /* Login.storyboard in Resources */,
 				271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */,
 				2741C188242D2512007A9F9D /* Account.storyboard in Resources */,
+				27094B8A2453F96100BFECE1 /* Store.storyboard in Resources */,
 				F78495A12441FB200086B70B /* video.mp4 in Resources */,
 				2741C18A242D27AB007A9F9D /* Contact.storyboard in Resources */,
 				2741C18C242D27BC007A9F9D /* Alerts.storyboard in Resources */,
@@ -558,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				271CBF5F2418BA7F00CB113D /* HomeViewController.swift in Sources */,
+				27094B8F2453FAF000BFECE1 /* StoreViewModel.swift in Sources */,
 				27E6A0D9241909F000B4D336 /* GFAppVersion.swift in Sources */,
 				27E6A0CA2419097700B4D336 /* GFMenuButton.swift in Sources */,
 				271CBF822418D55A00CB113D /* SignUpViewModel.swift in Sources */,
@@ -589,6 +608,7 @@
 				27F6A64F244CC28200C9AB93 /* AdminFeedsViewController.swift in Sources */,
 				27E6A0DA241909F000B4D336 /* GFStation.swift in Sources */,
 				F71927252430F24A006BF52A /* WalletViewController.swift in Sources */,
+				27094B8D2453FAE000BFECE1 /* StoreViewController.swift in Sources */,
 				27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */,
 				271CBF672418D47900CB113D /* GFConstants.swift in Sources */,
 				27094B88244EE46B00BFECE1 /* GFUserModel.swift in Sources */,
