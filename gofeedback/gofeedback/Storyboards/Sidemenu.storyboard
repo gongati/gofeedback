@@ -159,9 +159,7 @@
                     <navigationItem key="navigationItem" id="gvE-0I-YQd"/>
                     <connections>
                         <outlet property="emailLabel" destination="J4X-1p-5Ub" id="zpS-2N-7AG"/>
-
                         <outlet property="feedsBtn" destination="PTW-3K-Z9K" id="c94-Af-hwM"/>
-
                         <outlet property="menuContactus" destination="Re7-O1-yvf" id="7rV-cX-z34"/>
                         <outlet property="menuLogin" destination="OC7-mN-3da" id="siv-HN-Aee"/>
                         <outlet property="menuPassPurchase" destination="nzg-cx-soP" id="Sw9-RV-PfG"/>

@@ -68,11 +68,17 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
             }
             self.dg.notify(queue: .main) {
                 self.dg.enter()
-                self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue) {
+                self.getFeedBackDetails(FeedbackStatus.Approved.rawValue) {
                     self.dg.leave()
                 }
                 self.dg.notify(queue: .main) {
-                    self.attachSpinner(value: false)
+                    self.dg.enter()
+                    self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue) {
+                        self.dg.leave()
+                    }
+                    self.dg.notify(queue: .main) {
+                        self.attachSpinner(value: false)
+                    }
                 }
             }
         }
@@ -115,7 +121,10 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
                     self.feedbackModel.append(contentsOf: feeds)
                     if state == FeedbackStatus.Paid.rawValue {
                         
-                        self.walletBalanceLabel.text = "$\(Float(feeds.count))"
+                        let value = feeds.reduce(0) {
+                            $0 + ($1.price ?? 0)
+                        }
+                        self.walletBalanceLabel.text = "$\(Float(value*0.75))"
                     }
                     if self.firstTimeLoad {
                         

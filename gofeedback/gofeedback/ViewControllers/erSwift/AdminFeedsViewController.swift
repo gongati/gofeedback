@@ -54,7 +54,7 @@ class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITab
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdminFeedsCell", for: indexPath)
         
-        if self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Paid.rawValue {
+        if self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Approved.rawValue || self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Paid.rawValue{
             
             cell.backgroundColor = UIColor.green
         } else if self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Rejected.rawValue {

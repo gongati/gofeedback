@@ -11,7 +11,7 @@
         <!--Store View Controller-->
         <scene sceneID="i1H-zm-ZM3">
             <objects>
-                <viewController id="tcE-oz-mx5" customClass="StoreViewController" customModule="gofeedback" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GFStoreViewController" id="tcE-oz-mx5" customClass="StoreViewController" customModule="gofeedback" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n9z-05-epr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,7 +56,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="draftsPressed:" destination="tcE-oz-mx5" eventType="touchUpInside" id="33y-Ke-MPD"/>
+                                            <action selector="storeBtnPressed:" destination="tcE-oz-mx5" eventType="touchUpInside" id="YFf-0U-dEG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PI3-AR-7ZK" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
@@ -73,7 +73,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="paidPressed:" destination="tcE-oz-mx5" eventType="touchUpInside" id="Jpd-aL-zL9"/>
+                                            <action selector="myListBtnPressed:" destination="tcE-oz-mx5" eventType="touchUpInside" id="YzE-J7-dAA"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -125,7 +125,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="draftsPressed:" destination="tcE-oz-mx5" eventType="touchUpInside" id="WBm-BB-bfy"/>
+                                    <action selector="buyBtnPressed:" destination="tcE-oz-mx5" eventType="touchUpInside" id="iPn-pV-iqc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -134,7 +134,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="zxh-8v-dV8"/>
                     <connections>
-                        <outlet property="tableView" destination="6vH-44-x5S" id="bR2-pR-DpO"/>
+                        <outlet property="buyButton" destination="C55-vw-3yJ" id="gZb-qp-pJo"/>
+                        <outlet property="tableView" destination="6vH-44-x5S" id="v9t-2K-Cpk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cnJ-gZ-vyt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -78,7 +78,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
     
     @IBAction func approvedPressed(_ sender: UIButton) {
         
-        self.feedbackModel.status = .Paid
+        self.feedbackModel.status = .Approved
         
         if let feedId = self.adminFeedId {
             
