@@ -23,6 +23,7 @@ struct FeedbackModel: Codable {
     var status:FeedbackStatus = .none
     var feedbackId:String?
     var price:Float? = 0.0
+    var owners:[String]?
     
     enum CodingKeys: String, CodingKey {
         
@@ -39,6 +40,7 @@ struct FeedbackModel: Codable {
         case userId = "User Id"
         case feedbackId = "Feedback id"
         case price = "Feed Price"
+        case owners = "Owners"
     }
 }
 

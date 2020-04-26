@@ -96,10 +96,21 @@ class SideMenuItemsViewController: UIViewController {
 
     @IBAction func adminFeeds(_ sender: UIButton) {
         
-        currentAction = Constants.SideMenuAction.AdminFeeds
-
-        dismiss(animated: false) {
-            self.navigateToAdminFeeds()
+        if let userType =  UserDefaults.standard.string(forKey: "UserType") {
+            
+            if userType == "1" {
+                currentAction = Constants.SideMenuAction.AdminFeeds
+                
+                dismiss(animated: false) {
+                    self.navigateToAdminFeeds()
+                }
+            } else if userType == "2" {
+                currentAction = Constants.SideMenuAction.EnterpriseFeeds
+                
+                dismiss(animated: false) {
+                    self.navigateToEnterpriseFeeds()
+                }
+            }
         }
     }
     
@@ -189,6 +200,23 @@ class SideMenuItemsViewController: UIViewController {
         showAdminFeedsPage()
         //TODO - Alerts need to be integrated
         GFBaseViewController.currentMenuItem = Constants.SideMenuAction.AdminFeeds
+    }
+    
+    @objc func navigateToEnterpriseFeeds() -> Void {
+        if GFBaseViewController.currentMenuItem == Constants.SideMenuAction.EnterpriseFeeds {
+            SideMenuItemsViewController.rightNavController?.popToRootViewController(animated: false)
+            return
+        }
+        showEnterpriseFeedsPage()
+        //TODO - Alerts need to be integrated
+        GFBaseViewController.currentMenuItem = Constants.SideMenuAction.EnterpriseFeeds
+    }
+    
+    func showEnterpriseFeedsPage() {
+        
+        if let controller = UIStoryboard(name: "Store", bundle: nil).instantiateViewController(withIdentifier: Constants.StoryBoard.EnterpriseFeeds) as? StoreViewController {
+                attachControllerToMainWindow(controller: controller)
+        }
     }
     
     func showAdminFeedsPage() {

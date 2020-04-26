@@ -33,6 +33,7 @@ struct Constants {
         static let Alerts = "kAlertsScreenNavigation"
         static let ContactUs = "kContactusScreenNavigation"
         static let AdminFeeds = "kAdminFeedsScreenNavigation"
+        static let EnterpriseFeeds = "kEnterpriseFeedsScreenNavigation"
     }
 
     struct Path {
@@ -126,6 +127,7 @@ struct Constants {
         static let AlertView = "GFCustomAlertViewController"
         static let ReplenishmentView  = "GFReplenishmentViewController"
         static let AdminFeeds  = "GFAdminFeedsViewController"
+        static let EnterpriseFeeds = "GFStoreViewController"
     }
     
     struct Ticket {
@@ -167,8 +169,8 @@ struct Constants {
         static let status = "Status"
         static let videoUrl = "Videos"
         static let thumnailTag = "Thumnail"
-        
         static let userId = "User Id"
+        static let owners = "Owners"
     }
     
     struct userDetails {

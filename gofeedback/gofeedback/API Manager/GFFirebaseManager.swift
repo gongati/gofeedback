@@ -20,8 +20,8 @@ class GFFirebaseManager {
     static func loadAllFeeds(_ completion: ((([FeedbackModel])?) -> ())?) {
         
         let query = self.db.collection("Feedback")
-            .whereField(Constants.FeedbackCommands.status, isGreaterThan: FeedbackStatus.Drafts.rawValue)
-         
+            .whereField(Constants.FeedbackCommands.status, isGreaterThanOrEqualTo: FeedbackStatus.Approved.rawValue)
+        
          query.getDocuments() { (querySnapshot, err) in
             
             if let err = err {
@@ -41,7 +41,9 @@ class GFFirebaseManager {
                         return
                     }
                     feedBackModel.feedbackId = document.documentID
+                    if feedBackModel.status != .Drafts {
                     feedbackModel.append(feedBackModel)
+                    }
                 }
                 
                 completion?(feedbackModel)
@@ -255,6 +257,73 @@ class GFFirebaseManager {
                 if let url = url {
                    completion?(url)
                 }
+            }
+        }
+    }
+    
+    static func loadApprovedFeeds(_ userId:String,_ completion: ((([FeedbackModel])?) -> ())?) {
+        
+        let query = self.db.collection("Feedback")
+            .whereField(Constants.FeedbackCommands.status, isEqualTo: FeedbackStatus.Approved.rawValue)
+         
+         query.getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion?(nil)
+            } else if let documents = querySnapshot?.documents {
+                
+                var feedbackModel = [FeedbackModel]()
+                
+                for document in documents {
+                    
+                    guard let data = try? JSONSerialization.data(withJSONObject: document.data() as Any, options: []) else {
+                        print(err!)
+                        return }
+                    guard var feedBackModel = try? JSONDecoder().decode(FeedbackModel.self, from: data) else {
+                        print(err!)
+                        return
+                    }
+                    feedBackModel.feedbackId = document.documentID
+                    if !(feedBackModel.owners?.contains(userId) ?? false) {
+                        feedbackModel.append(feedBackModel)
+                    }
+                }
+                
+                completion?(feedbackModel)
+            }
+        }
+    }
+    
+    static func loadOwnedItems(_ userId:String,_ completion: ((([FeedbackModel])?) -> ())?) {
+        
+        let query = self.db.collection("Feedback")
+            .whereField(Constants.FeedbackCommands.status, isEqualTo: FeedbackStatus.Paid.rawValue)
+            .whereField(Constants.FeedbackCommands.owners, arrayContains: userId)
+         
+         query.getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion?(nil)
+            } else if let documents = querySnapshot?.documents {
+                
+                var feedbackModel = [FeedbackModel]()
+                
+                for document in documents {
+                    
+                    guard let data = try? JSONSerialization.data(withJSONObject: document.data() as Any, options: []) else {
+                        print(err!)
+                        return }
+                    guard var feedBackModel = try? JSONDecoder().decode(FeedbackModel.self, from: data) else {
+                        print(err!)
+                        return
+                    }
+                    feedBackModel.feedbackId = document.documentID
+                    feedbackModel.append(feedBackModel)
+                }
+                
+                completion?(feedbackModel)
             }
         }
     }
