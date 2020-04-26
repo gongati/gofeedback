@@ -276,7 +276,7 @@ class SideMenuItemsViewController: UIViewController {
                 self.userNameLabel.text = name
                 self.emailLabel.text = email
                 
-                if userType == "1" {
+                if userType == "1" || userType == "2" {
                     
                     self.feedsBtn.isHidden = false
                 } else {

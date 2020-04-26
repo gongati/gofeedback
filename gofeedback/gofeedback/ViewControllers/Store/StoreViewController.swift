@@ -112,7 +112,7 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
             self.selectedItems.append(self.dataSource[indexPath.row])
             if selectedItems.count > 0 {
                 
-                buyButton.isHidden = false
+                self.buyButton.isHidden = false
             }
         }
     }
@@ -127,7 +127,7 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
         self.selectedItems = value
         if selectedItems.count == 0 {
             
-            buyButton.isHidden = true
+            self.buyButton.isHidden = true
         }
     }
     
