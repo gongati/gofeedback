@@ -52,19 +52,23 @@ class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AdminFeedsCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AdminFeedsCell", for: indexPath) as! GFAdminFeedListViewCell
         
-        if self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Approved.rawValue || self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Paid.rawValue{
+//        if self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Approved.rawValue || self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Paid.rawValue{
+//            
+//            cell.backgroundColor = UIColor.green
+//        } else if self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Rejected.rawValue {
+//            
+//            cell.backgroundColor = UIColor.red
+//        } else {
+//            
+//            cell.backgroundColor = UIColor.white
+//        }
+//        
+        if let feedItem = self.feedbackModels?[indexPath.row] {
             
-            cell.backgroundColor = UIColor.green
-        } else if self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Rejected.rawValue {
-            
-            cell.backgroundColor = UIColor.red
-        } else {
-            
-            cell.backgroundColor = UIColor.white
+            cell.updateCell(model: feedItem)
         }
-        cell.textLabel?.text = self.feedbackModels?[indexPath.row].restaurantTitle
         return cell
     }
     

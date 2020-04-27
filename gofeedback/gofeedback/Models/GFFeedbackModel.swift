@@ -12,6 +12,7 @@ struct FeedbackModel: Codable {
     
     var userId:String = ""
     var restaurantTitle : String = ""
+    var restaurentImage: String?
     var address : String = ""
     var rating : Double = 3
     var whatCanWeDoBetterRating: Double = 3
@@ -28,6 +29,7 @@ struct FeedbackModel: Codable {
     enum CodingKeys: String, CodingKey {
         
         case restaurantTitle = "Restuarant Name"
+        case restaurentImage = "Restaurent Image"
         case address = "Restuarant Address"
         case rating = "Rating"
         case whatCanWeDoBetterRating = "What can we do better?"

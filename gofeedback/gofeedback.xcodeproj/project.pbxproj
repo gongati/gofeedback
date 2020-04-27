@@ -35,6 +35,8 @@
 		274D69D42427AEB200597AFF /* EmailIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CF2427AEB200597AFF /* EmailIdViewModel.swift */; };
 		274D69D52427AEB200597AFF /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69D02427AEB200597AFF /* PasswordViewModel.swift */; };
 		274D69D62427AEB200597AFF /* NameTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69D12427AEB200597AFF /* NameTextViewModel.swift */; };
+		2752FC3A2456072500D3ABB5 /* GFFeedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752FC392456072500D3ABB5 /* GFFeedItemTableViewCell.swift */; };
+		2752FC3C2456117600D3ABB5 /* GFAdminFeedListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752FC3B2456117600D3ABB5 /* GFAdminFeedListViewCell.swift */; };
 		276BAEC2241BF43600C66EAC /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276BAEC1241BF43600C66EAC /* Feedback.storyboard */; };
 		276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAECB241D58E100C66EAC /* GFReachability.swift */; };
 		277EB41B2440F33B000CA425 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277EB41A2440F33B000CA425 /* CustomAnnotation.swift */; };
@@ -119,6 +121,8 @@
 		274D69CF2427AEB200597AFF /* EmailIdViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailIdViewModel.swift; sourceTree = "<group>"; };
 		274D69D02427AEB200597AFF /* PasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
 		274D69D12427AEB200597AFF /* NameTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTextViewModel.swift; sourceTree = "<group>"; };
+		2752FC392456072500D3ABB5 /* GFFeedItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFFeedItemTableViewCell.swift; sourceTree = "<group>"; };
+		2752FC3B2456117600D3ABB5 /* GFAdminFeedListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAdminFeedListViewCell.swift; sourceTree = "<group>"; };
 		276BAEC1241BF43600C66EAC /* Feedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feedback.storyboard; sourceTree = "<group>"; };
 		276BAECB241D58E100C66EAC /* GFReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFReachability.swift; sourceTree = "<group>"; };
 		277EB41A2440F33B000CA425 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
@@ -345,6 +349,8 @@
 				27E6A0C52419097700B4D336 /* GFHistoryTableViewCell.swift */,
 				27E6A0C62419097700B4D336 /* GFWhiteButtonTextField.swift */,
 				277EB41C244102EE000CA425 /* CustomAnnotationView.swift */,
+				2752FC392456072500D3ABB5 /* GFFeedItemTableViewCell.swift */,
+				2752FC3B2456117600D3ABB5 /* GFAdminFeedListViewCell.swift */,
 			);
 			path = "Custom Objects";
 			sourceTree = "<group>";
@@ -590,6 +596,7 @@
 				271CBF7F2418D55A00CB113D /* GFOTPViewController.swift in Sources */,
 				271CBF5D2418B93D00CB113D /* SideMenuItemsViewController.swift in Sources */,
 				27E6A0CE2419097700B4D336 /* GFHistoryTableViewCell.swift in Sources */,
+				2752FC3A2456072500D3ABB5 /* GFFeedItemTableViewCell.swift in Sources */,
 				F719271F24307C80006BF52A /* AccountSettingsViewController.swift in Sources */,
 				F7295FC32438C283003AFE77 /* PreviewImageViewController.swift in Sources */,
 				274D69D32427AEB200597AFF /* LoginModel.swift in Sources */,
@@ -623,6 +630,7 @@
 				27E6A0BC2419087E00B4D336 /* GFUtilities.swift in Sources */,
 				27E6A0C72419097700B4D336 /* GFRouteLegsScrollView.swift in Sources */,
 				271CBF692418D4E600CB113D /* GFColor.swift in Sources */,
+				2752FC3C2456117600D3ABB5 /* GFAdminFeedListViewCell.swift in Sources */,
 				274D69D52427AEB200597AFF /* PasswordViewModel.swift in Sources */,
 				27E6A0CC2419097700B4D336 /* GFIconBadge.swift in Sources */,
 				276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */,
@@ -797,7 +805,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patan.saintz.gofeedback;
+				PRODUCT_BUNDLE_IDENTIFIER = com.omni.saintz.ios.gofeedback;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -816,7 +824,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.omni.saintz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.omni.saintz.ios.gofeedback;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

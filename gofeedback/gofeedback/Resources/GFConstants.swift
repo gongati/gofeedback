@@ -14,6 +14,15 @@ struct Constants {
         static let GoogleMaps = "AIzaSyD20t9-cmgZ_zgDgJO3R4y-tehsscNnHkA"
     }
     
+    struct appsku {
+        static let SKU = "saintzgofeedback"
+    }
+
+    struct UserWallet {
+        
+        static let userPercent = 0.75
+    }
+    
     struct NotificationKey {
         static let Welcome = "kWelcomeNotif"
         static let HomeScreen = "kHomeScreenNavNotification"

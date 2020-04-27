@@ -85,6 +85,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
             
             self.feedbackModel.status = .Submitted
             self.feedbackModel.price = 0.0
+            self.feedbackModel.restaurentImage = self.bussiness?.imageUrl?.absoluteString
             
              self.feedbackModel.comments = self.commentsTxt.text
             

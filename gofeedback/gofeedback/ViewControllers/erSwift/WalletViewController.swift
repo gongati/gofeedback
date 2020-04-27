@@ -124,7 +124,7 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
                         let value = feeds.reduce(0) {
                             $0 + ($1.price ?? 0)
                         }
-                        self.walletBalanceLabel.text = "$\(Float(value*0.75))"
+                        self.walletBalanceLabel.text = "$\(Float(value*Constants.UserWallet.userPercent))"
                     }
                     if self.firstTimeLoad {
                         

@@ -9,6 +9,7 @@
 import UIKit
 
 @IBDesignable
+
 class GFCustomTableViewCellShadowView: UIView {
 
     @IBInspectable var cornerRadius: CGFloat = 3.0
