@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import CDYelpFusionKit
+import UBottomSheet
 
 class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
     
@@ -59,11 +60,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        
-        if self.bottomController != nil {
-            
-            self.addChild(self.bottomController!)
-        }
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,15 +69,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         determineCurrentLocation()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        
-
-        super.viewWillDisappear(animated)
-        if self.children.count != 0 {
-            
-            self.children[0].removeFromParent()
-        }
-    }
+   
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -94,12 +83,16 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             annotations.dataSource = self.searchResponse
             annotations.tableView.reloadData()
         } else {
+            let sheetCoordinator = UBottomSheetCoordinator(parent: self)
+
             if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "AnnotationsListViewController") as? AnnotationsListViewController {
                 
                 viewController.dataSource = self.searchResponse
                 viewController.searchItem = whereToGoText.text ?? ""
+                viewController.sheetCoordinator = sheetCoordinator
+                sheetCoordinator.addSheet(viewController, to: self)
                 self.bottomController = viewController
-                viewController.attach(to: self)
+                
             }
         }
     }
@@ -184,7 +177,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     @IBAction func listPressed(_ sender: UIButton) {
         
-        self.wayToAnnotationList()
     }
     
     @IBAction func setupLocalLocation(_ sender: UIButton) {
@@ -440,16 +432,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         }
     }
     
-    func wayToAnnotationList() {
-        
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "AnnotationsListViewController") as? AnnotationsListViewController else {
-            return
-        }
-          
-        viewController.dataSource = self.searchResponse
-        viewController.searchItem = whereToGoText.text ?? ""
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
 }
 
 extension MKMapView {

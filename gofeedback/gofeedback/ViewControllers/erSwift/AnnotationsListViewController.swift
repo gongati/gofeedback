@@ -11,7 +11,7 @@ import MapKit
 import CDYelpFusionKit
 import UBottomSheet
 
-class AnnotationsListViewController: BottomSheetController {
+class AnnotationsListViewController: UIViewController,Draggable {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,14 +19,10 @@ class AnnotationsListViewController: BottomSheetController {
     
     var dataSource : [CDYelpBusiness]?
     
-    override var topInset: CGFloat {
-        
-        return 100.0
-    }
+    var sheetCoordinator: UBottomSheetCoordinator?
 
-    override var initialPosition: SheetPosition {
-        
-        return .bottom
+    func draggableView() -> UIScrollView? {
+        return tableView
     }
     
 //    required init?(coder aDecoder: NSCoder) {
@@ -44,6 +40,8 @@ class AnnotationsListViewController: BottomSheetController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        sheetCoordinator?.startTracking(item: self)
         
         tableView.tableFooterView = UIView()
         tableView.register(GFHistoryTableViewCell.self, forCellReuseIdentifier: "DefaultCell")
@@ -88,6 +86,7 @@ class AnnotationsListViewController: BottomSheetController {
         viewController.feedbackModel.address = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
         }
         viewController.searchItem = self.searchItem
+        viewController.bussiness = dataSource?[value]
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
@@ -125,30 +124,4 @@ extension AnnotationsListViewController: UITableViewDelegate, UITableViewDataSou
 }
 
 
-extension AnnotationsListViewController {
-    
-        //MARK: BottomSheetController configurations
-    //    override var topYPercentage: CGFloat
-        
-    //    override var bottomYPercentage: CGFloat
-        
-    //    override var middleYPercentage: CGFloat
-        
-    //    override var bottomInset: CGFloat
-        
-    //    override var topInset: CGFloat
-        
-    //    Don't override if not necessary as it is auto-detected
-    //    override var scrollView: UIScrollView?{
-    //        return put_your_tableView, collectionView, etc.
-    //    }
-        
-    //    //Override this to apply custom animations
-    //    override func animate(animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil) {
-    //        UIView.animate(withDuration: 0.3, animations: animations)
-    //    }
-        
-    //    To change sheet position manually
-    //    call ´changePosition(to: .top)´ anywhere in the code
 
-}

@@ -20,7 +20,7 @@ class GFFirebaseManager {
     static func loadAllFeeds(_ completion: ((([FeedbackModel])?) -> ())?) {
         
         let query = self.db.collection("Feedback")
-            .whereField(Constants.FeedbackCommands.status, isGreaterThanOrEqualTo: FeedbackStatus.Approved.rawValue)
+            .order(by: Constants.FeedbackCommands.timeStamp, descending: true)
         
          query.getDocuments() { (querySnapshot, err) in
             
@@ -56,6 +56,7 @@ class GFFirebaseManager {
         let query = self.db.collection("Feedback")
             .whereField(Constants.FeedbackCommands.userId, isEqualTo: userId)
             .whereField(Constants.FeedbackCommands.status, isEqualTo: state)
+            .order(by: Constants.FeedbackCommands.timeStamp, descending: true)
          
          query.getDocuments() { (querySnapshot, err) in
             
@@ -265,6 +266,7 @@ class GFFirebaseManager {
         
         let query = self.db.collection("Feedback")
             .whereField(Constants.FeedbackCommands.status, isEqualTo: FeedbackStatus.Approved.rawValue)
+            .order(by: Constants.FeedbackCommands.timeStamp, descending: true)
          
          query.getDocuments() { (querySnapshot, err) in
             

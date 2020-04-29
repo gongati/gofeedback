@@ -85,7 +85,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
             
             self.feedbackModel.status = .Submitted
             self.feedbackModel.price = 0.0
-            self.feedbackModel.restaurentImage = self.bussiness?.imageUrl?.absoluteString
+            self.feedbackModel.restaurentImageUrl = self.bussiness?.imageUrl
             
              self.feedbackModel.comments = self.commentsTxt.text
             
@@ -133,6 +133,8 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
             self.attachSpinner(value: true)
             
             self.feedbackModel.status = .Drafts
+            self.feedbackModel.price = 0.0
+            self.feedbackModel.restaurentImageUrl = self.bussiness?.imageUrl
             
              self.feedbackModel.comments = self.commentsTxt.text
             
@@ -301,6 +303,9 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
         self.feedbackModel.userId = userId
         self.feedbackModel.videoFilName = self.videoFilName
         self.feedbackModel.imageFileName = self.imageFileName
+        let timestamp = Date().timeIntervalSince1970
+        self.feedbackModel.timeStamp = timestamp
+        
         GFFirebaseManager.creatingFeedBack(feedbackModel: self.feedbackModel) { (value) in
             
             if value {

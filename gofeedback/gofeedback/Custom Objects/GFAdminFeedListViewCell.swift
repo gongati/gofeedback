@@ -33,7 +33,7 @@ class GFAdminFeedListViewCell: UITableViewCell {
         self.descLabel.text = model.comments
         self.starView.rating = model.rating
         self.addressLabel.text = model.address
-    
+        
         if model.status == .Approved || model.status == .Paid {
             
             self.tickBtn.isHidden = false
@@ -50,6 +50,14 @@ class GFAdminFeedListViewCell: UITableViewCell {
         if let videos = model.videoFilName, videos.count > 0 {
             
             self.videoFlagBtn.isHidden = false
+        }
+        
+        if let logoImageUrl = model.restaurentImageUrl {
+           
+            self.logoImage.downloaded(from: logoImageUrl)
+        } else {
+            
+            self.logoImage.image = UIImage(named: "question mark")
         }
     }
     

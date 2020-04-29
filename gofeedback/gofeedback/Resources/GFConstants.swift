@@ -20,7 +20,7 @@ struct Constants {
 
     struct UserWallet {
         
-        static let userPercent = 0.75
+        static let userPercent:Float = 0.75
     }
     
     struct NotificationKey {
@@ -180,6 +180,7 @@ struct Constants {
         static let thumnailTag = "Thumnail"
         static let userId = "User Id"
         static let owners = "Owners"
+        static let timeStamp = "Time Stamp"
     }
     
     struct userDetails {

@@ -58,7 +58,7 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
         
         self.feedbackModel.removeAll()
         dg.enter()
-        self.getFeedBackDetails(FeedbackStatus.Rejected.rawValue) {
+        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue) {
             self.dg.leave()
         }
         dg.notify(queue: .main) {
@@ -73,7 +73,7 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
                 }
                 self.dg.notify(queue: .main) {
                     self.dg.enter()
-                    self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue) {
+                    self.getFeedBackDetails(FeedbackStatus.Rejected.rawValue) {
                         self.dg.leave()
                     }
                     self.dg.notify(queue: .main) {
