@@ -12,7 +12,7 @@ struct FeedbackModel: Codable {
     
     var userId:String = ""
     var restaurantTitle : String = ""
-    var restaurentImage: String?
+    var restaurentImageUrl: URL?
     var address : String = ""
     var rating : Double = 3
     var whatCanWeDoBetterRating: Double = 3
@@ -25,11 +25,12 @@ struct FeedbackModel: Codable {
     var feedbackId:String?
     var price:Float? = 0.0
     var owners:[String]?
+    var timeStamp: Double?
     
     enum CodingKeys: String, CodingKey {
         
         case restaurantTitle = "Restuarant Name"
-        case restaurentImage = "Restaurent Image"
+        case restaurentImageUrl = "Restaurent Image"
         case address = "Restuarant Address"
         case rating = "Rating"
         case whatCanWeDoBetterRating = "What can we do better?"
@@ -43,6 +44,7 @@ struct FeedbackModel: Codable {
         case feedbackId = "Feedback id"
         case price = "Feed Price"
         case owners = "Owners"
+        case timeStamp = "Time Stamp"
     }
 }
 
