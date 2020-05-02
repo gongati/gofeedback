@@ -11,7 +11,7 @@ import MapKit
 import CDYelpFusionKit
 import UBottomSheet
 
-class AnnotationsListViewController: UIViewController,Draggable {
+class AnnotationsListViewController: UIViewController, Draggable {
 
     @IBOutlet weak var tableView: UITableView!
     

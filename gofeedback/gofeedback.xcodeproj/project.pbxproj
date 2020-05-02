@@ -26,6 +26,7 @@
 		271CBF802418D55A00CB113D /* GFSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF752418D55A00CB113D /* GFSignupViewController.swift */; };
 		271CBF812418D55A00CB113D /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF772418D55A00CB113D /* SignUpModel.swift */; };
 		271CBF822418D55A00CB113D /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF782418D55A00CB113D /* SignUpViewModel.swift */; };
+		273207C8245D8A1D00D7418E /* BusinessSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273207C7245D8A1D00D7418E /* BusinessSearchViewController.swift */; };
 		2741C186242D24D7007A9F9D /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C185242D24D7007A9F9D /* Wallet.storyboard */; };
 		2741C188242D2512007A9F9D /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C187242D2512007A9F9D /* Account.storyboard */; };
 		2741C18A242D27AB007A9F9D /* Contact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C189242D27AB007A9F9D /* Contact.storyboard */; };
@@ -112,6 +113,7 @@
 		271CBF752418D55A00CB113D /* GFSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFSignupViewController.swift; sourceTree = "<group>"; };
 		271CBF772418D55A00CB113D /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		271CBF782418D55A00CB113D /* SignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		273207C7245D8A1D00D7418E /* BusinessSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessSearchViewController.swift; sourceTree = "<group>"; };
 		2741C185242D24D7007A9F9D /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		2741C187242D2512007A9F9D /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
 		2741C189242D27AB007A9F9D /* Contact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contact.storyboard; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		271CBF5B2418B90600CB113D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				273207C7245D8A1D00D7418E /* BusinessSearchViewController.swift */,
 				27094B8B2453FABD00BFECE1 /* Store */,
 				27F6A64E244CC28200C9AB93 /* AdminFeedsViewController.swift */,
 				271CBF6C2418D55A00CB113D /* Login */,
@@ -635,6 +638,7 @@
 				27E6A0CC2419097700B4D336 /* GFIconBadge.swift in Sources */,
 				276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */,
 				27E6A12B241916CC00B4D336 /* Api.swift in Sources */,
+				273207C8245D8A1D00D7418E /* BusinessSearchViewController.swift in Sources */,
 				27839A1C240FF1AF004CEE14 /* gofeedback.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

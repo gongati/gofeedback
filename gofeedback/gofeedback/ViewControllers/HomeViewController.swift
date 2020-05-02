@@ -221,7 +221,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
 
         }
     }
-    
+
     func setupDebugLocation(lat:String, long:String) {
         
         GFGlobal.localDebug = true
