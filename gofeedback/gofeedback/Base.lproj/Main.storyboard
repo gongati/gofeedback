@@ -55,7 +55,7 @@
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gofeedback-logo-180x180" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-00-EQT">
-                                        <rect key="frame" x="146" y="37" width="78" height="36"/>
+                                        <rect key="frame" x="147" y="37" width="78" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
@@ -274,7 +274,7 @@
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gofeedback-logo-180x180" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJ0-qZ-yLH">
-                                        <rect key="frame" x="146" y="37" width="78" height="36"/>
+                                        <rect key="frame" x="147" y="37" width="78" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
@@ -360,7 +360,7 @@
         <!--Business Search View Controller-->
         <scene sceneID="j0C-2h-929">
             <objects>
-                <viewController id="Jhe-fg-5nA" customClass="BusinessSearchViewController" customModule="gofeedback" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SEARCHCONTROLLER" id="Jhe-fg-5nA" customClass="BusinessSearchViewController" customModule="gofeedback" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h4f-kI-h47">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

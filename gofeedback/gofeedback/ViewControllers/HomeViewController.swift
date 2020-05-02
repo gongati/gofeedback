@@ -186,14 +186,23 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     
     //MARK:- UITextField Delegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        //Check for reachability
-        if Reachability.isConnectedToNetwork() != true {
-            popupAlert(title: "Alert", message: "Seems like there is no internet connection, please check back later", actionTitles: ["OK"], actions: [nil])
-            return false
+        
+        //Here we should load search viewcontroller
+        
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "SEARCHCONTROLLER") as? BusinessSearchViewController else {
+            return
         }
         
-        //push controller
-        return true
+        self.navigationController?.pushViewController(viewController, animated: true)
+
+//        //Check for reachability
+//        if Reachability.isConnectedToNetwork() != true {
+//            popupAlert(title: "Alert", message: "Seems like there is no internet connection, please check back later", actionTitles: ["OK"], actions: [nil])
+//            return false
+//        }
+//
+//        //push controller
+        return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
