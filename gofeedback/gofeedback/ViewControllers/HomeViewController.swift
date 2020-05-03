@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 import MapKit
 import CDYelpFusionKit
-import UBottomSheet
 
 class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
     
@@ -38,8 +37,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     var bottomController: AnnotationsListViewController?
     var matchesCount = 0
     
-    let yelpAPIClient = CDYelpAPIClient(apiKey: "JuFWYKLiETl9O-z6Tn7ysBeGyXbzON1Eh-_lbP56VDbu5YdZMRLQTBE2rNWfLCCM85Ot21lMMhiW9GsuaEVAg8kBQLPPVoAaTFP99Fm3m9_2WHMBibfkoItNQhuLXnYx")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -60,7 +57,11 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-    
+        
+        if self.bottomController != nil {
+            
+            self.addChild(self.bottomController!)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,7 +70,15 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         determineCurrentLocation()
     }
     
-   
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        super.viewWillDisappear(animated)
+        
+        if self.children.count != 0 {
+            
+            self.children[0].removeFromParent()
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -83,15 +92,13 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             annotations.dataSource = self.searchResponse
             annotations.tableView.reloadData()
         } else {
-            let sheetCoordinator = UBottomSheetCoordinator(parent: self)
 
             if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "AnnotationsListViewController") as? AnnotationsListViewController {
                 
                 viewController.dataSource = self.searchResponse
                 viewController.searchItem = whereToGoText.text ?? ""
-                viewController.sheetCoordinator = sheetCoordinator
-                sheetCoordinator.addSheet(viewController, to: self)
                 self.bottomController = viewController
+                viewController.attach(to: self)
                 
             }
         }
@@ -188,20 +195,18 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         //Here we should load search viewcontroller
-        
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "SEARCHCONTROLLER") as? BusinessSearchViewController else {
-            return
+        if Reachability.isConnectedToNetwork() != true {
+            popupAlert(title: "Alert", message: "Seems like there is no internet connection, please check back later", actionTitles: ["OK"], actions: [nil])
+            return false
         }
         
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:  "SEARCHCONTROLLER") as? BusinessSearchViewController else {
+            return false
+        }
+        viewController.latitude = Double(self.locationLat ?? "")
+        viewController.longitude = Double(self.locationLong ?? "")
         self.navigationController?.pushViewController(viewController, animated: true)
 
-//        //Check for reachability
-//        if Reachability.isConnectedToNetwork() != true {
-//            popupAlert(title: "Alert", message: "Seems like there is no internet connection, please check back later", actionTitles: ["OK"], actions: [nil])
-//            return false
-//        }
-//
-//        //push controller
         return false
     }
     
@@ -263,16 +268,12 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             return
         }
         
-        yelpAPIClient.cancelAllPendingAPIRequests()
+        GFYelpManager.yelpSearchCancelRequests()
         
         let currentLoc = CLLocation(latitude: (userCurrentLocation?.latitude)!, longitude: (userCurrentLocation?.longitude)!)
         let selectedLoc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         
         print(currentLoc.distance(from: selectedLoc))
-        
-        let zoomWidth = mapView.visibleMapRect.size.width
-        let zoomFactor = Int(log2(zoomWidth)) - 9
-        let pinDistance = (20 * zoomFactor)
         
         let lat = Double(round(selectedLoc.coordinate.latitude * 1000000)/1000000)
         let long = Double(round(selectedLoc.coordinate.longitude * 1000000)/1000000)
@@ -281,7 +282,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
             locationLong = "\(mapView.centerCoordinate.longitude)"
             self.yelpQuery()
         }
-        //self.radius = 200
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
     }
@@ -307,7 +307,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         
         var radius = 100
         
-        yelpAPIClient.cancelAllPendingAPIRequests()
+        GFYelpManager.yelpSearchCancelRequests()
         
         if self.radiusOffset > 40000 {
             
@@ -321,20 +321,8 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         }
         
         print("Radius : \(radius)")
-        yelpAPIClient.searchBusinesses(byTerm: whereToGoText.text,
-                                       location: nil,
-                                       latitude: Double(self.locationLat ?? ""),
-                                       longitude: Double(self.locationLong ?? ""),
-                                       radius: radius,
-                                       categories: nil,
-                                       locale: .english_unitedStates,
-                                       limit: 50,
-                                       offset: nil,
-                                       sortBy: .bestMatch,
-                                       priceTiers: nil,
-                                       openNow: nil,
-                                       openAt: nil,
-                                       attributes: nil) { (response) in
+        
+        GFYelpManager.yelpSearch(byTerm: nil, location: nil, latitude: Double(self.locationLat ?? ""), longitude: Double(self.locationLong ?? ""), radius: radius) { (response) in
                                         
                                         if let response = response,
                                             let businesses = response.businesses {
@@ -372,7 +360,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                             print("error")
                                         }
         }
-        
     }
         
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

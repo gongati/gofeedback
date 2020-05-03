@@ -22,7 +22,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
     @IBOutlet weak var submitBtnOulet: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
-
+    @IBOutlet weak var receiptImageView: UIImageView!
     @IBOutlet weak var imageStackView: UIStackView!
   
     @IBOutlet weak var adminApprove: UIButton!
@@ -121,6 +121,7 @@ class PreviewFeedbackViewController: GFBaseViewController {
          }
     }
     
+    
     func moveToHomeVC() {
         
         navigationController?.popToRootViewController(animated: true)
@@ -189,6 +190,20 @@ class PreviewFeedbackViewController: GFBaseViewController {
             
             adminApprove.isHidden = true
             adminRejecect.isHidden = true
+        }
+        
+        if let isReceipt = feedbackModel.isReceiptAttached {
+            
+            if isReceipt {
+                
+                receiptImageView.image = UIImage(named: "checkBox")
+            } else {
+                
+                receiptImageView.image = UIImage(named: "cross_CheckBox")
+            }
+        } else {
+            
+             receiptImageView.image = UIImage(named: "cross_CheckBox")
         }
     }
     

@@ -42,6 +42,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
     var imageFileName = [String]()
     var videoFilName = [String]()
     var bussiness: CDYelpBusiness?
+    var isReceiptBtnEnabled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -217,6 +218,20 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
         self.openCamera()
     }
     
+    
+    @IBAction func receiptBtnPressed(_ sender: UIButton) {
+        
+        isReceiptBtnEnabled = !isReceiptBtnEnabled
+        
+        if isReceiptBtnEnabled {
+            
+            sender.setImage(UIImage(named: "checkBox"), for: .normal)
+        } else {
+            
+            sender.setImage(UIImage(named: "unchecked-image"), for: .normal)
+        }
+    }
+    
     func randomStringWithLength(length: Int) -> NSString {
         
         let characters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -305,6 +320,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
         self.feedbackModel.imageFileName = self.imageFileName
         let timestamp = Date().timeIntervalSince1970
         self.feedbackModel.timeStamp = timestamp
+        self.feedbackModel.isReceiptAttached = isReceiptBtnEnabled
         
         GFFirebaseManager.creatingFeedBack(feedbackModel: self.feedbackModel) { (value) in
             

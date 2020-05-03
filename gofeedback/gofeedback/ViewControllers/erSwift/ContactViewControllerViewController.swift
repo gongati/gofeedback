@@ -42,10 +42,10 @@ class ContactViewControllerViewController: GFBaseViewController,MFMailComposeVie
             mc.setSubject(emailTitle)
             mc.setMessageBody(messageBody, isHTML: false)
             mc.setToRecipients(toRecipents)
-            
+             self.attachSpinner(value: false)
             self.present(mc, animated: true, completion: nil)
         } else {
-            
+             self.attachSpinner(value: false)
             self.popupAlert(title: "Alert", message: "Login to mail for sending comments.", actionTitles: ["OK"], actions: [nil])
         }
     }
@@ -53,7 +53,6 @@ class ContactViewControllerViewController: GFBaseViewController,MFMailComposeVie
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
-        self.attachSpinner(value: false)
         switch result.rawValue {
         case MFMailComposeResult.cancelled.rawValue:
             self.popupAlert(title: "ALert", message: "Mail Canceled", actionTitles: ["OK"], actions: [nil])

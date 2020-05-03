@@ -60,7 +60,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qhr-dp-LIp" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="108" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.1578813791" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.15686274509803921" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Drafts">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -149,6 +149,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZFw-Er-2dp"/>
                     <connections>
+                        <outlet property="draftsBtnOulet" destination="Qhr-dp-LIp" id="xXB-RW-XPU"/>
+                        <outlet property="paidBtnOutlet" destination="ctq-Zd-oXx" id="hRI-L9-ecD"/>
+                        <outlet property="submittedBtnOutlet" destination="9kd-dt-NB0" id="nOh-wf-wbM"/>
                         <outlet property="tableView" destination="dF8-Mw-i13" id="d72-Lp-Wlo"/>
                         <outlet property="walletBalanceLabel" destination="BhG-Lb-6ou" id="0FJ-Bh-vWu"/>
                     </connections>
@@ -208,7 +211,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgX-vO-2ys" customClass="GFCustomTableViewCellShadowView" customModule="gofeedback" customModuleProvider="target">
-                                                    <rect key="frame" x="5" y="5" width="365" height="110"/>
+                                                    <rect key="frame" x="5" y="5" width="375" height="110"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5m-1N-Qif">
@@ -335,6 +338,6 @@
         <image name="xmark.seal.fill" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qgO-l7-IH9"/>
+        <segue reference="NNZ-hE-MC5"/>
     </inferredMetricsTieBreakers>
 </document>

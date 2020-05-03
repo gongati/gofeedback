@@ -26,6 +26,7 @@ struct FeedbackModel: Codable {
     var price:Float? = 0.0
     var owners:[String]?
     var timeStamp: Double?
+    var isReceiptAttached:Bool?
     
     enum CodingKeys: String, CodingKey {
         
@@ -40,11 +41,12 @@ struct FeedbackModel: Codable {
         case imageFileName = "Images"
         case videoFilName = "Videos"
         case status = "Status"
-        case userId = "User Id"
+        case userId = "User_Id"
         case feedbackId = "Feedback id"
         case price = "Feed Price"
         case owners = "Owners"
-        case timeStamp = "Time Stamp"
+        case timeStamp = "Time_Stamp"
+        case isReceiptAttached = "is Receipt Attached?"
     }
 }
 
