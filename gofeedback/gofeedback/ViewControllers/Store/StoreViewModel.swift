@@ -59,11 +59,11 @@ class StoreViewModel {
                 if let feedbackModel = feedbackModel {
                     
                     self.acceptedItems = feedbackModel
-                    completion?()
                 } else {
                     
                     print("error")
                 }
+                completion?()
             }
         }
     }
@@ -77,11 +77,11 @@ class StoreViewModel {
                 if let feedbackModel = feedbackModel {
                     
                     self.ownedItems = feedbackModel
-                    completion?()
                 } else {
                     
                     print("error")
                 }
+                completion?()
             }
         }
     }

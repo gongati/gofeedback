@@ -12,6 +12,9 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     
     @IBOutlet weak var walletBalanceLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var paidBtnOutlet: UIButton!
+    @IBOutlet weak var submittedBtnOutlet: UIButton!
+    @IBOutlet weak var draftsBtnOulet: UIButton!
     
     var images = [UIImage]()
     var videoUrl = [URL]()
@@ -54,6 +57,10 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     
     @IBAction func submiteedPressed(_ sender: UIButton) {
         
+        submittedBtnOutlet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
+        paidBtnOutlet.backgroundColor = UIColor.brown
+        draftsBtnOulet.backgroundColor = UIColor.brown
+        
         self.attachSpinner(value: true)
         
         self.feedbackModel.removeAll()
@@ -86,6 +93,10 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     
     @IBAction func paidPressed(_ sender: UIButton) {
         
+        paidBtnOutlet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
+        draftsBtnOulet.backgroundColor = UIColor.brown
+        submittedBtnOutlet.backgroundColor = UIColor.brown
+        
         self.attachSpinner(value: true)
         self.feedbackModel.removeAll()
         dg.enter()
@@ -98,6 +109,10 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     }
     
     @IBAction func draftsPressed(_ sender: UIButton) {
+        
+        draftsBtnOulet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
+        paidBtnOutlet.backgroundColor = UIColor.brown
+        submittedBtnOutlet.backgroundColor = UIColor.brown
         
         self.attachSpinner(value: true)
         self.feedbackModel.removeAll()
@@ -133,10 +148,10 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
                         
                         self.tableView.reloadData()
                     }
-                    completion?()
                 } else {
                     print("Error getting documents")
                 }
+                completion?()
             }
         }
     }
@@ -260,6 +275,9 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     }
     
     func draftsLoadFirstTime() {
+        
+        paidBtnOutlet.backgroundColor = UIColor.brown
+        submittedBtnOutlet.backgroundColor = UIColor.brown
         
         dg.enter()
         self.getFeedBackDetails(FeedbackStatus.Paid.rawValue){

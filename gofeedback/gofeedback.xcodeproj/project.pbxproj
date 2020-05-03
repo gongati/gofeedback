@@ -42,7 +42,6 @@
 		276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAECB241D58E100C66EAC /* GFReachability.swift */; };
 		277EB41B2440F33B000CA425 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277EB41A2440F33B000CA425 /* CustomAnnotation.swift */; };
 		277EB41D244102EE000CA425 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277EB41C244102EE000CA425 /* CustomAnnotationView.swift */; };
-		277EB42524478DA2000CA425 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 277EB42424478DA2000CA425 /* GoogleService-Info.plist */; };
 		27839A14240FF1AF004CEE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A13240FF1AF004CEE14 /* AppDelegate.swift */; };
 		27839A16240FF1AF004CEE14 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A15240FF1AF004CEE14 /* FeedbackViewController.swift */; };
 		27839A19240FF1AF004CEE14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27839A17240FF1AF004CEE14 /* Main.storyboard */; };
@@ -78,6 +77,11 @@
 		F719B7B324334A880017D5D1 /* ContactViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */; };
 		F7295FC32438C283003AFE77 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */; };
 		F7295FC52438CE71003AFE77 /* AnnotationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */; };
+		F72AD0D8245D9D1B000B39F8 /* GFYelpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72AD0D7245D9D1B000B39F8 /* GFYelpManager.swift */; };
+		F7435699245E829E0015F292 /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7435698245E829E0015F292 /* BottomSheetController.swift */; };
+		F743569B245E82C30015F292 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F743569A245E82C30015F292 /* Extensions.swift */; };
+		F743569D245E82CC0015F292 /* Pannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F743569C245E82CC0015F292 /* Pannable.swift */; };
+		F743569F245E883F0015F292 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F743569E245E883F0015F292 /* GoogleService-Info.plist */; };
 		F78495A12441FB200086B70B /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F78495A02441FAAF0086B70B /* video.mp4 */; };
 /* End PBXBuildFile section */
 
@@ -129,7 +133,6 @@
 		276BAECB241D58E100C66EAC /* GFReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFReachability.swift; sourceTree = "<group>"; };
 		277EB41A2440F33B000CA425 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		277EB41C244102EE000CA425 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
-		277EB42424478DA2000CA425 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27839A10240FF1AF004CEE14 /* gofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gofeedback.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27839A13240FF1AF004CEE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27839A15240FF1AF004CEE14 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +177,11 @@
 		F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewControllerViewController.swift; path = erSwift/ContactViewControllerViewController.swift; sourceTree = "<group>"; };
 		F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewImageViewController.swift; path = erSwift/PreviewImageViewController.swift; sourceTree = "<group>"; };
 		F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsListViewController.swift; path = erSwift/AnnotationsListViewController.swift; sourceTree = "<group>"; };
+		F72AD0D7245D9D1B000B39F8 /* GFYelpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFYelpManager.swift; sourceTree = "<group>"; };
+		F7435698245E829E0015F292 /* BottomSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetController.swift; sourceTree = "<group>"; };
+		F743569A245E82C30015F292 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F743569C245E82CC0015F292 /* Pannable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pannable.swift; sourceTree = "<group>"; };
+		F743569E245E883F0015F292 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F78495A02441FAAF0086B70B /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -322,8 +330,8 @@
 				27839A13240FF1AF004CEE14 /* AppDelegate.swift */,
 				27839A17240FF1AF004CEE14 /* Main.storyboard */,
 				27839A1F240FF1B4004CEE14 /* LaunchScreen.storyboard */,
-				277EB42424478DA2000CA425 /* GoogleService-Info.plist */,
 				27839A22240FF1B4004CEE14 /* Info.plist */,
+				F743569E245E883F0015F292 /* GoogleService-Info.plist */,
 				27839A1A240FF1AF004CEE14 /* gofeedback.xcdatamodeld */,
 			);
 			path = gofeedback;
@@ -341,6 +349,9 @@
 		27E6A0BD2419097700B4D336 /* Custom Objects */ = {
 			isa = PBXGroup;
 			children = (
+				F7435698245E829E0015F292 /* BottomSheetController.swift */,
+				F743569A245E82C30015F292 /* Extensions.swift */,
+				F743569C245E82CC0015F292 /* Pannable.swift */,
 				277EB41A2440F33B000CA425 /* CustomAnnotation.swift */,
 				27E6A0BE2419097700B4D336 /* GFRouteLegsScrollView.swift */,
 				27E6A0BF2419097700B4D336 /* GFStationListTableViewCell.swift */,
@@ -378,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				27E6A129241916CB00B4D336 /* Api.swift */,
+				F72AD0D7245D9D1B000B39F8 /* GFYelpManager.swift */,
 				27F6A650244DD39200C9AB93 /* GFFirebaseManager.swift */,
 			);
 			path = "API Manager";
@@ -490,12 +502,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F743569F245E883F0015F292 /* GoogleService-Info.plist in Resources */,
 				271CBF572418B71000CB113D /* Sidemenu.storyboard in Resources */,
 				2741C186242D24D7007A9F9D /* Wallet.storyboard in Resources */,
 				276BAEC2241BF43600C66EAC /* Feedback.storyboard in Resources */,
 				27839A21240FF1B4004CEE14 /* LaunchScreen.storyboard in Resources */,
 				27839A19240FF1AF004CEE14 /* Main.storyboard in Resources */,
-				277EB42524478DA2000CA425 /* GoogleService-Info.plist in Resources */,
 				271CBF6B2418D51E00CB113D /* Login.storyboard in Resources */,
 				271CBF5A2418B80E00CB113D /* Assets.xcassets in Resources */,
 				2741C188242D2512007A9F9D /* Account.storyboard in Resources */,
@@ -594,10 +606,13 @@
 				27E6A0DE241909F000B4D336 /* GFRoute.swift in Sources */,
 				271CBF632418BBE700CB113D /* GFBaseViewController.swift in Sources */,
 				27E6A0C82419097700B4D336 /* GFStationListTableViewCell.swift in Sources */,
+				F7435699245E829E0015F292 /* BottomSheetController.swift in Sources */,
 				27E6A0DD241909F000B4D336 /* GFTransitStop.swift in Sources */,
 				27839A16240FF1AF004CEE14 /* FeedbackViewController.swift in Sources */,
 				271CBF7F2418D55A00CB113D /* GFOTPViewController.swift in Sources */,
+				F743569D245E82CC0015F292 /* Pannable.swift in Sources */,
 				271CBF5D2418B93D00CB113D /* SideMenuItemsViewController.swift in Sources */,
+				F72AD0D8245D9D1B000B39F8 /* GFYelpManager.swift in Sources */,
 				27E6A0CE2419097700B4D336 /* GFHistoryTableViewCell.swift in Sources */,
 				2752FC3A2456072500D3ABB5 /* GFFeedItemTableViewCell.swift in Sources */,
 				F719271F24307C80006BF52A /* AccountSettingsViewController.swift in Sources */,
@@ -638,6 +653,7 @@
 				27E6A0CC2419097700B4D336 /* GFIconBadge.swift in Sources */,
 				276BAECC241D58E100C66EAC /* GFReachability.swift in Sources */,
 				27E6A12B241916CC00B4D336 /* Api.swift in Sources */,
+				F743569B245E82C30015F292 /* Extensions.swift in Sources */,
 				273207C8245D8A1D00D7418E /* BusinessSearchViewController.swift in Sources */,
 				27839A1C240FF1AF004CEE14 /* gofeedback.xcdatamodeld in Sources */,
 			);

@@ -178,9 +178,9 @@ struct Constants {
         static let status = "Status"
         static let videoUrl = "Videos"
         static let thumnailTag = "Thumnail"
-        static let userId = "User Id"
+        static let userId = "User_Id"
         static let owners = "Owners"
-        static let timeStamp = "Time Stamp"
+        static let timeStamp = "Time_Stamp"
     }
     
     struct userDetails {

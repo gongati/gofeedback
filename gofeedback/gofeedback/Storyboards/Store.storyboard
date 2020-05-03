@@ -135,6 +135,8 @@
                     <navigationItem key="navigationItem" id="zxh-8v-dV8"/>
                     <connections>
                         <outlet property="buyButton" destination="C55-vw-3yJ" id="gZb-qp-pJo"/>
+                        <outlet property="myListBtnOutlet" destination="PI3-AR-7ZK" id="2eb-0N-F38"/>
+                        <outlet property="storeBtnOutlet" destination="HHe-R7-roS" id="k8R-cZ-Zmd"/>
                         <outlet property="tableView" destination="6vH-44-x5S" id="v9t-2K-Cpk"/>
                     </connections>
                 </viewController>
