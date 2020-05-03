@@ -27,6 +27,80 @@
 		271CBF812418D55A00CB113D /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF772418D55A00CB113D /* SignUpModel.swift */; };
 		271CBF822418D55A00CB113D /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF782418D55A00CB113D /* SignUpViewModel.swift */; };
 		273207C8245D8A1D00D7418E /* BusinessSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273207C7245D8A1D00D7418E /* BusinessSearchViewController.swift */; };
+		273207CE245F2C7300D7418E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF5E2418BA7F00CB113D /* HomeViewController.swift */; };
+		273207CF245F2C7300D7418E /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27094B8E2453FAF000BFECE1 /* StoreViewModel.swift */; };
+		273207D0245F2C7300D7418E /* GFAppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0D2241909F000B4D336 /* GFAppVersion.swift */; };
+		273207D1245F2C7300D7418E /* GFMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0C12419097700B4D336 /* GFMenuButton.swift */; };
+		273207D2245F2C7300D7418E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF782418D55A00CB113D /* SignUpViewModel.swift */; };
+		273207D3245F2C7300D7418E /* GFRouteLeg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0D5241909F000B4D336 /* GFRouteLeg.swift */; };
+		273207D4245F2C7300D7418E /* AnnotationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC42438CE71003AFE77 /* AnnotationsListViewController.swift */; };
+		273207D5245F2C7300D7418E /* GFRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0D7241909F000B4D336 /* GFRoute.swift */; };
+		273207D6245F2C7300D7418E /* GFBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF622418BBE700CB113D /* GFBaseViewController.swift */; };
+		273207D7245F2C7300D7418E /* GFStationListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0BF2419097700B4D336 /* GFStationListTableViewCell.swift */; };
+		273207D8245F2C7300D7418E /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7435698245E829E0015F292 /* BottomSheetController.swift */; };
+		273207D9245F2C7300D7418E /* GFTransitStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0D6241909F000B4D336 /* GFTransitStop.swift */; };
+		273207DA245F2C7300D7418E /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A15240FF1AF004CEE14 /* FeedbackViewController.swift */; };
+		273207DB245F2C7300D7418E /* GFOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF742418D55A00CB113D /* GFOTPViewController.swift */; };
+		273207DC245F2C7300D7418E /* Pannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F743569C245E82CC0015F292 /* Pannable.swift */; };
+		273207DD245F2C7300D7418E /* SideMenuItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF5C2418B93D00CB113D /* SideMenuItemsViewController.swift */; };
+		273207DE245F2C7300D7418E /* GFYelpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72AD0D7245D9D1B000B39F8 /* GFYelpManager.swift */; };
+		273207DF245F2C7300D7418E /* GFHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0C52419097700B4D336 /* GFHistoryTableViewCell.swift */; };
+		273207E0245F2C7300D7418E /* GFFeedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752FC392456072500D3ABB5 /* GFFeedItemTableViewCell.swift */; };
+		273207E1245F2C7300D7418E /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719271E24307C80006BF52A /* AccountSettingsViewController.swift */; };
+		273207E2245F2C7300D7418E /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7295FC22438C282003AFE77 /* PreviewImageViewController.swift */; };
+		273207E3245F2C7300D7418E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CE2427AEB200597AFF /* LoginModel.swift */; };
+		273207E4245F2C7300D7418E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CD2427AEB200597AFF /* LoginViewModel.swift */; };
+		273207E5245F2C7300D7418E /* NameTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69D12427AEB200597AFF /* NameTextViewModel.swift */; };
+		273207E6245F2C7300D7418E /* GFRecentTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0D4241909F000B4D336 /* GFRecentTrip.swift */; };
+		273207E7245F2C7300D7418E /* ContactViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */; };
+		273207E8245F2C7300D7418E /* GFSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF752418D55A00CB113D /* GFSignupViewController.swift */; };
+		273207E9245F2C7300D7418E /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277EB41C244102EE000CA425 /* CustomAnnotationView.swift */; };
+		273207EA245F2C7300D7418E /* GFTextFieldBackGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0C02419097700B4D336 /* GFTextFieldBackGround.swift */; };
+		273207EB245F2C7300D7418E /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277EB41A2440F33B000CA425 /* CustomAnnotation.swift */; };
+		273207EC245F2C7300D7418E /* GFFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F6A650244DD39200C9AB93 /* GFFirebaseManager.swift */; };
+		273207ED245F2C7300D7418E /* PreviewFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70F92FF243240DE000D0D8A /* PreviewFeedbackViewController.swift */; };
+		273207EE245F2C7300D7418E /* GFFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */; };
+		273207EF245F2C7300D7418E /* GFContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A12624190C4700B4D336 /* GFContactViewController.swift */; };
+		273207F0245F2C7300D7418E /* AdminFeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F6A64E244CC28200C9AB93 /* AdminFeedsViewController.swift */; };
+		273207F1245F2C7300D7418E /* GFStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0D3241909F000B4D336 /* GFStation.swift */; };
+		273207F2245F2C7300D7418E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71927242430F24A006BF52A /* WalletViewController.swift */; };
+		273207F3245F2C7300D7418E /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27094B8C2453FAE000BFECE1 /* StoreViewController.swift */; };
+		273207F4245F2C7300D7418E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27839A13240FF1AF004CEE14 /* AppDelegate.swift */; };
+		273207F5245F2C7300D7418E /* GFConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF662418D47900CB113D /* GFConstants.swift */; };
+		273207F6245F2C7300D7418E /* GFUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27094B87244EE46B00BFECE1 /* GFUserModel.swift */; };
+		273207F7245F2C7300D7418E /* GFRouteOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0C22419097700B4D336 /* GFRouteOptionTableViewCell.swift */; };
+		273207F8245F2C7300D7418E /* GFWhiteButtonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0C62419097700B4D336 /* GFWhiteButtonTextField.swift */; };
+		273207F9245F2C7300D7418E /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF772418D55A00CB113D /* SignUpModel.swift */; };
+		273207FA245F2C7300D7418E /* GFLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF732418D55A00CB113D /* GFLoginViewController.swift */; };
+		273207FB245F2C7300D7418E /* GFCustomTableViewCellShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0C42419097700B4D336 /* GFCustomTableViewCellShadowView.swift */; };
+		273207FC245F2C7300D7418E /* GFLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0D1241909F000B4D336 /* GFLocation.swift */; };
+		273207FD245F2C7300D7418E /* GFLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF642418BBF500CB113D /* GFLaunchViewController.swift */; };
+		273207FE245F2C7300D7418E /* EmailIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69CF2427AEB200597AFF /* EmailIdViewModel.swift */; };
+		273207FF245F2C7300D7418E /* GFUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0BB2419087E00B4D336 /* GFUtilities.swift */; };
+		27320800245F2C7300D7418E /* GFRouteLegsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0BE2419097700B4D336 /* GFRouteLegsScrollView.swift */; };
+		27320801245F2C7300D7418E /* GFColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBF682418D4E600CB113D /* GFColor.swift */; };
+		27320802245F2C7300D7418E /* GFAdminFeedListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752FC3B2456117600D3ABB5 /* GFAdminFeedListViewCell.swift */; };
+		27320803245F2C7300D7418E /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D69D02427AEB200597AFF /* PasswordViewModel.swift */; };
+		27320804245F2C7300D7418E /* GFIconBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A0C32419097700B4D336 /* GFIconBadge.swift */; };
+		27320805245F2C7300D7418E /* GFReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BAECB241D58E100C66EAC /* GFReachability.swift */; };
+		27320806245F2C7300D7418E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A129241916CB00B4D336 /* Api.swift */; };
+		27320807245F2C7300D7418E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F743569A245E82C30015F292 /* Extensions.swift */; };
+		27320808245F2C7300D7418E /* BusinessSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273207C7245D8A1D00D7418E /* BusinessSearchViewController.swift */; };
+		27320809245F2C7300D7418E /* gofeedback.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27839A1A240FF1AF004CEE14 /* gofeedback.xcdatamodeld */; };
+		2732080B245F2C7300D7418E /* Pods_gofeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D759A38249385D60FBE8162 /* Pods_gofeedback.framework */; };
+		2732080D245F2C7300D7418E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F743569E245E883F0015F292 /* GoogleService-Info.plist */; };
+		2732080E245F2C7300D7418E /* Sidemenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF562418B71000CB113D /* Sidemenu.storyboard */; };
+		2732080F245F2C7300D7418E /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C185242D24D7007A9F9D /* Wallet.storyboard */; };
+		27320810245F2C7300D7418E /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276BAEC1241BF43600C66EAC /* Feedback.storyboard */; };
+		27320811245F2C7300D7418E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27839A1F240FF1B4004CEE14 /* LaunchScreen.storyboard */; };
+		27320812245F2C7300D7418E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27839A17240FF1AF004CEE14 /* Main.storyboard */; };
+		27320813245F2C7300D7418E /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF6A2418D51E00CB113D /* Login.storyboard */; };
+		27320814245F2C7300D7418E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 271CBF592418B80E00CB113D /* Assets.xcassets */; };
+		27320815245F2C7300D7418E /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C187242D2512007A9F9D /* Account.storyboard */; };
+		27320816245F2C7300D7418E /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27094B892453F96100BFECE1 /* Store.storyboard */; };
+		27320817245F2C7300D7418E /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F78495A02441FAAF0086B70B /* video.mp4 */; };
+		27320818245F2C7300D7418E /* Contact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C189242D27AB007A9F9D /* Contact.storyboard */; };
+		27320819245F2C7300D7418E /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C18B242D27BC007A9F9D /* Alerts.storyboard */; };
 		2741C186242D24D7007A9F9D /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C185242D24D7007A9F9D /* Wallet.storyboard */; };
 		2741C188242D2512007A9F9D /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C187242D2512007A9F9D /* Account.storyboard */; };
 		2741C18A242D27AB007A9F9D /* Contact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C189242D27AB007A9F9D /* Contact.storyboard */; };
@@ -118,6 +192,8 @@
 		271CBF772418D55A00CB113D /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		271CBF782418D55A00CB113D /* SignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		273207C7245D8A1D00D7418E /* BusinessSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessSearchViewController.swift; sourceTree = "<group>"; };
+		2732081E245F2C7300D7418E /* gofeedbackadmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gofeedbackadmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2732081F245F2C7400D7418E /* gofeedback copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "gofeedback copy-Info.plist"; path = "/Users/vishnu/Documents/gofeedback/gofeedback/gofeedback/gofeedback copy-Info.plist"; sourceTree = "<absolute>"; };
 		2741C185242D24D7007A9F9D /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		2741C187242D2512007A9F9D /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
 		2741C189242D27AB007A9F9D /* Contact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contact.storyboard; sourceTree = "<group>"; };
@@ -186,6 +262,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2732080A245F2C7300D7418E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2732080B245F2C7300D7418E /* Pods_gofeedback.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27839A0D240FF1AF004CEE14 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -305,6 +389,7 @@
 				27839A11240FF1AF004CEE14 /* Products */,
 				E1A1BCF3F60319B41FEC0984 /* Pods */,
 				292A9FDC7B5EDF7A922ACFF3 /* Frameworks */,
+				2732081F245F2C7400D7418E /* gofeedback copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -313,6 +398,7 @@
 			children = (
 				27839A10240FF1AF004CEE14 /* gofeedback.app */,
 				27839A27240FF1B4004CEE14 /* gofeedbackTests.xctest */,
+				2732081E245F2C7300D7418E /* gofeedbackadmin.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -421,6 +507,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		273207CB245F2C7300D7418E /* gofeedbackadmin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2732081B245F2C7300D7418E /* Build configuration list for PBXNativeTarget "gofeedbackadmin" */;
+			buildPhases = (
+				273207CC245F2C7300D7418E /* [CP] Check Pods Manifest.lock */,
+				273207CD245F2C7300D7418E /* Sources */,
+				2732080A245F2C7300D7418E /* Frameworks */,
+				2732080C245F2C7300D7418E /* Resources */,
+				2732081A245F2C7300D7418E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gofeedbackadmin;
+			productName = gofeedback;
+			productReference = 2732081E245F2C7300D7418E /* gofeedbackadmin.app */;
+			productType = "com.apple.product-type.application";
+		};
 		27839A0F240FF1AF004CEE14 /* gofeedback */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27839A30240FF1B4004CEE14 /* Build configuration list for PBXNativeTarget "gofeedback" */;
@@ -492,12 +597,33 @@
 			projectRoot = "";
 			targets = (
 				27839A0F240FF1AF004CEE14 /* gofeedback */,
+				273207CB245F2C7300D7418E /* gofeedbackadmin */,
 				27839A26240FF1B4004CEE14 /* gofeedbackTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2732080C245F2C7300D7418E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2732080D245F2C7300D7418E /* GoogleService-Info.plist in Resources */,
+				2732080E245F2C7300D7418E /* Sidemenu.storyboard in Resources */,
+				2732080F245F2C7300D7418E /* Wallet.storyboard in Resources */,
+				27320810245F2C7300D7418E /* Feedback.storyboard in Resources */,
+				27320811245F2C7300D7418E /* LaunchScreen.storyboard in Resources */,
+				27320812245F2C7300D7418E /* Main.storyboard in Resources */,
+				27320813245F2C7300D7418E /* Login.storyboard in Resources */,
+				27320814245F2C7300D7418E /* Assets.xcassets in Resources */,
+				27320815245F2C7300D7418E /* Account.storyboard in Resources */,
+				27320816245F2C7300D7418E /* Store.storyboard in Resources */,
+				27320817245F2C7300D7418E /* video.mp4 in Resources */,
+				27320818245F2C7300D7418E /* Contact.storyboard in Resources */,
+				27320819245F2C7300D7418E /* Alerts.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27839A0E240FF1AF004CEE14 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -550,6 +676,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		273207CC245F2C7300D7418E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-gofeedback-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2732081A245F2C7300D7418E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gofeedback/Pods-gofeedback-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gofeedback/Pods-gofeedback-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-gofeedback/Pods-gofeedback-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3DF3BFBC48A26382199B2CD5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -592,6 +757,73 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		273207CD245F2C7300D7418E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273207CE245F2C7300D7418E /* HomeViewController.swift in Sources */,
+				273207CF245F2C7300D7418E /* StoreViewModel.swift in Sources */,
+				273207D0245F2C7300D7418E /* GFAppVersion.swift in Sources */,
+				273207D1245F2C7300D7418E /* GFMenuButton.swift in Sources */,
+				273207D2245F2C7300D7418E /* SignUpViewModel.swift in Sources */,
+				273207D3245F2C7300D7418E /* GFRouteLeg.swift in Sources */,
+				273207D4245F2C7300D7418E /* AnnotationsListViewController.swift in Sources */,
+				273207D5245F2C7300D7418E /* GFRoute.swift in Sources */,
+				273207D6245F2C7300D7418E /* GFBaseViewController.swift in Sources */,
+				273207D7245F2C7300D7418E /* GFStationListTableViewCell.swift in Sources */,
+				273207D8245F2C7300D7418E /* BottomSheetController.swift in Sources */,
+				273207D9245F2C7300D7418E /* GFTransitStop.swift in Sources */,
+				273207DA245F2C7300D7418E /* FeedbackViewController.swift in Sources */,
+				273207DB245F2C7300D7418E /* GFOTPViewController.swift in Sources */,
+				273207DC245F2C7300D7418E /* Pannable.swift in Sources */,
+				273207DD245F2C7300D7418E /* SideMenuItemsViewController.swift in Sources */,
+				273207DE245F2C7300D7418E /* GFYelpManager.swift in Sources */,
+				273207DF245F2C7300D7418E /* GFHistoryTableViewCell.swift in Sources */,
+				273207E0245F2C7300D7418E /* GFFeedItemTableViewCell.swift in Sources */,
+				273207E1245F2C7300D7418E /* AccountSettingsViewController.swift in Sources */,
+				273207E2245F2C7300D7418E /* PreviewImageViewController.swift in Sources */,
+				273207E3245F2C7300D7418E /* LoginModel.swift in Sources */,
+				273207E4245F2C7300D7418E /* LoginViewModel.swift in Sources */,
+				273207E5245F2C7300D7418E /* NameTextViewModel.swift in Sources */,
+				273207E6245F2C7300D7418E /* GFRecentTrip.swift in Sources */,
+				273207E7245F2C7300D7418E /* ContactViewControllerViewController.swift in Sources */,
+				273207E8245F2C7300D7418E /* GFSignupViewController.swift in Sources */,
+				273207E9245F2C7300D7418E /* CustomAnnotationView.swift in Sources */,
+				273207EA245F2C7300D7418E /* GFTextFieldBackGround.swift in Sources */,
+				273207EB245F2C7300D7418E /* CustomAnnotation.swift in Sources */,
+				273207EC245F2C7300D7418E /* GFFirebaseManager.swift in Sources */,
+				273207ED245F2C7300D7418E /* PreviewFeedbackViewController.swift in Sources */,
+				273207EE245F2C7300D7418E /* GFFeedbackModel.swift in Sources */,
+				273207EF245F2C7300D7418E /* GFContactViewController.swift in Sources */,
+				273207F0245F2C7300D7418E /* AdminFeedsViewController.swift in Sources */,
+				273207F1245F2C7300D7418E /* GFStation.swift in Sources */,
+				273207F2245F2C7300D7418E /* WalletViewController.swift in Sources */,
+				273207F3245F2C7300D7418E /* StoreViewController.swift in Sources */,
+				273207F4245F2C7300D7418E /* AppDelegate.swift in Sources */,
+				273207F5245F2C7300D7418E /* GFConstants.swift in Sources */,
+				273207F6245F2C7300D7418E /* GFUserModel.swift in Sources */,
+				273207F7245F2C7300D7418E /* GFRouteOptionTableViewCell.swift in Sources */,
+				273207F8245F2C7300D7418E /* GFWhiteButtonTextField.swift in Sources */,
+				273207F9245F2C7300D7418E /* SignUpModel.swift in Sources */,
+				273207FA245F2C7300D7418E /* GFLoginViewController.swift in Sources */,
+				273207FB245F2C7300D7418E /* GFCustomTableViewCellShadowView.swift in Sources */,
+				273207FC245F2C7300D7418E /* GFLocation.swift in Sources */,
+				273207FD245F2C7300D7418E /* GFLaunchViewController.swift in Sources */,
+				273207FE245F2C7300D7418E /* EmailIdViewModel.swift in Sources */,
+				273207FF245F2C7300D7418E /* GFUtilities.swift in Sources */,
+				27320800245F2C7300D7418E /* GFRouteLegsScrollView.swift in Sources */,
+				27320801245F2C7300D7418E /* GFColor.swift in Sources */,
+				27320802245F2C7300D7418E /* GFAdminFeedListViewCell.swift in Sources */,
+				27320803245F2C7300D7418E /* PasswordViewModel.swift in Sources */,
+				27320804245F2C7300D7418E /* GFIconBadge.swift in Sources */,
+				27320805245F2C7300D7418E /* GFReachability.swift in Sources */,
+				27320806245F2C7300D7418E /* Api.swift in Sources */,
+				27320807245F2C7300D7418E /* Extensions.swift in Sources */,
+				27320808245F2C7300D7418E /* BusinessSearchViewController.swift in Sources */,
+				27320809245F2C7300D7418E /* gofeedback.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27839A0C240FF1AF004CEE14 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -697,6 +929,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2732081C245F2C7300D7418E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E49BBA875BF6DE69A0D685CC /* Pods-gofeedback.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C55HUR6Y5E;
+				INFOPLIST_FILE = "gofeedback copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.omni.saintz.ios.admin.gofeedback;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2732081D245F2C7300D7418E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19F6ADF0944BF1137B77B106 /* Pods-gofeedback.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C55HUR6Y5E;
+				INFOPLIST_FILE = "gofeedback copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.omni.saintz.ios.admin.gofeedback;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		27839A2E240FF1B4004CEE14 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -896,6 +1166,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2732081B245F2C7300D7418E /* Build configuration list for PBXNativeTarget "gofeedbackadmin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2732081C245F2C7300D7418E /* Debug */,
+				2732081D245F2C7300D7418E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		27839A0B240FF1AF004CEE14 /* Build configuration list for PBXProject "gofeedback" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
