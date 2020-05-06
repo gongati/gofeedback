@@ -56,7 +56,6 @@ class GFFirebaseManager {
         let query = self.db.collection("Feedback")
             .whereField(Constants.FeedbackCommands.userId, isEqualTo: userId)
             .whereField(Constants.FeedbackCommands.status, isEqualTo: state)
-            .order(by: Constants.FeedbackCommands.timeStamp, descending: true)
          
          query.getDocuments() { (querySnapshot, err) in
             
@@ -80,8 +79,11 @@ class GFFirebaseManager {
                     feedBackModel.feedbackId = document.documentID
                     feedbackModel.append(feedBackModel)
                 }
-                
-                completion?(feedbackModel)
+                let timeSortedFeeds = feedbackModel.sorted { (a,b) in
+                    
+                    return (a.timeStamp ?? 0) > (b.timeStamp ?? 0)
+                }
+                completion?(timeSortedFeeds)
             }
         }
     }
@@ -324,8 +326,11 @@ class GFFirebaseManager {
                     feedBackModel.feedbackId = document.documentID
                     feedbackModel.append(feedBackModel)
                 }
-                
-                completion?(feedbackModel)
+                let timeSortedFeeds = feedbackModel.sorted { (a,b) in
+                    
+                    return (a.timeStamp ?? 0) > (b.timeStamp ?? 0)
+                }
+                completion?(timeSortedFeeds)
             }
         }
     }
