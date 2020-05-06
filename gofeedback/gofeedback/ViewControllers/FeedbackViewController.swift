@@ -486,15 +486,25 @@ extension FeedbackViewController {
                     imageButton.snp.makeConstraints { (make) in
                         
                         make.height.equalTo(self.imageStackView.frame.height)
-                        make.width.equalTo(40)
+                        make.width.equalTo(120)
                     }
                     
+                    imageButton.translatesAutoresizingMaskIntoConstraints = false
                     self.imageStackView.addArrangedSubview(imageButton)
                     
                     self.imageStackView.translatesAutoresizingMaskIntoConstraints = false
                 }
                 
-                self.scrollView.contentSize = CGSize(width: self.imageStackView.frame.width + 40, height: self.scrollView.frame.height)
+                let view = UIView()
+
+                self.imageStackView.addArrangedSubview(view)
+               
+                self.imageStackView.snp.updateConstraints { (update) in
+                    
+                    update.width.greaterThanOrEqualToSuperview()
+                }
+                self.scrollView.translatesAutoresizingMaskIntoConstraints = false
+                self.scrollView.contentSize = CGSize(width: self.imageStackView.frame.width + 120, height: self.scrollView.frame.height)
             }
             picker.dismiss(animated: true, completion: nil)
         }
