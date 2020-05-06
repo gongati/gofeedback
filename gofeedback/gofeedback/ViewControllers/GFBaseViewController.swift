@@ -37,13 +37,23 @@ class GFBaseViewController: UIViewController {
         return .lightContent
     }
     
+    var isUserLoggedIn: Bool {
+        
+        guard let loginStatus = UserDefaults.standard.value(forKey: "loginStatus") as? Bool else
+        {
+            return true
+        }
+        
+        return !loginStatus
+    }
+    
     func addMenuObservers() {
         print("Add MENU Observers")
         
         //Prevent adding observers multipletimes
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: Constants.NotificationKey.Login), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(showUserLogin(notification:)), name: Notification.Name(Constants.NotificationKey.Login), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showUserLogin), name: Notification.Name(Constants.NotificationKey.Login), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -76,9 +86,10 @@ class GFBaseViewController: UIViewController {
         }
     }
     
-    @objc func showUserLogin(notification:Notification) {
+    @objc func showUserLogin() {
         if let controller = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() {
             let navController = UINavigationController(rootViewController: controller)
+            navController.modalPresentationStyle = .fullScreen
             present(navController, animated: true, completion: nil)
         }
     }
@@ -128,7 +139,7 @@ class GFBaseViewController: UIViewController {
     }
     
     func showNavBar() {
-        if let navController = self.navigationController{
+        if let navController = self.navigationController {
             navController.setNavigationBarHidden(false, animated: true)
         }
     }

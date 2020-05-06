@@ -11,13 +11,18 @@ import CDYelpFusionKit
 
 class BusinessSearchViewController: GFBaseViewController,UISearchBarDelegate,UITextFieldDelegate {
     
+    let CurrentLocationString:String = "Current Location"
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var keywordText: UISearchBar!
     @IBOutlet weak var locationText: UITextField!
+    @IBOutlet weak var locationBtn: UIButton!
     
     var searchResponse: [CDYelpBusiness]?
     var latitude:Double?
     var longitude:Double?
+        
+    var isCurrentLocation:Bool = true
     
     override func viewDidLoad() {
         
@@ -26,11 +31,34 @@ class BusinessSearchViewController: GFBaseViewController,UISearchBarDelegate,UIT
         
         keywordText.delegate = self
         locationText.delegate = self
+        
+        self.title = "Search"
+        tableView.register(GFHistoryTableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        
+        self.keywordText.becomeFirstResponder()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        self.showNavBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+    }
+    
+    @IBAction func currentLocationAction(_ sender: Any) {
+        
+        self.isCurrentLocation = true
+        self.locationText.text = self.CurrentLocationString
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        if locationText.text == "Current Location" {
+        if self.isCurrentLocation {
             self.yelpSearch(keywordText.text,locationText.text,self.latitude,self.longitude)
         } else {
             self.yelpSearch(keywordText.text,locationText.text,nil,nil)
@@ -41,8 +69,8 @@ class BusinessSearchViewController: GFBaseViewController,UISearchBarDelegate,UIT
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if textField.text == "Current Location" || textField.text == "" {
-            textField.text = "Current Location"
+        if textField.text == self.CurrentLocationString || textField.text == "" {
+            textField.text = self.CurrentLocationString
             self.yelpSearch(keywordText.text,textField.text,self.latitude,self.longitude)
         } else {
             
@@ -56,13 +84,17 @@ class BusinessSearchViewController: GFBaseViewController,UISearchBarDelegate,UIT
     func textFieldDidBeginEditing(_ textField: UITextField) {
 
         textField.text = nil
+        self.locationBtn.isHidden = false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if textField.text?.count == 0 {
             
-            textField.text = "Current Location"
+            textField.text = self.CurrentLocationString
+        } else {
+            
+            self.locationBtn.isHidden = true
         }
     }
     
@@ -92,6 +124,9 @@ class BusinessSearchViewController: GFBaseViewController,UISearchBarDelegate,UIT
                     self.searchResponse = response.businesses
                     self.tableView.reloadData()
                 }
+            } else {
+                
+                self.popupAlert(title: "Alert", message: "Something went wrong, pleae try again.", actionTitles: ["OK"], actions: [nil])
             }
         }
     }
@@ -121,12 +156,12 @@ extension BusinessSearchViewController : UITableViewDelegate,UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ANNOTATIONCELL", for: indexPath)
-        if let business = searchResponse,let location = business[indexPath.row].location {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath) as! GFHistoryTableViewCell
+        if let business = self.searchResponse?[indexPath.row] {
             
-            cell.textLabel?.text = business[indexPath.row].name
-            cell.detailTextLabel?.text = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
+            cell.configureCell(business)
         }
+        
         return cell
     }
     
@@ -134,5 +169,10 @@ extension BusinessSearchViewController : UITableViewDelegate,UITableViewDataSour
         
         self.wayToFeedback(indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 120
     }
 }

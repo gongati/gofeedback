@@ -43,12 +43,15 @@ class PreviewFeedbackViewController: GFBaseViewController {
         super.viewDidLoad()
         self.UIUpdate()
         
+        self.title = "Preview"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         super.view.backgroundColor = UIColor.white
+        
+        self.showNavBar()
     }
     
     @IBAction func cancelPressed(_ sender: UIButton) {

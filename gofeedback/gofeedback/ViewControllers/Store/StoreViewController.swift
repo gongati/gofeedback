@@ -21,8 +21,6 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buyButton: UIButton!
-    @IBOutlet weak var myListBtnOutlet: UIButton!
-    @IBOutlet weak var storeBtnOutlet: UIButton!
     
     override func viewDidLoad() {
         
@@ -32,19 +30,17 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         
-        showAcceptedFeeds()
-    }
-    
-    @IBAction func storeBtnPressed(_ sender: UIButton) {
-        
-        storeBtnOutlet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
-        showAcceptedFeeds()
+        if self.isOwnedItems {
+            
+            self.showOwnedFeeds()
+        }else {
+            
+            showAcceptedFeeds()
+        }
     }
     
     @IBAction func myListBtnPressed(_ sender: UIButton) {
         
-        myListBtnOutlet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
-        storeBtnOutlet.backgroundColor = UIColor.brown
         self.tableView.allowsMultipleSelection = false
         self.attachSpinner(value: true)
         dataSource.removeAll()
@@ -137,7 +133,6 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
     
     func showAcceptedFeeds() {
         
-        self.myListBtnOutlet.backgroundColor = UIColor.brown
         self.attachSpinner(value: true)
         self.tableView.allowsMultipleSelection = true
         dataSource.removeAll()
@@ -147,6 +142,25 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
             if let acceptedItems = self.viewModel.acceptedItems {
                 self.dataSource = acceptedItems
                 self.tableView.reloadData()
+            }
+            self.attachSpinner(value: false)
+        }
+    }
+    
+    func showOwnedFeeds() {
+        
+        self.attachSpinner(value: true)
+        self.tableView.allowsMultipleSelection = false
+        dataSource.removeAll()
+        selectedItems.removeAll()
+
+        buyButton.isHidden = true
+        isOwnedItems = true
+
+        viewModel.loadOwnedItems {
+            if let ownedItems = self.viewModel.ownedItems {
+            self.dataSource = ownedItems
+            self.tableView.reloadData()
             }
             self.attachSpinner(value: false)
         }

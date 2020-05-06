@@ -58,8 +58,8 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     @IBAction func submiteedPressed(_ sender: UIButton) {
         
         submittedBtnOutlet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
-        paidBtnOutlet.backgroundColor = UIColor.brown
-        draftsBtnOulet.backgroundColor = UIColor.brown
+        paidBtnOutlet.backgroundColor = UIColor.gray
+        draftsBtnOulet.backgroundColor = UIColor.gray
         
         self.attachSpinner(value: true)
         
@@ -94,8 +94,8 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     @IBAction func paidPressed(_ sender: UIButton) {
         
         paidBtnOutlet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
-        draftsBtnOulet.backgroundColor = UIColor.brown
-        submittedBtnOutlet.backgroundColor = UIColor.brown
+        draftsBtnOulet.backgroundColor = UIColor.gray
+        submittedBtnOutlet.backgroundColor = UIColor.gray
         
         self.attachSpinner(value: true)
         self.feedbackModel.removeAll()
@@ -111,8 +111,8 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     @IBAction func draftsPressed(_ sender: UIButton) {
         
         draftsBtnOulet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
-        paidBtnOutlet.backgroundColor = UIColor.brown
-        submittedBtnOutlet.backgroundColor = UIColor.brown
+        paidBtnOutlet.backgroundColor = UIColor.gray
+        submittedBtnOutlet.backgroundColor = UIColor.gray
         
         self.attachSpinner(value: true)
         self.feedbackModel.removeAll()
@@ -276,8 +276,8 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
     
     func draftsLoadFirstTime() {
         
-        paidBtnOutlet.backgroundColor = UIColor.brown
-        submittedBtnOutlet.backgroundColor = UIColor.brown
+        paidBtnOutlet.backgroundColor = UIColor.gray
+        submittedBtnOutlet.backgroundColor = UIColor.gray
         
         dg.enter()
         self.getFeedBackDetails(FeedbackStatus.Paid.rawValue){

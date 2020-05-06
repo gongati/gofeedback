@@ -21,11 +21,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     @IBOutlet weak var zoomOutBtn: UIButton!
     @IBOutlet weak var zoomInBtn: UIButton!
     @IBOutlet weak var currentLocationBtn: UIButton!
-
-    @IBOutlet weak var nearLocation1: UIButton!
-    @IBOutlet weak var nearLocation2: UIButton!
-    @IBOutlet weak var nearLocation3: UIButton!
-    @IBOutlet weak var listOutlet: UIButton!
     
     var locationManager = CLLocationManager()
     var locationLat:String?
@@ -42,11 +37,6 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
         // Do any additional setup after loading the view, typically from a nib.
         whereToGoText.delegate = self
         mapView.delegate = self
-        
-        nearLocation1.isHidden = true
-        nearLocation2.isHidden = true
-        nearLocation3.isHidden = true
-        listOutlet.isHidden = true
         
         self.zoomInBtn.makeCircular()
         self.zoomOutBtn.makeCircular()

@@ -12,9 +12,9 @@ import UIKit
 
 class GFCustomTableViewCellShadowView: UIView {
 
-    @IBInspectable var cornerRadius: CGFloat = 3.0
+    @IBInspectable var cornerRadius: CGFloat = 10.0
     @IBInspectable var shadowOpacity: Float = 0.5
-    @IBInspectable var shadowRadius: CGFloat = 1
+    @IBInspectable var shadowRadius: CGFloat = 5
     @IBInspectable var shadowColor: CGColor = UIColor.black.cgColor
     @IBInspectable var bgColor:UIColor = .white
 

@@ -24,6 +24,8 @@ class GFAdminFeedListViewCell: UITableViewCell {
     @IBOutlet weak var tickBtn: UIButton!
     @IBOutlet weak var imageFlagBtn: UIButton!
     @IBOutlet weak var videoFlagBtn: UIButton!
+    @IBOutlet weak var dollerBtn: UIButton!
+    @IBOutlet weak var receiptBtn: UIButton!
     
     func updateCell(model: FeedbackModel) {
         
@@ -67,6 +69,8 @@ class GFAdminFeedListViewCell: UITableViewCell {
         self.tickBtn.isHidden = true
         self.imageFlagBtn.isHidden = true
         self.videoFlagBtn.isHidden = true
+        self.dollerBtn.isHidden = true
+        self.receiptBtn.isHidden = true
         self.starView.rating = 1
         
         self.logoImage.backgroundColor = .gray

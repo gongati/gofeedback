@@ -102,6 +102,7 @@
 		27320818245F2C7300D7418E /* Contact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C189242D27AB007A9F9D /* Contact.storyboard */; };
 		27320819245F2C7300D7418E /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C18B242D27BC007A9F9D /* Alerts.storyboard */; };
 		27320821245F2E2A00D7418E /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27320820245F2E2900D7418E /* Admin.storyboard */; };
+		2732082324600E1300D7418E /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732082224600E1300D7418E /* AdminHomeViewController.swift */; };
 		2741C186242D24D7007A9F9D /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C185242D24D7007A9F9D /* Wallet.storyboard */; };
 		2741C188242D2512007A9F9D /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C187242D2512007A9F9D /* Account.storyboard */; };
 		2741C18A242D27AB007A9F9D /* Contact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C189242D27AB007A9F9D /* Contact.storyboard */; };
@@ -196,6 +197,7 @@
 		2732081E245F2C7300D7418E /* gofeedbackadmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gofeedbackadmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2732081F245F2C7400D7418E /* gofeedback copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "gofeedback copy-Info.plist"; path = "/Users/vishnu/Documents/gofeedback/gofeedback/gofeedback/gofeedback copy-Info.plist"; sourceTree = "<absolute>"; };
 		27320820245F2E2900D7418E /* Admin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
+		2732082224600E1300D7418E /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
 		2741C185242D24D7007A9F9D /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		2741C187242D2512007A9F9D /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
 		2741C189242D27AB007A9F9D /* Contact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contact.storyboard; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				F719B7B224334A870017D5D1 /* ContactViewControllerViewController.swift */,
 				271CBF622418BBE700CB113D /* GFBaseViewController.swift */,
 				271CBF642418BBF500CB113D /* GFLaunchViewController.swift */,
+				2732082224600E1300D7418E /* AdminHomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -810,6 +813,7 @@
 				273207F8245F2C7300D7418E /* GFWhiteButtonTextField.swift in Sources */,
 				273207F9245F2C7300D7418E /* SignUpModel.swift in Sources */,
 				273207FA245F2C7300D7418E /* GFLoginViewController.swift in Sources */,
+				2732082324600E1300D7418E /* AdminHomeViewController.swift in Sources */,
 				273207FB245F2C7300D7418E /* GFCustomTableViewCellShadowView.swift in Sources */,
 				273207FC245F2C7300D7418E /* GFLocation.swift in Sources */,
 				273207FD245F2C7300D7418E /* GFLaunchViewController.swift in Sources */,

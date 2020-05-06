@@ -57,6 +57,8 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
         }
         
         self.addDoneButtonOnKeyboard()
+        
+        self.title = "Feedback"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +69,8 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
         self.commentsTxt.layer.borderColor = UIColor.lightGray.cgColor
         self.commentsTxt.layer.borderWidth = 1
         self.commentsTxt.layer.cornerRadius = 5
+        
+        self.showNavBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -475,14 +479,14 @@ extension FeedbackViewController {
                         
                         make.top.equalToSuperview()
                         make.trailing.equalToSuperview()
-                        make.height.equalTo(30)
-                        make.width.equalTo(30)
+                        make.height.equalTo(15)
+                        make.width.equalTo(15)
                     }
                     
                     imageButton.snp.makeConstraints { (make) in
                         
                         make.height.equalTo(self.imageStackView.frame.height)
-                        make.width.equalTo(120)
+                        make.width.equalTo(40)
                     }
                     
                     self.imageStackView.addArrangedSubview(imageButton)
@@ -490,7 +494,7 @@ extension FeedbackViewController {
                     self.imageStackView.translatesAutoresizingMaskIntoConstraints = false
                 }
                 
-                self.scrollView.contentSize = CGSize(width: self.imageStackView.frame.width + 130, height: self.scrollView.frame.height)
+                self.scrollView.contentSize = CGSize(width: self.imageStackView.frame.width + 40, height: self.scrollView.frame.height)
             }
             picker.dismiss(animated: true, completion: nil)
         }
@@ -505,12 +509,11 @@ extension FeedbackViewController {
             
             if sender.tag == self.stackImageView[i].hashValue {
                 
-                self.imageStackView.subviews[i+1].removeFromSuperview()
+                self.imageStackView.subviews[i].removeFromSuperview()
                 self.stackImageView.remove(at: i)
             }
             i += 1
         }
-        
     }
     
     @objc func imageButtonPressed(sender: UIButton) {

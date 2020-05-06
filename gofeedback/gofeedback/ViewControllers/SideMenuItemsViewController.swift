@@ -24,9 +24,7 @@ class SideMenuItemsViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var userImage: UIImageView!
-    
-    @IBOutlet weak var feedsBtn: UIButton!
-    
+        
     var currentAction:String?
     static var rightNavController:UINavigationController?
 
@@ -267,7 +265,6 @@ class SideMenuItemsViewController: UIViewController {
         if status {
             menuLogin.setTitle("Log In", for: .normal)
             menuLogin.setImage(UIImage(named: "sign-in-alt-light"), for: .normal)
-            self.feedsBtn.isHidden = true
         }else {
             menuLogin.setTitle("Log Out", for: .normal)
             menuLogin.setImage(UIImage(named: "sign-out-alt-light"), for: .normal)
@@ -275,14 +272,6 @@ class SideMenuItemsViewController: UIViewController {
             
                 self.userNameLabel.text = name
                 self.emailLabel.text = email
-                
-                if userType == "1" || userType == "2" {
-                    
-                    self.feedsBtn.isHidden = false
-                } else {
-                    
-                    self.feedsBtn.isHidden = true
-                }
             }
         }
     }

@@ -28,6 +28,10 @@ class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITab
     
     override func viewWillAppear(_ animated: Bool) {
         
+        super.viewWillAppear(animated)
+        
+        self.showNavBar()
+
         self.attachSpinner(value: true)
         getFeedsDetails()
     }
@@ -54,17 +58,6 @@ class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITab
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdminFeedsCell", for: indexPath) as! GFAdminFeedListViewCell
         
-//        if self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Approved.rawValue || self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Paid.rawValue{
-//            
-//            cell.backgroundColor = UIColor.green
-//        } else if self.feedbackModels?[indexPath.row].status.rawValue == FeedbackStatus.Rejected.rawValue {
-//            
-//            cell.backgroundColor = UIColor.red
-//        } else {
-//            
-//            cell.backgroundColor = UIColor.white
-//        }
-//        
         if let feedItem = self.feedbackModels?[indexPath.row] {
             
             cell.updateCell(model: feedItem)
