@@ -24,6 +24,16 @@ class AdminHomeViewController: GFBaseViewController {
     
     @IBOutlet weak var seeAllBtn1: UIButton!
     
+    
+    @IBOutlet weak var view1: GFCustomTableViewCellShadowView!
+    
+    @IBOutlet weak var view2: GFCustomTableViewCellShadowView!
+    
+    @IBOutlet weak var view3: GFCustomTableViewCellShadowView!
+    
+    @IBOutlet weak var view4: GFCustomTableViewCellShadowView!
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -38,11 +48,6 @@ class AdminHomeViewController: GFBaseViewController {
             self.showUserLogin()
         }else if let userType =  UserDefaults.standard.string(forKey: "UserType") {
 
-            if let name = UserDefaults.standard.string(forKey: "UserName") {
-                
-                self.userNameLabel.text = name
-            }
-            
             if userType == "1" {
                 
                 self.setupSuperAdmin()
@@ -83,6 +88,12 @@ class AdminHomeViewController: GFBaseViewController {
         
         self.hideAllViews()
         self.adminFeedsView.isHidden = false
+        self.userNameLabel.text = "Administrator"
+        
+        self.view1.isHidden = false
+        self.view2.isHidden = false
+        self.view3.isHidden = false
+        self.view4.isHidden = false
     }
     
     func setupEnterPrise() {
@@ -90,6 +101,7 @@ class AdminHomeViewController: GFBaseViewController {
         self.hideAllViews()
         self.storeFeedsView.isHidden = false
         self.myFeedsView.isHidden = false
+        self.userNameLabel.text = "Enterprise"
     }
     
     func setupNormalUser() {
@@ -102,6 +114,11 @@ class AdminHomeViewController: GFBaseViewController {
         self.storeFeedsView.isHidden = true
         self.myFeedsView.isHidden = true
         self.adminFeedsView.isHidden = true
+        
+        self.view1.isHidden = true
+        self.view2.isHidden = true
+        self.view3.isHidden = true
+        self.view4.isHidden = true
     }
     
     func showTotalFeeds() {

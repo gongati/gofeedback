@@ -27,6 +27,11 @@ class GFAdminFeedListViewCell: UITableViewCell {
     @IBOutlet weak var dollerBtn: UIButton!
     @IBOutlet weak var receiptBtn: UIButton!
     
+    @IBOutlet weak var bgView: GFCustomTableViewCellShadowView!
+    
+    let approvedColor: UIColor = .green //UIColor(hexString: "#D9FFDE") //"D9FFDE"
+    let rejectedColor: UIColor = .red //UIColor(hexString: "#FFE1ED") // "FFE1ED"
+    
     func updateCell(model: FeedbackModel) {
         
         self.resetCell()
@@ -39,9 +44,12 @@ class GFAdminFeedListViewCell: UITableViewCell {
         if model.status == .Approved || model.status == .Paid {
             
             self.tickBtn.isHidden = false
+            self.backgroundColor = self.approvedColor
+
         } else if model.status == .Rejected {
             
             self.crossBtn.isHidden = false
+            self.backgroundColor = self.rejectedColor
         }
         
         if let images = model.imageFileName, images.count > 0 {
@@ -61,6 +69,9 @@ class GFAdminFeedListViewCell: UITableViewCell {
             
             self.logoImage.image = UIImage(named: "question mark")
         }
+        
+        self.receiptBtn.isHidden = !(model.isReceiptAttached ?? false)
+        
     }
     
     func resetCell() {
@@ -74,6 +85,6 @@ class GFAdminFeedListViewCell: UITableViewCell {
         self.starView.rating = 1
         
         self.logoImage.backgroundColor = .gray
+        self.backgroundColor = .white
     }
-    
 }

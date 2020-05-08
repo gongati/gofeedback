@@ -33,10 +33,19 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
         if self.isOwnedItems {
             
             self.showOwnedFeeds()
+            self.title = "My Feedbacks"
         }else {
             
-            showAcceptedFeeds()
+            self.showAcceptedFeeds()
+            self.title = "All Feedbacks"
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        self.showNavBar()
+        self.navigationController?.navigationBar.backItem?.title = ""
     }
     
     @IBAction func myListBtnPressed(_ sender: UIButton) {
