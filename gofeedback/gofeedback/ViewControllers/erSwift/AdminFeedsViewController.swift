@@ -14,8 +14,16 @@ class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITab
     var videoUrl = [URL]()
     var videotag = [Int]()
     var feedbackModels : [FeedbackModel]?
+    var state:FeedbackStatus = .Submitted
+    var isStackViewHidden = false
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var stackVIew: UIStackView!
+    @IBOutlet weak var pendingBtnOutlet: UIButton!
+    @IBOutlet weak var approvedBtnOutlet: UIButton!
+    @IBOutlet weak var rejectedBtnOutlet: UIButton!
+    @IBOutlet weak var paidBtnPressed: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +32,20 @@ class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITab
         tableView.dataSource = self
         
         tableView.tableFooterView = UIView()
+        
+        if isStackViewHidden {
+            
+            self.stackVIew.isHidden = true
+            self.tableView.snp.makeConstraints { (make) in
+                
+                make.edges.equalToSuperview()
+            }
+        } else {
+            
+            approvedBtnOutlet.backgroundColor = UIColor.gray
+            rejectedBtnOutlet.backgroundColor = UIColor.gray
+            paidBtnPressed.backgroundColor = UIColor.gray
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,13 +58,63 @@ class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITab
         getFeedsDetails()
     }
     
+    @IBAction func pendingBtnPressed(_ sender: UIButton) {
+        
+        pendingBtnOutlet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
+        approvedBtnOutlet.backgroundColor = UIColor.gray
+        rejectedBtnOutlet.backgroundColor = UIColor.gray
+        paidBtnPressed.backgroundColor = UIColor.gray
+        
+        self.attachSpinner(value: true)
+        self.state = .Submitted
+        self.getFeedsDetails()
+    }
+    
+    @IBAction func approvedBtnPressed(_ sender: UIButton) {
+        
+        approvedBtnOutlet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
+        pendingBtnOutlet.backgroundColor = UIColor.gray
+        rejectedBtnOutlet.backgroundColor = UIColor.gray
+        paidBtnPressed.backgroundColor = UIColor.gray
+        
+        self.attachSpinner(value: true)
+        self.state = .Approved
+        self.getFeedsDetails()
+    }
+    
+    @IBAction func rejectedBtnPressed(_ sender: UIButton) {
+        
+        rejectedBtnOutlet.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
+        approvedBtnOutlet.backgroundColor = UIColor.gray
+        pendingBtnOutlet.backgroundColor = UIColor.gray
+        paidBtnPressed.backgroundColor = UIColor.gray
+        
+        self.attachSpinner(value: true)
+        self.state = .Rejected
+        self.getFeedsDetails()
+    }
+    
+    @IBAction func paidBtnPressed(_ sender: UIButton) {
+        
+        paidBtnPressed.backgroundColor = UIColor(red: 40/255, green: 153/255, blue: 212/255, alpha: 1)
+        approvedBtnOutlet.backgroundColor = UIColor.gray
+        rejectedBtnOutlet.backgroundColor = UIColor.gray
+        pendingBtnOutlet.backgroundColor = UIColor.gray
+        
+        self.attachSpinner(value: true)
+        self.state = .Paid
+        self.getFeedsDetails()
+    }
+    
     func getFeedsDetails() {
         
         GFFirebaseManager.loadAllFeeds { (feeds) in
             
             if let feeds = feeds {
                 
-                self.feedbackModels = feeds
+                let sortedFeeds = feeds.filter { $0.status.rawValue == self.state.rawValue}
+                
+                self.feedbackModels = sortedFeeds
                 self.tableView.reloadData()
                 self.attachSpinner(value: false)
             }

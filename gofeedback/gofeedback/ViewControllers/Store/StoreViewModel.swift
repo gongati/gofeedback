@@ -28,7 +28,7 @@ class StoreViewModel {
                 }
                 owners.append(userId)
                 feed.owners = owners
-                feed.price = (feed.price ?? 0.0) + 0.5
+                feed.price = (feed.price ?? 0.0) + (Constants.UserWallet.enterpriserPercent)
                 feed.status = .Paid
                 GFFirebaseManager.updateFeedStatus(feed.feedbackId ?? "", feed) { (value) in
                     

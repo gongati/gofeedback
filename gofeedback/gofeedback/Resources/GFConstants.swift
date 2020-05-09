@@ -20,8 +20,11 @@ struct Constants {
 
     struct UserWallet {
         
-        static let userPercent:Float = 0.75
+        static let userPercent:Float = 0.7
+        static let adminPercent:Float = 0.3
+        static let enterpriserPercent:Float = 1.0
     }
+    
     
     struct NotificationKey {
         static let Welcome = "kWelcomeNotif"
