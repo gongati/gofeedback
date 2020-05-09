@@ -15,6 +15,12 @@ class AdminHomeViewController: GFBaseViewController {
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var totalFeeds: UILabel!
     
+    @IBOutlet weak var adminAllFeeds: UILabel!
+    @IBOutlet weak var approvedFeeds: UILabel!
+    @IBOutlet weak var rejectedFeeds: UILabel!
+    @IBOutlet weak var amountPaid: UILabel!
+    @IBOutlet weak var amountReceived: UILabel!
+    
     @IBOutlet weak var myFeeds: UILabel!
     @IBOutlet weak var stackView: UIStackView!
     
@@ -33,6 +39,10 @@ class AdminHomeViewController: GFBaseViewController {
     
     @IBOutlet weak var view4: GFCustomTableViewCellShadowView!
     
+    var state:FeedbackStatus = .Submitted
+    var feedbackModels : [FeedbackModel]?
+    
+    let dg = DispatchGroup()
     
     override func viewDidLoad() {
         
@@ -51,9 +61,11 @@ class AdminHomeViewController: GFBaseViewController {
             if userType == "1" {
                 
                 self.setupSuperAdmin()
+                self.adminUIUpdate()
             } else if userType == "2" {
 
                 self.setupEnterPrise()
+                self.enterpriseUIUpdate()
             } else {
                 
                 self.setupNormalUser()
@@ -71,6 +83,7 @@ class AdminHomeViewController: GFBaseViewController {
     
     @IBAction func adminFeedsTapped(_ sender: UIButton) {
         
+        self.state = .Submitted
         self.showAdminFeeds()
     }
     
@@ -82,6 +95,20 @@ class AdminHomeViewController: GFBaseViewController {
     @IBAction func myFeedsTapped(_ sender: Any) {
      
         self.showOwnedFeeds()
+    }
+    
+    
+    @IBAction func approvedBtnPressed(_ sender: UIButton) {
+        
+        self.state = .Approved
+        self.showAdminFeeds()
+    }
+    
+    
+    @IBAction func rejectedBtnPressed(_ sender: UIButton) {
+        
+        self.state = .Rejected
+        self.showAdminFeeds()
     }
     
     func setupSuperAdmin() {
@@ -140,7 +167,13 @@ class AdminHomeViewController: GFBaseViewController {
     func showAdminFeeds() {
         
         if let controller = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: Constants.StoryBoard.AdminFeeds) as? AdminFeedsViewController {
-                self.navigationController?.pushViewController(controller, animated: true)
+            controller.state = self.state
+            
+            if self.state == .Approved || self.state == .Rejected {
+                
+                controller.isStackViewHidden = true
+            }
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }
@@ -152,7 +185,7 @@ extension AdminHomeViewController {
         GFUserDefaults.removingUserDefaults()
         self.showUserLogin()
     }
-
+    
     @objc func showLogoutAlert() -> Void {
         // create the alert
         let alert = UIAlertController(title: "Confirm Logout", message: "Are you sure you want to logout?", preferredStyle: UIAlertController.Style.alert)
@@ -173,5 +206,136 @@ extension AdminHomeViewController {
         }))
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func getFeedsDetails(_ completion:(()->())?) {
+        
+        GFFirebaseManager.loadAllFeeds { (feeds) in
+            
+            if let feeds = feeds {
+                
+                if self.state != .none {
+                    let sortedFeeds = feeds.filter { $0.status.rawValue == self.state.rawValue}
+                    self.feedbackModels = sortedFeeds
+                } else {
+                    
+                    self.feedbackModels = feeds
+                }
+            }
+            completion?()
+        }
+    }
+    
+    func loadAcceptedItems(_ completion:(()->())?) {
+        
+        if let userId =  UserDefaults.standard.string(forKey: "UserId") {
+            GFFirebaseManager.loadApprovedFeeds(userId) { (feedbackModel) in
+                
+                if let feedbackModel = feedbackModel {
+                    
+                    self.feedbackModels = feedbackModel
+                } else {
+                    
+                    print("error")
+                }
+                completion?()
+            }
+        }
+    }
+    
+    func loadOwnedItems(_ completion:(()->())?) {
+        
+        if let userId =  UserDefaults.standard.string(forKey: "UserId") {
+            
+            GFFirebaseManager.loadOwnedItems(userId) { (feedbackModel) in
+                
+                if let feedbackModel = feedbackModel {
+                    
+                    self.feedbackModels = feedbackModel
+                } else {
+                    
+                    print("error")
+                }
+                completion?()
+            }
+        }
+    }
+    
+    func adminUIUpdate() {
+        
+        dg.enter()
+        self.attachSpinner(value: true)
+        self.state = .none
+        self.getFeedsDetails {
+            
+            self.adminAllFeeds.text = "\(self.feedbackModels?.count ?? 0)"
+            if let feeds = self.feedbackModels {
+                let value = feeds.reduce(0) {
+                    $0 + ($1.price ?? 0)
+                }
+                
+                self.amountPaid.text = "$\(Float(value*Constants.UserWallet.userPercent))"
+                self.balanceLabel.text = "$\(Float(value*Constants.UserWallet.adminPercent))"
+                self.amountReceived.text = "$\(value)"
+            }
+            self.dg.leave()
+        }
+        dg.notify(queue: .main) {
+            
+            self.state = .Approved
+            self.dg.enter()
+            self.getFeedsDetails {
+                
+                self.approvedFeeds.text = "\(self.feedbackModels?.count ?? 0)"
+                self.dg.leave()
+            }
+            
+            self.dg.notify(queue: .main) {
+                
+                self.state = .Rejected
+                self.dg.enter()
+                self.getFeedsDetails {
+                    
+                    self.rejectedFeeds.text = "\(self.feedbackModels?.count ?? 0)"
+                    self.dg.leave()
+                }
+                
+                self.dg.notify(queue: .main) {
+                    
+                    self.attachSpinner(value: false)
+                }
+            }
+        }
+    }
+    
+    func enterpriseUIUpdate() {
+        
+        dg.enter()
+        self.attachSpinner(value: true)
+        self.loadAcceptedItems {
+            
+            self.totalFeeds.text = "\(self.feedbackModels?.count ?? 0)"
+            self.dg.leave()
+        }
+        dg.notify(queue: .main) {
+            
+            self.dg.enter()
+            self.loadOwnedItems {
+                
+                self.myFeeds.text = "\(self.feedbackModels?.count ?? 0)"
+                
+                if let feeds = self.feedbackModels {
+                    let value = feeds.reduce(0) {
+                        $0 + ($1.price ?? 0)
+                    }
+                    self.balanceLabel.text = "$\(value)"
+                }
+                self.dg.leave()
+            }
+            self.dg.notify(queue: .main) {
+                
+               self.attachSpinner(value: false)
+            }
+        }
     }
 }

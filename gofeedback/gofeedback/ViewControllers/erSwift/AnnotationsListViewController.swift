@@ -84,6 +84,7 @@ class AnnotationsListViewController: BottomSheetController {
         viewController.feedbackModel.address = "\(location.addressOne ?? "") \(location.addressTwo ?? "") \(location.addressThree ?? "") \(location.city ?? "") \(location.state ?? "") \(location.country ?? "") \(location.zipCode ?? "")"
         }
         viewController.searchItem = self.searchItem
+        viewController.bussiness = dataSource?[value]
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

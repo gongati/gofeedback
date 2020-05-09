@@ -1,10 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'gofeedback' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
+def available_pods
+
   # Pods for gofeedback
   pod 'SideMenu'
   pod 'RxSwift'
@@ -26,10 +27,17 @@ target 'gofeedback' do
 
   # add pods for desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
+ end
+
+  target 'gofeedback' do
+   available_pods
+  end
   
+  target 'gofeedbackadmin' do
+    available_pods
+  end
+
   target 'gofeedbackTests' do
     inherit! :search_paths
     # Pods for testing
   end
-
-end
