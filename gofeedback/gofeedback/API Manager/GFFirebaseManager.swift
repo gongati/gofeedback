@@ -20,7 +20,6 @@ class GFFirebaseManager {
     static func loadAllFeeds(_ completion: ((([FeedbackModel])?) -> ())?) {
         
         let query = self.db.collection("Feedback")
-            .order(by: Constants.FeedbackCommands.timeStamp, descending: true)
         
          query.getDocuments() { (querySnapshot, err) in
             
@@ -45,8 +44,11 @@ class GFFirebaseManager {
                     feedbackModel.append(feedBackModel)
                     }
                 }
-                
-                completion?(feedbackModel)
+                let alphabatedSortedFeeds = feedbackModel.sorted { (a,b) in
+                    
+                    return a.restaurantTitle < b.restaurantTitle
+                }
+                completion?(alphabatedSortedFeeds)
             }
         }
     }
@@ -81,7 +83,13 @@ class GFFirebaseManager {
                 }
                 let timeSortedFeeds = feedbackModel.sorted { (a,b) in
                     
-                    return (a.timeStamp ?? 0) > (b.timeStamp ?? 0)
+                    if state == FeedbackStatus.Drafts.rawValue {
+                        
+                        return (a.timeStamp ?? 0) > (b.timeStamp ?? 0)
+                    } else {
+                        
+                        return a.restaurantTitle < b.restaurantTitle
+                    }
                 }
                 completion?(timeSortedFeeds)
             }
@@ -268,7 +276,6 @@ class GFFirebaseManager {
         
         let query = self.db.collection("Feedback")
             .whereField(Constants.FeedbackCommands.status, isEqualTo: FeedbackStatus.Approved.rawValue)
-            .order(by: Constants.FeedbackCommands.timeStamp, descending: true)
          
          query.getDocuments() { (querySnapshot, err) in
             
@@ -294,7 +301,11 @@ class GFFirebaseManager {
                     }
                 }
                 
-                completion?(feedbackModel)
+                let alphabatedSortedFeeds = feedbackModel.sorted { (a,b) in
+                    
+                    return a.restaurantTitle < b.restaurantTitle
+                }
+                completion?(alphabatedSortedFeeds)
             }
         }
     }
@@ -326,11 +337,11 @@ class GFFirebaseManager {
                     feedBackModel.feedbackId = document.documentID
                     feedbackModel.append(feedBackModel)
                 }
-                let timeSortedFeeds = feedbackModel.sorted { (a,b) in
+                let alphabatedSortedFeeds = feedbackModel.sorted { (a,b) in
                     
-                    return (a.timeStamp ?? 0) > (b.timeStamp ?? 0)
+                    return a.restaurantTitle < b.restaurantTitle
                 }
-                completion?(timeSortedFeeds)
+                completion?(alphabatedSortedFeeds)
             }
         }
     }

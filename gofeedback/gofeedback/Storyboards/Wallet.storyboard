@@ -176,8 +176,78 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="2" id="MdL-6t-30h">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51E-H5-bv4" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="36"/>
+                                        <color key="backgroundColor" red="0.1578813791" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Pending">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="pendingBtnPressed:" destination="QkW-b1-3BR" eventType="touchUpInside" id="Yvr-UK-lpR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8e-d6-za4" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
+                                        <rect key="frame" x="94.333333333333343" y="0.0" width="92.333333333333343" height="36"/>
+                                        <color key="backgroundColor" red="0.1578813791" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Approved">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="approvedBtnPressed:" destination="QkW-b1-3BR" eventType="touchUpInside" id="hee-c6-hTL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhR-Vj-XLG" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
+                                        <rect key="frame" x="188.66666666666666" y="0.0" width="91.999999999999972" height="36"/>
+                                        <color key="backgroundColor" red="0.1578813791" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Rejected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="rejectedBtnPressed:" destination="QkW-b1-3BR" eventType="touchUpInside" id="lyr-C3-V9M"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hE-NX-DpW" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
+                                        <rect key="frame" x="282.66666666666669" y="0.0" width="92.333333333333314" height="36"/>
+                                        <color key="backgroundColor" red="0.1578813791" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Paid">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="paidBtnPressed:" destination="QkW-b1-3BR" eventType="touchUpInside" id="fGa-Dn-V2L"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tlb-b6-Mvz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="680"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -189,7 +259,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgX-vO-2ys" customClass="GFCustomTableViewCellShadowView" customModule="gofeedback" customModuleProvider="target">
-                                                    <rect key="frame" x="5" y="4" width="365" height="121"/>
+                                                    <rect key="frame" x="4" y="3" width="376" height="121"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5m-1N-Qif">
@@ -200,13 +270,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SwG-aC-mk8">
-                                                            <rect key="frame" x="325" y="31" width="22" height="22"/>
+                                                            <rect key="frame" x="335" y="31" width="22" height="22"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                             <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" image="photo.fill" catalog="system"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMX-ev-Y9n">
-                                                            <rect key="frame" x="296" y="31" width="21" height="22"/>
+                                                            <rect key="frame" x="306" y="31" width="22" height="22"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                             <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" image="video.fill" catalog="system"/>
@@ -244,7 +314,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dri-Jy-jG0">
-                                                    <rect key="frame" x="341" y="10" width="22" height="22"/>
+                                                    <rect key="frame" x="340" y="10" width="22" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="checkmark.seal.fill" catalog="system"/>
@@ -256,7 +326,7 @@
                                                     <state key="normal" image="dollarsign.square.fill" catalog="system"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqa-7R-c3c">
-                                                    <rect key="frame" x="341" y="85" width="22" height="22"/>
+                                                    <rect key="frame" x="340" y="85" width="22" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                     <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="xmark.seal.fill" catalog="system"/>
@@ -275,7 +345,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UcL-ig-kFV">
-                                                    <rect key="frame" x="341" y="59" width="22" height="20"/>
+                                                    <rect key="frame" x="340" y="59" width="22" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="rectangle.and.paperclip" catalog="system"/>
@@ -307,6 +377,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="7rD-7m-UZP"/>
                     <connections>
+                        <outlet property="approvedBtnOutlet" destination="M8e-d6-za4" id="o2t-zb-7ci"/>
+                        <outlet property="paidBtnPressed" destination="9hE-NX-DpW" id="won-tq-xWZ"/>
+                        <outlet property="pendingBtnOutlet" destination="51E-H5-bv4" id="vvY-hS-5NK"/>
+                        <outlet property="rejectedBtnOutlet" destination="bhR-Vj-XLG" id="ttb-38-gTc"/>
+                        <outlet property="stackVIew" destination="MdL-6t-30h" id="GcI-OX-tvN"/>
                         <outlet property="tableView" destination="Tlb-b6-Mvz" id="jto-k6-pY2"/>
                         <segue destination="5d8-JN-taG" kind="presentation" id="qgO-l7-IH9"/>
                     </connections>

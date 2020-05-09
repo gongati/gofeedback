@@ -13,6 +13,7 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
    private let viewModel = StoreViewModel()
     
     var dataSource = [FeedbackModel]()
+    var allFeeds = [[String:[FeedbackModel]]]()
     var selectedItems = [FeedbackModel]()
     var isOwnedItems = false
     var images = [UIImage]()
@@ -89,22 +90,36 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
         }
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return isOwnedItems == true ? 1 : allFeeds.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return dataSource.count
+        return isOwnedItems == true ? dataSource.count : allFeeds[section].values.first?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return isOwnedItems == true ? nil : allFeeds[section].keys.first
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? EnterpriseListViewCell {
         if isOwnedItems {
             cell.accessoryType = .disclosureIndicator
+            cell.updateCell(isOwnedItems, dataSource[indexPath.row])
         } else {
             cell.accessoryType = .none
+            if let feeds = allFeeds[indexPath.section].values.first?[indexPath.row] {
+            cell.updateCell(isOwnedItems, feeds)
+            }
         }
-        cell.textLabel?.text = self.dataSource[indexPath.row].restaurantTitle
-        cell.detailTextLabel?.text = self.dataSource[indexPath.row].address
         return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -118,7 +133,10 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
         } else {
             let newCell = tableView.cellForRow(at: indexPath)
             newCell?.accessoryType = .checkmark
-            self.selectedItems.append(self.dataSource[indexPath.row])
+            if let feed = allFeeds[indexPath.section].values.first?[indexPath.row] {
+                
+            self.selectedItems.append(feed)
+            }
             if selectedItems.count > 0 {
                 
                 self.buyButton.isHidden = false
@@ -130,10 +148,12 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
         
         let newCell = tableView.cellForRow(at: indexPath)
         newCell?.accessoryType = .none
-        let value = self.selectedItems.filter {
-            $0.feedbackId != self.dataSource[indexPath.row].feedbackId
+        if let feed = allFeeds[indexPath.section].values.first?[indexPath.row] {
+            let value = self.selectedItems.filter {
+                $0.feedbackId != feed.feedbackId
+            }
+            self.selectedItems = value
         }
-        self.selectedItems = value
         if selectedItems.count == 0 {
             
             self.buyButton.isHidden = true
@@ -144,12 +164,28 @@ class StoreViewController: GFBaseViewController,UITableViewDelegate,UITableViewD
         
         self.attachSpinner(value: true)
         self.tableView.allowsMultipleSelection = true
-        dataSource.removeAll()
+        allFeeds.removeAll()
         buyButton.isHidden = true
         isOwnedItems = false
         viewModel.loadAcceptedItems {
             if let acceptedItems = self.viewModel.acceptedItems {
-                self.dataSource = acceptedItems
+                
+                loop1:for i in 0..<acceptedItems.count {
+                    
+                    for j in 0..<self.allFeeds.count {
+                        
+                        if self.allFeeds[j].keys.first == acceptedItems[i].restaurantTitle {
+                            
+                            if var feeds = self.allFeeds[j].values.first {
+                                
+                                feeds.append(acceptedItems[i])
+                                self.allFeeds[j] = [acceptedItems[i].restaurantTitle:feeds]
+                                continue loop1
+                            }
+                        }
+                    }
+                    self.allFeeds.append([acceptedItems[i].restaurantTitle:[acceptedItems[i]]])
+                }
                 self.tableView.reloadData()
             }
             self.attachSpinner(value: false)
