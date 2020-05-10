@@ -249,6 +249,20 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
         return randomString
     }
     
+    @objc override func keyboardWillShow(notification: NSNotification) {
+        
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y -= self.commentsTxt.frame.height
+        }
+    }
+    
+    @objc override func keyboardWillHide(notification: NSNotification) {
+
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = (self.parent?.view.frame.height ?? CGFloat(0)) - self.view.frame.height
+        }
+    }
+    
     func addDoneButtonOnKeyboard(){
         
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
@@ -265,9 +279,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
     }
 
     @objc func doneButtonAction(){
-        whatCanWeDoBetter.resignFirstResponder()
-        whatAreWeDoingGreat.resignFirstResponder()
-        howWeAreDoingCosmosView.resignFirstResponder()
+        
         commentsTxt.resignFirstResponder()
     }
 

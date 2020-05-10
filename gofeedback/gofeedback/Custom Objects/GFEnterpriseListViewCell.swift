@@ -43,10 +43,18 @@ class EnterpriseListViewCell:UITableViewCell {
             let wordArray = model.comments.split(separator: " ").map{ String($0) }
             if wordArray.count >= 2 {
                 
-                self.comments.text = wordArray[0]+wordArray[1]+"..."
+                if wordArray[1].contains("\n") {
+                    
+                    let secondArray = wordArray[1].split(separator: "\n").map{ String($0) }
+                    
+                    self.comments.text = "\(wordArray[0]) \(secondArray[0])..."
+                } else {
+                    
+                    self.comments.text = "\(wordArray[0]) \(wordArray[1])..."
+                }
             } else {
                 
-                self.comments.text = ""
+                self.comments.text = "\(model.comments)"
             }
         }
     }

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class GFSignupViewController: GFBaseViewController {
+class GFSignupViewController: GFBaseViewController,UITextFieldDelegate {
 
     let viewModel = SignUpViewModel()
     let disposeBag = DisposeBag()
@@ -46,6 +46,10 @@ class GFSignupViewController: GFBaseViewController {
             countryCode.text = code
             mobileNumberTxt.text = number
         }
+        
+        emailTxt.delegate = self
+        firstNameTxt.delegate = self
+        lastNameTxt.delegate = self
         
         self.addDoneButtonOnKeyboard()
     }
@@ -145,6 +149,21 @@ class GFSignupViewController: GFBaseViewController {
                 self.popupAlert(title: "Alert", message: "Fail to register,try again", actionTitles: ["OK"], actions:[nil])
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == firstNameTxt {
+            
+            lastNameTxt.becomeFirstResponder()
+        } else if textField == lastNameTxt {
+            
+            emailTxt.becomeFirstResponder()
+        } else {
+            
+            addressTxtView.becomeFirstResponder()
+        }
+        return true
     }
     
     func addDoneButtonOnKeyboard(){
