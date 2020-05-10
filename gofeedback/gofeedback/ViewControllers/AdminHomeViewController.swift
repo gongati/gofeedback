@@ -274,9 +274,9 @@ extension AdminHomeViewController {
                     $0 + ($1.price ?? 0)
                 }
                 
-                self.amountPaid.text = "$\(Float(value*Constants.UserWallet.userPercent))"
-                self.balanceLabel.text = "$\(Float(value*Constants.UserWallet.adminPercent))"
-                self.amountReceived.text = "$\(value)"
+                self.amountPaid.text = String(format: "$%.2f",Float(value*Constants.UserWallet.userPercent))
+                self.balanceLabel.text =  String(format: "$%.2f",Float(value*Constants.UserWallet.adminPercent))
+                self.amountReceived.text =  String(format: "$%.2f",value)
             }
             self.dg.leave()
         }
@@ -328,7 +328,7 @@ extension AdminHomeViewController {
                     let value = feeds.reduce(0) {
                         $0 + ($1.price ?? 0)
                     }
-                    self.balanceLabel.text = "$\(value)"
+                    self.balanceLabel.text = String(format: "$%.2f",value)
                 }
                 self.dg.leave()
             }

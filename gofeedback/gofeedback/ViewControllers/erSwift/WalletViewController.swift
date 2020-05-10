@@ -65,7 +65,7 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
         
         self.feedbackModel.removeAll()
         dg.enter()
-        self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue) {
+        self.getFeedBackDetails(FeedbackStatus.Rejected.rawValue) {
             self.dg.leave()
         }
         dg.notify(queue: .main) {
@@ -80,7 +80,7 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
                 }
                 self.dg.notify(queue: .main) {
                     self.dg.enter()
-                    self.getFeedBackDetails(FeedbackStatus.Rejected.rawValue) {
+                    self.getFeedBackDetails(FeedbackStatus.Submitted.rawValue) {
                         self.dg.leave()
                     }
                     self.dg.notify(queue: .main) {
@@ -139,13 +139,19 @@ class WalletViewController: GFBaseViewController,UITableViewDelegate,UITableView
                         let value = feeds.reduce(0) {
                             $0 + ($1.price ?? 0)
                         }
-                        self.walletBalanceLabel.text = "$\(Float(value*Constants.UserWallet.userPercent))"
+                        self.walletBalanceLabel.text = String(format: "$%.2f",Float(value*Constants.UserWallet.userPercent))
                     }
                     if self.firstTimeLoad {
                         
                         self.firstTimeLoad = false
                     } else {
                         
+                        if state == FeedbackStatus.Submitted.rawValue {
+                            
+                            self.feedbackModel = self.feedbackModel.sorted(by: { (a, b) -> Bool in
+                                return a.restaurantTitle < b.restaurantTitle
+                            })
+                        }
                         self.tableView.reloadData()
                     }
                 } else {

@@ -157,7 +157,7 @@ class AdminFeedsViewController: GFBaseViewController,UITableViewDataSource,UITab
         viewController.feedbackModel = feedbackModel
         
         viewController.isSubmitBtnHidden = true
-        if (feedbackModel.status.rawValue != FeedbackStatus.Rejected.rawValue)  && feedbackModel.status.rawValue != FeedbackStatus.Paid.rawValue {
+        if (feedbackModel.status.rawValue != FeedbackStatus.Approved.rawValue)  && feedbackModel.status.rawValue != FeedbackStatus.Paid.rawValue {
             
             viewController.isApprovedBtnHidden = false
             viewController.isRejectbtnHidden = false

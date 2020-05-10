@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class GFOTPViewController: GFBaseViewController {
+class GFOTPViewController: GFBaseViewController,UITextFieldDelegate {
 
     @IBOutlet var imgUser: UIImageView!
     @IBOutlet weak var otpText: UITextField!
@@ -20,12 +20,24 @@ class GFOTPViewController: GFBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        otpText.delegate = self
     }
 
     @IBAction func submitOtp(_ sender: Any) {
         
         self.verifyOpt()
         self.attachSpinner(value: true)
+    }
+    
+    @objc override func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let frame = (self.view.frame.height - (self.otpText.frame.origin.y + self.otpText.frame.height))
+            if  frame <  keyboardSize.height {
+                
+                self.view.frame.origin.y -= (keyboardSize.height - frame) + 10
+            }
+        }
     }
     
     func verifyOpt() {
@@ -60,5 +72,11 @@ class GFOTPViewController: GFBaseViewController {
             self.attachSpinner(value: false)
             self.popupAlert(title: "Error", message: "Code can not be empty", actionTitles: ["OK"], actions: [nil])
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        otpText.resignFirstResponder()
+        return true
     }
 }

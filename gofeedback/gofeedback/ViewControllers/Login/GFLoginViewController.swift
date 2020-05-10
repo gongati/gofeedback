@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class GFLoginViewController: GFBaseViewController {
+class GFLoginViewController: GFBaseViewController,UITextFieldDelegate {
     
     @IBOutlet weak var codeTxt: UITextField!
     @IBOutlet weak var phoneTxt: UITextField!
@@ -20,7 +20,8 @@ class GFLoginViewController: GFBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addDoneButtonOnKeyboard()
+        self.codeTxt.delegate = self
+        self.phoneTxt.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -110,26 +111,26 @@ class GFLoginViewController: GFBaseViewController {
         }
     }
     
-    func addDoneButtonOnKeyboard() {
+    @objc override func keyboardWillShow(notification: NSNotification) {
         
-        return
-        
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-        doneToolbar.barStyle = .default
-
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
-
-        let items = [flexSpace, done]
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-
-        phoneTxt.inputAccessoryView = doneToolbar
-        codeTxt.inputAccessoryView = doneToolbar
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let frame = (self.view.frame.height - (self.phoneTxt.frame.origin.y + self.phoneTxt.frame.height))
+            if  frame <  keyboardSize.height {
+                
+                self.view.frame.origin.y -= (keyboardSize.height - frame) + 10
+            }
+        }
     }
-
-    @objc func doneButtonAction(){
-        phoneTxt.resignFirstResponder()
-        codeTxt.resignFirstResponder()
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == self.codeTxt {
+            
+            phoneTxt.becomeFirstResponder()
+        } else {
+            
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }
