@@ -101,6 +101,7 @@
 		27320819245F2C7300D7418E /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C18B242D27BC007A9F9D /* Alerts.storyboard */; };
 		27320821245F2E2A00D7418E /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27320820245F2E2900D7418E /* Admin.storyboard */; };
 		2732082324600E1300D7418E /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732082224600E1300D7418E /* AdminHomeViewController.swift */; };
+		27320826246700B700D7418E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7E257902466D6D2006ADE43 /* GoogleService-Info.plist */; };
 		2741C186242D24D7007A9F9D /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C185242D24D7007A9F9D /* Wallet.storyboard */; };
 		2741C188242D2512007A9F9D /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C187242D2512007A9F9D /* Account.storyboard */; };
 		2741C18A242D27AB007A9F9D /* Contact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2741C189242D27AB007A9F9D /* Contact.storyboard */; };
@@ -146,6 +147,7 @@
 		51CA2BB1ED083ABBBA1FD549 /* Pods_gofeedbackadmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A87EAA9903B63C6B892BC2F /* Pods_gofeedbackadmin.framework */; };
 		694C6853746D6002B30A6DDE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		90116B633AF4CC4D38366820 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		BD09643ABA40EA97F5AEA044 /* Pods_gofeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1EA17C3DEF559050FEB1C7 /* Pods_gofeedback.framework */; };
 		F7041A8B242B615B00ADB9FA /* GFFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7041A8A242B615B00ADB9FA /* GFFeedbackModel.swift */; };
 		F70F9300243240DF000D0D8A /* PreviewFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70F92FF243240DE000D0D8A /* PreviewFeedbackViewController.swift */; };
 		F719271F24307C80006BF52A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F719271E24307C80006BF52A /* AccountSettingsViewController.swift */; };
@@ -251,6 +253,7 @@
 		2B6D270D9BA3D3282F99ECFB /* Pods-gofeedbackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.release.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.release.xcconfig"; sourceTree = "<group>"; };
 		3B2F1650A184386191FADA28 /* Pods-gofeedbackadmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackadmin.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackadmin/Pods-gofeedbackadmin.debug.xcconfig"; sourceTree = "<group>"; };
 		66E8BC1EDD0691B792A19B24 /* Pods-gofeedbackadmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackadmin.release.xcconfig"; path = "Target Support Files/Pods-gofeedbackadmin/Pods-gofeedbackadmin.release.xcconfig"; sourceTree = "<group>"; };
+		6A1EA17C3DEF559050FEB1C7 /* Pods_gofeedback.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gofeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7875F92D3B6595BCA754EB67 /* Pods-gofeedback.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.debug.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.debug.xcconfig"; sourceTree = "<group>"; };
 		B46273BE11CE967BBE7170DE /* Pods-gofeedbackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedbackTests.debug.xcconfig"; path = "Target Support Files/Pods-gofeedbackTests/Pods-gofeedbackTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C28558D093CD32AAA6176A80 /* Pods-gofeedback.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gofeedback.release.xcconfig"; path = "Target Support Files/Pods-gofeedback/Pods-gofeedback.release.xcconfig"; sourceTree = "<group>"; };
@@ -285,6 +288,7 @@
 			files = (
 				90116B633AF4CC4D38366820 /* (null) in Frameworks */,
 				694C6853746D6002B30A6DDE /* (null) in Frameworks */,
+				BD09643ABA40EA97F5AEA044 /* Pods_gofeedback.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +506,7 @@
 				27858E63243C7810006FDB52 /* Alamofire.framework */,
 				16D25C7BFEB745C6E061644E /* Pods_gofeedbackTests.framework */,
 				0A87EAA9903B63C6B892BC2F /* Pods_gofeedbackadmin.framework */,
+				6A1EA17C3DEF559050FEB1C7 /* Pods_gofeedback.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -636,6 +641,7 @@
 				27320817245F2C7300D7418E /* video.mp4 in Resources */,
 				27320818245F2C7300D7418E /* Contact.storyboard in Resources */,
 				27320819245F2C7300D7418E /* Alerts.storyboard in Resources */,
+				27320826246700B700D7418E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

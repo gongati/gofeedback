@@ -385,7 +385,7 @@ DEPENDENCIES:
   - YPImagePicker
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - abseil
     - Alamofire
     - AlamofireObjectMapper
@@ -467,4 +467,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b53b1e2ab193ebface5525047ea9eed59f9cd61a
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.7.1

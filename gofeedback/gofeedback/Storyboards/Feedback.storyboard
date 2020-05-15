@@ -45,8 +45,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyQ-DV-BvQ" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="27" width="120" height="10"/>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gyQ-DV-BvQ" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="27" width="120" height="20"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
@@ -54,14 +54,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ambience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9R3-w4-0M5">
-                                        <rect key="frame" x="0.0" y="45" width="77" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9R3-w4-0M5">
+                                        <rect key="frame" x="0.0" y="55" width="77" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rHU-LC-XoK" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="73.5" width="120" height="0.0"/>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rHU-LC-XoK" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="83.5" width="120" height="20"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
@@ -69,14 +69,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwA-0Z-TWN">
-                                        <rect key="frame" x="0.0" y="81.5" width="57" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwA-0Z-TWN">
+                                        <rect key="frame" x="0.0" y="111.5" width="57" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bYF-rJ-XwL" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="110" width="120" height="50"/>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bYF-rJ-XwL" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="140" width="120" height="20"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
@@ -99,35 +99,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receipt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eh5-t0-Ab3">
-                                <rect key="frame" x="166" y="318.5" width="65" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receipt Uploaded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eh5-t0-Ab3">
+                                <rect key="frame" x="166" y="318.5" width="119" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="65" id="SCW-US-fP2"/>
+                                    <constraint firstAttribute="width" constant="119" id="SCW-US-fP2"/>
                                     <constraint firstAttribute="height" constant="22" id="xjN-B5-Pm4"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drh-hI-46j">
-                                <rect key="frame" x="239" y="319.5" width="25" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="0Xb-P8-5xP"/>
-                                    <constraint firstAttribute="width" constant="25" id="lON-rq-1Fr"/>
-                                </constraints>
-                                <state key="normal" image="unchecked-image"/>
-                                <connections>
-                                    <action selector="receiptBtnPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="rza-rR-98b"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8A-Rr-ZLA">
-                                <rect key="frame" x="331" y="321" width="28" height="20"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8A-Rr-ZLA">
+                                <rect key="frame" x="331" y="320.5" width="25" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Ub4-79-kya"/>
-                                    <constraint firstAttribute="width" constant="28" id="UnR-Ts-Ptx"/>
+                                    <constraint firstAttribute="width" constant="25" id="UnR-Ts-Ptx"/>
                                 </constraints>
-                                <state key="normal" image="camera.fill" catalog="system">
+                                <state key="normal" image="1144464-200">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" scale="small" weight="heavy"/>
                                 </state>
                                 <connections>
@@ -135,11 +124,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZt-1K-MrB" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
-                                <rect key="frame" x="16" y="612" width="88" height="35"/>
+                                <rect key="frame" x="16" y="612" width="150" height="35"/>
                                 <color key="backgroundColor" red="0.1578813791" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="NNV-M8-ybO"/>
-                                    <constraint firstAttribute="width" constant="88" id="m2p-jm-x9K"/>
+                                    <constraint firstAttribute="width" constant="150" id="m2p-jm-x9K"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" title="Draft">
@@ -155,11 +144,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSm-3f-Ff9" customClass="GFMenuButton" customModule="gofeedback" customModuleProvider="target">
-                                <rect key="frame" x="169" y="612" width="190" height="35"/>
+                                <rect key="frame" x="209" y="612" width="150" height="35"/>
                                 <color key="backgroundColor" red="0.1578813791" green="0.59915107489999997" blue="0.83005338910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="HFC-ir-Yxj"/>
-                                    <constraint firstAttribute="width" constant="190" id="YfO-wl-oxz"/>
+                                    <constraint firstAttribute="width" constant="150" id="YfO-wl-oxz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" title="Submit">
@@ -229,6 +218,17 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drh-hI-46j">
+                                <rect key="frame" x="281" y="319.5" width="25" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="0Xb-P8-5xP"/>
+                                    <constraint firstAttribute="width" constant="25" id="lON-rq-1Fr"/>
+                                </constraints>
+                                <state key="normal" image="unchecked-image"/>
+                                <connections>
+                                    <action selector="receiptBtnPressed:" destination="pmn-Ro-e6Z" eventType="touchUpInside" id="rza-rR-98b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -244,7 +244,7 @@
                             <constraint firstItem="e9x-dN-bMG" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="38" id="Gte-ux-CFS"/>
                             <constraint firstItem="xZt-1K-MrB" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="Hd8-Zi-wm2"/>
                             <constraint firstItem="SH6-rO-rKd" firstAttribute="top" secondItem="D8A-Rr-ZLA" secondAttribute="bottom" constant="5" id="J4y-LD-qhV"/>
-                            <constraint firstItem="drh-hI-46j" firstAttribute="leading" secondItem="Eh5-t0-Ab3" secondAttribute="trailing" constant="8" id="Lik-x9-qAY"/>
+                            <constraint firstItem="drh-hI-46j" firstAttribute="leading" secondItem="Eh5-t0-Ab3" secondAttribute="trailing" constant="-4" id="Lik-x9-qAY"/>
                             <constraint firstItem="1ZL-2U-TL3" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="63" id="Lrp-JQ-N4o"/>
                             <constraint firstItem="302-Ia-2kC" firstAttribute="leading" secondItem="Z8b-uD-FGF" secondAttribute="leading" id="Nf0-Dx-IHQ"/>
                             <constraint firstItem="SH6-rO-rKd" firstAttribute="top" secondItem="drh-hI-46j" secondAttribute="bottom" constant="5" id="Nu1-Kp-K9M"/>
@@ -257,7 +257,7 @@
                             <constraint firstItem="xZt-1K-MrB" firstAttribute="top" secondItem="302-Ia-2kC" secondAttribute="bottom" constant="9" id="ZSs-WF-q9c"/>
                             <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="SH6-rO-rKd" secondAttribute="trailing" constant="16" id="d8H-Ih-U3c"/>
                             <constraint firstItem="SH6-rO-rKd" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="ehQ-MC-8Al"/>
-                            <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="D8A-Rr-ZLA" secondAttribute="trailing" constant="16" id="ikg-bD-GfE"/>
+                            <constraint firstItem="gJh-eo-BM1" firstAttribute="trailing" secondItem="D8A-Rr-ZLA" secondAttribute="trailing" constant="19" id="ikg-bD-GfE"/>
                             <constraint firstItem="1ZL-2U-TL3" firstAttribute="top" secondItem="gJh-eo-BM1" secondAttribute="top" constant="10" id="iyY-x8-XVZ"/>
                             <constraint firstItem="302-Ia-2kC" firstAttribute="leading" secondItem="gJh-eo-BM1" secondAttribute="leading" constant="16" id="jHw-FW-MLK"/>
                             <constraint firstItem="SU7-Uw-EmJ" firstAttribute="top" secondItem="gJh-eo-BM1" secondAttribute="top" id="m4e-XJ-xpe"/>
@@ -302,13 +302,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attitude of the staff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A47-oV-UeM">
-                                        <rect key="frame" x="0.0" y="0.0" width="149" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="149" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fia-kW-IQH" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="26" width="120" height="20"/>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fia-kW-IQH" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="25.5" width="120" height="10.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
@@ -316,14 +316,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqC-Og-yP3">
-                                        <rect key="frame" x="0.0" y="51" width="77" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ambience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqC-Og-yP3">
+                                        <rect key="frame" x="0.0" y="41" width="77" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Afl-tv-UJb" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="76.5" width="120" height="20"/>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Afl-tv-UJb" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="66.5" width="120" height="0.0"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
@@ -331,14 +331,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uja-9s-R68">
-                                        <rect key="frame" x="0.0" y="101.5" width="57" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uja-9s-R68">
+                                        <rect key="frame" x="0.0" y="71.5" width="57" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x3S-bM-hYk" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="127" width="120" height="20"/>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x3S-bM-hYk" customClass="CosmosView" customModule="Cosmos">
+                                        <rect key="frame" x="0.0" y="97" width="120" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
@@ -528,11 +528,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera.fill" catalog="system" width="64" height="48"/>
+        <image name="1144464-200" width="40" height="40"/>
         <image name="starbucks-bg" width="323" height="156"/>
         <image name="unchecked-image" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ULF-wO-Zq4"/>
+        <segue reference="H6D-ah-xqq"/>
     </inferredMetricsTieBreakers>
 </document>

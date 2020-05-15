@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import CDYelpFusionKit
 
-class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
+class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate, AnnotationAction {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var whereToGoText: UITextField!
@@ -321,7 +321,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                                                 
                                                 self.searchResponse = nil
                                                 if self.matchesCount < 2 {
-                                                self.popupAlert(title: "Alert", message: "No matches Found", actionTitles: ["OK"], actions: [nil])
+                                                self.popupAlert(title: "Alert", message: "No restaurents or businesses are found at your current location. Please use search to find the place you are looking for.", actionTitles: ["OK"], actions: [nil])
                                                     self.matchesCount = self.matchesCount + 1
                                                 }
                                             } else {
@@ -376,8 +376,7 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
                 
                 make.height.equalTo(80)
             }
-            
-            calloutView.actionButton.addTarget(self, action: #selector(self.annotationPressed(sender:)), for: .touchUpInside)
+            calloutView.delegate = self
             calloutView.isUserInteractionEnabled = true
             view.detailCalloutAccessoryView = calloutView
         } else if let _ = view.annotation as? MKPointAnnotation {
@@ -392,6 +391,11 @@ class HomeViewController: GFBaseViewController, CLLocationManagerDelegate, MKMap
     @objc func annotationPressed(sender: UIButton) {
             
         self.wayToFeedbackViewController(sender.titleLabel?.text)
+    }
+    
+    func annotationTapped(name: String) {
+        
+        self.wayToFeedbackViewController(name)
     }
     
     func wayToFeedbackViewController(_ title:String?) {

@@ -10,8 +10,15 @@ import UIKit
 import SnapKit
 import CDYelpFusionKit
 
+protocol AnnotationAction: class {
+    
+    func annotationTapped(name: String)
+}
+
 class CustomAnnotationView: UIView  {
     
+    weak var delegate: AnnotationAction?
+        
         private lazy var iconImageView: UIImageView = {
            
             let imageView = UIImageView()
@@ -65,12 +72,15 @@ class CustomAnnotationView: UIView  {
     lazy var actionButton: UIButton = {
         
         let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
 
         return button
     }()
 
         private var phoneNumber:String?
-        
+    
+        private var title:String?
+    
         init() {
             
             super.init(frame: CGRect.zero)
@@ -143,6 +153,7 @@ class CustomAnnotationView: UIView  {
 
             self.phoneNumber = bussiness?.phone
             self.titleLabel.text = bussiness?.name
+            self.title = bussiness?.name
             
             if let location = bussiness?.location {
                 
@@ -172,6 +183,11 @@ class CustomAnnotationView: UIView  {
             self.phoneNumber?.makeACall()
         }
         
+        @objc func tapAction() {
+            
+            self.delegate?.annotationTapped(name: self.title ?? "")
+        }
+    
         func formattedNumber(number: String) -> String {
             let cleanPhoneNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
             let mask = "+X (XXX) XXX-XXXX"

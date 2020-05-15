@@ -171,7 +171,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
             }
         } else {
             
-            self.popupAlert(title: "Alert", message: "Please Login to saved to drafts", actionTitles: ["OK"], actions: [{ action in
+            self.popupAlert(title: "Alert", message: "Please login to save it to drafts", actionTitles: ["OK"], actions: [{ action in
                 
                 self.navigationController?.popViewController(animated: true)
                 }])
@@ -343,7 +343,7 @@ class FeedbackViewController: GFBaseViewController, UINavigationControllerDelega
             if value {
                 print("Successfully saved data.")
                 self.attachSpinner(value: false)
-                self.popupAlert(title: "Alert", message: "Successfully saved data.", actionTitles: ["OK"], actions: [{ action in
+                self.popupAlert(title: "Alert", message: "Thank you..! \n Your feedback is submitted successfully, once it is approved it will be available for bussiness users.", actionTitles: ["OK"], actions: [{ action in
                     
                     self.navigationController?.popViewController(animated: true)
                     }])
